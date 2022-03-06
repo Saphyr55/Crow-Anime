@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Rocker&family=Roboto:wght@500&family=Rock+Salt&display=swap');
+
+body {
+    margin: auto;
+    text-decoration: none;
+    list-style: none;
+}
+
+header {
+    display: grid;
+    width: 100%;
+    height: 100px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 0.8fr;
+    grid-template-areas: "th" "bh";
+}
+
+a {
+    text-decoration:none;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+.top-header {
+    display: flex;
+    grid-area: th;
+    background-color: #1D1D1D;
+    flex-direction: row;
+    height: 62px;
+}
+
+.profil {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+.profil a {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.profil a p {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.connected {
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #C4C4C4;
+    color: #353535;
+}
+
+.bottom-header {
+    display: flex;
+    background-color: #353535;
+    grid-area: bh;
+    flex-direction: row;
+}
+
+.bottom-header div{
+    display: flex;
+    flex-direction: row;
+}
+
+.bottom-header div a {
+    margin-left: 50px;
+    font-size: 20px;
+}
+
+.input {
+    border: none;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 5px;
+    margin-top: 12px;
+    margin-left: 50%;
+    width: 100vh;
+    height: 30px;
+}
+
+.input:focus {
+    border: none;
+}
+
+.logo {
+    margin-left: 50px;
+    margin-top: 5px;
+    width: 100px;
+    height: 50px;
+}
+
