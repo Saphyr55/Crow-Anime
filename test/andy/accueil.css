@@ -1,12 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=New+Rocker&family=Roboto:wght@500&family=Rock+Salt&display=swap');
 
 body {
+    display: grid;
     margin: auto;
     text-decoration: none;
     list-style: none;
+    grid-template-columns: 1fr;
+    grid-template-rows: .2fr .8fr;
+    background-color: #2E2E2E;
+    grid-template-areas: "header" "section";
 }
 
 header {
+    grid-area: header;
     display: grid;
     width: 100%;
     height: 100px;
@@ -43,6 +49,7 @@ p {
 .profil a {
     margin-left: 10px;
     margin-right: 10px;
+    margin-top: -5px;
 }
 
 .profil a p {
@@ -70,25 +77,36 @@ p {
 }
 
 .bottom-header div a {
+    margin: auto;
     margin-left: 50px;
     font-size: 20px;
 }
 
-.input {
-    border: none;
+.button-search {
+    border-radius: 20px;
     background-color: white;
-    background-image: url('searchicon.png');
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    padding: 5px;
-    margin-top: 12px;
-    margin-left: 50%;
-    width: 100vh;
-    height: 30px;
+    width: 35px;
+    height: 35px;
+    margin-left: -90px;
 }
 
-.input:focus {
-    border: none;
+.fa-magnifying-glass {
+    margin-top: 6px;
+    margin-left: 5px;
+    font-size: 25px;
+    color: #1D1D1D;
+}
+
+.search-bar {
+    width: 40%;
+    margin-left: 15%;
+}
+
+.input {
+    border-radius: 20px;
+    margin: auto;  
+    height: 50%; 
+    width: 100%;
 }
 
 .logo {
@@ -97,4 +115,3 @@ p {
     width: 100px;
     height: 50px;
 }
-
