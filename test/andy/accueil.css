@@ -1,4 +1,5 @@
 body {
+    position: relative;
     display: grid;
     margin: auto;
     text-decoration: none;
@@ -20,6 +21,7 @@ body {
 
 .news {
     margin-top: 5%;
+    margin-left: 15%;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: .25fr .5fr .25fr;
@@ -66,7 +68,8 @@ body {
 .p-anime {
     border-radius: 0 50px 50px 0;
     background-color: white;
-    width: 20%;
+    min-width: 20%;
+    max-width: 20%;
     font-size: 30px;
     text-align: center;
 }
@@ -76,7 +79,9 @@ body {
 }
 
 .p-top-anime {
+    margin-top: 50px;
     font-size: 25px;
+    text-align: center;
 }
 
 .anime-img {
@@ -90,27 +95,41 @@ body {
     color: black;
 }
 
-.ol-top-anime {
+.div-top-anime {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ol-top-anime {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+    padding-right: 0px;
 }
 
 .ol-top-anime li {
-    background-color: aqua;
+    background-color: gray;
+    border-radius: 10px;
     margin-bottom: 10px;
     display: grid;
-    grid-template-columns: .1fr .3fr .5fr .1fr;
+    grid-template-columns: .1fr .4fr .5fr;
     grid-template-rows: .5fr .25fr .25fr;
-    grid-template-areas: "tp ti na add" 
-                         "tp ti sc add" 
-                         "tp ti mb add" ;
+    grid-template-areas: "tp ti na" 
+                         "tp ti sc" 
+                         "tp ti mb" ;
 }
 
 .top-number {
+    margin: auto;
+    font-size: 40px;
+    text-align: center;
     grid-area: tp;
 } 
 
 .top-img {
+    margin: auto;
     grid-area: ti;
 }
 
@@ -122,15 +141,35 @@ body {
     grid-area: mb;
 }
 
-.add {
-    grid-area: add;
-}
-
 .na {
+    margin-top: 0px;
     grid-area: na;
 }
+
+.na, .scored, .members {
+    text-align: center;
+
+}
+
 
 .ol-top-anime li a img{
     width: 100px;
     height: 120px;
+}
+
+#footer {
+    position: absolute; 
+    display: flex;
+    align-items: center;
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    height: 50px;
+    background-color: #1D1D1D;
+}
+
+#footer a {
+    font-size: 20px;
+    color: white;
+    margin-left: 5%;
 }
