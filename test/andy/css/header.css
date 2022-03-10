@@ -69,24 +69,31 @@ p {
     margin: auto;
     margin-left: 50px;
     font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.nav-item-animation:hover {
+    background-color: #C4C4C4;
+    transition: 100ms;
 }
 
 .button-search {
     width: 35px;
     height: 35px;
-    margin-left: -90px;
 }
 
 .fa-magnifying-glass {
     margin-top: 6px;
-    margin-left: 5px;
+    margin-left: -390%;
     font-size: 25px;
     color: #1D1D1D;
 }
 
 .search-bar {
     width: 40%;
-    margin-left: 15%;
+    margin-left: 13%;
+    max-width: 800px; 
 }
 
 .input {
