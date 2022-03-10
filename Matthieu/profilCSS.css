@@ -13,9 +13,13 @@ body {
 }
 
 .viewed-anime-img {
-    max-width :  100%; 
-    display: flex;
-    justify-content: space-around;
+    max-width :  50%; 
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+}
+
+.viewed-anime-img li {
+    margin-bottom: 200px;
 }
 
 .p-anime {
