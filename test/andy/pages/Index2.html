@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulaire d'inscription'</title>
+  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+</head>
+<body>
+  <form>
+    <h1>S'inscrire avec :</h1>
+    <div class="social-media">
+      <p><i class="fab fa-google"></i></p>
+      <p><i class="fab fa-youtube"></i></p>
+      <p><i class="fab fa-facebook-f"></i></p>
+      <p><i class="fab fa-twitter"></i></p>
+    </div>
+    <p class="choose-email">ou :</p>
+    
+    <div class="inputs">
+      <input type="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required/>
+      <input type="Username" placeholder="Username" minlength="2" maxlength="16" pattern="[A-Za-z0-9_]{2,16}" required/>
+      <input type="password" value="test" id="motdepasse">
+<input type="checkbox" onclick="Afficher()">Afficher le mot de passe
+<script>
+function Afficher()
+{ 
+var input = document.getElementById("motdepasse"); 
+if (input.type === "password")
+{ 
+input.type = "text"; 
+} 
+else
+{ 
+input.type = "password"; 
+} 
+} 
+</script>
+      <input type="confirmez password" value="test" id="ConfirmezMotdePasse">
+    </div>
+    <div align="center">
+      <button type="submit">S'inscrire</button>
+    </div>
+  </form>
+</body>
+</html>
