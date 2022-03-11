@@ -13,7 +13,7 @@ body {
 }
 
 .viewed-anime-img {
-    max-width :  50%; 
+    max-width :  100%; 
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
 }
