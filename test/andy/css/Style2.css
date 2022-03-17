@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+body{
+  display: flex;
+  justify-content:center;
+  flex-direction: columns;
+  align-items: center;
+  background-color: #f2f2f2;
+  font-family: 'Roboto', sans-serif;
+}
+form {
+  padding: 40px 60px;
+  border-radius: 10px;
+  min-width: 300px;
+  margin-top: 20px;
+  background: #9152f8;
+  background: -webkit-linear-gradient(bottom, #7579ff, #b224ef);
+  background: -o-linear-gradient(bottom, #7579ff, #b224ef);
+  background: -moz-linear-gradient(bottom, #7579ff, #b224ef);
+  background: linear-gradient(bottom, #7579ff, #b224ef);
+  position: relative;
+  z-index: 1;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+form h1{
+  color: #fff;
+  text-align:center;
+}
+form .social-media{
+  margin-top: -10px;
+  display: flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+form .social-media p{
+  padding: 5px;
+  width: 20px;
+  margin-left: 10px;
+  border-radius: 100%;
+  border: 1px solid #070707;
+  text-align: center;
+  cursor:pointer;
+  color: #070707;
+}
+form p.choose-email{
+  text-align:center;
+  color: #fff;
+}
+form .inputs {
+  display: flex;
+  flex-direction: column;
+}
+form .inputs input[type='email'], input[type='Username'], input[type='password'], input[type='confirmez password']{
+  padding: 15px;
+  border:none;
+  border-radius: 5px;
+  background-color:#f2f2f2;
+  outline:none;
+  margin-bottom: 15px;
+}
+form button{
+  padding: 15px 25px;
+  border-radius: 5px;
+  border:none;
+  font-size: 15px;
+  color: #fff;
+  background-color: #545454;
+  outline:none;
+  cursor:pointer;
+}

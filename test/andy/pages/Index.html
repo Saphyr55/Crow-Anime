@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulaire de connexion</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+</head>
+<body>
+  <form>
+    <h1>Se connecter avec :</h1>
+    <div class="social-media">
+      <p><i class="fab fa-google"></i></p>
+      <p><i class="fab fa-youtube"></i></p>
+      <p><i class="fab fa-facebook-f"></i></p>
+      <p><i class="fab fa-twitter"></i></p>
+    </div>
+    <p class="choose-email">ou utiliser mon adresse e-mail :</p>
+     
+    <div class="inputs">
+      <input type="email ou Username" placeholder="Email ou Username" pattern="[A-Za-z0-9_]{2,16}" or pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
+      <input type="password" value="test" id="motdepasse">
+<input type="checkbox" onclick="Afficher()">Afficher le mot de passe
+<script>
+function Afficher()
+{ 
+var input = document.getElementById("motdepasse"); 
+if (input.type === "password")
+{ 
+input.type = "text"; 
+} 
+else
+{ 
+input.type = "password"; 
+} 
+} 
+</script>
+    </div>
+    <p class="inscription">Je n'ai pas de <span>compte</span>. Je m'en <span>crée</span> un.</p>
+    <div align="center">
+      <button type="submit">Se connecter</button>
+    </div>
+  </form>
+</body>
+</html>
