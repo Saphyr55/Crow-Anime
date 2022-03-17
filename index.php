@@ -1,5 +1,10 @@
-<?php include "core/backend/head.php" ?>
+<?php 
+include_once "core/backend/params_head.php";
+$title="Accueil";
+include_once "core/backend/head.php";
+?>
 <head>
+    <title><?=$title?></title>
     <link rel="stylesheet" href="core/frontend/css/home.css">
 </head>
 <body>

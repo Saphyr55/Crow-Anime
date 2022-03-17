@@ -1,12 +1,8 @@
 <section id="section-left">
         <div class="news">
-            <div class="news-space-left"></div>
-            <div class="news-img-midle">
-                <a href="" class="angle angle-left"><i class="fa-solid fa-angle-left"></i></a>
-                <a href=""><img class="img-news" src="/assets/img/not_found.png" alt="" srcset=""></a>
-                <a href="" class="angle angle-right"><i class="fa-solid fa-angle-right"></i></a>
-            </div>
-            <div class="news-space-right"></div>
+            <a href="" class="angle angle-left"><i class="fa-solid fa-angle-left"></i></a>
+            <a href=""><img class="img-news" src="/assets/img/not_found.png" alt="" srcset=""></a>
+            <a href="" class="angle angle-right"><i class="fa-solid fa-angle-right"></i></a>
         </div>
         <div class="season-anime">
             <p class="p-anime">
@@ -14,7 +10,7 @@
                     ANIME DE SAISON
                 </a>
             </p>
-            <ul class="season-anime-img">
+            <ul class="season-anime-img" style="list-style-type:none;">
                 <?php
                 for ($i=0; $i < 4; $i++) { 
                     echo " 
@@ -35,7 +31,7 @@
                     DERNIER EPISODE
                 </a>
             </p>
-            <ul class="season-anime-img">
+            <ol class="season-anime-img" style="list-style-type:none;">
                 <?php 
                     for ($i=0; $i < 4 ; $i++) { 
                         echo "
@@ -48,7 +44,7 @@
                         ";
                     }
                 ?>
-            </ul>
+            </ol>
         </div>
 </section>
 <section class="section-right">

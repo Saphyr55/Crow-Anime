@@ -104,3 +104,10 @@ p {
     height: 50px;
     border-radius: 20px;
 }
+
+@media screen and (max-width: 720) {
+    
+    .profil {
+        display: none;
+    }
+}
