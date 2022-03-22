@@ -5,7 +5,7 @@ class Manga extends Work {
 
     }
     
-    public function querry() {
+    public function create() {
 
     }
 

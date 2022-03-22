@@ -5,4 +5,4 @@ $lang = 'en';
 $title = 'not found';
 $page = $_SERVER['PHP_SELF'];
 $sec = "5";
-$bdd = Database::getDatabase()->getPDO();
+$bdd = Database::getDatabase();
