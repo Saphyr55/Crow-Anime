@@ -3,7 +3,7 @@
 use \PDO;
 
 /**
- * Classe permetant la connection a la base de donnee
+ * Classe permetant la connexion à la base de donnee
  */
 class Database
 { 
@@ -40,7 +40,7 @@ class Database
     {
         if(is_null(self::$database))
         {
-            self::$database = new Database;
+            self::$database = new Database; 
         }
         return self::$database;
     }
@@ -50,11 +50,14 @@ class Database
      */ 
     private function getPDO()
     {
-        $pdo = new PDO
-        (
-            "mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->password
-        );
-        $this->pdo = $pdo;
+        if ($this->pdo === null) 
+        {
+            $pdo = new PDO
+            (
+                "mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->password
+            );
+            $this->pdo = $pdo;
+        }
         return $pdo;
     }
 
