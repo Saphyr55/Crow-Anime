@@ -1,4 +1,11 @@
 <?php
+namespace Backend\Work;
+
+require_once $_SERVER["DOCUMENT_ROOT"].'/core/backend/work/Work.php';
+
+use Backend\Work\Work;
+use Backend\Database;
+
 
 class Anime extends Work
 {    
@@ -6,19 +13,47 @@ class Anime extends Work
     private $number_season;
     private $current_season;
 
-    public function __construct(string $title_en, string $title_ja, float $score, 
-                DateTime $date_sorted, bool $finish, string $sysnopis,
-                Season $season, int $number_season, int $current_season)
+    private function __construct(
+            string $title_en = "", string $title_ja = "", bool $is_finish = false, string $synopsis = "",
+            string $season = null, int $number_season = 1, int $current_season = 1)
     {
-        parent::__construct($title_en, $title_ja, $score, $date_sorted, $finish,$sysnopis);
+        parent::__construct($title_en, $title_ja, $is_finish, $synopsis);
         $this->season = $season;
         $this->number_season = $number_season;
         $this->current_season = $current_season;
     }
-    
-    public function loading_anime() 
+
+    public static function build(string $title_en = "", string $title_ja = "", bool $is_finish = false, string $synopsis = "",
+                        string $season = null, int $number_season = 1, int $current_season = 1)
     {
-         
+        $instance = new Anime($title_en, $title_ja, $is_finish, $synopsis, $season, $number_season, $current_season);
+        return $instance;
+    }   
+    
+    public function put_in_database() 
+    {
+         Database::getDatabase()->execute(
+            "INSERT INTO `anime` (
+                anime_title_en,
+                anime_title_ja,
+                anime_season,
+                anime_current_season,
+                anime_number_season,
+                anime_is_finish,
+                anime_synopsis
+            ) 
+            VALUES ( ?,?,?,?,?,?,? )
+            ", array(
+                $this->title_en,
+                $this->title_ja,
+                $this->season,
+                $this->current_season,
+                $this->number_season,
+                $this->is_finish,
+                $this->synopsis
+            )
+        );
+        return $this;
     }
 
     /**
@@ -32,7 +67,7 @@ class Anime extends Work
     /**
      * Set the value of number_season
      *
-     * @return  self
+     * @return self
      */ 
     public function setNumberSeason($number_season)
     {

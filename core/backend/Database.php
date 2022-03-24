@@ -1,5 +1,7 @@
 <?php
 
+namespace Backend;
+
 use \PDO;
 
 /**
@@ -7,23 +9,19 @@ use \PDO;
  */
 class Database
 { 
-    
-    private static $connection_file = '../../assets/data/connection.json';
     private static $database = null;
-    private $pdo;
+    private static $pdo;
     private $host;
     private $username;
     private $password;
     private $dbname;
 
-    /**
-     * Fait la connection a la base de donnée
-     */
     private function __construct()
     {   
-        if (file_exists(self::$connection_file)) 
+        $connection_file = $_SERVER["DOCUMENT_ROOT"].'/assets/data/connection.json';
+        if (file_exists($connection_file)) 
         {
-            $data_connection = file_get_contents(self::$connection_file);
+            $data_connection = file_get_contents($connection_file);
             
             $connection = json_decode($data_connection);
             $this->host = $connection->host;
@@ -46,22 +44,36 @@ class Database
     }
 
     /**
-     * Get the value of pdo
+     * Fait la connexion à la base de donnée
      */ 
     private function getPDO()
     {
-        if ($this->pdo === null) 
+        if (self::$pdo === null) 
         {
-            $pdo = new PDO
+            self::$pdo = new PDO
             (
-                "mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->password
+                "mysql:host=$this->host;dbname=$this->dbname",
+                $this->username, $this->password
             );
-            $this->pdo = $pdo;
         }
-        return $pdo;
+        return self::$pdo;
     }
 
-    public function request(string $statement)
+    public function execute(string $statement, ?array $datas) 
+    {
+        $request = $this->getPDO()->prepare($statement);
+        $request->execute($datas);
+    }
+
+    public function lastRegister(string $table)
+    {
+        return self::$database->query(
+            'SELECT * FROM `anime`
+            ORDER BY `id_anime` DESC LIMIT 1;'
+        );
+    }
+
+    public function query(string $statement)
     {
         $pdo_statement = $this->getPDO()->query($statement);
         $datas = $pdo_statement->fetchAll(PDO::FETCH_OBJ);

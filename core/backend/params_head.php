@@ -1,5 +1,8 @@
 <?php
-require_once 'Database.php';
+
+use Backend\Database;
+
+require_once $_SERVER["DOCUMENT_ROOT"].'/core/backend/Database.php';
 $encoding = 'UTF-8';
 $lang = 'en';
 $title = 'not found';

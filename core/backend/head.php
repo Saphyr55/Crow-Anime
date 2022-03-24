@@ -1,4 +1,4 @@
-<?php include 'params_head.php' ?>
+<?php include $_SERVER["DOCUMENT_ROOT"].'core/backend/params_head.php' ?>
 <!DOCTYPE html>
 <html lang=<?php $lang ?>>
 <head>
