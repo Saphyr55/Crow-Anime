@@ -1,0 +1,37 @@
+body {
+    height: 122vh auto;
+    min-height: 122vh ;
+    background-color: #2e2e2e;
+}
+
+p {
+    font-size: 20px;
+}
+
+label {
+    color: white;
+}
+
+.add-anime {
+    margin-top: 5%;
+    display: flex;
+}
+
+.presentation {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 10%;
+}
+
+.form {
+    text-align: center;
+    padding: 10%;
+    background-color: darkgrey;    
+}
+
+#img_anime {
+    width: 300px;
+    height: 400px auto;
+    min-height: 400px;
+}
