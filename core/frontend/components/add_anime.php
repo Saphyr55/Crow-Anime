@@ -42,6 +42,7 @@ require_once $_SERVER["DOCUMENT_ROOT"].'/core/backend/work/Season.php';
             <label for="is_finish_anime">Est-il fini ?</label>
             <input type="checkbox" name="is_finish_anime" id="is_finish_anime">
             <br>
+            <textarea name="synopsis" id="" cols="30" rows="10"></textarea>
             <button type="submit" name="submit">Enregistrer l'anime</button>
         </form>
     </div>
