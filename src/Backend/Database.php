@@ -1,6 +1,6 @@
 <?php
 
-namespace Backend;
+namespace CrowAnime\Backend;
 
 use \PDO;
 

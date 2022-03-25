@@ -1,6 +1,6 @@
 <?php
 
-namespace Backend\Work;
+namespace CrowAnime\Backend\Work;
 
 class Manga extends Work {
 

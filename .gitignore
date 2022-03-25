@@ -1,1 +1,5 @@
 assets/data/connection.json
+vendor
+phpcs.xml
+phpunit.xml
+composer.lock

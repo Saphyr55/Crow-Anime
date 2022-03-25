@@ -1,10 +1,9 @@
 <?php
-namespace Backend\Work;
 
-require_once $_SERVER["DOCUMENT_ROOT"].'/core/backend/work/Work.php';
+namespace CrowAnime\Backend\Work;
 
-use Backend\Work\Work;
-use Backend\Database;
+use CrowAnime\Backend\Work\Work;
+use CrowAnime\Backend\Database;
 
 
 class Anime extends Work

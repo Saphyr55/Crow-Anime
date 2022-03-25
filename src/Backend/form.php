@@ -1,9 +1,9 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"].'/core/backend/work/Anime.php';
+require_once $_SERVER["DOCUMENT_ROOT"].'/src/Backend/work/Anime.php';
 
-use Backend\Database;
-use Backend\Work\Anime;
+use CrowAnime\Backend\Database;
+use CrowAnime\Backend\Work\Anime;
 
 /**
  * 
