@@ -10,9 +10,13 @@ class Module implements IComponent
 {
     private $head;
     private $body;
+    private $redirectionURI;
+    private $nameModule;
 
-    public function __construct(Head $head, Body $body) 
+    public function __construct(string $nameModule, Head $head, Body $body) 
     {
+        $this->nameModule = $nameModule;
+        $this->redirectionURI = "http://$_SERVER[HTTP_HOST]/$nameModule";
         $this->head  = $head;
         $this->body  = $body;
     }
@@ -20,8 +24,8 @@ class Module implements IComponent
     public function sendHTML(): string|array
     {
         return [
-            $this->head->sendHTML(),
-            $this->body->sendHTML()
+            "head" => $this->head->sendHTML(),
+            "body" => $this->body->sendHTML()
         ];
     }
  
@@ -61,6 +65,46 @@ class Module implements IComponent
     public function setBody($body)
     {
         $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of redirectionURI
+     */ 
+    public function getRedirectionURI()
+    {
+        return $this->redirectionURI;
+    }
+
+    /**
+     * Set the value of redirectionURI
+     *
+     * @return  self
+     */ 
+    public function setRedirectionURI($redirectionURI)
+    {
+        $this->redirectionURI = $redirectionURI;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nameModule
+     */ 
+    public function getNameModule()
+    {
+        return $this->nameModule;
+    }
+
+    /**
+     * Set the value of nameModule
+     *
+     * @return  self
+     */ 
+    public function setNameModule($nameModule)
+    {
+        $this->nameModule = $nameModule;
 
         return $this;
     }

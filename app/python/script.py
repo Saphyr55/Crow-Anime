@@ -16,12 +16,17 @@ id_work = data['id_work']
 is_anime = data['is_anime']
 is_manga = data['is_manga']
 
+name_work = "SNK"
+id_work = 1
+is_anime = False
+is_anime = True
+
 # recupere la page de l'anime ou manga
 
 options = Options()
 options.add_argument("--headless")
 
-driver = webdriver.Chrome(executable_path=path_parent+"/../../app/python/chromedriver", options=options)
+driver = webdriver.Chrome(executable_path=path_parent+"/../../app/python/chromedriver") #, options=options)
 driver.get("https://myanimelist.net/search/all?q="+name_work)
 driver.implicitly_wait(3)
 

@@ -7,15 +7,25 @@ use CrowAnime\Frontend\IComponent;
 class Body implements IComponent
 {
     private $linkComponent;
+    private $component;
 
     public function __construct(string $linkComponent) 
     {
         $this->linkComponent = $linkComponent;
     }
 
-    public function sendHTML(): string|array
+    public function sendHTML() : string|array
+    {   
+        return [
+            "<body>",
+
+            "</body>"
+        ];
+    }
+
+    private function componentFile(string $linkComponent)
     {
-        return "";
+        $file = fopen(S_SERVER['DOCUMENT_ROO'].$linkComponent);
     }
 
     /**

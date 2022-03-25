@@ -1,7 +1,5 @@
 <?php use CrowAnime\Backend\Work\Season; ?>
-<body>
-    <?php require $_SERVER["DOCUMENT_ROOT"].'/core/frontend/components/header.php' ?>
-    <section class="add-anime">
+<section class="add-anime">
     <div class="presentation">
         <img id="img_anime" src=<?= ($anime !== null) ? $anime->getUrlImageWork54x71() : "/assets/img/not_found.png" ?>>
         <p>NAME ANIME JA</p>
@@ -36,6 +34,3 @@
         </form>
     </div>
     </section>
-    <?php require_once $_SERVER['DOCUMENT_ROOT']."/core/frontend/components/footer.php" ?>
-</body>
-</html>
