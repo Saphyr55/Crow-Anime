@@ -1,15 +1,4 @@
-<?php
-
-use Work\Season;
-
-require_once $_SERVER["DOCUMENT_ROOT"].'/core/backend/head.php';
-require_once $_SERVER["DOCUMENT_ROOT"].'/core/backend/work/Season.php';
-#require_once $_SERVER["DOCUMENT_ROOT"]."/core/backend/form.php";
-
-?>
-<head>
-    <link rel="stylesheet" href="/core/frontend/css/add_anime.css">
-</head>
+<?php use CrowAnime\Backend\Work\Season; ?>
 <body>
     <?php require $_SERVER["DOCUMENT_ROOT"].'/core/frontend/components/header.php' ?>
     <section class="add-anime">
@@ -24,7 +13,7 @@ require_once $_SERVER["DOCUMENT_ROOT"].'/core/backend/work/Season.php';
             <input type="text" name="name_anime_ja" placeholder="Nom de l'anime japonais"><br>            
             <span>
                 <label for="year">Année :</label>
-                <select id="year" name="year">
+                 <select id="year" name="year">
                     <?php
                     for ($i=1990; $i <= date('Y'); $i++) { 
                         echo "<option value=\"date_$i\" >$i</option>";

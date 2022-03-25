@@ -1,15 +1,21 @@
-<?php 
-include_once "core/backend/params_head.php";
-$title="Accueil";
-include_once "core/backend/head.php";
-?>
-<head>
-    <title><?=$title?></title>
-    <link rel="stylesheet" href="core/frontend/css/home.css">
-</head>
-<body>
-        <?php include "core/frontend/components/header.php" ?>
-        <?php include "core/frontend/components/home.php" ?>
-        <?php include "core/frontend/components/footer.php" ?>
-    </body>
-</html>
+<?php
+
+require_once './vendor/autoload.php';
+
+use CrowAnime\App;
+use CrowAnime\Backend\Body;
+use CrowAnime\Backend\Head;
+use CrowAnime\Module;
+
+$app = new App([
+    new Module(
+        new Head(
+            "Home",
+            "/src/CrowAnime/frontend/css/home.css"
+        ),
+        new Body(
+            "/src/CrowAnime/frontend/components/home.php"
+        )
+    )
+]);
+$app->run();

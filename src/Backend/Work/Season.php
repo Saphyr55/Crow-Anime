@@ -1,6 +1,6 @@
 <?php
 
-namespace Work;
+namespace CrowAnime\Backend\Work;
 
 abstract class Season
 {

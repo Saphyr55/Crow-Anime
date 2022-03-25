@@ -1,8 +1,8 @@
 <?php
 
-use Backend\Database;
+use CrowAnime\Backend\Database;
 
-require_once $_SERVER["DOCUMENT_ROOT"].'/core/backend/Database.php';
+require_once $_SERVER["DOCUMENT_ROOT"].'/src/CrowAnime/backend/Database.php';
 $encoding = 'UTF-8';
 $lang = 'en';
 $title = 'not found';
