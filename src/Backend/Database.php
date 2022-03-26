@@ -2,13 +2,13 @@
 
 namespace CrowAnime\Backend;
 
-use \PDO;
+use PDO;
 
 /**
  * Classe permetant la connexion à la base de donnée
  */
 class Database
-{ 
+{
     private static $database = null;
     private static $pdo;
     private $host;
@@ -18,44 +18,41 @@ class Database
 
 
     private function __construct()
-    {   
-        $connection_file = $_SERVER["DOCUMENT_ROOT"].'/assets/data/connection.json';
-        if (file_exists($connection_file)) 
-        {
+    {
+        $connection_file = $_SERVER["DOCUMENT_ROOT"] . '/assets/data/connection.json';
+        if (file_exists($connection_file)) {
             $data_connection = file_get_contents($connection_file);
-            
+
             $connection = json_decode($data_connection);
             $this->host = $connection->host;
             $this->username = $connection->username;
             $this->password = $connection->password;
             $this->dbname = $connection->dbname;
-        } 
+        }
     }
-    
+
     /**
      * Recupere l'unique instance de la base de donnée
      */
     public static function getDatabase()
     {
-        if(is_null(self::$database))
-        {
-            self::$database = new Database; 
+        if (is_null(self::$database)) {
+            self::$database = new Database;
         }
         return self::$database;
     }
 
     /**
      * Fait la connexion à la base de donnée
-     */ 
+     */
     private function getPDO()
     {
-        if (self::$pdo === null) 
-        {
-            self::$pdo = new PDO
-            (
-                "mysql:host=$this->host;dbname=$this->dbname",
-                $this->username, $this->password
-            );
+        if (self::$pdo === null) {
+            self::$pdo = new PDO(
+                    "mysql:host=$this->host;dbname=$this->dbname",
+                    $this->username,
+                    $this->password
+                );
         }
         return self::$pdo;
     }
@@ -63,13 +60,13 @@ class Database
     /**
      * Permet l'insertion de donnée
      */
-    public function execute(string $statement, array $datas) 
+    public function execute(string $statement, array $datas)
     {
         $request = $this->getPDO()->prepare($statement);
         $request->execute($datas);
     }
 
-        
+
     /**
      * Permet de recuper le dernier enregistrement
      *
@@ -88,13 +85,17 @@ class Database
     /**
      * Permet de recuperer des donner avec la requette sql mis en parametre 
      *
-     * @param  mixed $statement
-     * @return void
+     * @param  string $statement
+     * @return mixed
      */
-    public function query(string $statement)
+    public function query(string $statement) : array|null
     {
         $pdo_statement = $this->getPDO()->query($statement);
-        $datas = $pdo_statement->fetchAll(PDO::FETCH_OBJ);
-        return $datas;
+        if ($pdo_statement !== false) {
+            $datas = $pdo_statement->fetchAll(PDO::FETCH_OBJ);
+            if ($datas !== false) {
+                return (array) $datas;
+            } else return null;
+        } else return null;
     }
 }

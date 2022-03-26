@@ -3,8 +3,10 @@
 require_once './vendor/autoload.php';
 
 use CrowAnime\App;
+use CrowAnime\Backend\Database;
 use CrowAnime\Frontend\Body;
 use CrowAnime\Backend\Head;
+use CrowAnime\Backend\User;
 use CrowAnime\Frontend\Footer;
 use CrowAnime\Frontend\Header;
 use CrowAnime\Module;
@@ -12,7 +14,7 @@ use CrowAnime\Module;
 $header = new Header("src/Frontend/components/header.php"); // creation du header
 $footer = new Footer("src/Frontend/components/footer.php"); // creation du footer
 
-$profile = "Saphyr";
+App::checkProfileURI();
 
 $app = new App(
     [
@@ -20,7 +22,7 @@ $app = new App(
         new Module(
             "home",
             new Head(
-                "Home",
+                "CrowAnime - Home",
                 [
                     "src/Frontend/css/home.css"
                 ]
@@ -33,9 +35,9 @@ $app = new App(
         ),
         // <profils>/animes
         new Module(
-            "$profile/animes",
+            "profile/" . User::getCurrentUsernameURI() . "/animeslist",
             new Head(
-                "$profile : Anime vus",
+                "$profile : Anime List",
                 [
                     "src/Frontend/css/profile_animes.css"
                 ]
@@ -48,9 +50,9 @@ $app = new App(
         ),
         // <profils>/mangas
         new Module(
-            "$profile/mangas",
+            "profile/" . User::getCurrentUsernameURI() . "/mangaslist",
             new Head(
-                "$profile : Manga vus",
+                "$profile : Manga List",
                 [
                     "src/Frontend/css/profile_mangas.css"
                 ]
@@ -65,7 +67,7 @@ $app = new App(
         new Module(
             "animes",
             new Head(
-                "All Animes",
+                "CrowAnime - All Animes",
                 [
                     "src/Frontend/css/animes.css"
                 ]
@@ -80,22 +82,22 @@ $app = new App(
         new Module(
             "mangas",
             new Head(
-                "All Mangas",
+                "CrowAnime - All Mangas",
                 [
                     "src/Frontend/css/mangas.css"
                 ]
-                ),
-                new Body(
-                    "src/Frontend/components/mangas.php",
-                    $header,
-                    $footer
-                )
+            ),
+            new Body(
+                "src/Frontend/components/mangas.php",
+                $header,
+                $footer
+            )
         ),
         // Page de connexion
         new Module(
             "signup",
             new Head(
-                "Signup",
+                "CrowAnime - Sign Up",
                 [
                     "src/Frontend/css/signup.css"
                 ]
@@ -110,7 +112,7 @@ $app = new App(
         new Module(
             "login",
             new Head(
-                "Login",
+                "CrowAnime - Login",
                 [
                     "src/Frontend/css/login.css"
                 ]

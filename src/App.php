@@ -2,6 +2,9 @@
 
 namespace CrowAnime;
 
+use CrowAnime\Backend\Database;
+use CrowAnime\Backend\User;
+
 /**
  * Classe App
  * 
@@ -49,33 +52,54 @@ class App
     public function run(): self
     {
 
-        
         for ($i = 0; $i < count($this->modules); $i++) {
 
-            
+
             self::$currentModule = $this->modules[$i];
             self::$currentHead   = self::$currentModule->getHead();
             self::$currentBody   = self::$currentModule->getBody();
-
+            
             if (
-                strcmp($_SERVER['REQUEST_URI'], '/' . self::$currentModule->getNameModule()) === 0
+                (is_null(explode('/', self::$currentModule->getNameModule())[0])) ||
+                ($i == (count($this->modules) - 1))
             ) {
-                self::putCurrentFileContent(self::$currentModule);
-                break;
-            } elseif (strcmp($_SERVER['REQUEST_URI'], '/' . self::$currentModule->getNameModule() . '/') === 0) {
-                header('Location: ' . substr($_SERVER['REQUEST_URI'], 0, -1));
-                break;
-            } elseif (strcmp($_SERVER['REQUEST_URI'], "/") == 0) {
-                self::putCurrentFileContent($this->modules[0]);
-                break;
-            } elseif ($i == (count($this->modules) - 1) ) {
                 if ($this->errorPage !== null) {
                     self::putCurrentFileContent($this->errorPage);
                     break;
                 }
+            } elseif (
+                strcmp($_SERVER['REQUEST_URI'], '/' . self::$currentModule->getNameModule()) === 0
+            ) {
+
+                self::putCurrentFileContent(self::$currentModule);
+                break;
+            } elseif (strcmp($_SERVER['REQUEST_URI'], '/' . self::$currentModule->getNameModule() . '/') === 0) {
+
+                header('Location: ' . substr($_SERVER['REQUEST_URI'], 0, -1));
+                break;
+            } elseif (strcmp($_SERVER['REQUEST_URI'], "/") == 0) {
+
+                self::putCurrentFileContent($this->modules[0]);
+                break;
             }
         }
+
         return $this;
+    }
+
+
+    public static function checkProfileURI()
+    {   
+        if (strcmp(explode('/',$_SERVER['REQUEST_URI'])[1], 'profile') === 0) {
+            $theoricUser = explode('/', $_SERVER['REQUEST_URI'])[2];
+            $users = Database::getDatabase()->query("SELECT username FROM _user");
+            foreach ($users as $user) {
+                $user = (array) $user;
+                if (strcmp($theoricUser, $user['username']) === 0) {
+                    User::setCurrentUsernameURI($theoricUser);
+                }
+            }
+        }
     }
 
     /**

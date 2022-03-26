@@ -36,21 +36,25 @@ class Head implements IComponent
             "<meta http-equiv='refresh'>",
             "<meta name='viewport' content='width=device-width, initial-scale=1.0'>",
         ];
-
+        
+        $htmlHeadLinksCSS = [
+            "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/src/Frontend/css/header.css'>",
+            "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/src/Frontend/css/footer.css'>",
+        ];
+        
         $htmlHeadAfterLinksCSS  = [
+            "<link rel='icon' type='image/png' sizes='16x16' href='https://cdn-icons-png.flaticon.com/512/3504/3504720.png'>",
             "<script src='https://kit.fontawesome.com/909d9d481e.js' crossorigin='anonymous'></script>",
             "<title>$this->title</title>",
             "</head>"
         ];
 
-        $htmlHeadLinksCSS = [
-            "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/src/Frontend/css/header.css'>",
-            "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/src/Frontend/css/footer.css'>",
-        ];
 
-        foreach ($this->linksCSS as $linkCSS)
-            array_push($htmlHeadLinksCSS, "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/$linkCSS'>");
-
+        
+        if($this->linksCSS !== []){
+            foreach ($this->linksCSS as $linkCSS)
+                array_push($htmlHeadLinksCSS, "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/$linkCSS'>");
+        }
         $htmlHead = array_merge($htmlHeadBeforeLinksCSS, $htmlHeadAfterLinksCSS, $htmlHeadLinksCSS);
 
         return $htmlHead;

@@ -6,13 +6,13 @@ use DateTime;
 
 class User
 {
+    private static ?string $currentUsernameURI = null;
     private string $username;
     private string $email;
     private string $password;
     private bool $isAdmin;
     private DateTime $dateConnection;
     private DateTime $dateRegister;
-
 
     /**
      *
@@ -154,5 +154,21 @@ class User
         $this->dateRegister = $dateRegister;
 
         return $this;
+    }
+
+    /**
+     * Get the value of currentUsernameURI
+     */
+    public static function getCurrentUsernameURI() : ?string
+    {
+        return self::$currentUsernameURI;
+    }
+
+    /**
+     * Set the value of currentUsernameURI
+     */ 
+    public static function setCurrentUsernameURI(?string $currentUsernameURI)
+    {
+        self::$currentUsernameURI = $currentUsernameURI;
     }
 }
