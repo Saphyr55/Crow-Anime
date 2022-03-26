@@ -11,11 +11,11 @@ class Head implements IComponent
     private $htmlHead;
     private $lang;
 
-    public function __construct(string $title, ?string $linksCSS)
+    public function __construct(string $title, ?array $linksCSS)
     {
         $this->title = $title;
-        if (!isset($linksCSS) && $linksCSS === null)
-            $this->linksCSS = "";
+        if (!isset($linksCSS))
+            $this->linksCSS = [];
         else
             $this->linksCSS = $linksCSS;
         $this->htmlHead = $this->htmlCreateHead();
@@ -28,20 +28,31 @@ class Head implements IComponent
 
     private function htmlCreateHead(): array
     {
-        $htmlHead = [
+        $htmlHeadBeforeLinksCSS = [
             "<!DOCTYPE html>",
             "<html lang='$this->lang'>",
             "<head>",
             "<meta charset='UTF-8'>",
             "<meta http-equiv='refresh'>",
             "<meta name='viewport' content='width=device-width, initial-scale=1.0'>",
-            "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/src/Frontend/css/header.css'>",
-            "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/src/Frontend/css/footer.css'>",
-            "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/$this->linksCSS'>",
+        ];
+
+        $htmlHeadAfterLinksCSS  = [
             "<script src='https://kit.fontawesome.com/909d9d481e.js' crossorigin='anonymous'></script>",
             "<title>$this->title</title>",
             "</head>"
         ];
+
+        $htmlHeadLinksCSS = [
+            "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/src/Frontend/css/header.css'>",
+            "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/src/Frontend/css/footer.css'>",
+        ];
+
+        foreach ($this->linksCSS as $linkCSS)
+            array_push($htmlHeadLinksCSS, $linkCSS);
+
+        $htmlHead = array_merge($htmlHeadBeforeLinksCSS, $htmlHeadAfterLinksCSS, $htmlHeadLinksCSS);
+
         return $htmlHead;
     }
 

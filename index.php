@@ -18,7 +18,9 @@ $app = new App(
             "home",
             new Head(
                 "Home",
-                "src/Frontend/css/home.css"
+                [
+                    "src/Frontend/css/home.css"
+                ]
             ),
             new Body(
                 "src/Frontend/components/home.php",
@@ -30,7 +32,9 @@ $app = new App(
             "profilanime",
             new Head(
                 "Profil : Anime vus",
-                "src/Frontend/css/profilanime.css"
+                [
+                    "src/Frontend/css/profilanime.css"
+                ]
             ),
             new Body(
                 "src/Frontend/components/profilanime.php",
@@ -43,7 +47,7 @@ $app = new App(
         "not_found",
         new Head(
             "Page Not Found",
-            null
+            []
         ),
         new Body(
             "src/Frontend/components/notfound.php",
