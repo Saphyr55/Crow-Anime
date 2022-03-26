@@ -51,20 +51,3 @@ body {
     margin-left: 10px;
     color: black;
 }
-
-#footer {
-    position: relative; 
-    display: flex;
-    align-items: center;
-    bottom: 0; 
-    left: 0; 
-    right: 0;
-    height: 50px;
-    background-color: #1D1D1D;
-}
-
-#footer a {
-    font-size: 20px;
-    color: white;
-    margin-left: 5%;
-}

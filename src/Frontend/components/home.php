@@ -14,10 +14,10 @@
                 <?php
                 for ($i=0; $i < 4; $i++) { 
                     echo " 
-                    <li class=\"anime\">
-                    <a href=\"\">
-                        <img class=\"anime-img\" src=\"/assets/img/not_found.png\" alt=\"\" srcset=\"\">
-                        <p class=\"name-anime\">Name anime</p>
+                    <li class='anime'>
+                    <a href=''>
+                        <img class=''anime-img'' src='/assets/img/not_found.png'' alt='' srcset=''>
+                        <p class='name-anime'>Name anime</p>
                     </a>            
                     </li>
                     ";
@@ -33,12 +33,13 @@
             </p>
             <ol class="season-anime-img" style="list-style-type:none;">
                 <?php 
-                    for ($i=0; $i < 4 ; $i++) { 
+                    for ($i=0; $i < 4 ; $i++) 
+                    { 
                         echo "
-                        <li class=\"anime\">
-                        <a href=\"\">
-                            <img class=\"anime-img\" src=\"/assets/img/not_found.png\" alt=\"\" srcset=\"\">
-                            <p class=\"name-anime\">Name anime</p>
+                        <li class='anime'>
+                        <a href=''>
+                            <img class='anime-img' src='/assets/img/not_found.png' alt='' srcset=''>
+                            <p class='name-anime'>Name anime</p>
                         </a>            
                         </li>
                         ";
@@ -56,9 +57,9 @@
                     echo 
                     "
                     <li>
-                        <p class=\"top-number\">$i</p>
-                        <a href=\"\" class=\"top-img\">
-                            <img src=\"/assets/img/not_found.png\" alt=\"\">
+                        <p class='top-number'>$i</p>
+                        <a href='' class='top-img'>
+                            <img src='/assets/img/not_found.png' alt=''>
                         </a>
                         <a href=\"\" class=\"name-anime na\">
                             <p>Name anime</p>
