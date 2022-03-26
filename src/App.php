@@ -48,8 +48,11 @@ class App
      */
     public function run(): self
     {
+
+        
         for ($i = 0; $i < count($this->modules); $i++) {
 
+            
             self::$currentModule = $this->modules[$i];
             self::$currentHead   = self::$currentModule->getHead();
             self::$currentBody   = self::$currentModule->getBody();
@@ -65,7 +68,7 @@ class App
             } elseif (strcmp($_SERVER['REQUEST_URI'], "/") == 0) {
                 self::putCurrentFileContent($this->modules[0]);
                 break;
-            } elseif ($i == (count($this->modules) - 1)) {
+            } elseif ($i == (count($this->modules) - 1) ) {
                 if ($this->errorPage !== null) {
                     self::putCurrentFileContent($this->errorPage);
                     break;

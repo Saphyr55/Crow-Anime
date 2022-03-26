@@ -12,6 +12,8 @@ use CrowAnime\Module;
 $header = new Header("src/Frontend/components/header.php"); // creation du header
 $footer = new Footer("src/Frontend/components/footer.php"); // creation du footer
 
+$profile = "Saphyr";
+
 $app = new App(
     [
         // Home
@@ -31,30 +33,30 @@ $app = new App(
         ),
         // <profils>/animes
         new Module(
-            "profils/animes",
+            "$profile/animes",
             new Head(
-                "Profils : Anime vus",
+                "$profile : Anime vus",
                 [
-                    "src/Frontend/css/profils_animes.css"
+                    "src/Frontend/css/profile_animes.css"
                 ]
             ),
             new Body(
-                "src/Frontend/components/profils_animes.php",
+                "src/Frontend/components/profile_animes.php",
                 $header,
                 $footer
             )
         ),
         // <profils>/mangas
         new Module(
-            "profils/mangas",
+            "$profile/mangas",
             new Head(
-                "Profils : Manga vus",
+                "$profile : Manga vus",
                 [
-                    "src/Frontend/css/profils_mangas.css"
+                    "src/Frontend/css/profile_mangas.css"
                 ]
             ),
             new Body(
-                "src/Frontend/components/profils_mangas.php",
+                "src/Frontend/components/profile_mangas.php",
                 $header,
                 $footer
             )
