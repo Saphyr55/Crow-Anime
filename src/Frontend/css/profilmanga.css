@@ -1,0 +1,53 @@
+body {
+    position: relative;
+    margin: auto;
+    text-decoration: none;
+    list-style: none;
+    background-color: #2e2e2e;
+}
+
+.angle {
+    position: relative;
+    font-size: 40px;
+    color: white;
+}
+
+.viewed-anime-img {
+    max-width :  100%; 
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+}
+
+.viewed-anime-img li {
+    margin-bottom: 200px;
+}
+
+.p-anime {
+    border-radius: 0 50px 50px 0;
+    background-color: white;
+    min-width: 20%;
+    max-width: 20%;
+    font-size: 30px;
+    text-align: center;
+}
+
+.p-anime a {
+    color: #2e2e2e;
+}
+
+.p-top-anime {
+    margin-top: 50px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.anime-img {
+    width: 200px;
+    height: 300px;
+}
+
+.name-anime {
+    margin-top: -20%;
+    margin-left: 10px;
+    color: black;
+}

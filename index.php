@@ -47,11 +47,11 @@ $app = new App(
             new Head(
                 "Profil : Manga vus",
                 [
-                    "src/Frontend/css/home.css"
+                    "src/Frontend/css/profilmanga.css"
                 ]
             ),
             new Body(
-                "src/Frontend/components/home.php",
+                "src/Frontend/components/profilmanga.php",
                 $header,
                 $footer
             )
@@ -72,4 +72,4 @@ $app = new App(
         )
     )
 );
-$app->run();
+$app->run(); // Lancement de l'application

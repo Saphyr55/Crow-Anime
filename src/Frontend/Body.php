@@ -44,7 +44,8 @@ class Body implements IComponent
             file_get_contents("$_SERVER[DOCUMENT_ROOT]/" . $this->header->getPathHeader()),
             file_get_contents("$_SERVER[DOCUMENT_ROOT]/$this->pathComponent"),
             file_get_contents("$_SERVER[DOCUMENT_ROOT]/" . $this->footer->getPathFooter()),
-            "</body>"
+            "</body>",
+            "</html>"
         ];
     }
 
