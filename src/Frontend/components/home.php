@@ -11,20 +11,20 @@
                     ANIME DE SAISON
                 </a>
             </p>
-            <ul class="season-anime-img" style="list-style-type:none;">
+            <ol class="season-anime-img" style="list-style-type:none;">
                 <?php
                 for ($i = 0; $i < 4; $i++) {
                     echo " 
                     <li class='anime'>
                     <a href=''>
-                        <img class=''anime-img'' src='/assets/img/not_found.png'' alt='' srcset=''>
+                        <img class='anime-img' src='/assets/img/not_found.png' alt='' srcset=''>
                         <p class='name-anime'>Name anime</p>
                     </a>            
                     </li>
                     ";
                 }
                 ?>
-            </ul>
+            </ol>
         </div>
         <div class="season-anime">
             <p class="p-anime">
@@ -37,10 +37,10 @@
                 for ($i = 0; $i < 4; $i++) {
                     echo "
                         <li class='anime'>
-                        <a href=''>
-                            <img class='anime-img' src='/assets/img/not_found.png' alt='' srcset=''>
-                            <p class='name-anime'>Name anime</p>
-                        </a>            
+                            <a href=''>
+                                <img class='anime-img' src='/assets/img/not_found.png' alt='' srcset=''>
+                                <p class='name-anime'>Name anime</p>
+                            </a>            
                         </li>
                         ";
                 }
