@@ -41,6 +41,20 @@ $app = new App(
                 $header,
                 $footer
             )
+        ),
+        new Module(
+            "profilmanga",
+            new Head(
+                "Profil : Manga vus",
+                [
+                    "src/Frontend/css/home.css"
+                ]
+            ),
+            new Body(
+                "src/Frontend/components/home.php",
+                $header,
+                $footer
+            )
         )
     ],
     new Module( # put a error page when the URL isn't found

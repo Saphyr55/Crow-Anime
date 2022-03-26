@@ -1,13 +1,15 @@
 import json
-import os
 from pathlib import Path
 from os import path
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 path_parent = str(Path(f"{__file__}").parent)
+print(path_parent+"/../../app/python/chromedriver")
 with open(path_parent+"/../../assets/data/work.json") as work:
     data = json.load(work)
 
@@ -16,7 +18,7 @@ id_work = data['id_work']
 is_anime = data['is_anime']
 is_manga = data['is_manga']
 
-name_work = "SNK"
+name_work = "Leadale no Daichi nite"
 id_work = 1
 is_anime = False
 is_anime = True
@@ -26,7 +28,8 @@ is_anime = True
 options = Options()
 options.add_argument("--headless")
 
-driver = webdriver.Chrome(executable_path=path_parent+"/../../app/python/chromedriver") #, options=options)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+ #, options=options)
 driver.get("https://myanimelist.net/search/all?q="+name_work)
 driver.implicitly_wait(3)
 

@@ -1,4 +1,5 @@
-<section id="section-left">
+<body>
+    <section id="section-left">
         <div class="news">
             <a href="" class="angle angle-left"><i class="fa-solid fa-angle-left"></i></a>
             <a href=""><img class="img-news" src="/assets/img/not_found.png" alt="" srcset=""></a>
@@ -12,7 +13,7 @@
             </p>
             <ul class="season-anime-img" style="list-style-type:none;">
                 <?php
-                for ($i=0; $i < 4; $i++) { 
+                for ($i = 0; $i < 4; $i++) {
                     echo " 
                     <li class='anime'>
                     <a href=''>
@@ -32,10 +33,9 @@
                 </a>
             </p>
             <ol class="season-anime-img" style="list-style-type:none;">
-                <?php 
-                    for ($i=0; $i < 4 ; $i++) 
-                    { 
-                        echo "
+                <?php
+                for ($i = 0; $i < 4; $i++) {
+                    echo "
                         <li class='anime'>
                         <a href=''>
                             <img class='anime-img' src='/assets/img/not_found.png' alt='' srcset=''>
@@ -43,18 +43,18 @@
                         </a>            
                         </li>
                         ";
-                    }
+                }
                 ?>
             </ol>
         </div>
-</section>
-<section class="section-right">
+    </section>
+    <section class="section-right">
         <div class="div-top-anime">
             <p class="p-top-anime">LES MIEUX NOTÉ</p>
             <ol class="ol-top-anime">
                 <?php
-                for ($i=1; $i <= 5 ; $i++) { 
-                    echo 
+                for ($i = 1; $i <= 5; $i++) {
+                    echo
                     "
                     <li>
                         <p class='top-number'>$i</p>
@@ -71,5 +71,6 @@
                 }
                 ?>
             </ol>
-    </div>
-</section>
+        </div>
+    </section>
+</body>
