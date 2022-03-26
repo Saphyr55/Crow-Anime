@@ -54,9 +54,9 @@ class Module implements IComponent
     /**
      * Get the value of head
      *
-     * @return Header $head
+     * @return Head $head
      */
-    public function getHead() : Header
+    public function getHead() : Head
     {
         return $this->head;
     }
