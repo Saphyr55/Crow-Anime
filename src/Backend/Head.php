@@ -49,7 +49,7 @@ class Head implements IComponent
         ];
 
         foreach ($this->linksCSS as $linkCSS)
-            array_push($htmlHeadLinksCSS, $linkCSS);
+            array_push($htmlHeadLinksCSS, "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/$linkCSS'>");
 
         $htmlHead = array_merge($htmlHeadBeforeLinksCSS, $htmlHeadAfterLinksCSS, $htmlHeadLinksCSS);
 
