@@ -21,9 +21,9 @@ class Body implements IComponent
     /**
      * Constructeur du Body
      * 
-     * @param pathComponent
-     * @param header
-     * @param footer
+     * @param string $pathComponent
+     * @param Header $header
+     * @param Footer $footer
      */
     public function __construct(string $pathComponent, ?Header $header, ?Footer $footer)
     {
@@ -38,12 +38,12 @@ class Body implements IComponent
      * @return string|array
      */
     public function sendHTML(): string|array
-    {
+    {   
         return [
             "<body>",
-            file_get_contents("$_SERVER[DOCUMENT_ROOT]/" . $this->header->getPathHeader()),
+            ($this->header !== null) ? file_get_contents("$_SERVER[DOCUMENT_ROOT]/" . $this->header->getPathHeader()) : '',
             file_get_contents("$_SERVER[DOCUMENT_ROOT]/$this->pathComponent"),
-            file_get_contents("$_SERVER[DOCUMENT_ROOT]/" . $this->footer->getPathFooter()),
+            ($this->footer !== null) ? file_get_contents("$_SERVER[DOCUMENT_ROOT]/" . $this->footer->getPathFooter()) : '',
             "</body>",
             "</html>"
         ];

@@ -11,7 +11,7 @@
                 echo '
                 <li class="anime">
                     <a href="">
-                        <img class="anime-img" src="not_found.png" alt="" srcset="">
+                        <img class="anime-img" src="/assets/img/not_found.png" alt="" srcset="">
                         <p class="name-anime">Name manga</p>
                     </a>            
                 </li>

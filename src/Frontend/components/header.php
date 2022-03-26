@@ -1,15 +1,15 @@
 <header id="header">
     <div class="top-header">
         <div class="">
-            <a href="">
+            <a href=<?= "http://$_SERVER[HTTP_HOST]/home" ?>>
                 <img class="logo" src="/assets/img/not_found.png" alt="" srcset="">
             </a>
         </div>
         <div class="profil">
-            <a href="">
+            <a href=<?= "http://$_SERVER[HTTP_HOST]/login" ?>>
                 <p class="connected">SE CONNECTER</p>
             </a>
-            <a href="">
+            <a href=<?= "http://$_SERVER[HTTP_HOST]/signup" ?>>
                 <p>S'ENREGISTER</p>
             </a>
             <!-- 
@@ -21,10 +21,10 @@
     </div>
     <div class="bottom-header">
         <div>
-            <a href="">
+            <a href=<?= "http://$_SERVER[HTTP_HOST]/animes" ?>>
                 <p>ANIME</p>
             </a>
-            <a href="">
+            <a href=<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>>
                 <p>MANGA</p>
             </a>
         </div>

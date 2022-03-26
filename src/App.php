@@ -20,7 +20,6 @@ class App
     private static $currentBody;
     const PATH_CURRENT_PAGE = __DIR__ . "/Frontend/currentPage.php";
 
-
     /**
      * __construct
      *
@@ -34,19 +33,20 @@ class App
         $this->modules = $modules;
     }
 
-        
+
     /**
      * Lance l'application en recuperant tous les modules
      * Et affiche la page correspondante avec les nom des modules qui est m'y dans l'url
      * 
-     * Exemple : http://localhost:5050/<nameModule>
+     * Exemple : http://localhost:5050/<nameModule>/ 
+     * le slash est enlever si il trouve que le <nameModule> existe
      * 
-     * Si il y a rien mais la page d'accuiel correspondant au premier module
+     * Si il y a rien met la page d'accuiel correspondant au premier module
      * Si le nameModule n'existe pas, affiche la page d'erreur not found
      *  
      * @return self
      */
-    public function run() : self
+    public function run(): self
     {
         for ($i = 0; $i < count($this->modules); $i++) {
 
@@ -55,9 +55,12 @@ class App
             self::$currentBody   = self::$currentModule->getBody();
 
             if (
-                strcmp($_SERVER['REQUEST_URI'], '/' . self::$currentModule->getNameModule()) == 0
+                strcmp($_SERVER['REQUEST_URI'], '/' . self::$currentModule->getNameModule()) === 0
             ) {
                 self::putCurrentFileContent(self::$currentModule);
+                break;
+            } elseif (strcmp($_SERVER['REQUEST_URI'], '/' . self::$currentModule->getNameModule() . '/') === 0) {
+                header('Location: ' . substr($_SERVER['REQUEST_URI'], 0, -1));
                 break;
             } elseif (strcmp($_SERVER['REQUEST_URI'], "/") == 0) {
                 self::putCurrentFileContent($this->modules[0]);
@@ -72,13 +75,12 @@ class App
         return $this;
     }
 
-        
     /**
      * Permet de d'afficher le code php|html en fonction du module
      *
      * @param  Module $currentModule
      */
-    private static function putCurrentFileContent(Module $currentModule) : void
+    private static function putCurrentFileContent(Module $currentModule): void
     {
         file_put_contents(self::PATH_CURRENT_PAGE, "");
 
@@ -163,7 +165,7 @@ class App
 
     /**
      * Get the value of currentHead
-     */ 
+     */
     public function getCurrentHead()
     {
         return $this->currentHead;
@@ -173,7 +175,7 @@ class App
      * Set the value of currentHead
      *
      * @return  self
-     */ 
+     */
     public function setCurrentHead($currentHead)
     {
         $this->currentHead = $currentHead;

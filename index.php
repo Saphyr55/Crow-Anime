@@ -14,6 +14,7 @@ $footer = new Footer("src/Frontend/components/footer.php"); // creation du foote
 
 $app = new App(
     [
+        // Home
         new Module(
             "home",
             new Head(
@@ -28,35 +29,96 @@ $app = new App(
                 $footer
             )
         ),
+        // <profils>/animes
         new Module(
-            "profilanime",
+            "profils/animes",
             new Head(
-                "Profil : Anime vus",
+                "Profils : Anime vus",
                 [
-                    "src/Frontend/css/profilanime.css"
+                    "src/Frontend/css/profils_animes.css"
                 ]
             ),
             new Body(
-                "src/Frontend/components/profilanime.php",
+                "src/Frontend/components/profils_animes.php",
                 $header,
                 $footer
             )
         ),
+        // <profils>/mangas
         new Module(
-            "profilmanga",
+            "profils/mangas",
             new Head(
-                "Profil : Manga vus",
+                "Profils : Manga vus",
                 [
-                    "src/Frontend/css/profilmanga.css"
+                    "src/Frontend/css/profils_mangas.css"
                 ]
             ),
             new Body(
-                "src/Frontend/components/profilmanga.php",
+                "src/Frontend/components/profils_mangas.php",
+                $header,
+                $footer
+            )
+        ),
+        // All Animes
+        new Module(
+            "animes",
+            new Head(
+                "All Animes",
+                [
+                    "src/Frontend/css/animes.css"
+                ]
+            ),
+            new Body(
+                "src/Frontend/components/animes.php",
+                $header,
+                $footer
+            )
+        ),
+        // All Mangas
+        new Module(
+            "mangas",
+            new Head(
+                "All Mangas",
+                [
+                    "src/Frontend/css/mangas.css"
+                ]
+                ),
+                new Body(
+                    "src/Frontend/components/mangas.php",
+                    $header,
+                    $footer
+                )
+        ),
+        // Page de connexion
+        new Module(
+            "signup",
+            new Head(
+                "Signup",
+                [
+                    "src/Frontend/css/signup.css"
+                ]
+            ),
+            new Body(
+                "src/Frontend/components/signup.php",
+                null,
+                null
+            )
+        ),
+        // Page d'inscription
+        new Module(
+            "login",
+            new Head(
+                "Login",
+                [
+                    "src/Frontend/css/login.css"
+                ]
+            ),
+            new Body(
+                "src/Frontend/components/login.php",
                 $header,
                 $footer
             )
         )
-
     ],
     // partie erreur
     new Module( # put an error page when the URL isn't found
@@ -66,7 +128,7 @@ $app = new App(
             []
         ),
         new Body(
-            "src/Frontend/components/notfound.php",
+            "src/Frontend/components/not_found.php",
             $header,
             $footer
         )

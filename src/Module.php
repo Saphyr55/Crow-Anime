@@ -10,7 +10,7 @@ use CrowAnime\Frontend\IComponent;
 /**
  * Class Module
  * 
- * Permet de contenir le contenu d'une page html
+ * Permet de contenir le contenu d'une page html (head et body)
  */
 class Module implements IComponent
 {
@@ -19,13 +19,12 @@ class Module implements IComponent
     private $redirectionURI;
     private $nameModule;
 
-    
+
     /**
-     * __construct
-     *
-     * @param  mixed $nameModule
-     * @param  mixed $head
-     * @param  mixed $body
+     *  
+     * @param  string $nameModule
+     * @param  Head $head
+     * @param  Body $body
      * @return void
      */
     public function __construct(string $nameModule, Head $head, Body $body)
@@ -36,15 +35,13 @@ class Module implements IComponent
         $this->body  = $body;
     }
     
-    /**
-     * sendHTML
-     * 
+    /** 
      * Renvoi le body et le head dans un tableau
      *
      * @return string|array
      */
     public function sendHTML(): string|array
-    {
+    {   
         return [
             "head" => $this->head->sendHTML(),
             "body" => $this->body->sendHTML()
