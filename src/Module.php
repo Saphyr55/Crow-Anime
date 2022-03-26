@@ -4,8 +4,14 @@ namespace CrowAnime;
 
 use CrowAnime\Frontend\Body;
 use CrowAnime\Backend\Head;
+use CrowAnime\Frontend\Header;
 use CrowAnime\Frontend\IComponent;
 
+/**
+ * Class Module
+ * 
+ * Permet de contenir le contenu d'une page html
+ */
 class Module implements IComponent
 {
     private $head;
@@ -13,6 +19,15 @@ class Module implements IComponent
     private $redirectionURI;
     private $nameModule;
 
+    
+    /**
+     * __construct
+     *
+     * @param  mixed $nameModule
+     * @param  mixed $head
+     * @param  mixed $body
+     * @return void
+     */
     public function __construct(string $nameModule, Head $head, Body $body)
     {
         $this->nameModule = $nameModule;
@@ -20,7 +35,14 @@ class Module implements IComponent
         $this->head  = $head;
         $this->body  = $body;
     }
-
+    
+    /**
+     * sendHTML
+     * 
+     * Renvoi le body et le head dans un tableau
+     *
+     * @return string|array
+     */
     public function sendHTML(): string|array
     {
         return [
@@ -31,8 +53,10 @@ class Module implements IComponent
 
     /**
      * Get the value of head
+     *
+     * @return Header $head
      */
-    public function getHead()
+    public function getHead() : Header
     {
         return $this->head;
     }
@@ -40,9 +64,10 @@ class Module implements IComponent
     /**
      * Set the value of head
      *
-     * @return  self
+     * @param Header $head 
+     * @return Module $this
      */
-    public function setHead($head)
+    public function setHead(Header $head) : Module
     {
         $this->head = $head;
 
@@ -51,8 +76,10 @@ class Module implements IComponent
 
     /**
      * Get the value of body
+     *
+     * @return Body $body
      */
-    public function getBody()
+    public function getBody() : Body
     {
         return $this->body;
     }
@@ -60,9 +87,10 @@ class Module implements IComponent
     /**
      * Set the value of body
      *
-     * @return  self
+     * @param Body $body
+     * @return Module $this
      */
-    public function setBody($body)
+    public function setBody(Body $body) : Module
     {
         $this->body = $body;
 
@@ -71,6 +99,8 @@ class Module implements IComponent
 
     /**
      * Get the value of redirectionURI
+     * 
+     * @return string $redirectionURI
      */
     public function getRedirectionURI()
     {
@@ -80,9 +110,9 @@ class Module implements IComponent
     /**
      * Set the value of redirectionURI
      *
-     * @return  self
+     * @return self $this
      */
-    public function setRedirectionURI($redirectionURI)
+    public function setRedirectionURI($redirectionURI) : self
     {
         $this->redirectionURI = $redirectionURI;
 
@@ -90,9 +120,11 @@ class Module implements IComponent
     }
 
     /**
-     * Get the value of nameModule
+     * Get the value of nameModule 
+     * 
+     * @return string $nameModule
      */
-    public function getNameModule()
+    public function getNameModule() : string
     {
         return $this->nameModule;
     }
@@ -100,9 +132,9 @@ class Module implements IComponent
     /**
      * Set the value of nameModule
      *
-     * @return  self
+     * @return self $this
      */
-    public function setNameModule($nameModule)
+    public function setNameModule($nameModule) : self
     {
         $this->nameModule = $nameModule;
 

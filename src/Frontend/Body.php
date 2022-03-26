@@ -6,12 +6,25 @@ use CrowAnime\Frontend\IComponent;
 use CrowAnime\Frontend\Footer;
 use CrowAnime\Frontend\Header;
 
+/**
+ * Class Body
+ * 
+ * Permet de contenir le chemin du composents qui va servir de body,
+ * un header, et un footer
+ */
 class Body implements IComponent
 {
     private $pathComponent;
     private $header;
     private $footer;
 
+    /**
+     * Constructeur du Body
+     * 
+     * @param pathComponent
+     * @param header
+     * @param footer
+     */
     public function __construct(string $pathComponent, ?Header $header, ?Footer $footer)
     {
         $this->pathComponent = $pathComponent;
@@ -19,6 +32,11 @@ class Body implements IComponent
         $this->footer = $footer;
     }
 
+    /**
+     * Renvoi le contenus html de la classe sous form de tableau
+     * 
+     * @return string|array
+     */
     public function sendHTML(): string|array
     {
         return [
@@ -32,6 +50,8 @@ class Body implements IComponent
 
     /**
      * Get the value of pathComponent
+     * 
+     * @return pathComponent
      */
     public function getPathComponent()
     {
@@ -41,7 +61,9 @@ class Body implements IComponent
     /**
      * Set the value of pathComponent
      *
-     * @return  self
+     * @param pathComponent
+     * 
+     * @return self
      */
     public function setPathComponent($pathComponent)
     {
@@ -52,6 +74,8 @@ class Body implements IComponent
 
     /**
      * Get the value of footer
+     * 
+     * @return fotter
      */
     public function getFooter()
     {
@@ -61,6 +85,8 @@ class Body implements IComponent
     /**
      * Set the value of footer
      *
+     * @param footer
+     * 
      * @return  self
      */
     public function setFooter($footer)
@@ -72,6 +98,8 @@ class Body implements IComponent
 
     /**
      * Get the value of header
+     * 
+     * @return header
      */
     public function getHeader()
     {
@@ -81,7 +109,9 @@ class Body implements IComponent
     /**
      * Set the value of header
      *
-     * @return  self
+     * @param header
+     * 
+     * @return self
      */
     public function setHeader($header)
     {

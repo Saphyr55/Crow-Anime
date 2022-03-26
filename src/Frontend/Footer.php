@@ -2,20 +2,40 @@
 
 namespace CrowAnime\Frontend;
 
-class Footer 
+/**
+ * Class Footer
+ * 
+ * Permet de contenir le lien du footer
+ */
+class Footer implements IComponent
 {
-
+    
     private $pathFooter;
-
+        
+    /**
+     * __construct
+     *
+     * @param  string $pathFooter
+     */
     public function __construct(string $pathFooter) 
     {
         $this->pathFooter = $pathFooter;
+    }
+    
+    /**
+     * Renvoi le code html|php du footer
+     *
+     * @return string
+     */
+    public function sendHTML(): string|array
+    {
+        return file_get_contents('/'.$this->pathFooter);
     }
 
     /**
      * Get the value of pathFooter
      */ 
-    public function getPathFooter()
+    public function getPathFooter() : string
     {
         return $this->pathFooter;
     }
@@ -25,7 +45,7 @@ class Footer
      *
      * @return  self
      */ 
-    public function setPathFooter($pathFooter)
+    public function setPathFooter(string $pathFooter) : self
     {
         $this->pathFooter = $pathFooter;
 

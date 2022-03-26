@@ -2,6 +2,13 @@
 
 namespace CrowAnime;
 
+/**
+ * Classe App
+ * 
+ * L'application permet de faire afficher les pages correspondantes 
+ * en fonction des modules mis en parametre lors de l'instance
+ * 
+ */
 class App
 {
     private $modules;
@@ -13,6 +20,13 @@ class App
     private static $currentBody;
     const PATH_CURRENT_PAGE = __DIR__ . "/Frontend/currentPage.php";
 
+
+    /**
+     * __construct
+     *
+     * @param  array $modules
+     * @param  Module $errorPage
+     */
     public function __construct(array $modules, Module $errorPage)
     {
         $this->errorPage = $errorPage;
@@ -20,7 +34,19 @@ class App
         $this->modules = $modules;
     }
 
-    public function run()
+        
+    /**
+     * Lance l'application en recuperant tous les modules
+     * Et affiche la page correspondante avec les nom des modules qui est m'y dans l'url
+     * 
+     * Exemple : http://localhost:5050/<nameModule>
+     * 
+     * Si il y a rien mais la page d'accuiel correspondant au premier module
+     * Si le nameModule n'existe pas, affiche la page d'erreur not found
+     *  
+     * @return self
+     */
+    public function run() : self
     {
         for ($i = 0; $i < count($this->modules); $i++) {
 
@@ -46,7 +72,13 @@ class App
         return $this;
     }
 
-    private static function putCurrentFileContent(Module $currentModule)
+        
+    /**
+     * Permet de d'afficher le code php|html en fonction du module
+     *
+     * @param  Module $currentModule
+     */
+    private static function putCurrentFileContent(Module $currentModule) : void
     {
         file_put_contents(self::PATH_CURRENT_PAGE, "");
 
@@ -125,6 +157,26 @@ class App
     public function setErrorPage($errorPage)
     {
         $this->errorPage = $errorPage;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of currentHead
+     */ 
+    public function getCurrentHead()
+    {
+        return $this->currentHead;
+    }
+
+    /**
+     * Set the value of currentHead
+     *
+     * @return  self
+     */ 
+    public function setCurrentHead($currentHead)
+    {
+        $this->currentHead = $currentHead;
 
         return $this;
     }

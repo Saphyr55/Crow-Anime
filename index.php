@@ -9,8 +9,8 @@ use CrowAnime\Frontend\Footer;
 use CrowAnime\Frontend\Header;
 use CrowAnime\Module;
 
-$header = new Header("src/Frontend/components/header.php");
-$footer = new Footer("src/Frontend/components/footer.php");
+$header = new Header("src/Frontend/components/header.php"); // creation du header
+$footer = new Footer("src/Frontend/components/footer.php"); // creation du footer
 
 $app = new App(
     [
@@ -56,8 +56,10 @@ $app = new App(
                 $footer
             )
         )
+
     ],
-    new Module( # put a error page when the URL isn't found
+    // partie erreur
+    new Module( # put an error page when the URL isn't found
         "not_found",
         new Head(
             "Page Not Found",

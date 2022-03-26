@@ -5,7 +5,7 @@ namespace CrowAnime\Backend;
 use \PDO;
 
 /**
- * Classe permetant la connexion à la base de donnee
+ * Classe permetant la connexion à la base de donnée
  */
 class Database
 { 
@@ -15,6 +15,7 @@ class Database
     private $username;
     private $password;
     private $dbname;
+
 
     private function __construct()
     {   
@@ -59,20 +60,37 @@ class Database
         return self::$pdo;
     }
 
-    public function execute(string $statement, ?array $datas) 
+    /**
+     * Permet l'insertion de donnée
+     */
+    public function execute(string $statement, array $datas) 
     {
         $request = $this->getPDO()->prepare($statement);
         $request->execute($datas);
     }
 
-    public function lastRegister(string $table)
+        
+    /**
+     * Permet de recuper le dernier enregistrement
+     *
+     * @param  string $table
+     * @param  string $colID
+     * @return mixed
+     */
+    public function lastRegister(string $table, string $colID)
     {
         return self::$database->query(
-            'SELECT * FROM `anime`
-            ORDER BY `id_anime` DESC LIMIT 1;'
+            "SELECT * FROM $table
+            ORDER BY $colID DESC LIMIT 1"
         );
     }
 
+    /**
+     * Permet de recuperer des donner avec la requette sql mis en parametre 
+     *
+     * @param  mixed $statement
+     * @return void
+     */
     public function query(string $statement)
     {
         $pdo_statement = $this->getPDO()->query($statement);

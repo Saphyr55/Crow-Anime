@@ -2,10 +2,22 @@
 
 namespace CrowAnime\Frontend;
 
+
+/**
+ * Class Header
+ * 
+ * Permet de contenir le lien du header
+ */
 class Header
 {
     private $pathHeader;
-
+        
+    /**
+     * __construct
+     *
+     * @param  mixed $pathHeader
+     * @return void
+     */
     public function __construct(string $pathHeader)
     {
         $this->pathHeader = $pathHeader;
