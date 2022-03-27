@@ -17,6 +17,7 @@ class Body implements IComponent
     private $pathComponent;
     private $header;
     private $footer;
+    const _BODY_PATH_ = "src/Frontend/components/body.php";
 
     /**
      * Constructeur du Body
@@ -38,14 +39,14 @@ class Body implements IComponent
      * @return string|array
      */
     public function sendHTML(): string|array
-    {   
+    {
         return [
-            "<body>",
+            "<body>\n",
             ($this->header !== null) ? file_get_contents("$_SERVER[DOCUMENT_ROOT]/" . $this->header->getPathHeader()) : '',
             file_get_contents("$_SERVER[DOCUMENT_ROOT]/$this->pathComponent"),
             ($this->footer !== null) ? file_get_contents("$_SERVER[DOCUMENT_ROOT]/" . $this->footer->getPathFooter()) : '',
-            "</body>",
-            "</html>"
+            "</body>\n",
+            "</html>\n"
         ];
     }
 

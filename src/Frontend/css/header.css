@@ -1,118 +1,171 @@
-@import url('https://fonts.googleapis.com/css2?family=New+Rocker&family=Roboto:wght@500&family=Rock+Salt&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=New+Rocker&family=Roboto:wght@500&family=Rock+Salt&display=swap");
 
 body {
-    position: relative;
-    margin: auto;
+  position: relative;
+  margin: auto;
 }
 
 header {
-    grid-area: header;
-    display: grid;
-    width: 100%;
-    height: 100px;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 0.8fr;
-    grid-template-areas: "th" "bh";
+  grid-area: header;
+  display: grid;
+  width: 100%;
+  height: 100px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 0.8fr;
+  grid-template-areas: "th" "bh";
 }
 
 a {
-    text-decoration:none;
+  text-decoration: none;
 }
 
 p {
-    font-family: 'Roboto', sans-serif;
-    color: white;
+  font-family: "Roboto", sans-serif;
+  color: white;
+}
+
+.white {
+  color: white;
 }
 
 .top-header {
-    display: flex;
-    grid-area: th;
-    background-color: #1D1D1D;
-    flex-direction: row;
-    height: 62px;
+  display: flex;
+  grid-area: th;
+  background-color: #1d1d1d;
+  flex-direction: row;
+  height: 62px;
 }
 
 .profil {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin-right: 20px;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 20px;
 }
 
-.profil a {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: -5px;
+.profile a {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: -5px;
 }
 
-.profil a p {
-    padding-top: 10px;
-    padding-bottom: 10px;
+.profile a p {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.scroll-menu {
+  display: none;
+  position: absolute;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: auto;
+  margin-top: 60px;
+  margin-left: -30px;
+  background-color: #220e0e;
+  border: solid #f0f0f0;
+}
+
+.scroll-menu ul li a p {
+  margin: auto;
+  margin-left: 10px;
+}
+
+.scroll-menu ul li a {
+  margin-bottom: 25px;
+}
+
+.fa-bars {
+  margin: auto;
+  font-size: 30px;
+}
+
+.div-profile {
+  display: flex;
+  flex-direction: column;
+}
+
+.div-profile a {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  margin-right: 50px;
+  margin-top: 13px;
+  cursor: pointer;
+}
+
+.p-profile {
+  margin: auto;
+  margin-left: 5px;
+  font-size: 30px;
 }
 
 .connected {
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: #C4C4C4;
-    color: #353535;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #c4c4c4;
+  color: #353535;
 }
 
 .bottom-header {
-    display: flex;
-    background-color: #353535;
-    grid-area: bh;
-    flex-direction: row;
+  display: flex;
+  background-color: #353535;
+  grid-area: bh;
+  flex-direction: row;
 }
 
-.bottom-header div{
-    display: flex;
-    flex-direction: row;
+.bottom-header div {
+  display: flex;
+  flex-direction: row;
 }
 
 .bottom-header div a {
-    margin: auto;
-    margin-left: 50px;
-    font-size: 20px;
+  margin: auto;
+  margin-left: 50px;
+  font-size: 20px;
 }
 
 .button-search {
-    width: 35px;
-    height: 35px;
-    margin-left: -90px;
+  width: 35px;
+  height: 35px;
+  margin-left: -90px;
 }
 
 .fa-magnifying-glass {
-    margin-top: 6px;
-    margin-left: 5px;
-    font-size: 25px;
-    color: #1D1D1D;
+  margin-top: 6px;
+  margin-left: 5px;
+  font-size: 25px;
+  color: #1d1d1d;
 }
 
 .search-bar {
-    width: 40%;
-    margin-left: 15%;
+  width: 40%;
+  margin-left: 15%;
 }
 
 .input {
-    font-size: 30px;
-    border-radius: 10px;
-    margin: auto;  
-    height: 50%; 
-    width: 100%;
+  font-size: 30px;
+  border-radius: 10px;
+  margin: auto;
+  height: 50%;
+  width: 100%;
 }
 
 .logo {
-    margin-left: 50px;
-    margin-top: 5px;
-    width: 100px;
-    height: 50px;
-    border-radius: 20px;
+  margin-left: 50px;
+  margin-top: 5px;
+  width: 100px;
+  height: 50px;
+  border-radius: 20px;
 }
 
 @media screen and (max-width: 720) {
-    
-    .profil {
-        display: none;
-    }
+  .profil {
+    display: none;
+  }
 }

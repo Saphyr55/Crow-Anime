@@ -3,7 +3,9 @@
 namespace CrowAnime;
 
 use CrowAnime\Backend\Database;
+use CrowAnime\Backend\Head;
 use CrowAnime\Backend\User;
+use CrowAnime\Frontend\Body;
 
 /**
  * Classe App
@@ -21,7 +23,6 @@ class App
     private static $currentModule;
     private static $currentHead;
     private static $currentBody;
-    const PATH_CURRENT_PAGE = __DIR__ . "/Frontend/currentPage.php";
 
     /**
      * __construct
@@ -50,48 +51,52 @@ class App
      * @return self
      */
     public function run(): self
-    {
-
+    {   
+        $uri = $_SERVER['REQUEST_URI'];
         for ($i = 0; $i < count($this->modules); $i++) {
-
 
             self::$currentModule = $this->modules[$i];
             self::$currentHead   = self::$currentModule->getHead();
             self::$currentBody   = self::$currentModule->getBody();
-            
+
             if (
-                (is_null(explode('/', self::$currentModule->getNameModule())[0])) ||
-                ($i == (count($this->modules) - 1))
-            ) {
-                if ($this->errorPage !== null) {
-                    self::putCurrentFileContent($this->errorPage);
-                    break;
-                }
-            } elseif (
-                strcmp($_SERVER['REQUEST_URI'], '/' . self::$currentModule->getNameModule()) === 0
+                strcmp($uri, '/' . self::$currentModule->getNameModule()) === 0
             ) {
 
                 self::putCurrentFileContent(self::$currentModule);
                 break;
-            } elseif (strcmp($_SERVER['REQUEST_URI'], '/' . self::$currentModule->getNameModule() . '/') === 0) {
+            } elseif (strcmp($uri, '/' . self::$currentModule->getNameModule() . '/') === 0) {
 
-                header('Location: ' . substr($_SERVER['REQUEST_URI'], 0, -1));
+                header('Location: ' . substr($uri, 0, -1));
                 break;
-            } elseif (strcmp($_SERVER['REQUEST_URI'], "/") == 0) {
+            } elseif (strcmp($uri, "/") == 0) {
 
                 self::putCurrentFileContent($this->modules[0]);
                 break;
+            } elseif (
+                ($i == (count($this->modules) - 1))
+            ) {
+
+                if ($this->errorPage !== null) {
+                    self::putCurrentFileContent($this->errorPage);
+                    break;
+                }
             }
         }
 
         return $this;
     }
 
+    private static function startSession()
+    {
+        session_start();
+    }
 
     public static function checkProfileURI()
-    {   
-        if (strcmp(explode('/',$_SERVER['REQUEST_URI'])[1], 'profile') === 0) {
-            $theoricUser = explode('/', $_SERVER['REQUEST_URI'])[2];
+    {
+        $uri = $_SERVER['REQUEST_URI'];
+        if (strcmp(explode('/', $uri)[1], 'profile') === 0) {
+            $theoricUser = explode('/', $uri)[2];
             $users = Database::getDatabase()->query("SELECT username FROM _user");
             foreach ($users as $user) {
                 $user = (array) $user;
@@ -109,25 +114,11 @@ class App
      */
     private static function putCurrentFileContent(Module $currentModule): void
     {
-        file_put_contents(self::PATH_CURRENT_PAGE, "");
+        file_put_contents(Head::_HEAD_PATH_, $currentModule->getHead()->sendHTML());
+        file_put_contents(Body::_BODY_PATH_, $currentModule->getBody()->sendHTML());
 
-        $contentCurrentPage = [];
-
-        self::$currentModule = $currentModule;
-        self::$currentHead   = self::$currentModule->getHead();
-        self::$currentBody   = self::$currentModule->getBody();
-
-        foreach (self::$currentModule->sendHTML()['head'] as $value) {
-            $contentCurrentPage[] = $value . "\n";
-        }
-
-        foreach (self::$currentBody->sendHTML() as $value) {
-            $contentCurrentPage[] = $value . "\n";
-        }
-
-        file_put_contents(self::PATH_CURRENT_PAGE, implode($contentCurrentPage));
-
-        require self::PATH_CURRENT_PAGE;
+        include Head::_HEAD_PATH_;
+        include Body::_BODY_PATH_;
     }
 
     /**
@@ -206,6 +197,26 @@ class App
     public function setCurrentHead($currentHead)
     {
         $this->currentHead = $currentHead;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of currentBody
+     */ 
+    public function getCurrentBody()
+    {
+        return $this->currentBody;
+    }
+
+    /**
+     * Set the value of currentBody
+     *
+     * @return  self
+     */ 
+    public function setCurrentBody($currentBody)
+    {
+        $this->currentBody = $currentBody;
 
         return $this;
     }

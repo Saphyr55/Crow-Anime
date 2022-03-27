@@ -3,7 +3,6 @@
 require_once './vendor/autoload.php';
 
 use CrowAnime\App;
-use CrowAnime\Backend\Database;
 use CrowAnime\Frontend\Body;
 use CrowAnime\Backend\Head;
 use CrowAnime\Backend\User;
@@ -11,9 +10,11 @@ use CrowAnime\Frontend\Footer;
 use CrowAnime\Frontend\Header;
 use CrowAnime\Module;
 
+
 $header = new Header("src/Frontend/components/header.php"); // creation du header
 $footer = new Footer("src/Frontend/components/footer.php"); // creation du footer
 
+session_start();
 App::checkProfileURI();
 
 $app = new App(
@@ -29,15 +30,14 @@ $app = new App(
             ),
             new Body(
                 "src/Frontend/components/home.php",
-                $header,
-                $footer
+                $header, $footer
             )
         ),
         // <profils>/animes
         new Module(
             "profile/" . User::getCurrentUsernameURI() . "/animeslist",
             new Head(
-                "$profile : Anime List",
+                User::getCurrentUsernameURI() . " : Anime List",
                 [
                     "src/Frontend/css/profile_animes.css"
                 ]
@@ -52,7 +52,7 @@ $app = new App(
         new Module(
             "profile/" . User::getCurrentUsernameURI() . "/mangaslist",
             new Head(
-                "$profile : Manga List",
+                User::getCurrentUsernameURI() . " : Manga List",
                 [
                     "src/Frontend/css/profile_mangas.css"
                 ]
@@ -93,7 +93,7 @@ $app = new App(
                 $footer
             )
         ),
-        // Page de connexion
+        // Page d'inscription
         new Module(
             "signup",
             new Head(
@@ -108,7 +108,7 @@ $app = new App(
                 null
             )
         ),
-        // Page d'inscription
+        // Page de connexion
         new Module(
             "login",
             new Head(
@@ -121,6 +121,16 @@ $app = new App(
                 "src/Frontend/components/login.php",
                 $header,
                 $footer
+            )
+        ),
+        // Page de deconnexion
+        new Module(
+            "logout",
+            new Head(
+                "CrowAnime - Logout", []
+            ),
+            new Body(
+                "src/Frontend/components/logout.php", null, null
             )
         )
     ],
@@ -138,4 +148,6 @@ $app = new App(
         )
     )
 );
+
+
 $app->run(); // Lancement de l'application

@@ -16,7 +16,6 @@ class Database
     private $password;
     private $dbname;
 
-
     private function __construct()
     {
         $connection_file = $_SERVER["DOCUMENT_ROOT"] . '/assets/data/connection.json';
@@ -37,7 +36,7 @@ class Database
     public static function getDatabase()
     {
         if (is_null(self::$database)) {
-            self::$database = new Database;
+            self::$database = new Database();
         }
         return self::$database;
     }
@@ -64,6 +63,7 @@ class Database
     {
         $request = $this->getPDO()->prepare($statement);
         $request->execute($datas);
+        return $request->fetchAll();
     }
 
 
@@ -88,14 +88,15 @@ class Database
      * @param  string $statement
      * @return mixed
      */
-    public function query(string $statement) : array|null
+    public function query(string $statement) : array
     {
-        $pdo_statement = $this->getPDO()->query($statement);
-        if ($pdo_statement !== false) {
+        try {
+            $pdo_statement = $this->getPDO()->query($statement);
             $datas = $pdo_statement->fetchAll(PDO::FETCH_OBJ);
-            if ($datas !== false) {
-                return (array) $datas;
-            } else return null;
-        } else return null;
+            return (array) $datas;
+        } catch (\Throwable $th) {
+            error_log($th->getMessage());
+            return [];
+        }
     }
 }

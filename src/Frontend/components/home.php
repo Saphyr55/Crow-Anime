@@ -1,9 +1,9 @@
 <body>
     <section id="section-left">
         <div class="news">
-            <a href="" class="angle angle-left"><i class="fa-solid fa-angle-left"></i></a>
-            <a href=""><img class="img-news" src="/assets/img/not_found.png" alt="" srcset=""></a>
-            <a href="" class="angle angle-right"><i class="fa-solid fa-angle-right"></i></a>
+            <a class="angle angle-left"><i class="fa-solid fa-angle-left"></i></a>
+            <img class="img-news" src="/assets/img/not_found.png" alt="" srcset="">
+            <a class="angle angle-right"><i class="fa-solid fa-angle-right"></i></a>
         </div>
         <div class="season-anime">
             <p class="p-anime">
@@ -14,7 +14,7 @@
             <ol class="season-anime-img" style="list-style-type:none;">
                 <?php
                 for ($i = 0; $i < 4; $i++) {
-                    echo  
+                    echo
                     "<li class='anime'>
                     <a href=''>
                         <img class='anime-img' src='/assets/img/not_found.png' alt='' srcset=''>
@@ -35,8 +35,8 @@
             <ol class="season-anime-img" style="list-style-type:none;">
                 <?php
                 for ($i = 0; $i < 4; $i++) {
-                    echo 
-                        "<li class='anime'>
+                    echo
+                    "<li class='anime'>
                             <a href=''>
                                 <img class='anime-img' src='/assets/img/not_found.png' alt='' srcset=''>
                                 <p class='name-anime'>Name anime</p>

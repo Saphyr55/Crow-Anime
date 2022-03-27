@@ -1,4 +1,6 @@
-<?php use CrowAnime\Backend\Work\Season; ?>
+<?php
+
+use CrowAnime\Backend\Work\Season; ?>
 <section class="add-anime">
     <div class="presentation">
         <img id="img_anime" src=<?= ($anime !== null) ? $anime->getUrlImageWork54x71() : "/assets/img/not_found.png" ?>>
@@ -8,21 +10,21 @@
     <div class="form">
         <form action="" method="post">
             <input type="text" name="name_anime_en" value="" placeholder="Nom de l'anime anglais"><br>
-            <input type="text" name="name_anime_ja" placeholder="Nom de l'anime japonais"><br>            
+            <input type="text" name="name_anime_ja" placeholder="Nom de l'anime japonais"><br>
             <span>
                 <label for="year">Année :</label>
-                 <select id="year" name="year">
+                <select id="year" name="year">
                     <?php
-                    for ($i=1990; $i <= date('Y'); $i++) { 
+                    for ($i = 1990; $i <= date('Y'); $i++) {
                         echo "<option value=\"date_$i\" >$i</option>";
                     }
                     ?>
                 </select>
                 <select name="season_anime" id="">
-                    <option value="<?=Season::SPRING?>">Spring</option>
-                    <option value="<?=Season::SUMMER?>">Summer</option>
-                    <option value="<?=Season::FALL?>">Fall</option>
-                    <option value="<?=Season::WINTER?>">Winter</option>
+                    <option value="<?= Season::SPRING ?>">Spring</option>
+                    <option value="<?= Season::SUMMER ?>">Summer</option>
+                    <option value="<?= Season::FALL ?>">Fall</option>
+                    <option value="<?= Season::WINTER ?>">Winter</option>
                 </select>
             </span>
             <br>
@@ -33,4 +35,4 @@
             <button type="submit" name="submit">Enregistrer l'anime</button>
         </form>
     </div>
-    </section>
+</section>

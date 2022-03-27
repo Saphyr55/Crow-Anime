@@ -5,8 +5,11 @@ namespace CrowAnime\Backend;
 use DateTime;
 
 class User
-{
+{      
+
+    private static array $usersConnected = [];
     private static ?string $currentUsernameURI = null;
+    private int $idUser;
     private string $username;
     private string $email;
     private string $password;
@@ -24,15 +27,18 @@ class User
      * @param  DateTime $dateRegister
      * @return void
      */
-    public function __construct(string $username, string $email, string $password, bool $isAdmin, DateTime $dateConnection, DateTime $dateRegister)
-    {
+    public function __construct(int $idUser, string $username, string $email, string $password, bool $isAdmin, DateTime $dateConnection, DateTime $dateRegister)
+    {   
+        $this->idUser = $idUser;
         $this->username = $username;
         $this->email = $email;
-        $this->passwod = $password;
+        $this->password = $password;
         $this->isAdmin = $isAdmin;
         $this->dateConnection = $dateConnection;
         $this->dateRegister = $dateRegister;
+        array_push(self::$usersConnected, $this);
     }
+
 
     /**
      * Get the value of dateConnection
@@ -58,7 +64,7 @@ class User
     /**
      * Get the value of isAdmin
      */
-    public function getIsAdmin(): bool
+    public function isAdmin(): bool
     {
         return $this->isAdmin;
     }
@@ -170,5 +176,23 @@ class User
     public static function setCurrentUsernameURI(?string $currentUsernameURI)
     {
         self::$currentUsernameURI = $currentUsernameURI;
+    }
+
+
+
+    /**
+     * Get the value of idUser
+     */ 
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Get the value of usersConnected
+     */ 
+    public static function getUsersConnected()
+    {
+        return self::$usersConnected;
     }
 }
