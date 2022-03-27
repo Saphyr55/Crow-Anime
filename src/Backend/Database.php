@@ -66,7 +66,6 @@ class Database
         return $request->fetchAll();
     }
 
-
     /**
      * Permet de recuper le dernier enregistrement
      *

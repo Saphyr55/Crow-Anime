@@ -8,6 +8,7 @@ if (isset($_SESSION['user'])) {
 	header("Location: http://$_SERVER[HTTP_HOST]/home");
 	exit;
 }
+$error = "";
 
 if (!empty($_POST)) {
 	if (
@@ -17,31 +18,30 @@ if (!empty($_POST)) {
 		!empty($_POST['password'])
 	) {
 		$username = htmlspecialchars($_POST['username']);
-		$password = htmlspecialchars($_POST['password']);
 		$user = Database::getDatabase()->execute(
 			"SELECT * FROM _user 
-			 WHERE username=:username
-			 AND password=:password",
+			 WHERE username=:username",
 			[
 				'username' => $username,
-				'password' => $password
 			]
 		);
 		if ($user !== []) {
 			$user = $user[0];
-			$user = new User(
-				$user['id_user'],
-				$user['username'],
-				$user['email'],
-				$user['password'],
-				$user['is_admin'],
-				new DateTime(),
-				date_create_from_format("Y-m-d", $user['user_date'])
-			);
-			$_SESSION['user'] = $user;
-			header("Location: http://$_SERVER[HTTP_HOST]/profile/" . $user->getUsername());
-		}
-	}
+			if (password_verify(htmlspecialchars($_POST['password']), $user['password'])) {
+				$user = new User(
+					$user['id_user'],
+					$user['username'],
+					$user['email'],
+					$user['password'],
+					$user['is_admin'],
+					new DateTime(),
+					date_create_from_format("Y-m-d H:i:s", $user['user_date'])
+				);
+				$_SESSION['user'] = $user;
+				header("Location: http://$_SERVER[HTTP_HOST]/profile/" . $user->getUsername());
+			} else $error = "Pseuso ou mot de passe invalide";
+		} else $error = "Pseuso ou mot de passe invalide";
+	} else $error = "Veuillez remplir les champs";
 }
 
 ?>
@@ -49,7 +49,7 @@ if (!empty($_POST)) {
 	<form action="" method="POST">
 		<h1>Se connecter</h1>
 		<div class="inputs">
-			<input name="username" type="email ou Username" placeholder="Username" pattern="[A-Za-z0-9_]{2,16}" or pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
+			<input name="username" type="email ou Username" placeholder="Nom d'utilisateur" pattern="[A-Za-z0-9_]{2,16}" required />
 			<input name="password" type="password" value="" id="motdepasse" placeholder="Mot de passe">
 		</div>
 		<div align="center">
@@ -57,6 +57,7 @@ if (!empty($_POST)) {
 				<p class="inscription">Je n'ai pas de <span>compte</span>. Je m'en <span>crée</span> un.</p>
 			</a>
 			<button type="submit">Se connecter</button>
+			<p class="error-message"><?= $error ?></p>
 		</div>
 	</form>
 </section>

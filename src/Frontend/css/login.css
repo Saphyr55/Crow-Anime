@@ -100,3 +100,8 @@ form button{
   outline:none;
   cursor:pointer;
 }
+
+.error-message {
+  font-size: 20px;
+  color: rgb(110, 16, 16);
+}

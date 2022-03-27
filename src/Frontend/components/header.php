@@ -17,29 +17,40 @@
                 </a>
             </div>";
         } else {
+            $username = $_SESSION['user']->getUsername();
             echo '
             <div class="profil">
                 <div class="div-profile">
                     <a class="" onclick="displayScrollMenuOnClick()">
                  <i class="fa-solid fa-bars white"></i>
-               <p class="p-profile">Saphyr</p>
+               <p class="p-profile">' . $_SESSION['user']->getUsername() . '</p>
              </a>
             <div id="scroll-menu" class="scroll-menu">
             <ul>
                 <li>
-                   <a href="" class="white"><i class="fa-solid fa-user"></i>
+                   <a href=' . "http://$_SERVER[HTTP_HOST]/profile/" . $username . ' class="white"><i class="fa-solid fa-user"></i>
                      <p>Profile</p>
                    </a>
                </li>';
             if ($_SESSION['user']->isAdmin()) {
                 echo '
               <li>
-                 <a href="" class="white"><i class="fa-solid fa-hammer"></i>
+                 <a href=' . "http://$_SERVER[HTTP_HOST]/profile/" . $username . "/admin" . ' class="white"><i class="fa-solid fa-hammer"></i>
                     <p>Admin</p>
                 </a>
               </li>';
             }
             echo '
+            <li>
+                <a href=' . "http://$_SERVER[HTTP_HOST]/profile/" . $username . "/animeslist" . ' class="white"><i class="fa-solid fa-book"></i>
+                    <p>List Animes</p>
+                </a>
+            </li>
+            <li>
+                <a href=' . "http://$_SERVER[HTTP_HOST]/profile/" . $username . "/mangaslist" . ' class="white"><i class="fa-solid fa-book"></i>
+                    <p>List Mangas</p>
+                </a>
+            </li>
             <li>
                 <a href=' . "http://$_SERVER[HTTP_HOST]/logout" . ' class="white"><i class="fa-solid fa-right-from-bracket"></i>
                     <p>Lougout</p>
