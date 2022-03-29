@@ -35,7 +35,7 @@
             if ($_SESSION['user']->isAdmin()) {
                 echo '
               <li>
-                 <a href=' . "http://$_SERVER[HTTP_HOST]/profile/" . $username . "/admin" . ' class="white"><i class="fa-solid fa-hammer"></i>
+                 <a href=' . "http://$_SERVER[HTTP_HOST]/admin/" . $username . ' class="white"><i class="fa-solid fa-hammer"></i>
                     <p>Admin</p>
                 </a>
               </li>';

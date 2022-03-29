@@ -36,11 +36,12 @@ if (!empty($_POST)) {
             if ($user === []) {
                 $user = $user[0];
                 Database::getDatabase()->execute(
-                    'INSERT INTO _user (username, password, email) 
-                     VALUES (:username, :password, :email)',
+                    'INSERT INTO _user (username, password, is_admin, email) 
+                     VALUES (:username, :password,:is_admin, :email)',
                     [
                         ":username" => $username,
                         ":password" => password_hash(htmlentities(htmlspecialchars($_POST['password'])), PASSWORD_DEFAULT),
+                        ":is_admin" => 0, 
                         ":email" => $email
                     ]
                 );
