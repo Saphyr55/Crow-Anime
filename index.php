@@ -3,13 +3,13 @@
 require_once './vendor/autoload.php';
 
 use CrowAnime\App;
+use CrowAnime\Backend\Database;
 use CrowAnime\Frontend\Body;
 use CrowAnime\Backend\Head;
 use CrowAnime\Backend\User;
 use CrowAnime\Frontend\Footer;
 use CrowAnime\Frontend\Header;
 use CrowAnime\Module;
-
 
 $header = new Header("src/Frontend/components/header.php"); // creation du header
 $footer = new Footer("src/Frontend/components/footer.php"); // creation du footer

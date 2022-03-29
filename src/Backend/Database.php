@@ -48,9 +48,7 @@ class Database
     {
         if (self::$pdo === null) {
             self::$pdo = new PDO(
-                    "mysql:host=$this->host;dbname=$this->dbname",
-                    $this->username,
-                    $this->password
+                    "sqlite:$_SERVER[DOCUMENT_ROOT]/crow-anime.sqlite",
                 );
         }
         return self::$pdo;
