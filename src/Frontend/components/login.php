@@ -4,10 +4,6 @@ use CrowAnime\Backend\Database;
 use CrowAnime\Backend\User;
 use DateTime;
 
-if (isset($_SESSION['user'])) {
-	header("Location: http://$_SERVER[HTTP_HOST]/home");
-	exit;
-}
 $error = "";
 
 if (!empty($_POST)) {

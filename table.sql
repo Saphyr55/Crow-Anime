@@ -25,7 +25,7 @@ CREATE TABLE _user(
 );
 CREATE TABLE episode(
   id_episode INTEGER PRIMARY KEY  NOT NULL,
-  episode_date DATE,
+  episode_date DATETIME,
   episode_duration TIME,
   id_anime INTEGER NOT NULL,
   FOREIGN KEY(id_anime) REFERENCES anime(id_anime)
@@ -38,14 +38,14 @@ CREATE TABLE news(
 CREATE TABLE manga(
   id_manga INTEGER PRIMARY KEY NOT NULL,
   manga_title VARCHAR(250),
-  manga_date DATE,
+  manga_date DATETIME,
   manga_finish BOOLEAN,
   manga_author VARCHAR(250),
   manga_edition VARCHAR(250)
 );
 CREATE TABLE chapter(
   id_chapter INTEGER PRIMARY KEY NOT NULL,
-  chapter_date DATE,
+  chapter_date DATETIME,
   id_manga INTEGER NOT NULL,
   FOREIGN KEY(id_manga) REFERENCES manga(id_manga)
 );
@@ -68,7 +68,7 @@ CREATE TABLE faire(
 CREATE TABLE lister_anime(
   id_anime INTEGER,
   id_user INTEGER,
-  add_date DATE,
+  add_date DATETIME,
   score INTEGER,
   user_finish_anime BOOLEAN,
   user_number_episode_finish INTEGER,
@@ -79,7 +79,7 @@ CREATE TABLE lister_anime(
 CREATE TABLE lister_manga(
   id_user INTEGER,
   id_manga INTEGER,
-  add_date DATE,
+  add_date DATETIME,
   score INTEGER,
   user_finish_manga BOOLEAN,
   user_number_chapter_finish INTEGER,

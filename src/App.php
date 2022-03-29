@@ -4,6 +4,7 @@ namespace CrowAnime;
 
 use CrowAnime\Backend\Database;
 use CrowAnime\Backend\Head;
+use CrowAnime\Backend\Rules;
 use CrowAnime\Backend\User;
 use CrowAnime\Frontend\Body;
 
@@ -67,7 +68,7 @@ class App
                 break;
             } elseif (strcmp($uri, '/' . self::$currentModule->getNameModule() . '/') === 0) {
 
-                header('Location: ' . substr($uri, 0, -1));
+                header('Location: ' . substr($uri, 0, -1)); // redirection si l'uri termine par un slash
                 break;
             } elseif (strcmp($uri, "/") == 0) {
 
@@ -78,6 +79,7 @@ class App
             ) {
 
                 if ($this->errorPage !== null) {
+                    error_log("Error : $uri not found");
                     self::putCurrentFileContent($this->errorPage);
                     break;
                 }
@@ -87,22 +89,25 @@ class App
         return $this;
     }
 
-    private static function startSession()
-    {
-        session_start();
-    }
-
     public static function checkProfileURI()
     {
         $uri = $_SERVER['REQUEST_URI'];
-        if (strcmp(explode('/', $uri)[1], 'profile') === 0) {
-            $theoricUser = explode('/', $uri)[2];
-            $users = Database::getDatabase()->query("SELECT username FROM _user");
+
+        if (strcmp(explode('/', $uri)[1], 'profile') === 0 ||
+            strcmp(explode('/', $uri)[1], 'admin') === 0 ) {
+
+            $theoricUser = explode('/', $uri)[2];            
+
+            $users = Database::getDatabase()->query(
+                "SELECT username FROM _user"
+            );
+
             foreach ($users as $user) {
+                
                 $user = (array) $user;
-                if (strcmp($theoricUser, $user['username']) === 0) {
+
+                if (strcmp($theoricUser, $user['username']) === 0) 
                     User::setCurrentUsernameURI($theoricUser);
-                }
             }
         }
     }
@@ -114,11 +119,13 @@ class App
      */
     private static function putCurrentFileContent(Module $currentModule): void
     {
+        file_put_contents(Rules::RULES_PATH, $currentModule->getRules()->sendRules());
         file_put_contents(Head::_HEAD_PATH_, $currentModule->getHead()->sendHTML());
         file_put_contents(Body::_BODY_PATH_, $currentModule->getBody()->sendHTML());
 
-        include Head::_HEAD_PATH_;
-        include Body::_BODY_PATH_;
+        require Rules::RULES_PATH;
+        require Head::_HEAD_PATH_;
+        require Body::_BODY_PATH_;
     }
 
     /**

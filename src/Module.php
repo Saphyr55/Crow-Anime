@@ -4,6 +4,7 @@ namespace CrowAnime;
 
 use CrowAnime\Frontend\Body;
 use CrowAnime\Backend\Head;
+use CrowAnime\Backend\Rules;
 use CrowAnime\Frontend\Header;
 use CrowAnime\Frontend\IComponent;
 
@@ -14,25 +15,27 @@ use CrowAnime\Frontend\IComponent;
  */
 class Module implements IComponent
 {
-    private $head;
-    private $body;
-    private $redirectionURI;
-    private $nameModule;
-
+    private Head $head;
+    private Body $body;
+    private string $redirectionURI;
+    private string $nameModule;
+    private Rules $rules;
 
     /**
      *  
      * @param  string $nameModule
      * @param  Head $head
      * @param  Body $body
+     * @param  Rules $rules
      * @return void
      */
-    public function __construct(string $nameModule, Head $head, Body $body)
+    public function __construct(string $nameModule, Head $head, Body $body, Rules $rules)
     {
         $this->nameModule = $nameModule;
         $this->redirectionURI = "http://$_SERVER[HTTP_HOST]/$nameModule";
         $this->head  = $head;
         $this->body  = $body;
+        $this->rules = $rules;
     }
     
     /** 
@@ -43,6 +46,7 @@ class Module implements IComponent
     public function sendHTML(): string|array
     {   
         return [
+            "rules" => $this->rules->sendRules(),
             "head" => $this->head->sendHTML(),
             "body" => $this->body->sendHTML()
         ];
@@ -134,6 +138,26 @@ class Module implements IComponent
     public function setNameModule($nameModule) : self
     {
         $this->nameModule = $nameModule;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of rules
+     */ 
+    public function getRules()
+    {
+        return $this->rules;
+    }
+
+    /**
+     * Set the value of rules
+     *
+     * @return  self
+     */ 
+    public function setRules($rules)
+    {
+        $this->rules = $rules;
 
         return $this;
     }

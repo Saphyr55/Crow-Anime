@@ -40,7 +40,7 @@ class Head implements IComponent
 
         $htmlHeadLinksCSS = [
             "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/src/Frontend/css/header.css'>\n",
-            "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/src/Frontend/css/footer.css'>",
+            "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/src/Frontend/css/footer.css'>\n",
         ];
 
         $htmlHeadAfterLinksCSS  = [

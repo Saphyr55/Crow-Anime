@@ -1,6 +1,8 @@
 <?php
 
-use CrowAnime\Backend\Work\Season; ?>
+use CrowAnime\Backend\Work\Season; 
+
+?>
 <section class="add-anime">
     <div class="presentation">
         <img id="img_anime" src=<?= ($anime !== null) ? $anime->getUrlImageWork54x71() : "/assets/img/not_found.png" ?>>
