@@ -31,7 +31,7 @@ class Rules
             return
                 '<?php
                 if (!isset($_SESSION["user"])) {
-                    header("Location: http://$_SERVER[HTTP_HOST]/not-found");
+                    header("Location: http://$_SERVER[HTTP_HOST]/login");
                     exit;
                 }?>'
             ;

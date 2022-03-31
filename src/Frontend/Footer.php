@@ -9,7 +9,7 @@ namespace CrowAnime\Frontend;
  */
 class Footer implements IComponent
 {
-    
+    private static $footer;
     private $pathFooter;
         
     /**
@@ -50,5 +50,30 @@ class Footer implements IComponent
         $this->pathFooter = $pathFooter;
 
         return $this;
+    }
+
+    /**
+     * Set the value of footer
+     *
+     * @return  self
+     */ 
+    public function setFooter($footer)
+    {
+        $this->footer = $footer;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of footer
+     */ 
+    public static function getFooter()
+    {
+        if (self::$footer === null) {
+            self::$footer = new Footer(
+                "src/Frontend/components/footer.php"
+            );
+        }
+        return self::$footer;
     }
 }

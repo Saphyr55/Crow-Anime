@@ -15,6 +15,7 @@ use CrowAnime\Frontend\IComponent;
  */
 class Module implements IComponent
 {
+    
     private Head $head;
     private Body $body;
     private string $redirectionURI;
@@ -37,7 +38,7 @@ class Module implements IComponent
         $this->body  = $body;
         $this->rules = $rules;
     }
-    
+
     /** 
      * Renvoi le body et le head dans un tableau
      *
