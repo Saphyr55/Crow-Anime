@@ -53,6 +53,7 @@ class App
      */
     public function run(): self
     {   
+
         $uri = $_SERVER['REQUEST_URI'];
         for ($i = 0; $i < count($this->modules); $i++) {
 

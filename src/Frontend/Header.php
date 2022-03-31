@@ -10,6 +10,8 @@ namespace CrowAnime\Frontend;
  */
 class Header
 {
+
+    private static $header;
     private $pathHeader;
         
     /**
@@ -39,6 +41,29 @@ class Header
     public function setPathHeader($pathHeader)
     {
         $this->pathHeader = $pathHeader;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of header
+     */ 
+    public static function getHeader()
+    {
+        if (self::$header === null) {
+            self::$header = new Header("src/Frontend/components/header.php");
+        }
+        return self::$header;
+    }
+
+    /**
+     * Set the value of header
+     *
+     * @return  self
+     */ 
+    public function setHeader($header)
+    {
+        $this->header = $header;
 
         return $this;
     }
