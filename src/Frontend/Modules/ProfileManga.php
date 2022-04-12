@@ -2,7 +2,6 @@
 
 namespace CrowAnime\Frontend\Modules;
 
-use CrowAnime\App;
 use CrowAnime\Backend\Head;
 use CrowAnime\Backend\Rules;
 use CrowAnime\Backend\User;

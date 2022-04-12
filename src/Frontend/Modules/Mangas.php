@@ -3,15 +3,18 @@
 namespace CrowAnime\Frontend\Modules;
 
 use CrowAnime\Backend\Head;
+use CrowAnime\Backend\Path;
 use CrowAnime\Backend\Rules;
 use CrowAnime\Frontend\Body;
 use CrowAnime\Frontend\Footer;
 use CrowAnime\Frontend\Header;
-use CrowAnime\Frontend\IModule;
 use CrowAnime\Module;
 
 class Mangas extends Module
 {   
+    const TITLE = "CrowAnime - All Mangas";
+    const PATH = "mangas";
+
     private static ?Module $_mangas = null;
     private string $nameModule;
     private Head $head;
@@ -20,17 +23,17 @@ class Mangas extends Module
 
     public function __construct() {
         
-        $this->nameModule = "mangas";
+        $this->nameModule = Mangas::PATH;
         
         $this->head =  new Head(
-            "CrowAnime - All Mangas",
+            Mangas::TITLE,
             [
-                "src/Frontend/css/mangas.css",
+                Path::MANGAS_FILE_CSS,
             ]
         );
         
         $this->body = new Body(
-            "src/Frontend/components/mangas.php",
+            Path::MANGAS_FILE_PHP,
             Header::getHeader(),
             Footer::getFooter()
         );

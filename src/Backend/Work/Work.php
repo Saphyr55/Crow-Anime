@@ -2,8 +2,6 @@
 
 namespace CrowAnime\Backend\Work;
 
-require_once $_SERVER["DOCUMENT_ROOT"]."/core/backend/Database.php";
-
 abstract class Work
 {   
     public $idWork;

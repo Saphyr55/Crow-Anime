@@ -3,6 +3,7 @@
 namespace CrowAnime\Frontend\Modules;
 
 use CrowAnime\Backend\Head;
+use CrowAnime\Backend\Path;
 use CrowAnime\Backend\Rules;
 use CrowAnime\Frontend\Body;
 use CrowAnime\Frontend\Footer;
@@ -11,6 +12,9 @@ use CrowAnime\Module;
 
 class Home extends Module
 {
+    const TITLE = "CrowAnime - Home";
+    const PATH = "home";
+
     private static ?Module $_home = null;
     private string $nameModule;
     private Head $head;
@@ -18,21 +22,31 @@ class Home extends Module
     private Rules $rules;
 
     public function __construct() {
-        $this->nameModule = "home";
+        
+        $this->nameModule = Home::PATH;
+        
         $this->head = new Head(
-            "CrowAnime - Home", [
-                "src/Frontend/css/home.css",
+            Home::TITLE, [
+                Path::HOME_FILE_CSS,
             ]
         );
+        
         $this->body = new Body(
-            "src/Frontend/components/home.php",
+            Path::HOME_FILE_PHP,
             Header::getHeader(),
             Footer::getFooter()
         );
+        
         $this->rules = new Rules([
             Rules::ALL,
         ]);
-        parent::__construct($this->nameModule, $this->head, $this->body, $this->rules);
+
+        parent::__construct(
+            $this->nameModule, 
+            $this->head, 
+            $this->body, 
+            $this->rules
+        );
     }
 
     public static function getModule() {

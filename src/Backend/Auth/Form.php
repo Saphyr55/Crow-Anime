@@ -3,9 +3,7 @@
 namespace CrowAnime\Backend\Auth;
 
 use CrowAnime\Backend\Database;
-use CrowAnime\Backend\User;
 use CrowAnime\Backend\Work\Anime;
-use DateTime;
 
 /**
  * 
@@ -42,7 +40,7 @@ class Form
                 $synopsis_anime,
                 $season_anime
             );
-            #->put_in_database(); # envoi l'objet dans la database
+            $anime->put_in_database(); # envoi l'objet dans la database
 
             $data = Database::getDatabase()->lastRegister('anime', 'id_anime'); // recupere le dernier enregistrement
             $id_anime = intval(((array) $data[0])['id_anime']); // recupere id du dernier enregistrement
