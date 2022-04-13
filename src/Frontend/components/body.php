@@ -93,41 +93,30 @@
     </div>
 </header><?php
 
-use CrowAnime\Backend\Database;
-use CrowAnime\Backend\Work\Anime;
+use CrowAnime\Backend\Database\Database;
+use CrowAnime\Backend\Form\Form;
+use CrowAnime\Backend\Work\AnimeForm;
 use CrowAnime\Backend\Work\Season; 
 
-/**
-$title_en     =  htmlentities(htmlspecialchars($_POST['name_anime_en']));
-$title_ja     =  htmlentities(htmlspecialchars($_POST['name_anime_ja']));
-if (!isset($_POST['is_finish_anime']))
-    $is_finish = 0;
-else
-    $is_finish  =  boolval($_POST['is_finish_anime']);
-$season_anime   =  htmlspecialchars(htmlentities($_POST['season_anime']));
-$synopsis_anime = htmlspecialchars(htmlentities($_POST["synopsis_anime"]));
 
-if (
-    isset($title_en) and isset($title_ja) and
-    isset($is_finish) and isset($season_anime) and
-    isset($synopsis_anime)
-) {
-
-    $anime = Anime::build(
-        $title_en,
-        $title_ja,
-        $is_finish, # construction de l'anime
-        $synopsis_anime,
-        $season_anime
-    );
-    $anime->put_in_database(); # envoi l'objet dans la database
-
-    $data = Database::getDatabase()->lastRegister('anime', 'id_anime'); // recupere le dernier enregistrement
-    $id_anime = intval(((array) $data[0])['id_anime']); // recupere id du dernier enregistrement
+$data = [
+    "anime_title_en" => htmlspecialchars($_POST['title_en']),
+    "anime_title_ja" => htmlspecialchars($_POST['title_ja']),
+    "anime_season" => htmlspecialchars($_POST['season_anime']),
+    "anime_date" => htmlspecialchars($_POST['date']),
+    "anime_studio" => htmlspecialchars($_POST['studio']),
+    "anime_finish" => (htmlspecialchars($_POST['finish']) === "on") ? true : false
+];
+$form = (Form::check($data) ? new AnimeForm($data) : null);
+if (isset($isset)) { 
+    var_dump("Salut");
+    $dataDB = Database::getDatabase()->nLastRegister('anime', 'id_anime', 1); // recupere le dernier enregistrement
+    var_dump($dataDB);
+    /*$id_anime = intval(((array) $dataDB[0])['id_anime']); // recupere id du dernier enregistrement
     $anime->setIdWork($id_anime);
-    $name_work = ((array) $data[0])['anime_title_en'];
+    $name_work = ((array) $dataDB[0])['anime_title_en'];
     $data_json = json_encode(array(
-        "id_work" => $id_anime,
+        "id_work" => $id_anime, 
         "name_work" => $name_work,
         "is_anime" => true,
         "is_manga" => false
@@ -138,10 +127,8 @@ if (
     fclose($file_json);
 
     $command_py = escapeshellcmd("python3 " . $_SERVER['DOCUMENT_ROOT'] . "/app/python/script.py");
-    shell_exec($command_py);
+    shell_exec($command_py);*/
 }
-
-*/
 ?>
 
 <section class="add-anime">
@@ -149,31 +136,43 @@ if (
         <img id="img_anime" src=<?= ($anime !== null) ? $anime->getUrlImageWork54x71() : "/assets/img/not_found.png" ?>>
     </div>
     <div class="form">
-        <form action="" method="post">
-            <input type="text" name="name_anime_en" value="" placeholder="Nom de l'anime anglais"><br>
-            <input type="text" name="name_anime_ja" placeholder="Nom de l'anime japonais"><br>
-            <span>
-                <label for="year">Année :</label>
-                <select id="year" name="year">
-                    <?php
-                    for ($i = 1990; $i <= date('Y'); $i++) {
-                        echo "<option value=\"date_$i\" >$i</option>";
-                    }
-                    ?>
-                </select>
+        <form action="" method="POST">
+            <input type="text" name="title_en" placeholder="Nom de l'anime anglais" ><br>
+            <input type="text" name="title_ja" placeholder="Nom de l'anime japonais" ><br>
+            <div class="year-season">
+                <label>Année :</label>
+                <input name="date" type="date" />
                 <select name="season_anime" id="">
                     <option value="<?= Season::SPRING ?>">Spring</option>
                     <option value="<?= Season::SUMMER ?>">Summer</option>
                     <option value="<?= Season::FALL ?>">Fall</option>
                     <option value="<?= Season::WINTER ?>">Winter</option>
                 </select>
-            </span>
+            </div>
             <br>
-            <label for="is_finish_anime">Est-il fini ?</label>
-            <input type="checkbox" name="is_finish_anime" id="is_finish_anime">
+            <div>
+                <label for="">Studio : </label>
+                <input type="text" name="studio" id="">
+            </div>
             <br>
-            <textarea name="synopsis" id="" cols="30" rows="10"></textarea>
-            <button type="submit" name="submit">Enregistrer l'anime</button>
+            <div class="choose-picture">
+                <label>Choose a anime picture : </label><br>
+                <label>Auto</label>
+                <input type="checkbox" onchange="document.getElementById('anime-picture').disabled = this.checked;" name="auto_picture" id="auto-picture">
+                <input type="file" id="anime-picture" name="anime_picture" accept="image/png, image/jpeg">
+                <br>
+            </div>
+            <div>
+                <input type="checkbox" name="finish" id="is_finish_anime" >
+                <label for="finish">Est-il fini ?</label>
+            </div>
+            <br>
+            <div>
+                <button class="preview-anime" type="submit">Apercu de l'anime</button>
+                <br>
+                <button class="submit-button" type="submit" name="submit">Enregistrer l'anime</button>
+            </div>
+            
         </form>
     </div>
 </section><footer id="footer">

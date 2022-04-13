@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Rocker&family=Roboto:wght@500&family=Rock+Salt&display=swap');
+
 body {
     height: 122vh auto;
     min-height: 122vh ;
@@ -9,29 +11,94 @@ p {
 }
 
 label {
-    color: white;
+    text-align: center;
+    color: rgb(34, 6, 6);
+    font: 1.2em "roboto", sans-serif;
+    font-size: 20px;
 }
 
 .add-anime {
     margin-top: 5%;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .presentation {
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin-left: 10%;
+
 }
 
 .form {
-    text-align: center;
-    padding: 10%;
-    background-color: darkgrey;    
+    width: 70vh;
+    height: 400px auto;
+    min-height: 400px;
+    background-color: darkgrey;   
+    margin-left: 10px; 
+}
+
+form {
+    margin: 4%;
+}
+
+.form > form > input[type=text] {
+    outline: none;
+    padding: 2%;
+    min-width: 80%;
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.form > form input[type=text]:focus {
+    border: 2px solid #2e2e2e;
+}
+
+form > div > input[type=text]{
+    min-width: 60%;
+}
+
+.form form input[type="checkbox"] {
+    width:18px;
+    height:18px;
+}
+
+input {
+    outline: none;
 }
 
 #img_anime {
     width: 300px;
     height: 400px auto;
     min-height: 400px;
+}
+
+.choose-picture {
+    margin-bottom: 10px;
+}
+
+.form form select {
+    outline: none;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.year-season {
+    margin-top: 10px;
+}
+
+.preview-anime {
+    background-color: rgb(40, 40, 40);
+    padding: 1%;
+    color: white;
+    width: 100%;
+    height: 30px;
+}   
+
+.submit-button {
+    height: 30px;
+    margin-top: 10px ;
+    padding: 1%;
+    width: 100%;
 }

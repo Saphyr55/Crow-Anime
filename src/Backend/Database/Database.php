@@ -1,6 +1,6 @@
 <?php
 
-namespace CrowAnime\Backend;
+namespace CrowAnime\Backend\Database;
 
 use PDO;
 
@@ -73,11 +73,12 @@ class Database
      * @param  string $colID
      * @return mixed
      */
-    public function lastRegister(string $table, string $colID)
+    public function nLastRegister(
+        string $table, string $colID, int $max)
     {
         return self::$database->query(
             "SELECT * FROM $table
-            ORDER BY $colID DESC LIMIT 1"
+            ORDER BY $colID DESC LIMIT $max"
         );
     }
 

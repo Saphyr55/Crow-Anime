@@ -149,6 +149,8 @@ ul {
 }
 
 .input {
+  outline: none;
+  border: 4px solid #1d1d1d;
   font-size: 30px;
   border-radius: 10px;
   margin: auto;

@@ -2,7 +2,7 @@
 
 namespace CrowAnime;
 
-use CrowAnime\Backend\Database;
+use CrowAnime\Backend\Database\Database;
 use CrowAnime\Backend\Head;
 use CrowAnime\Backend\Rules;
 use CrowAnime\Backend\User;

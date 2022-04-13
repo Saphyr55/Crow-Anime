@@ -1,9 +1,9 @@
 CREATE TABLE anime(
   id_anime INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  anime_title VARCHAR(250) NOT NULL,
+  anime_title_en VARCHAR(250) NOT NULL,
+  anime_title_ja VARCHAR(250) NOT NULL,
   anime_finish BOOLEAN NOT NULL,
   anime_season VARCHAR(250),
-  anime_number_season INTEGER,
   anime_synopsis TEXT,
   anime_studio VARCHAR(250),
   anime_score DECIMAL(15, 2),

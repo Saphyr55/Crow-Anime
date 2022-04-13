@@ -3,57 +3,46 @@
 namespace CrowAnime\Backend\Work;
 
 use CrowAnime\Backend\Work\Work;
-use CrowAnime\Backend\Database;
-
+use CrowAnime\Backend\Database\Database;
+use DateTime;
 
 class Anime extends Work
 {    
     private $season;
-    private $number_season;
-    private $current_season;
+    private $studio;
+    private $date;
 
     private function __construct(
-            string $title_en = "", string $title_ja = "", bool $is_finish = false, string $synopsis = "",
-            string $season = null, int $number_season = 1, int $current_season = 1)
+            string $title_en = "",
+            string $title_ja = "",
+            bool $is_finish = false,
+            string $synopsis = "",
+            string $season = null,
+            string $studio,
+            DateTime|string $date
+    )
     {
         parent::__construct($title_en, $title_ja, $is_finish, $synopsis);
         $this->season = $season;
-        $this->number_season = $number_season;
-        $this->current_season = $current_season;
+        $this->studio = $studio;
+        $this->data = $date; 
     }
 
-    public static function build(string $title_en = "", string $title_ja = "", bool $is_finish = false, string $synopsis = "",
-                        string $season = null, int $number_season = 1, int $current_season = 1)
+    public static function build(
+        string $title_en = "", string $title_ja = "", bool $is_finish = false, string $synopsis = "",
+        string $season = null, string $studio, DateTime|string $date
+    )
     {
-        $instance = new Anime($title_en, $title_ja, $is_finish, $synopsis, $season, $number_season, $current_season);
+        $instance = new Anime(
+            $title_en, 
+            $title_ja,
+            $is_finish, 
+            $synopsis, 
+            $season, 
+            $studio, 
+            $date);
         return $instance;
     }   
-    
-    public function put_in_database() 
-    {
-         Database::getDatabase()->execute(
-            "INSERT INTO `anime` (
-                anime_title_en,
-                anime_title_ja,
-                anime_season,
-                anime_current_season,
-                anime_number_season,
-                anime_is_finish,
-                anime_synopsis
-            ) 
-            VALUES ( ?,?,?,?,?,?,? )
-            ", array(
-                $this->title_en,
-                $this->title_ja,
-                $this->season,
-                $this->current_season,
-                $this->number_season,
-                $this->is_finish,
-                $this->synopsis
-            )
-        );
-        return $this;
-    }
 
     /**
      * Get the value of number_season
@@ -111,6 +100,46 @@ class Anime extends Work
     public function setCurrentSeason($current_season)
     {
         $this->current_season = $current_season;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of studio
+     */ 
+    public function getStudio()
+    {
+        return $this->studio;
+    }
+
+    /**
+     * Set the value of studio
+     *
+     * @return  self
+     */ 
+    public function setStudio($studio)
+    {
+        $this->studio = $studio;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date
+     */ 
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set the value of date
+     *
+     * @return  self
+     */ 
+    public function setDate($date)
+    {
+        $this->date = $date;
 
         return $this;
     }
