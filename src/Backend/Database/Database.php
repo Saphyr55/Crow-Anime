@@ -44,7 +44,7 @@ class Database
     /**
      * Fait la connexion à la base de donnée
      */
-    private function getPDO()
+    public function getPDO()
     {
         if (self::$pdo === null) {
             self::$pdo = new PDO(
@@ -64,22 +64,6 @@ class Database
         $request = $this->getPDO()->prepare($statement);
         $request->execute($datas);
         return $request->fetchAll();
-    }
-
-    /**
-     * Permet de recuper le dernier enregistrement
-     *
-     * @param  string $table
-     * @param  string $colID
-     * @return mixed
-     */
-    public function nLastRegister(
-        string $table, string $colID, int $max)
-    {
-        return self::$database->query(
-            "SELECT * FROM $table
-            ORDER BY $colID DESC LIMIT $max"
-        );
     }
 
     /**

@@ -14,8 +14,8 @@ abstract class Work
     protected $urlImageWork225x316;
 
     public function __construct (
-        string $title_en = "not defined", string $title_ja = "not defined",
-        bool $is_finish = false, string $synopsis = "") 
+        ?string $title_en = "not defined", ?string $title_ja = "not defined",
+        ?bool $is_finish = false, ?string $synopsis = "") 
     {   
         //$this->score = 0;
         $this->title_en = $title_en;
@@ -58,7 +58,7 @@ abstract class Work
     /**
      * Get the value of finish
      */ 
-    public function getFinish()
+    public function isFinish()
     {
         return $this->is_finish;
     }
@@ -159,6 +159,26 @@ abstract class Work
     public function setIdWork($idWork)
     {
         $this->idWork = $idWork;
+        return $this;
+    }
+
+    /**
+     * Get the value of score
+     */ 
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    /**
+     * Set the value of score
+     *
+     * @return  self
+     */ 
+    public function setScore($score)
+    {
+        $this->score = $score;
+
         return $this;
     }
 }

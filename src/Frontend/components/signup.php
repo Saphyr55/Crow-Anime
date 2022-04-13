@@ -1,6 +1,6 @@
 <?php
 
-use CrowAnime\Backend\Database;
+use CrowAnime\Backend\Database\Database;
 use CrowAnime\Backend\User;
 
 $error = "";
