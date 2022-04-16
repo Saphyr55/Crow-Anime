@@ -13,13 +13,12 @@ form {
   min-width: 300px;
   margin-top: 20px;
   background: #9152f8;
-  background: -webkit-linear-gradient(bottom, #a05208, #532104);
-  background: -o-linear-gradient(bottom, #a05208, #532104);
-  background: -moz-linear-gradient(bottom, #a05208, #532104);
-  background: linear-gradient(bottom, #a05208, #532104);
+  background: -webkit-linear-gradient(bottom, #1f1515, #5d4b40);
+  background: -o-linear-gradient(bottom, #1f1515, #5d4b40);
+  background: -moz-linear-gradient(bottom, #5d4b40, #1f1515);
+  background: linear-gradient(bottom, #1f1515, #5d4b40);
   position: relative;
   z-index: 1;
-
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;

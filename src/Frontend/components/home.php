@@ -1,17 +1,7 @@
 <?php
 
-use CrowAnime\Backend\Database\Database;
+use CrowAnime\Backend\Work\Anime;
 use CrowAnime\Backend\Work\Season;
-
-$animes_current_season = Database::getDatabase()->execute(
-    "SELECT id_anime, anime_title_ja FROM anime
-	 WHERE anime_season=:anime_season
-     AND strftime('%Y', anime_date)=:anime_date",
-    [
-        ':anime_season' => Season::getCurrentSeason(),
-        ':anime_date' => date('Y')
-    ]
-);
 
 ?>
 
@@ -19,7 +9,11 @@ $animes_current_season = Database::getDatabase()->execute(
     <section id="section-left">
         <div class="news">
             <a class="angle angle-left"><i class="fa-solid fa-angle-left"></i></a>
-            <img class="img-news" src="/assets/img/not_found.png" alt="" srcset="">
+            <ul>
+                <li>
+                    <img class="img-news" src="/assets/img/distance.jpg" alt="" srcset="">
+                </li>
+            </ul>
             <a class="angle angle-right"><i class="fa-solid fa-angle-right"></i></a>
         </div>
         <div class="season-anime">
@@ -32,12 +26,15 @@ $animes_current_season = Database::getDatabase()->execute(
             </p>
             <ol class="season-anime-img" style="list-style-type:none;">
                 <?php
-                for ($i = 0; $i < 4; $i++) {
+                for ($i = 0; $i < 6; $i++) {
                     echo "
                     <li class='anime'>
                         <a href=''>
-                            <img class='anime-img' src=" . "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes_current_season[$i]['id_anime'] . '.jpg' . " alt='' srcset=''>
-                            <p class='name-anime'>" . $animes_current_season[$i]['anime_title_ja'] . "</p>
+                            <img class='anime-img' src=" .
+                        "http://$_SERVER[HTTP_HOST]/assets/img/anime/" .
+                        Anime::getAnimesOfCurrentSeason()[$i]['id_anime'] . '.jpg' . " alt='' srcset=''>
+                            <p class='name-anime'>" .
+                        Anime::getAnimesOfCurrentSeason()[$i]['anime_title_ja'] . "</p>
                         </a>            
                     </li>
                     ";
@@ -53,7 +50,7 @@ $animes_current_season = Database::getDatabase()->execute(
             </p>
             <ol class="season-anime-img" style="list-style-type:none;">
                 <?php
-                for ($i = 0; $i < 4; $i++) {
+                for ($i = 0; $i < 6; $i++) {
                     echo
                     "<li class='anime'>
                             <a href=''>

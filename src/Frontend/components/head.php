@@ -9,5 +9,5 @@
 <link rel='stylesheet' href='http://localhost:5050/src/Frontend/css/home.css'>
 <link rel='icon' type='image/png' sizes='16x16' href='https://cdn-icons-png.flaticon.com/512/3504/3504720.png'>
 <script src='https://kit.fontawesome.com/909d9d481e.js' crossorigin='anonymous'></script>
-<title>CrowAnime - Home</title>
+<title>Crow Anime - Home</title>
 </head>

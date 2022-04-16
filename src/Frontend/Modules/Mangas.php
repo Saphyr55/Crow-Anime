@@ -12,7 +12,7 @@ use CrowAnime\Module;
 
 class Mangas extends Module
 {   
-    const TITLE = "CrowAnime - All Mangas";
+    const TITLE = "Crow Anime - All Mangas";
     const PATH = "mangas";
 
     private static ?Module $_mangas = null;

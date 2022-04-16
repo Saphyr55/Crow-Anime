@@ -22,7 +22,7 @@ class Login extends Module
         $this->nameModule = "login";
         
         $this->head = new Head(
-            "CrowAnime - Login", [
+            "Crow Anime - Login", [
                 "src/Frontend/css/login.css",
             ]
         );

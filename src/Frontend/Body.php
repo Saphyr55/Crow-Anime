@@ -26,7 +26,7 @@ class Body implements IComponent
      * @param Header $header
      * @param Footer $footer
      */
-    public function __construct(string $pathComponent, ?Header $header, ?Footer $footer)
+    public function __construct(string $pathComponent, ?Header $header = null, ?Footer $footer = null)
     {
         $this->pathComponent = $pathComponent;
         $this->header = $header;

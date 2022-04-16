@@ -12,7 +12,7 @@ use CrowAnime\Module;
 
 class Home extends Module
 {
-    const TITLE = "CrowAnime - Home";
+    const TITLE = "Crow Anime - Home";
     const PATH = "home";
 
     private static ?Module $_home = null;

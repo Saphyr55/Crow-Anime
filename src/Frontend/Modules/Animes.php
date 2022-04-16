@@ -22,7 +22,7 @@ class Animes extends Module
         $this->nameModule = "animes";
         
         $this->head = new Head(
-            "CrowAnime - Home", [
+            "Crow Anime - Home", [
                 "src/Frontend/css/animes.css",
             ]
         );

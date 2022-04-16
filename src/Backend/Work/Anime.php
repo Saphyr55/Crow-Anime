@@ -4,44 +4,50 @@ namespace CrowAnime\Backend\Work;
 
 use CrowAnime\Backend\Work\Work;
 use CrowAnime\Backend\Database\Database;
-    use DateTime;
+use DateTime;
 
 class Anime extends Work
-{    
+{   
+    private static ?array $animeCurrentSeason = null;
     private $season;
     private $studio;
     private $date;
 
     private function __construct(
-            ?string $title_en = "",
-            ?string $title_ja = "",
-            ?bool $is_finish = false,
-            ?string $synopsis = "",
-            ?string $season = null,
-            ?string $studio = "",
-            DateTime|string|null $date = "")
-    {
+        ?string $title_en = "",
+        ?string $title_ja = "",
+        ?bool $is_finish = false,
+        ?string $synopsis = "",
+        ?string $season = null,
+        ?string $studio = "",
+        DateTime|string|null $date = ""
+    ) {
         parent::__construct($title_en, $title_ja, $is_finish, $synopsis);
         $this->season = $season;
         $this->studio = $studio;
-        $this->date = $date; 
+        $this->date = $date;
     }
 
     public static function build(
-        string $title_en = "", string $title_ja = "", bool $is_finish = false, string $synopsis = "",
-        string $season = null, string $studio, DateTime|string $date)
-    {
+        string $title_en = "",
+        string $title_ja = "",
+        bool $is_finish = false,
+        string $synopsis = "",
+        string $season = null,
+        string $studio,
+        DateTime|string $date
+    ) {
         $instance = new Anime(
-            $title_en, 
+            $title_en,
             $title_ja,
-            $is_finish, 
-            $synopsis, 
-            $season, 
-            $studio, 
+            $is_finish,
+            $synopsis,
+            $season,
+            $studio,
             $date
         );
         return $instance;
-    }   
+    }
 
     public function sendDatabase()
     {
@@ -64,9 +70,25 @@ class Anime extends Work
         );
     }
 
+    public static function getAnimesOfCurrentSeason() : array
+    {
+        if (self::$animeCurrentSeason === null) {
+            self::$animeCurrentSeason = Database::getDatabase()->execute(
+                    "SELECT id_anime, anime_title_ja FROM anime
+                    WHERE anime_season=:anime_season
+                    AND strftime('%Y', anime_date)=:anime_date",
+                    [
+                        ':anime_season' => Season::getCurrentSeason(),
+                        ':anime_date' => date('Y')
+                    ]
+                );
+        }
+        return self::$animeCurrentSeason;
+    }
+
     /**
      * Get the value of number_season
-     */ 
+     */
     public function getNumberSeason()
     {
         return $this->number_season;
@@ -76,7 +98,7 @@ class Anime extends Work
      * Set the value of number_season
      *
      * @return self
-     */ 
+     */
     public function setNumberSeason($number_season)
     {
         $this->number_season = $number_season;
@@ -86,7 +108,7 @@ class Anime extends Work
 
     /**
      * Get the value of season
-     */ 
+     */
     public function getSeason()
     {
         return $this->season;
@@ -96,7 +118,7 @@ class Anime extends Work
      * Set the value of season
      *
      * @return  self
-     */ 
+     */
     public function setSeason($season)
     {
         $this->season = $season;
@@ -106,7 +128,7 @@ class Anime extends Work
 
     /**
      * Get the value of current_season
-     */ 
+     */
     public function getCurrentSeason()
     {
         return $this->current_season;
@@ -116,7 +138,7 @@ class Anime extends Work
      * Set the value of current_season
      *
      * @return  self
-     */ 
+     */
     public function setCurrentSeason($current_season)
     {
         $this->current_season = $current_season;
@@ -126,7 +148,7 @@ class Anime extends Work
 
     /**
      * Get the value of studio
-     */ 
+     */
     public function getStudio()
     {
         return $this->studio;
@@ -136,7 +158,7 @@ class Anime extends Work
      * Set the value of studio
      *
      * @return  self
-     */ 
+     */
     public function setStudio($studio)
     {
         $this->studio = $studio;
@@ -146,7 +168,7 @@ class Anime extends Work
 
     /**
      * Get the value of date
-     */ 
+     */
     public function getDate()
     {
         return $this->date;
@@ -156,7 +178,7 @@ class Anime extends Work
      * Set the value of date
      *
      * @return  self
-     */ 
+     */
     public function setDate($date)
     {
         $this->date = $date;

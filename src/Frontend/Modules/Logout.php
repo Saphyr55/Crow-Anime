@@ -20,7 +20,7 @@ class Logout extends Module
         $this->nameModule = "logout";
         
         $this->head = new Head(
-            "CrowAnime - Logout",[]
+            "Crow Anime - Logout",[]
         );
         
         $this->body = new Body(

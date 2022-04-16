@@ -4,11 +4,13 @@ body {
     margin: auto;
     text-decoration: none;
     list-style-type:none;
-    grid-template-columns: .8fr .2fr;
-    grid-template-rows: .2fr .8fr;
     background-color: #2e2e2e;
-    grid-template-areas: "header header"
-                         "sl sr";
+    grid-template-columns: 1fr;
+    grid-template-rows: .2fr .6fr .2fr;
+    grid-template-areas: 
+    "header"
+    "sl"
+    "sr";
 }
 
 .section-left {
@@ -30,7 +32,6 @@ body {
     position: relative;
     width: 100vh;
     height: 60vh;
-    border-radius: 10px;
 }
 
 .news-space-right {
@@ -82,7 +83,7 @@ body {
 
 .p-top-anime {
     margin-left: 20px;
-    margin-top: 30%;
+    margin-top: 10px;
     font-size: 25px;
     text-align: center;
 }
@@ -108,13 +109,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 }
 
 .ol-top-anime {
-    width: 90%;
-    height: auto;
+    width: 50%;
     padding: 20px;
-    padding-right: 0px;
 }
 
 .ol-top-anime li {
