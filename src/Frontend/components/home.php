@@ -1,3 +1,22 @@
+<?php
+
+use CrowAnime\Backend\Database\Database;
+use CrowAnime\Backend\Work\Season;
+
+$animes_current_season = Database::getDatabase()->execute(
+    "SELECT id_anime, anime_title_ja FROM anime
+	 WHERE anime_season=:anime_season
+     AND strftime('%Y', anime_date)=:anime_date",
+    [
+        ':anime_season' => Season::getCurrentSeason(),
+        ':anime_date' => date('Y')
+    ]
+);
+
+
+
+?>
+
 <body>
     <section id="section-left">
         <div class="news">

@@ -6,7 +6,6 @@ use DateTime;
 
 class User
 {      
-
     private static array $usersConnected = [];
     private static ?string $currentUsernameURI = null;
     private int $idUser;
@@ -194,5 +193,10 @@ class User
     public static function getUsersConnected()
     {
         return self::$usersConnected;
+    }
+
+    public static function getCurrentUser()
+    {
+        return $_SESSION['user'];
     }
 }

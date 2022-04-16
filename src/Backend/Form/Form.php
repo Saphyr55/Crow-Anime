@@ -16,7 +16,6 @@ abstract class Form {
     {   
         $i = 0;
         foreach ($data as $key => $value) {
-            var_dump($value);
             if (isset($value) ) {
                 if (is_string($value) ) {
                     if( empty($value) || strlen(trim($value)) == 0 )
@@ -44,10 +43,8 @@ abstract class Form {
     {
         foreach ($allowed as $value) {
             if ($_FILES[$name_file]['type'] === $value) {
-
-                // uploaded the file
                 move_uploaded_file($_FILES[$name_file]["tmp_name"], $uploadfile);
-                var_dump($_FILES[$name_file]);
+                break;
             }
         }
     }

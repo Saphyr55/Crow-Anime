@@ -24,7 +24,7 @@ class Anime extends Work
         parent::__construct($title_en, $title_ja, $is_finish, $synopsis);
         $this->season = $season;
         $this->studio = $studio;
-        $this->data = $date; 
+        $this->date = $date; 
     }
 
     public static function build(
@@ -54,7 +54,7 @@ class Anime extends Work
             [
                 ':anime_title_en'  => $this->getTitle_en(),
                 ':anime_title_ja'  => $this->getTitle_ja(),
-                ':anime_finish'    => $this->isFinish(),
+                ':anime_finish'    => $this->isFinish() ? 1 : 0,
                 ':anime_season'    => $this->getSeason(),
                 ':anime_synopsis'  => $this->getSysnopis(),
                 ':anime_studio'    => $this->getStudio(),

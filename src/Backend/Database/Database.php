@@ -59,10 +59,11 @@ class Database
     /**
      * Permet l'insertion de donnée
      */
-    public function execute(string $statement, array $datas)
+    public function execute(string $statement, array $datas = [])
     {
         $request = $this->getPDO()->prepare($statement);
-        $request->execute($datas);
+        if ($datas !== [])
+            $request->execute($datas);
         return $request->fetchAll();
     }
 
