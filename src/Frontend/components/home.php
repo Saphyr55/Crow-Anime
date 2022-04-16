@@ -13,8 +13,6 @@ $animes_current_season = Database::getDatabase()->execute(
     ]
 );
 
-
-
 ?>
 
 <body>
@@ -27,18 +25,20 @@ $animes_current_season = Database::getDatabase()->execute(
         <div class="season-anime">
             <p class="p-anime">
                 <a href="">
-                    ANIME DE SAISON
+                    <?php echo ucfirst(strtolower(Season::getCurrentSeason())) . ' ';
+                    echo date('Y') . ' ';
+                    echo "Anime" ?>
                 </a>
             </p>
             <ol class="season-anime-img" style="list-style-type:none;">
                 <?php
                 for ($i = 0; $i < 4; $i++) {
-                    echo
-                    "<li class='anime'>
-                    <a href=''>
-                        <img class='anime-img' src='/assets/img/not_found.png' alt='' srcset=''>
-                        <p class='name-anime'>Name anime</p>
-                    </a>            
+                    echo "
+                    <li class='anime'>
+                        <a href=''>
+                            <img class='anime-img' src=" . "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes_current_season[$i]['id_anime'] . '.jpg' . " alt='' srcset=''>
+                            <p class='name-anime'>" . $animes_current_season[$i]['anime_title_ja'] . "</p>
+                        </a>            
                     </li>
                     ";
                 }

@@ -48,21 +48,36 @@ body {
     grid-template-columns: repeat(auto-fill,minmax(222px, 1fr));
 }
 
-.anime {
-    margin-bottom: 100px;
-}
 
 .p-anime {
+    padding: 10px;
     border-radius: 0 50px 50px 0;
-    background-color: white;
+    background-color: rgb(26, 26, 26);
     max-width: 20%;
     min-width: 20%;
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
 }
 
+.anime a {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(26, 26, 26);
+    width: 200px;
+}
+
+.p-anime a, .name-anime {
+    text-shadow: 1px 1px 2px black;
+    color: rgb(255, 255, 255);
+}
+
 .p-anime a {
-    color: #2e2e2e;
+    transition: all .1s;
+    border-bottom: 3px solid transparent;
+}
+
+.p-anime a:hover {
+    border-color: white;
 }
 
 .p-top-anime {
@@ -73,14 +88,19 @@ body {
 }
 
 .anime-img {
+    transition: opacity .1s;
     width: 200px;
     height: 300px;
 }
 
+.anime-img:hover {
+    opacity: .8;
+}
+
 .name-anime {
-    margin-top: -20%;
-    margin-left: 10px;
-    color: black;
+    width: auto;
+    max-width: 200px;
+    position: relative;
 }
 
 .div-top-anime {

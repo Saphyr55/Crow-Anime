@@ -8,7 +8,7 @@ use CrowAnime\Backend\Work\Season;
 
 
 $path_replace = "/assets/img/anime/preview_" . User::getCurrentUser()->getIdUser() . ".jpg";
-if(file_exists("$_SERVER[DOCUMENT_ROOT]$path_replace")) 
+if (file_exists("$_SERVER[DOCUMENT_ROOT]$path_replace"))
     unlink("$_SERVER[DOCUMENT_ROOT]$path_replace");
 
 $manage_bool = isset($_POST['submit']) || isset($_POST['preview']);
@@ -38,11 +38,11 @@ if (Form::check($datas)) {
         $last_anime = (array) Database::getDatabase()->query("SELECT * FROM anime ORDER BY id_anime DESC")[0];
 
         $anime->setIdWork($last_anime['id_anime']);
-        
+
         Form::upload_file($name_file, $allowed, $uploadfile);
         rename(
             "$_SERVER[DOCUMENT_ROOT]/assets/img/anime/" . $_FILES[$name_file]['name'],
-            "$_SERVER[DOCUMENT_ROOT]/assets/img/anime/".$anime->getIdWork().".jpg"
+            "$_SERVER[DOCUMENT_ROOT]/assets/img/anime/" . $anime->getIdWork() . ".jpg"
         );
     }
 
@@ -53,67 +53,56 @@ if (Form::check($datas)) {
             "$_SERVER[DOCUMENT_ROOT]$path_replace"
         );
     }
-
-/*
-$data_json = json_encode(array(
-    "id_work" => $id_anime, 
-    "name_work" => $last_anime['anime_title_en'],
-    "is_anime" => true,
-    "is_manga" => false
-));
-$file_json = fopen($_SERVER['DOCUMENT_ROOT'] . "/assets/data/work.json", "w") 
-    or die("Unable to open file!");
-fwrite($file_json, $data_json);
-fclose($file_json);
-
-$command_py = escapeshellcmd("python3 " . $_SERVER['DOCUMENT_ROOT'] . "/app/python/script.py");
-shell_exec($command_py);
-     */
-} else $error = "Veuillez tous les champs";
+    $_POST = [];
+} else $error = "Veuillez remplir tous les champs";
 ?>
 
 <section class="add-anime">
     <div class="presentation">
-        <img id="img_anime" src="<?= isset($path_replace) ? "http://$_SERVER[HTTP_HOST]$path_replace" : "/assets/img/not_found.png" ?>">
-    </div>
-    <div class="form">
-        <form action="" method="POST" enctype="multipart/form-data">
-            <input type="text" name="title_en" placeholder="Nom de l'anime anglais" value="<?php if ($manage_bool) echo htmlspecialchars($_POST['title_en']) ?>"><br>
-            <input type="text" name="title_ja" placeholder="Nom de l'anime japonais" value="<?php if ($manage_bool) echo htmlspecialchars($_POST['title_ja']) ?>"><br>
-            <div class="year-season">
-                <label>Année :</label>
-                <input name="date" type="date" value="<?php if ($manage_bool) echo htmlspecialchars(date('Y-m-d', strtotime($_POST['date']))) ?>" />
-                <select name="season_anime" id="">
-                    <option value="<?= Season::SPRING ?>">Spring</option>
-                    <option value="<?= Season::SUMMER ?>">Summer</option>
-                    <option value="<?= Season::FALL ?>">Fall</option>
-                    <option value="<?= Season::WINTER ?>">Winter</option>
-                </select>
-            </div>
-            <br>
-            <div>
-                <label for="">Studio : </label>
-                <input type="text" name="studio" id="" value="<?php if ($manage_bool) echo htmlspecialchars($_POST['studio']) ?>">
-            </div>
-            <br>
-            <div class="choose-picture">
-                <label>Choose a anime picture : </label><br>
-                <label>Auto</label>
-                <input type="checkbox" onchange="document.getElementById('anime-picture').disabled = this.checked;" name="auto_picture" id="auto-picture">
-                <input type="file" id="anime-picture" name="anime_picture" accept="image/png, image/jpeg">
+        <img id="img_anime" src="<?php
+                                if (isset($_POST['submit'])) echo "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $anime->getIdWork() . '.jpg';
+                                else if (isset($_POST['preview'])) echo "http://$_SERVER[HTTP_HOST]$path_replace";
+                                else echo "http://$_SERVER[HTTP_HOST]/assets/img/not_found.png";
+                                ?>"> 
+        </div>
+        <div class="form">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <input type="text" name="title_en" placeholder="Nom de l'anime anglais" value="<?php if ($manage_bool) echo htmlspecialchars($_POST['title_en']) ?>"><br>
+                <input type="text" name="title_ja" placeholder="Nom de l'anime japonais" value="<?php if ($manage_bool) echo htmlspecialchars($_POST['title_ja']) ?>"><br>
+                <div class="year-season">
+                    <label>Année :</label>
+                    <input name="date" type="date" value="<?php if ($manage_bool) echo htmlspecialchars(date('Y-m-d', strtotime($_POST['date']))) ?>" />
+                    <select name="season_anime" id="">
+                        <option value="<?= Season::SPRING ?>">Spring</option>
+                        <option value="<?= Season::SUMMER ?>">Summer</option>
+                        <option value="<?= Season::FALL ?>">Fall</option>
+                        <option value="<?= Season::WINTER ?>">Winter</option>
+                    </select>
+                </div>
                 <br>
-            </div>
-            <div>
-                <input type="checkbox" name="finish" id="is_finish_anime">
-                <label for="finish">Est-il fini ?</label>
-            </div>
-            <br>
-            <div>
-                <button class="preview-anime" type="submit" name="preview">Apercu de l'anime</button>
+                <div>
+                    <label for="">Studio : </label>
+                    <input type="text" name="studio" id="" value="<?php if ($manage_bool) echo htmlspecialchars($_POST['studio']) ?>">
+                </div>
                 <br>
-                <button class="submit-button" type="submit" name="submit">Enregistrer l'anime</button>
-            </div>
+                <div class="choose-picture">
+                    <label>Choose a anime picture : </label><br>
+                    <label>Auto</label>
+                    <input type="checkbox" onchange="document.getElementById('anime-picture').disabled = this.checked;" name="auto_picture" id="auto-picture">
+                    <input type="file" id="anime-picture" name="anime_picture" accept="image/png, image/jpeg">
+                    <br>
+                </div>
+                <div>
+                    <input type="checkbox" name="finish" id="is_finish_anime">
+                    <label for="finish">Est-il fini ?</label>
+                </div>
+                <br>
+                <div>
+                    <button class="preview-anime" type="submit" name="preview">Apercu de l'anime</button>
+                    <br>
+                    <button class="submit-button" type="submit" name="submit">Enregistrer l'anime</button>
+                </div>
 
-        </form>
-    </div>
+            </form>
+        </div>
 </section>
