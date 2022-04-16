@@ -40,4 +40,16 @@ abstract class Form {
         return $this;
     }
 
+    public static function upload_file(string $name_file, array $allowed, string $uploadfile)
+    {
+        foreach ($allowed as $value) {
+            if ($_FILES[$name_file]['type'] === $value) {
+
+                // uploaded the file
+                move_uploaded_file($_FILES[$name_file]["tmp_name"], $uploadfile);
+                var_dump($_FILES[$name_file]);
+            }
+        }
+    }
+
 }

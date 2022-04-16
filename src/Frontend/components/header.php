@@ -1,8 +1,8 @@
 <header id="header">
     <div class="top-header">
         <div class=''>
-            <a href=<?= "http://$_SERVER[HTTP_HOST]/home" ?>>
-                <img class='logo' src='/assets/img/not_found.png' alt='' srcset=''>
+            <a href="<?= "http://$_SERVER[HTTP_HOST]/home" ?>">
+                <img class='logo' src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/logo.png" ?>" alt='' srcset=''>
             </a>
         </div>
         <?php
@@ -72,7 +72,7 @@
                 div.style.display = 'block';
         }
     </script>
-    <div class="bottom-header">
+    <div class=" bottom-header">
         <div>
             <a href=<?= "http://$_SERVER[HTTP_HOST]/animes" ?>>
                 <p>ANIME</p>

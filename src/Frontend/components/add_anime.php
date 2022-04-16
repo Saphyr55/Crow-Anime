@@ -2,37 +2,46 @@
 
 use CrowAnime\Backend\Database\Database;
 use CrowAnime\Backend\Form\Form;
-use CrowAnime\Backend\Work\Anime;
 use CrowAnime\Backend\Work\AnimeForm;
-use CrowAnime\Backend\Work\Season; 
+use CrowAnime\Backend\Work\Season;
 
-$datas = [
-    "anime_title_en" => htmlspecialchars($_POST['title_en']),
-    "anime_title_ja" => htmlspecialchars($_POST['title_ja']),
-    "anime_season" => htmlspecialchars($_POST['season_anime']),
-    "anime_date" => htmlspecialchars($_POST['date']),
-    "anime_studio" => htmlspecialchars($_POST['studio']),
-    "anime_finish" => (htmlspecialchars($_POST['finish']) === "on" ) ? 1 : 0
-];
+$allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "png" => "image/png");
+$uploaddir = getcwd() . DIRECTORY_SEPARATOR . '/assets/img/anime/';
+$datas =
+    [
+        "anime_title_en" => htmlspecialchars($_POST['title_en']),
+        "anime_title_ja" => htmlspecialchars($_POST['title_ja']),
+        "anime_season" => htmlspecialchars($_POST['season_anime']),
+        "anime_date" => htmlspecialchars($_POST['date']),
+        "anime_studio" => htmlspecialchars($_POST['studio']),
+        "anime_finish" => (htmlspecialchars($_POST['finish']) === "on") ? 1 : 0
+    ];
 
 if (Form::check($datas)) {
+
     $anime = (new AnimeForm($datas))->createAnime();
+    
+    $name_file = "anime_picture";
+    $uploadfile = $uploaddir . basename($_FILES['anime_picture']['name']);
+
     if (isset($_POST['submit'])) {
         $anime->sendDatabase();
+        
         // recupere le dernier enregistrement
-        $last_anime = (array) Database::getDatabase()->query("SELECT * FROM anime ORDER BY id_anime DESC")[0]; 
+        $last_anime = (array) Database::getDatabase()->query("SELECT * FROM anime ORDER BY id_anime DESC")[0];
+        
+        Form::upload_file($name_file, $allowed, $uploadfile);
+        rename("$_SERVER[DOCUMENT_ROOT]/assets/img/anime/".$_FILES[$name_file]['name'],
+               "$_SERVER[DOCUMENT_ROOT]/assets/img/anime/$last_anime[id_anime].jpg"); 
+
+    } else if (isset($_POST['preview'])) {
+        Form::upload_file($name_file, $allowed, $uploadfile);
     }
-    
-    var_dump($_FILES['anime_picture']);
-    $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "png" => "image/png");
-    $uploaddir = getcwd().DIRECTORY_SEPARATOR;
-    $uploadfile = $uploaddir . basename($_FILES['anime_picture']['name']);
-    move_uploaded_file($_FILES['anime_picture']["tmp_name"], $uploadfile);
-    
-    //$da = "$last_anime[id_anime]_$last_anime[anime_title_en]"
+
+    //$da = "_$last_anime[anime_title_en]"
 
 
-/*
+    /**
 $id_anime = $last_anime['id_anime']; // recupere id du dernier enregistrement
 $anime->setIdWork($id_anime);
 $data_json = json_encode(array(
@@ -48,19 +57,18 @@ fclose($file_json);
 
 $command_py = escapeshellcmd("python3 " . $_SERVER['DOCUMENT_ROOT'] . "/app/python/script.py");
 shell_exec($command_py);
-*/
-}    
-
+     */
+}
 ?>
 
 <section class="add-anime">
     <div class="presentation">
-        <img id="img_anime" src=<?= ($anime !== null) ? $anime->getUrlImageWork54x71() : "/assets/img/not_found.png" ?>>
+        <img id="img_anime" src=<?= ($anime !== null && $anime->getUrlImageWork54x71() !== null) ? $anime->getUrlImageWork54x71() : "/assets/img/not_found.png" ?>>
     </div>
     <div class="form">
         <form action="" method="POST" enctype="multipart/form-data">
-            <input type="text" name="title_en" placeholder="Nom de l'anime anglais" ><br>
-            <input type="text" name="title_ja" placeholder="Nom de l'anime japonais" ><br>
+            <input type="text" name="title_en" placeholder="Nom de l'anime anglais"><br>
+            <input type="text" name="title_ja" placeholder="Nom de l'anime japonais"><br>
             <div class="year-season">
                 <label>Année :</label>
                 <input name="date" type="date" />
@@ -85,7 +93,7 @@ shell_exec($command_py);
                 <br>
             </div>
             <div>
-                <input type="checkbox" name="finish" id="is_finish_anime" >
+                <input type="checkbox" name="finish" id="is_finish_anime">
                 <label for="finish">Est-il fini ?</label>
             </div>
             <br>
@@ -94,7 +102,7 @@ shell_exec($command_py);
                 <br>
                 <button class="submit-button" type="submit" name="submit">Enregistrer l'anime</button>
             </div>
-            
+
         </form>
     </div>
 </section>

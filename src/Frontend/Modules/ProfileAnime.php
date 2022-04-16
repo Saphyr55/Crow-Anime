@@ -26,7 +26,7 @@ class ProfileAnime extends Module
         $this->nameModule = "profile/" . User::getCurrentUsernameURI() . "/animeslist";
         $this->head = new Head(
             User::getCurrentUsernameURI() . " : Anime List", [
-                "src/Frontend/css/profile_animes.css",
+                "src/Frontend/css/animes.css",
             ]
         );
         $this->body = new Body(

@@ -28,7 +28,7 @@ class ProfileManga extends Module
         $this->head = new Head(
             User::getCurrentUsernameURI() . " : Manga List",
             [
-                "src/Frontend/css/profile_mangas.css",
+                "src/Frontend/css/mangas.css",
             ]
         );
 

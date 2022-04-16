@@ -48,10 +48,21 @@ body {
     background-color: #353535;
 }
 
+.list-top-name {
+    padding: 1px;
+    width: 15%;
+    background-color: #1D1D1D;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.list-top-name-p {
+    font-size: 30px;
+}
+
 .list-container{
     width: 95%;
     margin: auto;
-    position: relative;
     background-color: #1D1D1D;
     border-radius: 8px;
 }
