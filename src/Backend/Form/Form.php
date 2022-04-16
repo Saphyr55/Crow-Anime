@@ -11,24 +11,21 @@ abstract class Form {
     public function __construct(array $data = []) {
         $this->data = $data;
     }
-
+    
     public static function check(array $data) : bool
     {   
         $i = 0;
-        foreach ($data as $value) {
-            if (isset($value) && !is_null($value) ){
-                if (is_string($value)){
-                    $t = 0;
-                    for ($j=0; $j < strlen($value) ; $j++) {
-                        if($value[$i] === ' ' || $value[$i] === '') $t++;
-                        if ($t === strlen($value)) 
-                            return false;
-                    }
+        foreach ($data as $key => $value) {
+            var_dump($value);
+            if (isset($value) ) {
+                if (is_string($value) ) {
+                    if( empty($value) || strlen(trim($value)) == 0 )
+                        return false;
                 }
                 $i++;
             }
         }
-        return ($i === count($data)) ? true : false;
+        return ($i === count($data) && $i !== 0) ? true : false;
     }
 
     public function getData() : array

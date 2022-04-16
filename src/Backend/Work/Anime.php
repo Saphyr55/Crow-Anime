@@ -4,7 +4,7 @@ namespace CrowAnime\Backend\Work;
 
 use CrowAnime\Backend\Work\Work;
 use CrowAnime\Backend\Database\Database;
-use DateTime;
+    use DateTime;
 
 class Anime extends Work
 {    
@@ -13,14 +13,13 @@ class Anime extends Work
     private $date;
 
     private function __construct(
-            string $title_en = "",
-            string $title_ja = "",
-            bool $is_finish = false,
-            string $synopsis = "",
-            string $season = null,
-            string $studio,
-            DateTime|string $date
-    )
+            ?string $title_en = "",
+            ?string $title_ja = "",
+            ?bool $is_finish = false,
+            ?string $synopsis = "",
+            ?string $season = null,
+            ?string $studio = "",
+            DateTime|string|null $date = "")
     {
         parent::__construct($title_en, $title_ja, $is_finish, $synopsis);
         $this->season = $season;
@@ -30,8 +29,7 @@ class Anime extends Work
 
     public static function build(
         string $title_en = "", string $title_ja = "", bool $is_finish = false, string $synopsis = "",
-        string $season = null, string $studio, DateTime|string $date
-    )
+        string $season = null, string $studio, DateTime|string $date)
     {
         $instance = new Anime(
             $title_en, 
@@ -40,9 +38,31 @@ class Anime extends Work
             $synopsis, 
             $season, 
             $studio, 
-            $date);
+            $date
+        );
         return $instance;
     }   
+
+    public function sendDatabase()
+    {
+        Database::getDatabase()->execute(
+            "INSERT INTO anime 
+            (anime_title_en, anime_title_ja, anime_finish, anime_season,
+             anime_synopsis, anime_studio, anime_score, anime_date)
+            VALUES (:anime_title_en, :anime_title_ja, :anime_finish, :anime_season,
+             :anime_synopsis, :anime_studio, :anime_score, :anime_date)",
+            [
+                ':anime_title_en'  => $this->getTitle_en(),
+                ':anime_title_ja'  => $this->getTitle_ja(),
+                ':anime_finish'    => $this->isFinish(),
+                ':anime_season'    => $this->getSeason(),
+                ':anime_synopsis'  => $this->getSysnopis(),
+                ':anime_studio'    => $this->getStudio(),
+                ':anime_score'     => $this->getScore(),
+                ':anime_date'      => $this->getDate()
+            ]
+        );
+    }
 
     /**
      * Get the value of number_season

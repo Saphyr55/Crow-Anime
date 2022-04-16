@@ -40,14 +40,13 @@ url_anime = all_animes[0].get_attribute("href")
 
 
 def create_json_url_image():
-    url_image_anime = driver.find_elements(By.CLASS_NAME, "lazyloaded")[
-        0].get_attribute("src")
+    url_image_anime = driver.find_elements(By.CLASS_NAME, "lazyloaded")[0].get_attribute("src")
     json_url_image_anime = {
         f"{id_work}" : {
             "url": url_image_anime
-        } 
+        }
     }
-    with open(path_parent+f"/../../assets/img/{work}/{format}/{id_work}.json", "w") as file_json_url_image_anime:
+    with open(path_parent+f"/../../assets/img/{work}.json", "w") as file_json_url_image_anime:
         json.dump(json_url_image_anime, file_json_url_image_anime, indent=2)
 
 

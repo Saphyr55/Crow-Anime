@@ -123,7 +123,7 @@ class App
         file_put_contents(Rules::RULES_PATH, $currentModule->getRules()->sendRules());
         file_put_contents(Head::_HEAD_PATH_, $currentModule->getHead()->sendHTML());
         file_put_contents(Body::_BODY_PATH_, $currentModule->getBody()->sendHTML());
-
+        
         require Rules::RULES_PATH;
         require Head::_HEAD_PATH_;
         require Body::_BODY_PATH_;
