@@ -29,6 +29,7 @@ body {
 }
 
 .img-news {
+    opacity: 0.5;
     position: relative;
     width: 100vh;
     height: 60vh;

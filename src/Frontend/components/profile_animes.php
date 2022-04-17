@@ -1,3 +1,9 @@
+<?php
+
+use CrowAnime\Backend\User;
+
+?>
+
 <div class="sort">
     <div class="sort-by">
         <div class="sort-by-alphabet">
@@ -27,57 +33,19 @@
     </div>
     <div class="list-container">
         <div class="list-items">
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-
+            <?php $animes = User::getCurrentUser()->animesView(); ?>
+            <?php if (count($animes) !== 0) : ?>
+                <?php for ($i = 0; $i < count($animes); $i++) : ?>
+                    <a href="" class="list-item">
+                        <img class="list-item-filter" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' ?>">
+                        <div class="list-item-desc">
+                            <?= $animes[$i]->getTitle_ja() ?>
+                        </div>
+                    </a>
+                <?php endfor; ?>
+            <?php else: ?>
+                <p style="margin: 30vh; font-size: 50px; text-align:center;">Vous n'avez enregistrer aucun Anime</p>
+            <?php endif; ?>
         </div>
     </div>
 </div>

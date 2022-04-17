@@ -3,6 +3,7 @@
 namespace CrowAnime\Frontend\Modules;
 
 use CrowAnime\Backend\Head;
+use CrowAnime\Backend\Path;
 use CrowAnime\Backend\Rules;
 use CrowAnime\Backend\User;
 use CrowAnime\Frontend\Body;
@@ -28,7 +29,8 @@ class ProfileManga extends Module
         $this->head = new Head(
             User::getCurrentUsernameURI() . " : Manga List",
             [
-                "src/Frontend/css/mangas.css",
+                Path::MANGAS_FILE_CSS,
+                Path::MANGAS_PROFILE_FILE_CSS
             ]
         );
 

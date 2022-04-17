@@ -2,10 +2,13 @@
 
 namespace CrowAnime\Backend;
 
+use CrowAnime\Backend\Database\Database;
+use CrowAnime\Backend\Work\Anime;
+use CrowAnime\Backend\Work\Manga;
 use DateTime;
 
 class User
-{      
+{
     private static array $usersConnected = [];
     private static ?string $currentUsernameURI = null;
     private int $idUser;
@@ -27,7 +30,7 @@ class User
      * @return void
      */
     public function __construct(int $idUser, string $username, string $email, string $password, bool $isAdmin, DateTime $dateConnection, DateTime $dateRegister)
-    {   
+    {
         $this->idUser = $idUser;
         $this->username = $username;
         $this->email = $email;
@@ -38,6 +41,58 @@ class User
         array_push(self::$usersConnected, $this);
     }
 
+    public function animesView(): array
+    {
+        $animes_r = [];
+        $animes = Database::getDatabase()->execute(
+            "SELECT * FROM anime 
+            INNER JOIN lister_anime ON anime.id_anime=lister_anime.id_anime
+            WHERE lister_anime.id_user=:id_user
+            ORDER BY lister_anime.score",
+            [':id_user' => $this->getIdUser()]
+        );
+        foreach ($animes as $value) {
+            $anime = Anime::build(
+                $value['anime_title_en'],
+                $value['anime_title_ja'],
+                $value['anime_finish'],
+                $value['anime_synopsis'],
+                $value['anime_season'],
+                $value['anime_studio'],
+                $value['anime_date'],
+            );
+            $anime->setIdWork($value['id_anime']);
+            array_push($animes_r, $anime);
+        }
+        return $animes_r;
+    }
+
+    public function mangasView(): array
+    {
+        $mangas_r = [];
+        $mangas = Database::getDatabase()->execute(
+            "SELECT * FROM manga 
+            INNER JOIN lister_manga ON manga.id_manga=lister_manga.id_manga
+            WHERE lister_manga.id_user=:id_user
+            ORDER BY lister_manga.score",
+            [':id_user' => $this->getIdUser()]
+        );
+        foreach ($mangas as $value) {
+            $manga = new Manga(
+                $value['manga_title_ja'],
+                $value['manga_title_en'],
+                $value['manga_finish'],
+                $value['manga_synopsis'],
+                $value['manga_author'],
+                $value['manga_edition'],
+                $value['manga_volumes'],
+                $value['manga_date']
+            );
+            $manga->setIdWork($value['id_manga']);
+            array_push($mangas_r, $manga);
+        }
+        return $mangas_r;
+    }
 
     /**
      * Get the value of dateConnection
@@ -164,14 +219,14 @@ class User
     /**
      * Get the value of currentUsernameURI
      */
-    public static function getCurrentUsernameURI() : ?string
+    public static function getCurrentUsernameURI(): ?string
     {
         return self::$currentUsernameURI;
     }
 
     /**
      * Set the value of currentUsernameURI
-     */ 
+     */
     public static function setCurrentUsernameURI(?string $currentUsernameURI)
     {
         self::$currentUsernameURI = $currentUsernameURI;
@@ -181,7 +236,7 @@ class User
 
     /**
      * Get the value of idUser
-     */ 
+     */
     public function getIdUser()
     {
         return $this->idUser;
@@ -189,7 +244,7 @@ class User
 
     /**
      * Get the value of usersConnected
-     */ 
+     */
     public static function getUsersConnected()
     {
         return self::$usersConnected;

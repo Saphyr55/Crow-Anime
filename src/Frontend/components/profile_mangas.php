@@ -1,3 +1,6 @@
+<?php
+
+use CrowAnime\Backend\User; ?>
 <div class="sort">
     <div class="sort-by">
         <div class="sort-by-alphabet">
@@ -27,57 +30,24 @@
     </div>
     <div class="list-container">
         <div class="list-items">
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-
+            <?php $mangas = User::getCurrentUser()->mangasView(); ?>
+            <?php if (count($mangas) !== 0) : ?>
+                <?php for ($i = 0; $i < count($mangas); $i++) : ?>
+                    <a href="" class="list-item">
+                        <img class="list-item-filter" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/manga/" . $mangas[$i]->getIdWork() . '.jpg' ?>">
+                        <div class="list-item-desc">
+                            <?= $mangas[$i]->getTitle_ja() ?>
+                        </div>
+                    </a>
+                <?php endfor; ?>
+            <?php else : ?>
+                <p style="margin: 30vh; font-size: 50px; text-align:center;">Vous n'avez enregistrer aucun manga</p>
+            <?php endif; ?>
         </div>
+        <style>
+            .list-top-name {
+                width: max-content;
+            }
+        </style>
     </div>
 </div>

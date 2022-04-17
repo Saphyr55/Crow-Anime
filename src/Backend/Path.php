@@ -10,4 +10,5 @@ class Path
     // Mangas
     const MANGAS_FILE_PHP = "src/Frontend/components/mangas.php";
     const MANGAS_FILE_CSS = "src/Frontend/css/mangas.css";
+    const MANGAS_PROFILE_FILE_CSS = "src/Frontend/css/profile_mangas.css";
 }

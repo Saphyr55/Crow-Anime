@@ -6,71 +6,63 @@
                 <img class='logo' src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/logo.png" ?>" alt='' srcset=''>
             </a>
         </div>
-        <?php
-        if (!isset($_SESSION['user'])) {
-            echo "
+        <?php if (!isset($_SESSION['user'])) : ?>
             <div class='profile profil'>
-                <a href='http://$_SERVER[HTTP_HOST]/login'>
+                <a href="<?= "http://$_SERVER[HTTP_HOST]/login" ?> ">
                     <p class='connected'>SE CONNECTER</p>
                 </a>
-                <a href='http://$_SERVER[HTTP_HOST]/signup'>
+                <a href="<?= "http://$_SERVER[HTTP_HOST]/signup" ?> ">
                     <p>S'ENREGISTER</p>
                 </a>
-            </div>";
-        } else {
-            $username = $_SESSION['user']->getUsername();
-            echo '
+            </div>
+        <?php else : ?>
+            <?php $username = $_SESSION['user']->getUsername(); ?>
             <div class="profil">
                 <div class="div-profile">
                     <a class="" onclick="displayScrollMenuOnClick()">
-                 <i class="fa-solid fa-bars white"></i>
-               <p class="p-profile">' . $_SESSION['user']->getUsername() . '</p>
-             </a>
-            <div id="scroll-menu" class="scroll-menu">
-            <ul>
-                <li>
-                   <a href=' . "http://$_SERVER[HTTP_HOST]/profile/" . $username . ' class="white"><i class="fa-solid fa-user"></i>
-                     <p>Profile</p>
-                   </a>
-               </li>';
-            if ($_SESSION['user']->isAdmin()) {
-                echo '
-              <li>
-                 <a href=' . "http://$_SERVER[HTTP_HOST]/admin/" . $username . ' class="white"><i class="fa-solid fa-hammer"></i>
-                    <p>Admin</p>
-                </a>
-              </li>';
-            }
-            echo '
-            <li>
-                <a href=' . "http://$_SERVER[HTTP_HOST]/profile/" . $username . "/animeslist" . ' class="white"><i class="fa-solid fa-book"></i>
-                    <p>List Animes</p>
-                </a>
-            </li>
-            <li>
-                <a href=' . "http://$_SERVER[HTTP_HOST]/profile/" . $username . "/mangaslist" . ' class="white"><i class="fa-solid fa-book"></i>
-                    <p>List Mangas</p>
-                </a>
-            </li>
-            <li>
-                <a href=' . "http://$_SERVER[HTTP_HOST]/logout" . ' class="white"><i class="fa-solid fa-right-from-bracket"></i>
-                    <p>Lougout</p>
-                </a>
-            </li>
-            </ul>
-            </div>
+                        <i class="fa-solid fa-bars white"></i>
+                        <p class="p-profile"><?= $_SESSION['user']->getUsername() ?></p>
+                    </a>
+                    <div id="scroll-menu" class="scroll-menu">
+                        <ul>
+                            <li>
+                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $username ?>" class="white"><i class="fa-solid fa-user"></i>
+                                    <p>Profile</p>
+                                </a>
+                            </li>
+                            <?php if ($_SESSION['user']->isAdmin()) : ?>
+                                <li>
+                                    <a href="<?= "http://$_SERVER[HTTP_HOST]/admin/" . $username ?>" class="white"><i class="fa-solid fa-hammer"></i>
+                                        <p>Admin</p>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <li>
+                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $username . "/animeslist" ?>" class="white"><i class="fa-solid fa-book"></i>
+                                    <p>List Animes</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $username . "/mangaslist" ?>" class="white"><i class="fa-solid fa-book"></i>
+                                    <p>List Mangas</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= "http://$_SERVER[HTTP_HOST]/logout"?>" class="white"><i class="fa-solid fa-right-from-bracket"></i>
+                                    <p>Lougout</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>';
-        }
-        ?>
+            </div>
+        <?php endif; ?>
     </div>
     <script>
         function displayScrollMenuOnClick() {
             var div = document.getElementById('scroll-menu');
-            if (!div.style.display || div.style.display === 'block')
-                div.style.display = 'none';
-            else
-                div.style.display = 'block';
+            if (!div.style.display || div.style.display === 'block') div.style.display = 'none';
+            else div.style.display = 'block';
         }
     </script>
     <div class=" bottom-header">
@@ -93,30 +85,7 @@
     </div>
 </header><?php
 
-use CrowAnime\Backend\Work\Manga;
-
-$mangas = [];
-$style = "style='border-color: white;'";
-$styles = [
-    "popular" => "",
-    "top" => ""
-];
-
-switch ($_GET['type']) {
-    case 'popular':
-        $mangas = Manga::getMostPopularMangas();
-        $styles['popular'] = "style='border-color: white;'";
-        break;
-    case 'recent_upload':
-        $mangas = Manga::recentUpload();
-        break;
-    default:
-        $mangas = Manga::getTopAnimes();
-        $styles['top'] = "style='border-color: white;'";
-        break;
-}
-
-?>
+use CrowAnime\Backend\User; ?>
 <div class="sort">
     <div class="sort-by">
         <div class="sort-by-alphabet">
@@ -142,26 +111,29 @@ switch ($_GET['type']) {
 
 <div class="list">
     <div class="list-top-name">
-        <a href="<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>">
-            <p <?= $styles['top'] ?> class="list-top-name-p">Top Mangas</p>
-        </a>
-        <a href="<?= "http://$_SERVER[HTTP_HOST]/mangas?type=popular" ?>">
-            <p <?= $styles['popular'] ?> class="list-top-name-p">Most Popular</p>
-        </a>
+        <p class="list-top-name-p">Mangas vus</p>
     </div>
     <div class="list-container">
         <div class="list-items">
-            <?php for ($i = 0; $i < 20; $i++) : ?>
-                <a href="" class="list-item">
-                    <?php if ($i <= (count($mangas) - 1)) : ?>
+            <?php $mangas = User::getCurrentUser()->mangasView(); ?>
+            <?php if (count($mangas) !== 0) : ?>
+                <?php for ($i = 0; $i < count($mangas); $i++) : ?>
+                    <a href="" class="list-item">
                         <img class="list-item-filter" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/manga/" . $mangas[$i]->getIdWork() . '.jpg' ?>">
-                    <?php endif; ?>
-                    <div class="list-item-desc">
-                        <?= ($i <= count($mangas) - 1) ? $mangas[$i]->getTitle_ja() : "Manga Title" ?>
-                    </div>
-                </a>
-            <?php endfor; ?>
+                        <div class="list-item-desc">
+                            <?= $mangas[$i]->getTitle_ja() ?>
+                        </div>
+                    </a>
+                <?php endfor; ?>
+            <?php else : ?>
+                <p style="margin: 30vh; font-size: 50px; text-align:center;">Vous n'avez enregistrer aucun manga</p>
+            <?php endif; ?>
         </div>
+        <style>
+            .list-top-name {
+                width: max-content;
+            }
+        </style>
     </div>
 </div><footer id="footer">
         <a href="">&copy; 2022 CROW ANIME, OFFICIAL SITE</a>
