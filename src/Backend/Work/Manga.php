@@ -8,6 +8,7 @@ use DateTime;
 class Manga extends Work
 {
 
+    private static array $recentMangasUpload = [];
     private static array $topMangas = [];
     private static array $mostPopularMangas = [];
     private ?string $authors, $publishingHouse;
@@ -110,6 +111,33 @@ class Manga extends Work
             }
         }
         return self::$topMangas;
+    }
+
+    public static function recentUpload()
+    {
+        if (self::$recentMangasUpload === []) {
+            $recentMangasUpload = Database::getDatabase()->query(
+                "SELECT * FROM manga ORDER BY id_manga DESC"
+            );
+
+            foreach ($recentMangasUpload as $value) {
+                $value = (array) $value;
+                $manga = new Manga(
+                    $value['manga_title_ja'],
+                    $value['manga_title_en'],
+                    $value['manga_finish'],
+                    $value['manga_synopsis'],
+                    $value['manga_author'],
+                    $value['manga_edition'],
+                    $value['manga_volumes'],
+                    $value['manga_date']
+                );
+
+                $manga->setIdWork($value['id_manga']);
+                array_push(self::$recentMangasUpload, $manga);
+            }
+        }
+        return self::$recentMangasUpload;
     }
 
     public function getAuthors(): ?string

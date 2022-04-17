@@ -19,6 +19,9 @@ switch ($_GET['type']) {
         $animes = Anime::getMostPopularAnimes();
         $styles['popular'] = "style='border-color: white;'";
         break;
+    case 'recent_upload':
+        $animes = Anime::recentAnimesUpload();
+        break;
     default:
         $animes = Anime::getTopAnimes();
         $styles['top'] = "style='border-color: white;'";

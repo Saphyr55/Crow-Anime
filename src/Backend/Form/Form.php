@@ -2,8 +2,6 @@
 
 namespace CrowAnime\Backend\Form;
 
-use CrowAnime\Backend\Database\DBExepction;
-
 abstract class Form {
 
     private array $data;

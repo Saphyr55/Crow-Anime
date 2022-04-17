@@ -7,7 +7,8 @@ use CrowAnime\Backend\Database\Database;
 use DateTime;
 
 class Anime extends Work
-{
+{   
+    private static array $recentAnimesUpload = [];
     private static array $animesCurrentSeason = [];
     private static array $topAnimes = [];
     private static array $mostPopularAnimes = [];
@@ -154,6 +155,32 @@ class Anime extends Work
             }
         }
         return self::$topAnimes;
+    }
+
+    public static function recentAnimesUpload()
+    {   
+        if (self::$recentAnimesUpload === []) {
+            $recentAnimesUpload = Database::getDatabase()->query(
+                "SELECT * FROM anime ORDER BY id_anime DESC"
+            );
+
+            foreach ($recentAnimesUpload as $value) {
+                $value = (array) $value;
+                $anime = Anime::build(
+                    $value['anime_title_en'],
+                    $value['anime_title_ja'],
+                    $value['anime_finish'],
+                    $value['anime_synopsis'],
+                    $value['anime_season'],
+                    $value['anime_studio'],
+                    $value['anime_date'],
+                );
+
+                $anime->setIdWork($value['id_anime']);
+                array_push(self::$recentAnimesUpload, $anime);
+            }
+        }
+        return self::$recentAnimesUpload;
     }
 
     /**

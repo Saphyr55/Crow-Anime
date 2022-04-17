@@ -107,6 +107,9 @@ switch ($_GET['type']) {
         $mangas = Manga::getMostPopularMangas();
         $styles['popular'] = "style='border-color: white;'";
         break;
+    case 'recent_upload':
+        $mangas = Manga::recentUpload();
+        break;
     default:
         $mangas = Manga::getTopAnimes();
         $styles['top'] = "style='border-color: white;'";
@@ -151,7 +154,7 @@ switch ($_GET['type']) {
             <?php for ($i = 0; $i < 20; $i++) : ?>
                 <a href="" class="list-item">
                     <?php if ($i <= (count($mangas) - 1)) : ?>
-                        <img class="list-item-filter" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/manga/" . $mangas[$i]->getIdWork() . 'jpg' ?>">
+                        <img class="list-item-filter" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/manga/" . $mangas[$i]->getIdWork() . '.jpg' ?>">
                     <?php endif; ?>
                     <div class="list-item-desc">
                         <?= ($i <= count($mangas) - 1) ? $mangas[$i]->getTitle_ja() : "Manga Title" ?>
