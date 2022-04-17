@@ -7,8 +7,10 @@ use CrowAnime\Backend\Database\Database;
 use DateTime;
 
 class Anime extends Work
-{   
-    private static ?array $animeCurrentSeason = null;
+{
+    private static array $animesCurrentSeason = [];
+    private static array $topAnimes = [];
+    private static array $mostPopularAnimes = [];
     private $season;
     private $studio;
     private $date;
@@ -54,9 +56,9 @@ class Anime extends Work
         Database::getDatabase()->execute(
             "INSERT INTO anime 
             (anime_title_en, anime_title_ja, anime_finish, anime_season,
-             anime_synopsis, anime_studio, anime_score, anime_date)
+             anime_synopsis, anime_studio, anime_date)
             VALUES (:anime_title_en, :anime_title_ja, :anime_finish, :anime_season,
-             :anime_synopsis, :anime_studio, :anime_score, :anime_date)",
+             :anime_synopsis, :anime_studio, :anime_date)",
             [
                 ':anime_title_en'  => $this->getTitle_en(),
                 ':anime_title_ja'  => $this->getTitle_ja(),
@@ -64,26 +66,96 @@ class Anime extends Work
                 ':anime_season'    => $this->getSeason(),
                 ':anime_synopsis'  => $this->getSysnopis(),
                 ':anime_studio'    => $this->getStudio(),
-                ':anime_score'     => $this->getScore(),
                 ':anime_date'      => $this->getDate()
             ]
         );
     }
 
-    public static function getAnimesOfCurrentSeason() : array
+    public static function getAnimesOfCurrentSeason(): array
     {
-        if (self::$animeCurrentSeason === null) {
-            self::$animeCurrentSeason = Database::getDatabase()->execute(
-                    "SELECT id_anime, anime_title_ja FROM anime
-                    WHERE anime_season=:anime_season
-                    AND strftime('%Y', anime_date)=:anime_date",
-                    [
-                        ':anime_season' => Season::getCurrentSeason(),
-                        ':anime_date' => date('Y')
-                    ]
+        if (self::$animesCurrentSeason === []) {
+            $animesCurrentSeason = Database::getDatabase()->execute(
+                "SELECT * FROM anime
+                WHERE anime_season=:anime_season
+                AND strftime('%Y', anime_date)=:anime_date",
+                [
+                    ':anime_season' => Season::getCurrentSeason(),
+                    ':anime_date' => date('Y')
+                ]
+            );
+            foreach ($animesCurrentSeason as $value) {
+                $anime = Anime::build(
+                    $value['anime_title_en'],
+                    $value['anime_title_ja'],
+                    $value['anime_finish'],
+                    $value['anime_synopsis'],
+                    $value['anime_season'],
+                    $value['anime_studio'],
+                    $value['anime_date'],
                 );
+                $anime->setIdWork($value['id_anime']);
+                array_push(self::$animesCurrentSeason, $anime);
+            }
         }
-        return self::$animeCurrentSeason;
+        return self::$animesCurrentSeason;
+    }
+
+    public static function getMostPopularAnimes(): array
+    {
+        if (self::$mostPopularAnimes === []) {
+            $mostPopularAnimes = Database::getDatabase()->query(
+                "SELECT a.*, COUNT(l.id_user) FROM anime a
+                INNER JOIN lister_anime l ON a.id_anime=l.id_anime
+                GROUP BY l.id_anime
+                ORDER BY COUNT(l.id_user) DESC"
+            );
+
+            foreach ($mostPopularAnimes as $value) {
+                $value = (array) $value;
+                $anime = Anime::build(
+                    $value['anime_title_en'],
+                    $value['anime_title_ja'],
+                    $value['anime_finish'],
+                    $value['anime_synopsis'],
+                    $value['anime_season'],
+                    $value['anime_studio'],
+                    $value['anime_date'],
+                );
+                $anime->setIdWork($value['id_anime']);
+                $anime->setScore($value['COUNT(id_user)']);
+                array_push(self::$mostPopularAnimes, $anime);
+            }
+        }
+        return self::$mostPopularAnimes;
+    }
+
+    public static function getTopAnimes(): array
+    {
+        if (self::$topAnimes === []) {
+            $topAnimes = Database::getDatabase()->query(
+                "SELECT *, AVG(score) FROM anime a
+                INNER JOIN lister_anime l ON a.id_anime=l.id_anime
+                GROUP BY l.id_anime
+                ORDER BY score DESC"
+            );
+
+            foreach ($topAnimes as $value) {
+                $value = (array) $value;
+                $anime = Anime::build(
+                    $value['anime_title_en'],
+                    $value['anime_title_ja'],
+                    $value['anime_finish'],
+                    $value['anime_synopsis'],
+                    $value['anime_season'],
+                    $value['anime_studio'],
+                    $value['anime_date'],
+                );
+                $anime->setIdWork($value['id_anime']);
+                $anime->setScore($value['AVG(score)']);
+                array_push(self::$topAnimes, $anime);
+            }
+        }
+        return self::$topAnimes;
     }
 
     /**

@@ -53,8 +53,8 @@ class App
      */
     public function run(): self
     {   
-
-        $uri = $_SERVER['REQUEST_URI'];
+        
+        $uri = explode("?",$_SERVER['REQUEST_URI'])[0];
         for ($i = 0; $i < count($this->modules); $i++) {
 
             self::$currentModule = $this->modules[$i];

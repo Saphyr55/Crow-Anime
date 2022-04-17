@@ -1,3 +1,32 @@
+<?php
+
+use CrowAnime\Backend\Work\Anime;
+
+$animes = [];
+$style = "style='border-color: white;'";
+$styles = [
+    "seasonal" => "",
+    "popular" => "",
+    "top" => ""
+];
+
+switch ($_GET['type']) {
+    case 'seasonal':
+        $animes = Anime::getAnimesOfCurrentSeason();
+        $styles['seasonal'] = "style='border-color: white;'";
+        break;
+    case 'popular':
+        $animes = Anime::getMostPopularAnimes();
+        $styles['popular'] = "style='border-color: white;'";
+        break;
+    default:
+        $animes = Anime::getTopAnimes();
+        $styles['top'] = "style='border-color: white;'";
+        break;
+}
+
+?>
+
 <div class="sort">
     <div class="sort-by">
         <div class="sort-by-alphabet">
@@ -22,59 +51,25 @@
 </div>
 
 <div class="list">
+    <div class="list-top-name">
+        <a href="<?= "http://$_SERVER[HTTP_HOST]/animes" ?>">
+            <p <?= $styles['top'] ?> class="list-top-name-p">Top Animes</p>
+        </a>
+        <a href="<?= "http://$_SERVER[HTTP_HOST]/animes?type=popular" ?>">
+            <p <?= $styles['popular'] ?> class="list-top-name-p">Most Popular</p>
+        </a>
+        <a href="<?= "http://$_SERVER[HTTP_HOST]/animes?type=seasonal" ?>">
+            <p <?= $styles['seasonal'] ?> class="list-top-name-p">Spring 2022</p>
+        </a>
+    </div>
     <div class="list-container">
         <div class="list-items">
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Anime Tittle</div>
-            </a>
-
+            <?php for ($i = 0; $i < 20; $i++) : ?>
+                <a href="" class="list-item">
+                    <?php if ($i <= (count($animes) - 1)) echo "<img class=" . "list-item-filter" . " src=" . "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' . '>' ?>
+                    <div class="list-item-desc"><?= ($i <= count($animes) - 1) ? $animes[$i]->getTitle_ja() : "Anime Title" ?></div>
+                </a>
+            <?php endfor; ?>
         </div>
     </div>
 </div>

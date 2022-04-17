@@ -16,6 +16,7 @@ if (!empty($_POST)) {
     ) {
         $username = htmlentities(htmlspecialchars($_POST['username']));
         $email = htmlentities(htmlspecialchars($_POST['email']));
+        try {
         if (
             htmlentities(htmlspecialchars($_POST['password'])) ===
             htmlentities(htmlspecialchars($_POST['confirm_password']))
@@ -44,6 +45,10 @@ if (!empty($_POST)) {
                 header("Location: http://$_SERVER[HTTP_HOST]/login");
             } else $error = "Username ou email déjà utiliser";
         } else $error = "Mot de passe non conrespondant";
+    } catch(PDOException $e){
+        error_log("PDO : $e");
+        $error = "Username ou email déjà utiliser";
+    }
     } else $error = "Veuillez remplir les champs";
 }
 

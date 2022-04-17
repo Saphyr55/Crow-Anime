@@ -46,7 +46,7 @@ body {
 
 .season-anime-img {
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(222px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
 }
 
 
@@ -64,7 +64,8 @@ body {
     display: flex;
     flex-direction: column;
     background-color: rgb(26, 26, 26);
-    width: 200px;
+    width: 250px;
+    margin-top: 10px;
 }
 
 .p-anime a, .name-anime {
@@ -90,17 +91,21 @@ body {
 
 .anime-img {
     transition: opacity .1s;
-    width: 200px;
-    height: 300px;
+    width: 250px;
+    height: 350px;
 }
 
 .anime-img:hover {
     opacity: .8;
 }
 
+.anime {
+    width: 220px;
+}
+
 .name-anime {
     width: auto;
-    max-width: 200px;
+    max-width: 300px;
     position: relative;
 }
 
@@ -190,7 +195,7 @@ body {
         display: none;
     }
 
-    .p  -anime {
+    .p-anime {
         margin-top: 10%;
     }
 

@@ -1,3 +1,24 @@
+<?php
+
+use CrowAnime\Backend\Work\Manga;
+
+$mangas = [];
+$style = "style='border-color: white;'";
+$styles = [
+    "popular" => "",
+    "top" => ""
+];
+
+switch ($_GET['type']) {
+    case 'popular':
+        $styles['popular'] = "style='border-color: white;'";
+        break;
+    default:
+        $styles['top'] = "style='border-color: white;'";
+        break;
+}
+
+?>
 <div class="sort">
     <div class="sort-by">
         <div class="sort-by-alphabet">
@@ -22,59 +43,22 @@
 </div>
 
 <div class="list">
+    <div class="list-top-name">
+        <a href="<?= "" ?>">
+            <p <?= $styles['top'] ?> class="list-top-name-p">Top Animes</p>
+        </a>
+        <a href="<?= "" ?>">
+            <p <?= $styles['popular'] ?> class="list-top-name-p">Most Popular</p>
+        </a>
+    </div>
     <div class="list-container">
         <div class="list-items">
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-            <a href="" class="list-item">
-                <div class="list-item-filter"></div>
-                <div class="list-item-desc">Manga Tittle</div>
-            </a>
-
+            <?php for($i = 0; $i < 20 ; $i++) :?>
+                <a href="" class="list-item">
+                    <div class="list-item-filter"></div>
+                    <div class="list-item-desc">Manga Tittle</div>
+                </a>
+            <?php endfor; ?>
         </div>
     </div>
 </div>

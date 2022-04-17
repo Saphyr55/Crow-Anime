@@ -62,8 +62,7 @@ class Database
     public function execute(string $statement, array $datas = [])
     {
         $request = $this->getPDO()->prepare($statement);
-        if ($datas !== [])
-            $request->execute($datas);
+        $request->execute($datas);
         return $request->fetchAll();
     }
 

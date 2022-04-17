@@ -53,7 +53,6 @@ if (Form::check($datas)) {
             "$_SERVER[DOCUMENT_ROOT]$path_replace"
         );
     }
-    $_POST = [];
 } else $error = "Veuillez remplir tous les champs";
 ?>
 
