@@ -16,13 +16,15 @@ abstract class Form {
     {   
         $i = 0;
         foreach ($data as $key => $value) {
-            if (isset($value) ) {
-                if (is_string($value) ) {
-                    if( empty($value) || strlen(trim($value)) == 0 )
-                        return false;
+            if (strcmp($key, 'manga_volumes')!==0) {
+                if (isset($value) ) {
+                    if (is_string($value) ) {
+                        if( empty($value) || strlen(trim($value)) == 0 )
+                            return false;
+                    }
                 }
-                $i++;
             }
+            $i++;
         }
         return ($i === count($data) && $i !== 0) ? true : false;
     }

@@ -11,9 +11,8 @@ class Anime extends Work
     private static array $animesCurrentSeason = [];
     private static array $topAnimes = [];
     private static array $mostPopularAnimes = [];
-    private $season;
-    private $studio;
-    private $date;
+    private ?string $season;
+    private ?string $studio;
 
     private function __construct(
         ?string $title_en = "",
@@ -24,10 +23,9 @@ class Anime extends Work
         ?string $studio = "",
         DateTime|string|null $date = ""
     ) {
-        parent::__construct($title_en, $title_ja, $is_finish, $synopsis);
+        parent::__construct($title_en, $title_ja, $is_finish, $synopsis, $date);
         $this->season = $season;
         $this->studio = $studio;
-        $this->date = $date;
     }
 
     public static function build(

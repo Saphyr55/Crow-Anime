@@ -23,7 +23,8 @@ $app = new App(
         CrowAnime\Frontend\Modules\Signup::getModule(),
         CrowAnime\Frontend\Modules\Login::getModule(),
         CrowAnime\Frontend\Modules\Logout::getModule(),
-        CrowAnime\Frontend\Modules\AddAnime::getModule()
+        CrowAnime\Frontend\Modules\AddAnime::getModule(),
+        \CrowAnime\Frontend\Modules\AddManga::getModule()
     ],
     // partie erreur
     new Module( # put an error page when the URL isn't found

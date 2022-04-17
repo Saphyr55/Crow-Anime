@@ -11,9 +11,11 @@ $styles = [
 
 switch ($_GET['type']) {
     case 'popular':
+        $mangas = Manga::getMostPopularMangas();
         $styles['popular'] = "style='border-color: white;'";
         break;
     default:
+        $mangas = Manga::getTopAnimes();
         $styles['top'] = "style='border-color: white;'";
         break;
 }
@@ -44,19 +46,23 @@ switch ($_GET['type']) {
 
 <div class="list">
     <div class="list-top-name">
-        <a href="<?= "" ?>">
-            <p <?= $styles['top'] ?> class="list-top-name-p">Top Animes</p>
+        <a href="<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>">
+            <p <?= $styles['top'] ?> class="list-top-name-p">Top Mangas</p>
         </a>
-        <a href="<?= "" ?>">
+        <a href="<?= "http://$_SERVER[HTTP_HOST]/mangas?type=popular" ?>">
             <p <?= $styles['popular'] ?> class="list-top-name-p">Most Popular</p>
         </a>
     </div>
     <div class="list-container">
         <div class="list-items">
-            <?php for($i = 0; $i < 20 ; $i++) :?>
+            <?php for ($i = 0; $i < 20; $i++) : ?>
                 <a href="" class="list-item">
-                    <div class="list-item-filter"></div>
-                    <div class="list-item-desc">Manga Tittle</div>
+                    <?php if ($i <= (count($mangas) - 1)) : ?>
+                        <img class="list-item-filter" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/manga/" . $mangas[$i]->getIdWork() . 'jpg' ?>">
+                    <?php endif; ?>
+                    <div class="list-item-desc">
+                        <?= ($i <= count($mangas) - 1) ? $mangas[$i]->getTitle_ja() : "Manga Title" ?>
+                    </div>
                 </a>
             <?php endfor; ?>
         </div>

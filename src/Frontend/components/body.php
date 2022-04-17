@@ -93,33 +93,27 @@
     </div>
 </header><?php
 
-use CrowAnime\Backend\Work\Anime;
+use CrowAnime\Backend\Work\Manga;
 
-$animes = [];
+$mangas = [];
 $style = "style='border-color: white;'";
 $styles = [
-    "seasonal" => "",
     "popular" => "",
     "top" => ""
 ];
 
 switch ($_GET['type']) {
-    case 'seasonal':
-        $animes = Anime::getAnimesOfCurrentSeason();
-        $styles['seasonal'] = "style='border-color: white;'";
-        break;
     case 'popular':
-        $animes = Anime::getMostPopularAnimes();
+        $mangas = Manga::getMostPopularMangas();
         $styles['popular'] = "style='border-color: white;'";
         break;
     default:
-        $animes = Anime::getTopAnimes();
+        $mangas = Manga::getTopAnimes();
         $styles['top'] = "style='border-color: white;'";
         break;
 }
 
 ?>
-
 <div class="sort">
     <div class="sort-by">
         <div class="sort-by-alphabet">
@@ -145,22 +139,23 @@ switch ($_GET['type']) {
 
 <div class="list">
     <div class="list-top-name">
-        <a href="<?= "http://$_SERVER[HTTP_HOST]/animes" ?>">
-            <p <?= $styles['top'] ?> class="list-top-name-p">Top Animes</p>
+        <a href="<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>">
+            <p <?= $styles['top'] ?> class="list-top-name-p">Top Mangas</p>
         </a>
-        <a href="<?= "http://$_SERVER[HTTP_HOST]/animes?type=popular" ?>">
+        <a href="<?= "http://$_SERVER[HTTP_HOST]/mangas?type=popular" ?>">
             <p <?= $styles['popular'] ?> class="list-top-name-p">Most Popular</p>
-        </a>
-        <a href="<?= "http://$_SERVER[HTTP_HOST]/animes?type=seasonal" ?>">
-            <p <?= $styles['seasonal'] ?> class="list-top-name-p">Spring 2022</p>
         </a>
     </div>
     <div class="list-container">
         <div class="list-items">
             <?php for ($i = 0; $i < 20; $i++) : ?>
                 <a href="" class="list-item">
-                    <?php if ($i <= (count($animes) - 1)) echo "<img class=" . "list-item-filter" . " src=" . "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' . '>' ?>
-                    <div class="list-item-desc"><?= ($i <= count($animes) - 1) ? $animes[$i]->getTitle_ja() : "Anime Title" ?></div>
+                    <?php if ($i <= (count($mangas) - 1)) : ?>
+                        <img class="list-item-filter" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/manga/" . $mangas[$i]->getIdWork() . 'jpg' ?>">
+                    <?php endif; ?>
+                    <div class="list-item-desc">
+                        <?= ($i <= count($mangas) - 1) ? $mangas[$i]->getTitle_ja() : "Manga Title" ?>
+                    </div>
                 </a>
             <?php endfor; ?>
         </div>
