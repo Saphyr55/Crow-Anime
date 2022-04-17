@@ -105,7 +105,7 @@ class Manga extends Work
                     $value['manga_date']
                 );
 
-                $manga->setIdWork($value['id_anime']);
+                $manga->setIdWork($value['id_manga']);
                 $manga->setScore($value['AVG(score)']);
                 array_push(self::$topMangas, $manga);
             }
