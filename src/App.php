@@ -3,10 +3,8 @@
 namespace CrowAnime;
 
 use CrowAnime\Database\Database;
-use CrowAnime\Modules\Components\Head;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Core\User;
-use CrowAnime\Modules\Components\Body;
 use CrowAnime\Core\Module;
 
 /**
@@ -54,7 +52,6 @@ class App
      */
     public function run(): self
     {
-
         $uri = explode("?", $_SERVER['REQUEST_URI'])[0];
         for ($i = 0; $i < count($this->modules); $i++) {
 
@@ -66,23 +63,23 @@ class App
                 strcmp($uri, '/' . self::$currentModule->getNameModule()) === 0
             ) {
 
-                self::putCurrentFileContent(self::$currentModule);
+                self::generate(self::$currentModule);
                 break;
             } elseif (strcmp($uri, '/' . self::$currentModule->getNameModule() . '/') === 0) {
 
-                header('Location: ' . substr($uri, 0, -1)); // redirection si l'uri termine par un slash
+                header('Location: ' . substr($uri, 0, -1)); // redirection si l'uri termine par /
                 break;
             } elseif (strcmp($uri, "/") == 0) {
 
-                self::putCurrentFileContent($this->modules[0]);
+                self::generate($this->modules[0]);
                 break;
             } elseif (
                 ($i == (count($this->modules) - 1))
             ) {
 
                 if ($this->errorPage !== null) {
-                    error_log("Error : $uri not found");
-                    self::putCurrentFileContent($this->errorPage);
+                    error_log("Error : " . $uri . " not found");
+                    self::generate($this->errorPage);
                     break;
                 }
             }
@@ -94,7 +91,6 @@ class App
     public static function checkProfileURI()
     {
         $uri = $_SERVER['REQUEST_URI'];
-
         if (
             strcmp(explode('/', $uri)[1], 'profile') === 0 ||
             strcmp(explode('/', $uri)[1], 'admin') === 0
@@ -117,28 +113,29 @@ class App
     }
 
     /**
-     * Permet de d'afficher le code php|html en fonction du module
+     * Permet de generer le code php|html en fonction du module
      *
      * @param  Module $currentModule
      */
-    private static function putCurrentFileContent(Module $currentModule)
+    private static function generate(Module $currentModule)
     {
+        $currentModule->getRules()->check();
+
         $body = $currentModule->getBody();
-        file_put_contents(Rules::RULES_PATH, $currentModule->getRules()->sendRules());
 
         if (file_exists($currentModule->getConfig()->getPathConfig()))
             require $currentModule->getConfig()->getPathConfig();
 
-        require Rules::RULES_PATH;
-
         foreach ($currentModule->getHead()->sendHTML() as $value)
             echo $value;
 
-        if ($body->getHeader() !== null) require $body->getHeader()->getPathHeader();
+        if ($body->getHeader() !== null)
+            require $body->getHeader()->getPathHeader();
 
         require $body->getPathComponent();
 
-        if ($body->getFooter() !== null) require $body->getFooter()->getPathFooter();
+        if ($body->getFooter() !== null)
+            require $body->getFooter()->getPathFooter();
     }
 
     /**
@@ -147,18 +144,6 @@ class App
     public function getActualURI()
     {
         return $this->actualURI;
-    }
-
-    /**
-     * Set the value of actualURI
-     *
-     * @return  self
-     */
-    public function setActualURI($actualURI)
-    {
-        $this->actualURI = $actualURI;
-
-        return $this;
     }
 
     /**

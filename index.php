@@ -4,8 +4,8 @@ use CrowAnime\App;
 use CrowAnime\Core\Module;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Modules\Components\Body;
-use CrowAnime\Modules\Components\Footer;
 use CrowAnime\Modules\Components\Head;
+use CrowAnime\Modules\Components\Footer;
 use CrowAnime\Modules\Components\Header;
 
 require_once './vendor/autoload.php';

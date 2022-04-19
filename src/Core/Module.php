@@ -149,7 +149,7 @@ class Module implements IComponent
     /**
      * Get the value of rules
      */ 
-    public function getRules()
+    public function getRules() 
     {
         return $this->rules;
     }

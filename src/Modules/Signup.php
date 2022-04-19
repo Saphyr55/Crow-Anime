@@ -32,7 +32,7 @@ class Signup extends Module
         );
 
         $this->rules = new Rules([
-            Rules::TO_BE_NOT_LOGIN,
+            Rules::NOT_LOGIN_REQUIRED,
         ]);
 
         parent::__construct($this->nameModule, $this->head, $this->body, $this->rules);

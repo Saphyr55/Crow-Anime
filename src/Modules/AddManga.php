@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace CrowAnime\Modules;
 
@@ -19,18 +19,20 @@ class AddManga extends Module
     private Body $body;
     private Rules $rules;
 
-    public function __construct() {
+    public function __construct()
+    {
         App::checkProfileURI();
 
-        $this->nameModule = 
+        $this->nameModule =
             "admin/" . User::getCurrentUsernameURI() . "/add-manga";
-        
+
         $this->head = new Head(
-            "Admin - Add Manga", [
+            "Admin - Add Manga",
+            [
                 "add_anime",
             ]
         );
-        
+
         $this->body = new Body(
             "add_manga",
             Header::getHeader(),
@@ -38,22 +40,23 @@ class AddManga extends Module
         );
 
         $this->rules = new Rules([
-            Rules::ADMIN_ONLY,
+            Rules::LOGIN_REQUIRED,
+            Rules::ADMIN_ONLY
         ]);
 
         parent::__construct(
             $this->nameModule,
-            $this->head, 
-            $this->body, 
+            $this->head,
+            $this->body,
             $this->rules
         );
     }
 
     public static function getModule()
     {
-        if(self::$_add_manga === null)
-            self::$_add_manga = new Addmanga();  
-     
+        if (self::$_add_manga === null)
+            self::$_add_manga = new Addmanga();
+
         return self::$_add_manga;
     }
 }

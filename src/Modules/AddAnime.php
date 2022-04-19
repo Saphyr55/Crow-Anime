@@ -38,7 +38,8 @@ class AddAnime extends Module
         );
 
         $this->rules = new Rules([
-            Rules::ADMIN_ONLY,
+            Rules::LOGIN_REQUIRED,
+            Rules::ADMIN_ONLY
         ]);
 
         parent::__construct(

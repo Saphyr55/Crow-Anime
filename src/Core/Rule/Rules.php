@@ -2,53 +2,56 @@
 
 namespace CrowAnime\Core\Rule;
 
-use CrowAnime\Core\Path;
-
-class Rules 
+class Rules
 {
     const ALL = 0;
     const LOGIN_REQUIRED = 1;
-    const TO_BE_NOT_LOGIN = 3;
+    const NOT_LOGIN_REQUIRED = 3;
     const ADMIN_ONLY = 9;
-    const RULES_PATH = Path::RULES_PATH;
 
     private array $rules;
 
-    public function __construct(array $rules = [Rules::ALL]) 
+    public function __construct(array $rules = [Rules::ALL])
     {
         $this->rules = $rules;
     }
 
-    public function sendRules()
+    public function check()
     {
-        if (in_array(Rules::ADMIN_ONLY, $this->rules)) {
-            return
-                '<?php
-                if (!isset($_SESSION["user"]) || !($_SESSION["user"]->isAdmin())) {
-                    header("Location: http://$_SERVER[HTTP_HOST]/not-found");
-                    exit;
-                }
-                ?>'
-            ;
-        } elseif (in_array(Rules::LOGIN_REQUIRED, $this->rules)) {
-            return
-                '<?php
-                if (!isset($_SESSION["user"])) {
-                    header("Location: http://$_SERVER[HTTP_HOST]/login");
-                    exit;
-                }?>'
-            ;
-        } elseif (in_array(Rules::TO_BE_NOT_LOGIN, $this->rules)) {
-            return
-            '<?php
-            if (isset($_SESSION["user"])) {
-                header("Location: http://$_SERVER[HTTP_HOST]/profile/" . $_SESSION["user"]->getUsername());
-                exit;
-            }?>'
-        ;
-        } elseif (in_array(Rules::ALL, $this->rules)) {
-            return "";
+        if (in_array(Rules::ADMIN_ONLY, $this->rules))
+            Rules::admin_only();
+
+        if (in_array(Rules::LOGIN_REQUIRED, $this->rules))
+            Rules::login_required();
+
+        if (in_array(Rules::NOT_LOGIN_REQUIRED, $this->rules))
+            Rules::not_login_required();
+
+        if (in_array(Rules::ALL, $this->rules))
+            return null;
+    }
+
+    public static function admin_only()
+    {
+        if (!($_SESSION["user"]->isAdmin())) {
+            header("Location: http://$_SERVER[HTTP_HOST]/not-found");
+            exit;
         }
     }
 
+    public static function login_required()
+    {
+        if (!isset($_SESSION["user"])) {
+            header("Location: http://$_SERVER[HTTP_HOST]/login");
+            exit;
+        }
+    }
+
+    public static function not_login_required()
+    {
+        if (isset($_SESSION["user"])) {
+            header("Location: http://$_SERVER[HTTP_HOST]/profile/" . $_SESSION["user"]->getUsername());
+            exit;
+        }
+    }
 }

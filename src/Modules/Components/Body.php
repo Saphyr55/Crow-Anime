@@ -33,24 +33,6 @@ class Body implements IComponent
     }
 
     /**
-     * Renvoi le contenus html de la classe sous form de tableau
-     * 
-     * @return string|array
-     */
-    public function sendHTML(): string|array
-    {
-        return
-            [
-                "<body>\n",
-                ($this->header !== null) ? file_get_contents("$_SERVER[DOCUMENT_ROOT]/" . $this->header->getPathHeader()) : '',
-                file_get_contents("$_SERVER[DOCUMENT_ROOT]/$this->pathComponent"),
-                ($this->footer !== null) ? file_get_contents("$_SERVER[DOCUMENT_ROOT]/" . $this->footer->getPathFooter()) : '',
-                "</body>\n",
-                "</html>\n"
-            ];
-    }
-
-    /**
      * Get the value of pathComponent
      * 
      * @return pathComponent
@@ -79,7 +61,7 @@ class Body implements IComponent
      * 
      * @return fotter
      */
-    public function getFooter() : Footer
+    public function getFooter() : ?Footer
     {
         return $this->footer;
     }
