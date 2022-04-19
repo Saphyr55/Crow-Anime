@@ -2,11 +2,12 @@
 
 namespace CrowAnime;
 
-use CrowAnime\Backend\Database\Database;
-use CrowAnime\Backend\Head;
-use CrowAnime\Backend\Rules;
-use CrowAnime\Backend\User;
-use CrowAnime\Frontend\Body;
+use CrowAnime\Database\Database;
+use CrowAnime\Modules\Components\Head;
+use CrowAnime\Core\Rule\Rules;
+use CrowAnime\Core\User;
+use CrowAnime\Modules\Components\Body;
+use CrowAnime\Core\Module;
 
 /**
  * Classe App
@@ -52,9 +53,9 @@ class App
      * @return self
      */
     public function run(): self
-    {   
-        
-        $uri = explode("?",$_SERVER['REQUEST_URI'])[0];
+    {
+
+        $uri = explode("?", $_SERVER['REQUEST_URI'])[0];
         for ($i = 0; $i < count($this->modules); $i++) {
 
             self::$currentModule = $this->modules[$i];
@@ -94,20 +95,22 @@ class App
     {
         $uri = $_SERVER['REQUEST_URI'];
 
-        if (strcmp(explode('/', $uri)[1], 'profile') === 0 ||
-            strcmp(explode('/', $uri)[1], 'admin') === 0 ) {
+        if (
+            strcmp(explode('/', $uri)[1], 'profile') === 0 ||
+            strcmp(explode('/', $uri)[1], 'admin') === 0
+        ) {
 
-            $theoricUser = explode('/', $uri)[2];            
+            $theoricUser = explode('/', $uri)[2];
 
             $users = Database::getDatabase()->query(
                 "SELECT username FROM _user"
             );
 
             foreach ($users as $user) {
-                
+
                 $user = (array) $user;
 
-                if (strcmp($theoricUser, $user['username']) === 0) 
+                if (strcmp($theoricUser, $user['username']) === 0)
                     User::setCurrentUsernameURI($theoricUser);
             }
         }
@@ -123,7 +126,7 @@ class App
         file_put_contents(Rules::RULES_PATH, $currentModule->getRules()->sendRules());
         file_put_contents(Head::_HEAD_PATH_, $currentModule->getHead()->sendHTML());
         file_put_contents(Body::_BODY_PATH_, $currentModule->getBody()->sendHTML());
-        
+
         require Rules::RULES_PATH;
         require Head::_HEAD_PATH_;
         require Body::_BODY_PATH_;
@@ -211,7 +214,7 @@ class App
 
     /**
      * Get the value of currentBody
-     */ 
+     */
     public function getCurrentBody()
     {
         return $this->currentBody;
@@ -221,7 +224,7 @@ class App
      * Set the value of currentBody
      *
      * @return  self
-     */ 
+     */
     public function setCurrentBody($currentBody)
     {
         $this->currentBody = $currentBody;

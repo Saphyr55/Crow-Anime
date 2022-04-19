@@ -1,30 +1,31 @@
 <?php
 
+use CrowAnime\App;
+use CrowAnime\Core\Module;
+use CrowAnime\Core\Rule\Rules;
+use CrowAnime\Modules\Components\Body;
+use CrowAnime\Modules\Components\Footer;
+use CrowAnime\Modules\Components\Head;
+use CrowAnime\Modules\Components\Header;
+
 require_once './vendor/autoload.php';
 
-use CrowAnime\App;
-use CrowAnime\Backend\Head;
-use CrowAnime\Backend\Rules;
-use CrowAnime\Frontend\Body;
-use CrowAnime\Frontend\Footer;
-use CrowAnime\Frontend\Header;
-use CrowAnime\Module;
 
 session_start();
 App::checkProfileURI();
 
 $app = new App(
     [
-        CrowAnime\Frontend\Modules\Home::getModule(),
-        CrowAnime\Frontend\Modules\ProfileAnime::getModule(),
-        CrowAnime\Frontend\Modules\ProfileManga::getModule(),
-        CrowAnime\Frontend\Modules\Animes::getModule(),
-        CrowAnime\Frontend\Modules\Mangas::getModule(),
-        CrowAnime\Frontend\Modules\Signup::getModule(),
-        CrowAnime\Frontend\Modules\Login::getModule(),
-        CrowAnime\Frontend\Modules\Logout::getModule(),
-        CrowAnime\Frontend\Modules\AddAnime::getModule(),
-        \CrowAnime\Frontend\Modules\AddManga::getModule()
+        CrowAnime\Modules\Home::getModule(),
+        CrowAnime\Modules\ProfileAnime::getModule(),
+        CrowAnime\Modules\ProfileManga::getModule(),
+        CrowAnime\Modules\Animes::getModule(),
+        CrowAnime\Modules\Mangas::getModule(),
+        CrowAnime\Modules\Signup::getModule(),
+        CrowAnime\Modules\Login::getModule(),
+        CrowAnime\Modules\Logout::getModule(),
+        CrowAnime\Modules\AddAnime::getModule(),
+        \CrowAnime\Modules\AddManga::getModule()
     ],
     // partie erreur
     new Module( # put an error page when the URL isn't found
@@ -34,10 +35,11 @@ $app = new App(
             []
         ),
         new Body(
-            "src/Frontend/components/not_found.php",
+            "not_found",
             Header::getHeader(),
             Footer::getFooter()
-        ), new Rules([Rules::ALL])
+        ),
+        new Rules([Rules::ALL])
     )
 );
 
