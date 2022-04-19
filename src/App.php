@@ -2,10 +2,10 @@
 
 namespace CrowAnime;
 
-use CrowAnime\Database\Database;
-use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Core\User;
 use CrowAnime\Core\Module;
+use CrowAnime\Router\Router;
+use CrowAnime\Database\Database;
 
 /**
  * Classe App
@@ -16,13 +16,10 @@ use CrowAnime\Core\Module;
  */
 class App
 {
-    private $modules;
-    private $actualURI;
-    private $errorPage;
-    private static $currentPage;
-    private static $currentModule;
-    private static $currentHead;
-    private static $currentBody;
+    private array $modules;
+    private string $actualURI;
+    private Module $errorPage;
+    private Router $router;
 
     /**
      * __construct
@@ -31,7 +28,7 @@ class App
      * @param  Module $errorPage
      */
     public function __construct(array $modules, Module $errorPage)
-    {
+    {   
         $this->errorPage = $errorPage;
         $this->actualURI = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $this->modules = $modules;
@@ -40,51 +37,13 @@ class App
 
     /**
      * Lance l'application en recuperant tous les modules
-     * Et affiche la page correspondante avec les nom des modules qui est m'y dans l'url
-     * 
-     * Exemple : http://localhost:5050/<nameModule>/ 
-     * le slash est enlever si il trouve que le <nameModule> existe
-     * 
-     * Si il y a rien met la page d'accuiel correspondant au premier module
-     * Si le nameModule n'existe pas, affiche la page d'erreur not found
      *  
      * @return self
      */
     public function run(): self
-    {
-        $uri = explode("?", $_SERVER['REQUEST_URI'])[0];
-        for ($i = 0; $i < count($this->modules); $i++) {
-
-            self::$currentModule = $this->modules[$i];
-            self::$currentHead   = self::$currentModule->getHead();
-            self::$currentBody   = self::$currentModule->getBody();
-
-            if (
-                strcmp($uri, '/' . self::$currentModule->getNameModule()) === 0
-            ) {
-
-                self::generate(self::$currentModule);
-                break;
-            } elseif (strcmp($uri, '/' . self::$currentModule->getNameModule() . '/') === 0) {
-
-                header('Location: ' . substr($uri, 0, -1)); // redirection si l'uri termine par /
-                break;
-            } elseif (strcmp($uri, "/") == 0) {
-
-                self::generate($this->modules[0]);
-                break;
-            } elseif (
-                ($i == (count($this->modules) - 1))
-            ) {
-
-                if ($this->errorPage !== null) {
-                    error_log("Error : " . $uri . " not found");
-                    self::generate($this->errorPage);
-                    break;
-                }
-            }
-        }
-
+    {   
+        $this->router = new Router($this->modules, $this->errorPage);
+        $this->router->generateAllRoutes();
         return $this;
     }
 
@@ -113,57 +72,11 @@ class App
     }
 
     /**
-     * Permet de generer le code php|html en fonction du module
-     *
-     * @param  Module $currentModule
-     */
-    private static function generate(Module $currentModule)
-    {
-        $currentModule->getRules()->check();
-
-        $body = $currentModule->getBody();
-
-        if (file_exists($currentModule->getConfig()->getPathConfig()))
-            require $currentModule->getConfig()->getPathConfig();
-
-        foreach ($currentModule->getHead()->sendHTML() as $value)
-            echo $value;
-
-        if ($body->getHeader() !== null)
-            require $body->getHeader()->getPathHeader();
-
-        require $body->getPathComponent();
-
-        if ($body->getFooter() !== null)
-            require $body->getFooter()->getPathFooter();
-    }
-
-    /**
      * Get the value of actualURI
      */
     public function getActualURI()
     {
         return $this->actualURI;
-    }
-
-    /**
-     * Get the value of currentPage
-     */
-    public function getCurrentPage()
-    {
-        return $this->currentPage;
-    }
-
-    /**
-     * Set the value of currentPage
-     *
-     * @return  self
-     */
-    public function setCurrentPage($currentPage)
-    {
-        $this->currentPage = $currentPage;
-
-        return $this;
     }
 
     /**
@@ -175,54 +88,10 @@ class App
     }
 
     /**
-     * Set the value of errorPage
-     *
-     * @return  self
-     */
-    public function setErrorPage($errorPage)
+     * Get the value of router
+     */ 
+    public function getRouter()
     {
-        $this->errorPage = $errorPage;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of currentHead
-     */
-    public function getCurrentHead()
-    {
-        return $this->currentHead;
-    }
-
-    /**
-     * Set the value of currentHead
-     *
-     * @return  self
-     */
-    public function setCurrentHead($currentHead)
-    {
-        $this->currentHead = $currentHead;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of currentBody
-     */
-    public function getCurrentBody()
-    {
-        return $this->currentBody;
-    }
-
-    /**
-     * Set the value of currentBody
-     *
-     * @return  self
-     */
-    public function setCurrentBody($currentBody)
-    {
-        $this->currentBody = $currentBody;
-
-        return $this;
+        return $this->router;
     }
 }

@@ -12,10 +12,6 @@ use CrowAnime\Modules\Components\Header;
 class Animes extends Module
 {
     private static ?Module $_animes = null;
-    private string $nameModule;
-    private Head $head;
-    private Body $body;
-    private Rules $rules;
 
     public function __construct() {
         

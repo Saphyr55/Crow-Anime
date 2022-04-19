@@ -10,10 +10,6 @@ use CrowAnime\Modules\Components\Head;
 class Logout extends Module 
 {
     private static ?Module $_logout = null;
-    private string $nameModule;
-    private Head $head;
-    private Body $body;
-    private Rules $rules;
 
     public function __construct() {
         

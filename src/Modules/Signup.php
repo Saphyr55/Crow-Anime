@@ -10,10 +10,6 @@ use CrowAnime\Core\Module;
 class Signup extends Module
 {
     private static ?Module $_signup = null;
-    private string $nameModule;
-    private Head $head;
-    private Body $body;
-    private Rules $rules;
 
     public function __construct()
     {

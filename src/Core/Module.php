@@ -2,12 +2,13 @@
 
 namespace CrowAnime\Core;
 
-use CrowAnime\Core\Config\Config;
-use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Core\IComponent;
+use CrowAnime\Core\Rule\Rules;
+use CrowAnime\Core\Config\Config;
 use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Head;
 use CrowAnime\Modules\Components\Header;
+use CrowAnime\Core\Controller\Controller;
 
 /**
  * Class Module
@@ -16,44 +17,60 @@ use CrowAnime\Modules\Components\Header;
  */
 class Module implements IComponent
 {
-    
+
     private Head $head;
     private Body $body;
     private string $redirectionURI;
     private string $nameModule;
     private Rules $rules;
     private Config $config;
+    private ?Controller $controller;
+
 
     /**
-     *  
      * @param  string $nameModule
      * @param  Head $head
      * @param  Body $body
      * @param  Rules $rules
      * @return void
      */
-    public function __construct(string $nameModule, Head $head, Body $body, Rules $rules)
+    public function __construct(string $nameModule, Head $head, Body $body, Rules $rules, ?Controller $controller = null)
     {
         $this->nameModule = $nameModule;
         $this->redirectionURI = "http://$_SERVER[HTTP_HOST]/$nameModule";
         $this->head  = $head;
         $this->body  = $body;
         $this->rules = $rules;
-        $this->config = new Config($this->nameModule);;
+        $this->config = new Config($this->nameModule);
+        $this->controller = $controller;
     }
 
-    /** 
-     * Renvoi le body et le head dans un tableau
+    /**
+     * Permet de generer le code php|html en fonction d'un module
      *
-     * @return string|array
+     * @param  Module $currentModule
      */
-    public function sendHTML(): string|array
-    {   
-        return [
-            "rules" => $this->rules->sendRules(),
-            "head" => $this->head->sendHTML(),
-            "body" => $this->body->sendHTML()
-        ];
+    public function generate()
+    {
+        $body = $this->getBody();
+        $this->getRules()->check();
+
+        if ($this->controller !== null)
+            extract($this->controller->getDatas());
+
+        if (file_exists($this->getConfig()->getPathConfig()))
+            require $this->getConfig()->getPathConfig();
+
+        foreach ($this->getHead()->sendHTML() as $value)
+            echo $value;
+
+        if ($body->getHeader() !== null)
+            require $body->getHeader()->getPathHeader();
+
+        require $body->getPathComponent();
+
+        if ($body->getFooter() !== null)
+            require $body->getFooter()->getPathFooter();
     }
 
     /**
@@ -61,7 +78,7 @@ class Module implements IComponent
      *
      * @return Head $head
      */
-    public function getHead() : Head
+    public function getHead(): Head
     {
         return $this->head;
     }
@@ -72,7 +89,7 @@ class Module implements IComponent
      * @param Header $head 
      * @return Module $this
      */
-    public function setHead(Header $head) : Module
+    public function setHead(Header $head): Module
     {
         $this->head = $head;
 
@@ -84,7 +101,7 @@ class Module implements IComponent
      *
      * @return Body $body
      */
-    public function getBody() : Body
+    public function getBody(): Body
     {
         return $this->body;
     }
@@ -95,7 +112,7 @@ class Module implements IComponent
      * @param Body $body
      * @return Module $this
      */
-    public function setBody(Body $body) : Module
+    public function setBody(Body $body): Module
     {
         $this->body = $body;
 
@@ -117,7 +134,7 @@ class Module implements IComponent
      *
      * @return self $this
      */
-    public function setRedirectionURI($redirectionURI) : self
+    public function setRedirectionURI($redirectionURI): self
     {
         $this->redirectionURI = $redirectionURI;
 
@@ -129,7 +146,7 @@ class Module implements IComponent
      * 
      * @return string $nameModule
      */
-    public function getNameModule() : string
+    public function getNameModule(): string
     {
         return $this->nameModule;
     }
@@ -139,7 +156,7 @@ class Module implements IComponent
      *
      * @return self $this
      */
-    public function setNameModule($nameModule) : self
+    public function setNameModule($nameModule): self
     {
         $this->nameModule = $nameModule;
 
@@ -148,8 +165,8 @@ class Module implements IComponent
 
     /**
      * Get the value of rules
-     */ 
-    public function getRules() 
+     */
+    public function getRules()
     {
         return $this->rules;
     }
@@ -158,7 +175,7 @@ class Module implements IComponent
      * Set the value of rules
      *
      * @return  self
-     */ 
+     */
     public function setRules($rules)
     {
         $this->rules = $rules;
@@ -168,7 +185,7 @@ class Module implements IComponent
 
     /**
      * Get the value of config
-     */ 
+     */
     public function getConfig()
     {
         return $this->config;
@@ -178,7 +195,7 @@ class Module implements IComponent
      * Set the value of config
      *
      * @return  self
-     */ 
+     */
     public function setConfig($config)
     {
         $this->config = $config;

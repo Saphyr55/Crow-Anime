@@ -12,11 +12,7 @@ use CrowAnime\Modules\Components\Header;
 class Login extends Module
 {
     private static ?Module $_login = null;
-    private string $nameModule;
-    private Head $head;
-    private Body $body;
-    private Rules $rules;
-
+    
     public function __construct() {
         
         $this->nameModule = "login";
