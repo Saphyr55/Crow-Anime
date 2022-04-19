@@ -1,0 +1,7 @@
+body {
+    min-height: 100vh;
+}
+
+.list-top-name {
+    width: max-content;
+}
