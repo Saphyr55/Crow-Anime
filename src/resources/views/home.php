@@ -11,17 +11,16 @@
     <div class="season-anime">
         <p class="p-anime">
             <a href="<?= "http://$_SERVER[HTTP_HOST]/animes?type=seasonal" ?>">
-                <?= ucfirst(strtolower(CrowAnime\Work\Season::getCurrentSeason())) . ' ' ?> <?= date('Y') . ' ' ?> <?= "Anime" ?>
+                <?= $anime_season ?> <?= $actual_date ?> Anime
             </a>
         </p>
         <ol class="season-anime-img" style="list-style-type:none;">
             <?php for ($i = 0; $i < 6; $i++) : ?>
-                <?php $anime = CrowAnime\Work\Anime::getAnimesOfCurrentSeason()[$i]; ?>
                 <li class="anime">
                     <a href="">
-                        <img class="anime-img" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $anime->getIdWork() . '.jpg' ?>" alt="" srcset="">
+                        <img class="anime-img" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' ?>" alt="" srcset="">
                         <p class="name-anime">
-                            <?= $anime->getTitle_ja() ?>
+                            <?= $animes[$i]->getTitle_ja() ?>
                         </p>
                     </a>
                 </li>
@@ -41,26 +40,6 @@
                         <img class='anime-img' src='/assets/img/not_found.png' alt='' srcset=''>
                         <p class='name-anime'>Name anime</p>
                     </a>
-                </li>
-            <?php endfor; ?>
-        </ol>
-    </div>
-</section>
-<section class="section-right">
-    <div class="div-top-anime">
-        <p class="p-top-anime">LES MIEUX NOTÉ</p>
-        <ol class="ol-top-anime">
-            <?php for ($i = 1; $i <= 5; $i++) : ?>
-                <li>
-                    <p class="top-number"><?= $i ?></p>
-                    <a href="" class="top-img">
-                        <img src="/assets/img/not_found.png" alt="">
-                    </a>
-                    <a href="" class="name-anime na">
-                        <p>Name anime</p>
-                    </a>
-                    <p class="scored">Scored : 0.00</p>
-                    <p class="members">Members : 0</p>
                 </li>
             <?php endfor; ?>
         </ol>

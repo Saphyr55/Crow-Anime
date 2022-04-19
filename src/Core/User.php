@@ -251,6 +251,8 @@ class User
 
     public static function getCurrentUser()
     {
-        return $_SESSION['user'];
+        if ($_SESSION['user'] !== null) {
+            return $_SESSION['user'];
+        }
     }
 }

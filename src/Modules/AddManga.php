@@ -14,10 +14,6 @@ use CrowAnime\Modules\Components\Header;
 class AddManga extends Module
 {
     private static ?Module $_add_manga = null;
-    private string $nameModule;
-    private Head $head;
-    private Body $body;
-    private Rules $rules;
 
     public function __construct()
     {

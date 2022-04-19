@@ -82,7 +82,7 @@ class Manga extends Work
         return self::$mostPopularMangas;
     }
 
-    public static function getTopAnimes(): array
+    public static function getTopMangas(): array
     {
         if (self::$topMangas === []) {
             $topMangas = Database::getDatabase()->query(

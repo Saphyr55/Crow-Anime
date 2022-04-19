@@ -15,10 +15,6 @@ class ProfileManga extends Module
 {
     
     private static ?Module $profileMangas = null;
-    private string $nameModule;
-    private Head $head;
-    private Body $body;
-    private Rules $rules;
 
     public function __construct() 
     {

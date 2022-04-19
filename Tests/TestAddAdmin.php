@@ -1,8 +1,10 @@
 <?php
 
-use CrowAnime\Backend\Database\Database;
-use CrowAnime\Backend\Work\Anime;
+use PDO;
+use CrowAnime\Work\Anime;
 use PHPUnit\Framework\TestCase;
+use CrowAnime\Database\Database;
+ 
 
 class TestAddAdmin extends TestCase
 {

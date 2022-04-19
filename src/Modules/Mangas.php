@@ -2,6 +2,8 @@
 
 namespace CrowAnime\Modules;
 
+use CrowAnime\Core\Controller\Controller;
+use CrowAnime\Core\Controller\Entities\ControllerMangas;
 use CrowAnime\Core\Module;
 use CrowAnime\Core\Path;
 use CrowAnime\Core\Rule\Rules;
@@ -16,10 +18,6 @@ class Mangas extends Module
     const PATH = "mangas";
 
     private static ?Module $_mangas = null;
-    private string $nameModule;
-    private Head $head;
-    private Body $body;
-    private Rules $rules;
 
     public function __construct()
     {
@@ -43,12 +41,16 @@ class Mangas extends Module
             Rules::ALL,
         ]);
 
+        $this->controller = new ControllerMangas();
+
         parent::__construct(
             $this->nameModule,
             $this->head,
             $this->body,
-            $this->rules
+            $this->rules,
+            $this->controller
         );
+
     }
 
     public static function getModule()
