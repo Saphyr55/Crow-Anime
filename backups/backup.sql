@@ -46,6 +46,9 @@ CREATE TABLE lister_anime(
 INSERT INTO lister_anime VALUES(26,3,'2022-04-17',10,0,2);
 INSERT INTO lister_anime VALUES(37,3,'2022-04-17',9,1,13);
 INSERT INTO lister_anime VALUES(26,1,'2022-04-17',2,0,2);
+INSERT INTO lister_anime VALUES(48,2,1999,10,0,3);
+INSERT INTO lister_anime VALUES(48,1,1999,8,0,3);
+INSERT INTO lister_anime VALUES(26,2,1999,10,0,3);
 CREATE TABLE anime(
   id_anime INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   anime_title_en VARCHAR(250) NOT NULL,
@@ -64,6 +67,8 @@ INSERT INTO anime VALUES(35,'Komi Can''t Communicate','Komi-san wa, Comyushou de
 INSERT INTO anime VALUES(36,'Date A Live IV','Date A Live IV',0,'SPRING','','GEEK TOYS','2022-04-08');
 INSERT INTO anime VALUES(37,'My Teen Romantic Comedy SNAFU','Yahari Ore no Seishun Love Comedy wa Machigatteiru.',1,'SPRING','','Brain''s Base','2013-04-05');
 INSERT INTO anime VALUES(38,'Aharen-san wa Hakarenai','Aharen-san wa Hakarenai',0,'SPRING','','Felix Film','2022-04-02');
+INSERT INTO anime VALUES(46,'I''m Quitting Heroing','Yuusha, Yamemasu',0,'SPRING','','EMT Squared','2022-04-05');
+INSERT INTO anime VALUES(48,'Paripi Koumei','Ya Boy Kongming!',0,'SPRING','','P.A. Works','2022-04-05');
 CREATE TABLE _user(
   id_user INTEGER PRIMARY KEY NOT NULL,
   username VARCHAR(250) NOT NULL,
@@ -108,5 +113,5 @@ CREATE TABLE volumes(
   FOREIGN KEY(id_manga) REFERENCES manga(id_manga)
 );
 DELETE FROM sqlite_sequence;
-INSERT INTO sqlite_sequence VALUES('anime',38);
+INSERT INTO sqlite_sequence VALUES('anime',48);
 COMMIT;
