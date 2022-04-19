@@ -11,7 +11,7 @@ use CrowAnime\Modules\Components\Head;
 use CrowAnime\Modules\Components\Header;
 
 class Mangas extends Module
-{   
+{
     const TITLE = "Crow Anime - All Mangas";
     const PATH = "mangas";
 
@@ -21,17 +21,18 @@ class Mangas extends Module
     private Body $body;
     private Rules $rules;
 
-    public function __construct() {
-        
+    public function __construct()
+    {
+
         $this->nameModule = Mangas::PATH;
-        
+
         $this->head =  new Head(
             Mangas::TITLE,
             [
                 $this->nameModule,
             ]
         );
-        
+
         $this->body = new Body(
             $this->nameModule,
             Header::getHeader(),
@@ -44,17 +45,17 @@ class Mangas extends Module
 
         parent::__construct(
             $this->nameModule,
-             $this->head,
-              $this->body,
-               $this->rules
+            $this->head,
+            $this->body,
+            $this->rules
         );
     }
 
     public static function getModule()
     {
-        if(self::$_mangas === null)
-            self::$_mangas = new Mangas();  
-     
+        if (self::$_mangas === null)
+            self::$_mangas = new Mangas();
+
         return self::$_mangas;
     }
 }

@@ -2,13 +2,15 @@
 
 namespace CrowAnime\Core\Rule;
 
+use CrowAnime\Core\Path;
+
 class Rules 
 {
     const ALL = 0;
     const LOGIN_REQUIRED = 1;
     const TO_BE_NOT_LOGIN = 3;
     const ADMIN_ONLY = 9;
-    const RULES_PATH = "src/Modules/Components/sendrules.php";
+    const RULES_PATH = Path::RULES_PATH;
 
     private array $rules;
 

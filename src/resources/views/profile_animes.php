@@ -1,9 +1,3 @@
-<?php
-
-use CrowAnime\Core\User;
-
-?>
-
 <div class="sort">
     <div class="sort-by">
         <div class="sort-by-alphabet">
@@ -33,7 +27,7 @@ use CrowAnime\Core\User;
     </div>
     <div class="list-container">
         <div class="list-items">
-            <?php $animes = User::getCurrentUser()->animesView(); ?>
+            <?php $animes = CrowAnime\Core\User::getCurrentUser()->animesView(); ?>
             <?php if (count($animes) !== 0) : ?>
                 <?php for ($i = 0; $i < count($animes); $i++) : ?>
                     <a href="" class="list-item">

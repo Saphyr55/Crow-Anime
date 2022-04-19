@@ -18,7 +18,7 @@ class Database
 
     private function __construct()
     {
-        $connection_file = $_SERVER["DOCUMENT_ROOT"] . '/assets/data/connection.json';
+        $connection_file = $_SERVER["DOCUMENT_ROOT"] . '../assets/data/connection.json';
         if (file_exists($connection_file)) {
             $data_connection = file_get_contents($connection_file);
 

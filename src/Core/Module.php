@@ -2,6 +2,7 @@
 
 namespace CrowAnime\Core;
 
+use CrowAnime\Core\Config\Config;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Core\IComponent;
 use CrowAnime\Modules\Components\Body;
@@ -21,6 +22,7 @@ class Module implements IComponent
     private string $redirectionURI;
     private string $nameModule;
     private Rules $rules;
+    private Config $config;
 
     /**
      *  
@@ -37,6 +39,7 @@ class Module implements IComponent
         $this->head  = $head;
         $this->body  = $body;
         $this->rules = $rules;
+        $this->config = new Config($this->nameModule);;
     }
 
     /** 
@@ -159,6 +162,26 @@ class Module implements IComponent
     public function setRules($rules)
     {
         $this->rules = $rules;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of config
+     */ 
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
+     * Set the value of config
+     *
+     * @return  self
+     */ 
+    public function setConfig($config)
+    {
+        $this->config = $config;
 
         return $this;
     }

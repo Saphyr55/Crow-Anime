@@ -1,6 +1,3 @@
-<?php
-
-use CrowAnime\Core\User; ?>
 <div class="sort">
     <div class="sort-by">
         <div class="sort-by-alphabet">
@@ -30,7 +27,7 @@ use CrowAnime\Core\User; ?>
     </div>
     <div class="list-container">
         <div class="list-items">
-            <?php $mangas = User::getCurrentUser()->mangasView(); ?>
+            <?php $mangas = CrowAnime\Core\User::getCurrentUser()->mangasView(); ?>
             <?php if (count($mangas) !== 0) : ?>
                 <?php for ($i = 0; $i < count($mangas); $i++) : ?>
                     <a href="" class="list-item">

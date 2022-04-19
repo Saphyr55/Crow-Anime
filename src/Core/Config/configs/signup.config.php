@@ -1,0 +1,52 @@
+<?php
+
+use CrowAnime\Database\Database;
+
+$error = "";
+
+if (!empty($_POST)) {
+    if (
+        isset($_POST['username']) &&
+        !empty($_POST['username']) &&
+        isset($_POST['password']) &&
+        !empty($_POST['password']) &&
+        isset($_POST['email']) &&
+        !empty($_POST['email'])
+    ) {
+        $username = htmlentities(htmlspecialchars($_POST['username']));
+        $email = htmlentities(htmlspecialchars($_POST['email']));
+        try {
+            if (
+                htmlentities(htmlspecialchars($_POST['password'])) ===
+                htmlentities(htmlspecialchars($_POST['confirm_password']))
+            ) {
+                $user = Database::getDatabase()->execute(
+                    "SELECT * FROM _user 
+			    WHERE username=:username
+			    AND email=:email",
+                    [
+                        'username' => $username,
+                        'email' => $email
+                    ]
+                );
+                if ($user === []) {
+                    $user = $user[0];
+                    Database::getDatabase()->execute(
+                        'INSERT INTO _user (username, password, is_admin, email) 
+                     VALUES (:username, :password,:is_admin, :email)',
+                        [
+                            ":username" => $username,
+                            ":password" => password_hash(htmlentities(htmlspecialchars($_POST['password'])), PASSWORD_DEFAULT),
+                            ":is_admin" => 0,
+                            ":email" => $email
+                        ]
+                    );
+                    header("Location: http://$_SERVER[HTTP_HOST]/login");
+                } else $error = "Username ou email déjà utiliser";
+            } else $error = "Mot de passe non conrespondant";
+        } catch (PDOException $e) {
+            error_log("PDO : $e");
+            $error = "Username ou email déjà utiliser";
+        }
+    } else $error = "Veuillez remplir les champs";
+}

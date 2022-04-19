@@ -121,15 +121,24 @@ class App
      *
      * @param  Module $currentModule
      */
-    private static function putCurrentFileContent(Module $currentModule): void
+    private static function putCurrentFileContent(Module $currentModule)
     {
+        $body = $currentModule->getBody();
         file_put_contents(Rules::RULES_PATH, $currentModule->getRules()->sendRules());
-        file_put_contents(Head::_HEAD_PATH_, $currentModule->getHead()->sendHTML());
-        file_put_contents(Body::_BODY_PATH_, $currentModule->getBody()->sendHTML());
+
+        if (file_exists($currentModule->getConfig()->getPathConfig()))
+            require $currentModule->getConfig()->getPathConfig();
 
         require Rules::RULES_PATH;
-        require Head::_HEAD_PATH_;
-        require Body::_BODY_PATH_;
+
+        foreach ($currentModule->getHead()->sendHTML() as $value)
+            echo $value;
+
+        if ($body->getHeader() !== null) require $body->getHeader()->getPathHeader();
+
+        require $body->getPathComponent();
+
+        if ($body->getFooter() !== null) require $body->getFooter()->getPathFooter();
     }
 
     /**

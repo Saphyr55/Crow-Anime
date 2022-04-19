@@ -2,6 +2,7 @@
 
 namespace CrowAnime\Modules;
 
+use CrowAnime\Core\Config\Config;
 use CrowAnime\Core\Module;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Modules\Components\Body;
@@ -44,7 +45,7 @@ class Home extends Module
             $this->nameModule, 
             $this->head, 
             $this->body, 
-            $this->rules
+            $this->rules,
         );
     }
 

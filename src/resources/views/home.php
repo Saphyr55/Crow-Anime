@@ -1,10 +1,3 @@
-<?php
-
-use CrowAnime\Work\Anime;
-use CrowAnime\Work\Season;
-
-?>
-
 <section id="section-left">
     <div class="news">
         <a class="angle angle-left"><i class="fa-solid fa-angle-left"></i></a>
@@ -18,12 +11,12 @@ use CrowAnime\Work\Season;
     <div class="season-anime">
         <p class="p-anime">
             <a href="<?= "http://$_SERVER[HTTP_HOST]/animes?type=seasonal" ?>">
-                <?= ucfirst(strtolower(Season::getCurrentSeason())) . ' ' ?> <?= date('Y') . ' ' ?> <?= "Anime" ?>
+                <?= ucfirst(strtolower(CrowAnime\Work\Season::getCurrentSeason())) . ' ' ?> <?= date('Y') . ' ' ?> <?= "Anime" ?>
             </a>
         </p>
         <ol class="season-anime-img" style="list-style-type:none;">
             <?php for ($i = 0; $i < 6; $i++) : ?>
-                <?php $anime = Anime::getAnimesOfCurrentSeason()[$i]; ?>
+                <?php $anime = CrowAnime\Work\Anime::getAnimesOfCurrentSeason()[$i]; ?>
                 <li class="anime">
                     <a href="">
                         <img class="anime-img" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $anime->getIdWork() . '.jpg' ?>" alt="" srcset="">

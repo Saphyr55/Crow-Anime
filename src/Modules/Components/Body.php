@@ -79,7 +79,7 @@ class Body implements IComponent
      * 
      * @return fotter
      */
-    public function getFooter()
+    public function getFooter() : Footer
     {
         return $this->footer;
     }

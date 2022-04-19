@@ -45,7 +45,7 @@ class AddAnime extends Module
             $this->nameModule,
             $this->head, 
             $this->body, 
-            $this->rules
+            $this->rules,
         );
     }
 
