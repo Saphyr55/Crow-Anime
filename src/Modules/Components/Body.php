@@ -2,7 +2,6 @@
 
 namespace CrowAnime\Modules\Components;
 
-use CrowAnime\Core\IComponent;
 use CrowAnime\Core\Path;
 
 /**
@@ -13,17 +12,17 @@ use CrowAnime\Core\Path;
  */
 class Body implements IComponent
 {
-    private $pathComponent;
-    private $header;
-    private $footer;
+    private string $pathComponent;
+    private ?Header $header;
+    private ?Footer $footer;
     const _BODY_PATH_ = Path::VIEWS . 'body.php';
 
     /**
      * Constructeur du Body
-     * 
+     *
      * @param string $pathComponent
-     * @param Header $header
-     * @param Footer $footer
+     * @param Header|null $header
+     * @param Footer|null $footer
      */
     public function __construct(string $pathComponent, ?Header $header = null, ?Footer $footer = null)
     {
@@ -35,21 +34,20 @@ class Body implements IComponent
     /**
      * Get the value of pathComponent
      * 
-     * @return pathComponent
+     * @return string
      */
-    public function getPathComponent()
+    public function getPathComponent(): string
     {
         return $this->pathComponent;
     }
 
     /**
      * Set the value of pathComponent
-     *
-     * @param pathComponent
-     * 
+     **
+     * @param string $pathComponent
      * @return self
      */
-    public function setPathComponent($pathComponent)
+    public function setPathComponent(string $pathComponent): static
     {
         $this->pathComponent = $pathComponent;
 
@@ -58,8 +56,8 @@ class Body implements IComponent
 
     /**
      * Get the value of footer
-     * 
-     * @return fotter
+     *
+     * @return Footer|null
      */
     public function getFooter() : ?Footer
     {
@@ -73,7 +71,7 @@ class Body implements IComponent
      * 
      * @return  self
      */
-    public function setFooter($footer)
+    public function setFooter($footer): static
     {
         $this->footer = $footer;
 
@@ -85,7 +83,7 @@ class Body implements IComponent
      * 
      * @return header
      */
-    public function getHeader()
+    public function getHeader(): ?header
     {
         return $this->header;
     }
@@ -97,7 +95,7 @@ class Body implements IComponent
      * 
      * @return self
      */
-    public function setHeader($header)
+    public function setHeader($header): static
     {
         $this->header = $header;
 

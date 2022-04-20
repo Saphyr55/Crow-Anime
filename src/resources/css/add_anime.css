@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=New+Rocker&family=Roboto:wght@500&family=Rock+Salt&display=swap');
 
 body {
-    height: 122vh auto;
+    height: 122vh;
     min-height: 122vh ;
     background-color: #2e2e2e;
 }
@@ -33,7 +33,7 @@ label {
 
 .form {
     width: 70vh;
-    height: 400px auto;
+    height: 400px;
     min-height: 400px;
     background-color: rgb(136, 116, 116);   
     margin-left: 10px; 
@@ -78,7 +78,7 @@ input {
 
 #img_anime {
     width: 300px;
-    height: 400px auto;
+    height: 400px;
     min-height: 400px;
 }
 

@@ -2,7 +2,6 @@
 
 namespace CrowAnime\Modules\Components;
 
-use CrowAnime\Core\IComponent;
 use CrowAnime\Core\Path;
 
 /**
@@ -12,23 +11,23 @@ use CrowAnime\Core\Path;
  */
 class Footer implements IComponent
 {
-    private static $footer;
-    private $pathFooter;
-        
+    private static ?Footer $footer = null;
+    private string $pathFooter;
+
     /**
      * __construct
      *
-     * @param  string $pathFooter
+     * @param string $nameFileFooter
      */
     public function __construct(string $nameFileFooter) 
     {
         $this->pathFooter = Path::VIEWS . $nameFileFooter . '.php';
     }
-    
+
     /**
      * Renvoi le code html|php du footer
      *
-     * @return string
+     * @return string|array
      */
     public function sendHTML(): string|array
     {
@@ -44,10 +43,9 @@ class Footer implements IComponent
     }
 
     /**
-     * Set the value of pathFooter
-     *
+     * @param string $pathFooter
      * @return  self
-     */ 
+     */
     public function setPathFooter(string $pathFooter) : self
     {
         $this->pathFooter = $pathFooter;
@@ -56,21 +54,9 @@ class Footer implements IComponent
     }
 
     /**
-     * Set the value of footer
-     *
-     * @return  self
-     */ 
-    public function setFooter($footer)
-    {
-        $this->footer = $footer;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of footer
-     */ 
-    public static function getFooter()
+     * @return Footer
+     */
+    public static function getFooter(): Footer
     {
         if (self::$footer === null) {
             self::$footer = new Footer('footer');

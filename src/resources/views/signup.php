@@ -7,7 +7,7 @@
         <input name="confirm_password" type="password" value="" id="ConfirmezMotdePasse" placeholder="Repeat password">
     </div>
     <div align="center">
-        <button type="submit">S'inscrire</button>
+        <button name="register" type="submit">S'inscrire</button>
         <p>J'ai déjà un <span>compte</span>. Je me <span><a href=<?= "http://$_SERVER[HTTP_HOST]/login" ?>>connecte</a></span>.</p>
         <p><?= $error ?></p>
     </div>

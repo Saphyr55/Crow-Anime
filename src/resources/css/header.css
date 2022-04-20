@@ -168,7 +168,7 @@ ul {
   border-radius: 20px;
 }
 
-@media screen and (max-width: 720) {
+@media screen and (max-width: 720px) {
   .profil {
     display: none;
   }

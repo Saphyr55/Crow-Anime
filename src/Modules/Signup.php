@@ -2,39 +2,29 @@
 
 namespace CrowAnime\Modules;
 
+use CrowAnime\Core\Controller\AuthController\ControllerSignup;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Head;
-use CrowAnime\Core\Module;
+use CrowAnime\Module;
 
 class Signup extends Module
 {
-    private static ?Module $_signup = null;
+    protected static ?Module $_signup = null;
 
     public function __construct()
     {
-
-        $this->nameModule = "signup";
-
-        $this->head = new Head(
-            "Crow Anime - Sign Up",
-            [
-                "signup",
-            ]
-        );
-
-        $this->body = new Body(
-            "signup",
-        );
-
-        $this->rules = new Rules([
-            Rules::NOT_LOGIN_REQUIRED,
+        $nameModule = 'signup';
+        $head = new Head('Crow Anime - Sign Up', [$nameModule]);
+        $body = new Body($nameModule);
+        $rules = new Rules([
+            Rules::NOT_LOGIN_REQUIRED
         ]);
-
-        parent::__construct($this->nameModule, $this->head, $this->body, $this->rules);
+        $controller = new ControllerSignup();
+        parent::__construct($nameModule, $head, $body, $rules, $controller);
     }
 
-    public static function getModule()
+    public static function getModule(): ?Signup
     {
         if (self::$_signup === null)
             self::$_signup = new Signup();

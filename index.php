@@ -1,8 +1,7 @@
 <?php
 
 use CrowAnime\App;
-use CrowAnime\Core\Controller\Entities\ControllerHome;
-use CrowAnime\Core\Module;
+use CrowAnime\Module;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Head;
@@ -17,17 +16,16 @@ App::checkProfileURI();
 $app = new App(
     [
         CrowAnime\Modules\Home::getModule(),
-        CrowAnime\Modules\ProfileAnime::getModule(),
-        CrowAnime\Modules\ProfileManga::getModule(),
+        CrowAnime\Modules\ProfileAnimeList::getModule(),
+        CrowAnime\Modules\ProfileMangaList::getModule(),
         CrowAnime\Modules\Animes::getModule(),
         CrowAnime\Modules\Mangas::getModule(),
         CrowAnime\Modules\Signup::getModule(),
         CrowAnime\Modules\Login::getModule(),
         CrowAnime\Modules\Logout::getModule(),
         CrowAnime\Modules\AddAnime::getModule(),
-        \CrowAnime\Modules\AddManga::getModule()
+        CrowAnime\Modules\AddManga::getModule()
     ],
-    // partie erreur
     new Module( # put an error page when the URL isn't found
         "not-found",
         new Head(
@@ -43,4 +41,4 @@ $app = new App(
     )
 );
 
-$app->run(); // Lancement de l'application
+$app->run(); // Launcj de l'application

@@ -2,7 +2,9 @@
 
 namespace CrowAnime\Modules;
 
-use CrowAnime\Core\Module;
+use CrowAnime\Core\Controller\Controller;
+use CrowAnime\Core\Controller\Entities\ControllerAnimes;
+use CrowAnime\Module;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Footer;
@@ -33,15 +35,18 @@ class Animes extends Module
             Rules::ALL,
         ]);
 
+        $this->controller = new ControllerAnimes();
+
         parent::__construct(
             $this->nameModule, 
             $this->head, 
             $this->body, 
-            $this->rules
+            $this->rules,
+            $this->controller
         );
     }
 
-    public static function getModule()
+    public static function getModule(): Animes|Module|null
     {
         if(self::$_animes === null)
             self::$_animes = new Animes();  

@@ -2,9 +2,9 @@
 
 namespace CrowAnime\Core;
 
-use CrowAnime\Database\Database;
-use CrowAnime\Work\Anime;
-use CrowAnime\Work\Manga;
+use CrowAnime\Core\Database\Database;
+use CrowAnime\Entities\Anime;
+use CrowAnime\Entities\Manga;
 use DateTime;
 
 class User
@@ -21,14 +21,15 @@ class User
 
     /**
      *
-     * @param  string $username
-     * @param  string $email
-     * @param  string $password
-     * @param  bool $isAdmin
-     * @param  DateTime $dateConnection
-     * @param  DateTime $dateRegister
+     * @param int $idUser
+     * @param string $username
+     * @param string $email
+     * @param string $password
+     * @param bool $isAdmin
+     * @param string|DateTime $dateConnection
+     * @param string|DateTime $dateRegister
      */
-    public function __construct(int $idUser, string $username, string $email, string $password, bool $isAdmin, DateTime $dateConnection, DateTime $dateRegister)
+    public function __construct(int $idUser, string $username, string $email, string $password, bool $isAdmin, string|DateTime $dateConnection, string|DateTime $dateRegister)
     {
         $this->idUser = $idUser;
         $this->username = $username;
@@ -37,20 +38,20 @@ class User
         $this->isAdmin = $isAdmin;
         $this->dateConnection = $dateConnection;
         $this->dateRegister = $dateRegister;
-        array_push(self::$usersConnected, $this);
+        self::$usersConnected[] = $this;
     }
 
     public function animesView(): array
     {
-        $animes_r = [];
-        $animes = Database::getDatabase()->execute(
+        $anime_for_views = [];
+        $anime_from_database = Database::getDatabase()->execute(
             "SELECT * FROM anime 
             INNER JOIN lister_anime ON anime.id_anime=lister_anime.id_anime
             WHERE lister_anime.id_user=:id_user
             ORDER BY lister_anime.score",
             [':id_user' => $this->getIdUser()]
         );
-        foreach ($animes as $value) {
+        foreach ($anime_from_database as $value) {
             $anime = Anime::build(
                 $value['anime_title_en'],
                 $value['anime_title_ja'],
@@ -61,9 +62,9 @@ class User
                 $value['anime_date'],
             );
             $anime->setIdWork($value['id_anime']);
-            array_push($animes_r, $anime);
+            $anime_for_views[] = $anime;
         }
-        return $animes_r;
+        return $anime_for_views;
     }
 
     public function mangasView(): array
@@ -76,6 +77,7 @@ class User
             ORDER BY lister_manga.score",
             [':id_user' => $this->getIdUser()]
         );
+
         foreach ($mangas as $value) {
             $manga = new Manga(
                 $value['manga_title_ja'],
@@ -88,9 +90,22 @@ class User
                 $value['manga_date']
             );
             $manga->setIdWork($value['id_manga']);
-            array_push($mangas_r, $manga);
+            $mangas_r[] = $manga;
         }
         return $mangas_r;
+    }
+
+    public static function arrayToUser(array $user) : User
+    {
+        return new User(
+            $user['id_user'],
+            $user['username'],
+            $user['email'],
+            $user['password'],
+            $user['is_admin'],
+            new DateTime(),
+            new DateTime()#date_create_from_format("Y-m-d H:i:s", $user['user_date'])
+        );
     }
 
     /**
@@ -107,7 +122,7 @@ class User
      * @param DateTime $dateConnection
      * @return  self
      */
-    public function setDateConnection($dateConnection): self
+    public function setDateConnection(DateTime $dateConnection): self
     {
         $this->dateConnection = $dateConnection;
 
@@ -125,10 +140,10 @@ class User
     /**
      * Set the value of isAdmin
      *
-     * @param  bool $isAdmin
+     * @param bool $isAdmin
      * @return  self
      */
-    public function setIsAdmin($isAdmin): self
+    public function setIsAdmin(bool $isAdmin): self
     {
         $this->isAdmin = $isAdmin;
 
@@ -138,7 +153,7 @@ class User
     /**
      * Get the value of username
      */
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->username;
     }
@@ -146,9 +161,10 @@ class User
     /**
      * Set the value of username
      *
+     * @param $username
      * @return  self
      */
-    public function setUsername($username)
+    public function setUsername($username): static
     {
         $this->username = $username;
 
@@ -158,7 +174,7 @@ class User
     /**
      * Get the value of email
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -166,9 +182,10 @@ class User
     /**
      * Set the value of email
      *
+     * @param $email
      * @return  self
      */
-    public function setEmail($email)
+    public function setEmail($email): static
     {
         $this->email = $email;
 
@@ -176,29 +193,9 @@ class User
     }
 
     /**
-     * Get the value of password
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set the value of password
-     *
-     * @return  self
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
      * Get the value of dateRegister
      */
-    public function getDateRegister()
+    public function getDateRegister(): DateTime
     {
         return $this->dateRegister;
     }
@@ -206,9 +203,10 @@ class User
     /**
      * Set the value of dateRegister
      *
+     * @param $dateRegister
      * @return  self
      */
-    public function setDateRegister($dateRegister)
+    public function setDateRegister($dateRegister): static
     {
         $this->dateRegister = $dateRegister;
 
@@ -226,7 +224,7 @@ class User
     /**
      * Set the value of currentUsernameURI
      */
-    public static function setCurrentUsernameURI(?string $currentUsernameURI)
+    public static function setCurrentUsernameURI(?string $currentUsernameURI): void
     {
         self::$currentUsernameURI = $currentUsernameURI;
     }
@@ -236,7 +234,7 @@ class User
     /**
      * Get the value of idUser
      */
-    public function getIdUser()
+    public function getIdUser(): int
     {
         return $this->idUser;
     }
@@ -244,15 +242,18 @@ class User
     /**
      * Get the value of usersConnected
      */
-    public static function getUsersConnected()
+    public static function getUsersConnected(): array
     {
         return self::$usersConnected;
     }
 
-    public static function getCurrentUser()
+    public static function getCurrentUser() : ?User
     {
-        if ($_SESSION['user'] !== null) {
-            return $_SESSION['user'];
-        }
+        return $_SESSION['user'];
+    }
+
+    public static function setCurrentUser(User $user): void
+    {
+        $_SESSION['user'] = $user;
     }
 }

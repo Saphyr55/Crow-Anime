@@ -2,19 +2,19 @@
 
 namespace CrowAnime\Core\Controller\Entities;
 
-use CrowAnime\Core\User;
-use CrowAnime\Form\Form;
-use CrowAnime\Work\Season;
-use CrowAnime\Form\AnimeForm;
-use CrowAnime\Database\Database;
 use CrowAnime\Core\Controller\Controller;
+use CrowAnime\Core\Form\AnimeForm;
+use CrowAnime\Core\User;
+use CrowAnime\Core\Form\Form;
+use CrowAnime\Entities\Anime;
+use CrowAnime\Entities\Season;
 
 class ControllerAddAnime extends Controller
 {
     public function __construct()
     {
         $anime = $this->build();
-        $this->datas = $this->with(
+        $this->with(
             [
                 'spring' => Season::SPRING,
                 'summer' => Season::SUMMER,
@@ -30,15 +30,14 @@ class ControllerAddAnime extends Controller
         );
     }
 
-    private function build()
+    private function build() : ?Anime
     {
         $path_replace = (User::getCurrentUser() !== null) ? "/assets/img/anime/preview_" . User::getCurrentUser()->getIdUser() . '.jpg' : null;
         $allowed = ["jpg" => "image/jpg", "jpeg" => "image/jpeg", "png" => "image/png"];
-        $uploaddir = getcwd() . DIRECTORY_SEPARATOR . '/assets/img/anime/';
+        $upload_dir = getcwd() . DIRECTORY_SEPARATOR . '/assets/img/anime/';
         $name_file = 'anime_picture';
         $this->checkFile($path_replace);
-        $anime = $this->checkData(AnimeForm::recupDataForm(), $path_replace, $name_file, $allowed, $uploaddir);
-        if ($anime === null) $anime = "";
+        $anime = $this->checkData(AnimeForm::recoverDataForm(), $path_replace, $name_file, $allowed, $upload_dir);
         return $anime;
     }
 
@@ -48,15 +47,21 @@ class ControllerAddAnime extends Controller
             unlink("$_SERVER[DOCUMENT_ROOT]$path_replace");
     }
 
-    private function checkData($datas, $path_replace, $name_file, $allowed, $uploaddir)
+    private function checkData($data, $path_replace, $name_file, $allowed, $upload_dir) : ?Anime
     {
-        if (Form::check($datas)) {
-            $animeForm = new AnimeForm($datas);
+        if (Form::check($data)) {
+            $animeForm = new AnimeForm($data);
             $anime = $animeForm->createAnime();
-            $uploadfile = $uploaddir . basename($_FILES['anime_picture']['name']);
-            $animeForm->issetSubmit($anime, $name_file, $allowed, $uploadfile);
-            $animeForm->issetPreview($path_replace, $name_file, $allowed, $uploadfile);
+            $upload_file = $upload_dir . basename($_FILES['anime_picture']['name']);
+            $animeForm->issetSubmit($anime, $name_file, $allowed, $upload_file);
+            $animeForm->issetPreview($path_replace, $name_file, $allowed, $upload_file);
             return $anime;
         }
+        return null;
+    }
+
+    public function action() : void
+    {
+
     }
 }

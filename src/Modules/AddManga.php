@@ -3,7 +3,9 @@
 namespace CrowAnime\Modules;
 
 use CrowAnime\App;
-use CrowAnime\Core\Module;
+use CrowAnime\Core\Controller\Controller;
+use CrowAnime\Core\Controller\Entities\ControllerAddManga;
+use CrowAnime\Module;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Core\User;
 use CrowAnime\Modules\Components\Body;
@@ -40,15 +42,18 @@ class AddManga extends Module
             Rules::ADMIN_ONLY
         ]);
 
+        $this->controller = new ControllerAddManga();
+
         parent::__construct(
             $this->nameModule,
             $this->head,
             $this->body,
-            $this->rules
+            $this->rules,
+            $this->controller
         );
     }
 
-    public static function getModule()
+    public static function getModule(): AddManga|Module|null
     {
         if (self::$_add_manga === null)
             self::$_add_manga = new Addmanga();

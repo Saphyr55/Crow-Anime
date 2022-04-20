@@ -2,6 +2,8 @@
 
 namespace CrowAnime\Core\Rule;
 
+use CrowAnime\Core\User;
+
 class Rules
 {
     const ALL = 0;
@@ -18,39 +20,39 @@ class Rules
 
     public function check()
     {
-        if (in_array(Rules::ADMIN_ONLY, $this->rules))
-            Rules::admin_only();
-
-        if (in_array(Rules::LOGIN_REQUIRED, $this->rules))
-            Rules::login_required();
-
-        if (in_array(Rules::NOT_LOGIN_REQUIRED, $this->rules))
-            Rules::not_login_required();
-
         if (in_array(Rules::ALL, $this->rules))
             return null;
+
+        if (in_array(Rules::ADMIN_ONLY, $this->rules))
+            $this->admin_only();
+
+        if (in_array(Rules::LOGIN_REQUIRED, $this->rules))
+            $this->login_required();
+
+        if (in_array(Rules::NOT_LOGIN_REQUIRED, $this->rules))
+            $this->not_login_required();
     }
 
-    public static function admin_only()
+    private function admin_only(): void
     {
-        if (!isset($_SESSION["user"]) || !($_SESSION["user"]->isAdmin())) {
-            header("Location: http://$_SERVER[HTTP_HOST]/not-found");
+        if (User::getCurrentUser() !== null || !(User::getCurrentUser()->isAdmin())) {
+            header("Location: http://$_SERVER[HTTP_HOST]/not-permission");
             exit;
         }
     }
 
-    public static function login_required()
+    private function login_required(): void
     {
-        if (!isset($_SESSION["user"])) {
-            header("Location: http://$_SERVER[HTTP_HOST]/login");
+        if (User::getCurrentUser() !== null) {
+            header("Location: http://$_SERVER[HTTP_HOST]/");
             exit;
         }
     }
 
-    public static function not_login_required()
+    private function not_login_required(): void
     {
-        if (isset($_SESSION["user"])) {
-            header("Location: http://$_SERVER[HTTP_HOST]/profile/" . $_SESSION["user"]->getUsername());
+        if (User::getCurrentUser() !== null) {
+            header("Location: http://$_SERVER[HTTP_HOST]/");
             exit;
         }
     }

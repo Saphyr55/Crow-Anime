@@ -2,10 +2,9 @@
 
 namespace CrowAnime;
 
+use CrowAnime\Core\Database\Database;
 use CrowAnime\Core\User;
-use CrowAnime\Core\Module;
 use CrowAnime\Router\Router;
-use CrowAnime\Database\Database;
 
 /**
  * Classe App
@@ -47,7 +46,7 @@ class App
         return $this;
     }
 
-    public static function checkProfileURI()
+    public static function checkProfileURI(): void
     {
         $uri = $_SERVER['REQUEST_URI'];
         if (
@@ -74,7 +73,7 @@ class App
     /**
      * Get the value of actualURI
      */
-    public function getActualURI()
+    public function getActualURI(): string
     {
         return $this->actualURI;
     }
@@ -82,7 +81,7 @@ class App
     /**
      * Get the value of errorPage
      */
-    public function getErrorPage()
+    public function getErrorPage(): Module
     {
         return $this->errorPage;
     }
@@ -90,7 +89,7 @@ class App
     /**
      * Get the value of router
      */ 
-    public function getRouter()
+    public function getRouter(): Router
     {
         return $this->router;
     }

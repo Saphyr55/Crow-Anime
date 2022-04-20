@@ -5,21 +5,23 @@ namespace CrowAnime\Core\Controller;
 abstract class Controller
 {
 
-    private array $datas;
+    protected array $data;
 
-    public function with(array $datas)
+    protected function with(array $data): array
     {
         $keys = [];
-        foreach ($datas as $key => $value) {
+        foreach ($data as $key => $value) {
             $$key = $value;
-            array_push($keys, $key);
+            $keys[] = $key;
         }
-        $this->datas = compact($keys);
-        return $this->datas;
+        $this->data = compact($keys);
+        return $this->data;
     }
 
-    public function getDatas(): array
+    public abstract function action() : void;
+
+    public function getData(): array
     {
-        return $this->datas;
+        return $this->data;
     }
 }

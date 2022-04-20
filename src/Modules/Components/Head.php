@@ -1,17 +1,17 @@
-<?php
+<?php /** @noinspection ALL */
 
 namespace CrowAnime\Modules\Components;
 
-use CrowAnime\Core\IComponent;
 use CrowAnime\Core\Path;
 
 class Head implements IComponent
 {
-    private $title;
-    private $linksCSS;
-    private $htmlHead;
+    private string $title;
+    private array $linksCSS;
+    private array $htmlHead;
     private $lang;
     const _HEAD_PATH_ = Path::VIEWS . "head.php";
+    private $headPath;
 
     public function __construct(string $title, array $namesFilesCSS = [])
     {
@@ -19,7 +19,7 @@ class Head implements IComponent
         $this->linksCSS = [];
         if (isset($namesFilesCSS)) {
             foreach ($namesFilesCSS as $value) {
-                array_push($this->linksCSS, Path::CSS . $value . '.css');
+                $this->linksCSS[] = Path::CSS . $value . '.css';
             }
         }
         $this->htmlHead = $this->htmlCreateHead();
@@ -55,17 +55,15 @@ class Head implements IComponent
 
         if ($this->linksCSS !== []) {
             foreach ($this->linksCSS as $linkCSS)
-                array_push($htmlHeadLinksCSS, "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/$linkCSS'>\n");
+                $htmlHeadLinksCSS[] = "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/$linkCSS'>\n";
         }
-        $htmlHead = array_merge($htmlHeadBeforeLinksCSS, $htmlHeadLinksCSS, $htmlHeadAfterLinksCSS);
-
-        return $htmlHead;
+        return array_merge($htmlHeadBeforeLinksCSS, $htmlHeadLinksCSS, $htmlHeadAfterLinksCSS);
     }
 
     /**
      * Get the value of linksCSS
      */
-    public function getLinksCSS()
+    public function getLinksCSS(): array
     {
         return $this->linksCSS;
     }
@@ -75,7 +73,7 @@ class Head implements IComponent
      *
      * @return  self
      */
-    public function setLinksCSS($linksCSS)
+    public function setLinksCSS($linksCSS): static
     {
         $this->linksCSS = $linksCSS;
 

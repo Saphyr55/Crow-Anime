@@ -2,7 +2,7 @@
 
 namespace CrowAnime\Router;
 
-use CrowAnime\Core\Module;
+use CrowAnime\Module;
 
 class Router
 {
@@ -11,7 +11,7 @@ class Router
     private Module $errorPage;
 
 
-    public function __construct(array $modules = [], Module $errorPage)
+    public function __construct(array $modules, Module $errorPage)
     {
         $this->modules = $modules;
         $this->errorPage = $errorPage;
@@ -26,7 +26,7 @@ class Router
      * Si il y a rien met la page d'accuiel correspondant au premier module
      * Si le nameModule n'existe pas, affiche la page d'erreur 404
      */
-    public function generateAllRoutes()
+    public function generateAllRoutes(): void
     {
         $uri = explode("?", $_SERVER['REQUEST_URI'])[0];
         for ($i = 0; $i < count($this->modules); $i++) {
@@ -50,12 +50,9 @@ class Router
             } elseif (
                 ($i == (count($this->modules) - 1))
             ) {
-
-                if ($this->errorPage !== null) {
-                    error_log("Error : " . $uri . " not found");
-                    $this->errorPage->generate($this->errorPage);
-                    break;
-                }
+                 error_log("Error : " . $uri . " not found");
+                 $this->errorPage->generate($this->errorPage);
+                 break;
             }
         }
     }

@@ -3,7 +3,7 @@
 namespace CrowAnime\Modules;
 
 use CrowAnime\Core\Controller\Entities\ControllerHome;
-use CrowAnime\Core\Module;
+use CrowAnime\Module;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Footer;
@@ -50,7 +50,7 @@ class Home extends Module
         );
     }
 
-    public static function getModule()
+    public static function getModule(): Home|Module|null
     {
         if (self::$_home === null) {
             self::$_home = new Home();
