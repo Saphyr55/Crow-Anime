@@ -18,7 +18,7 @@ abstract class Controller implements ControllerInterface
         return $this->data;
     }
 
-    public abstract function action() : void;
+    // --Commented out by Inspection (20/04/2022 16:18):public abstract function action() : void;
 
     public function getData(): array
     {
