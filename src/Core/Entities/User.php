@@ -1,10 +1,10 @@
 <?php
 
-namespace CrowAnime\Core;
+namespace CrowAnime\Core\Entities;
 
 use CrowAnime\Core\Database\Database;
-use CrowAnime\Entities\Anime;
-use CrowAnime\Entities\Manga;
+use CrowAnime\Core\Entities\Anime;
+use CrowAnime\Core\Entities\Manga;
 use DateTime;
 
 class User
