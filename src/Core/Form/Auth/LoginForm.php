@@ -3,8 +3,8 @@
 namespace CrowAnime\Core\Form\Auth;
 
 use CrowAnime\Core\Database\Database;
+use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Form\Form;
-use CrowAnime\Core\User;
 
 class LoginForm extends Form
 {

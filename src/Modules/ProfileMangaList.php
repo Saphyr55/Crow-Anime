@@ -2,9 +2,8 @@
 
 namespace CrowAnime\Modules;
 
-use CrowAnime\Core\Path;
+use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Rule\Rules;
-use CrowAnime\Core\User;
 use CrowAnime\Module;
 use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Footer;

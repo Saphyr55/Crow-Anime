@@ -2,7 +2,7 @@
 
 namespace CrowAnime\Modules\Components;
 
-interface IComponent
+interface Component
 {
 
 }

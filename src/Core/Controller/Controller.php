@@ -2,12 +2,12 @@
 
 namespace CrowAnime\Core\Controller;
 
-abstract class Controller
+abstract class Controller implements ControllerInterface
 {
 
     protected array $data;
 
-    protected function with(array $data): array
+    public function with(array $data): array
     {
         $keys = [];
         foreach ($data as $key => $value) {
@@ -18,7 +18,7 @@ abstract class Controller
         return $this->data;
     }
 
-    public abstract function action() : void;
+    // --Commented out by Inspection (20/04/2022 16:18):public abstract function action() : void;
 
     public function getData(): array
     {

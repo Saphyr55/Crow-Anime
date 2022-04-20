@@ -2,7 +2,7 @@
 
 namespace CrowAnime\Core\Rule;
 
-use CrowAnime\Core\User;
+use CrowAnime\Core\Entities\User;
 
 class Rules
 {

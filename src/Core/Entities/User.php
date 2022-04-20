@@ -1,10 +1,8 @@
 <?php
 
-namespace CrowAnime\Core;
+namespace CrowAnime\Core\Entities;
 
 use CrowAnime\Core\Database\Database;
-use CrowAnime\Entities\Anime;
-use CrowAnime\Entities\Manga;
 use DateTime;
 
 class User
@@ -108,113 +106,127 @@ class User
         );
     }
 
-    /**
-     * Get the value of dateConnection
-     */
-    public function getDateConnection(): DateTime
-    {
-        return $this->dateConnection;
-    }
+// --Commented out by Inspection START (20/04/2022 16:18):
+//    /**
+//     * @return DateTime
+//     */
+//    public function getDateConnection(): DateTime
+//    {
+//        return $this->dateConnection;
+//    }
+// --Commented out by Inspection STOP (20/04/2022 16:18)
+
+
+// --Commented out by Inspection START (20/04/2022 16:18):
+//    /**
+//     * @param DateTime $dateConnection
+//     * @return  self
+//     */
+//    public function setDateConnection(DateTime $dateConnection): self
+//    {
+//        $this->dateConnection = $dateConnection;
+//
+//        return $this;
+//    }
+// --Commented out by Inspection STOP (20/04/2022 16:18)
+
 
     /**
-     * Set the value of dateConnection
-     *
-     * @param DateTime $dateConnection
-     * @return  self
-     */
-    public function setDateConnection(DateTime $dateConnection): self
-    {
-        $this->dateConnection = $dateConnection;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of isAdmin
+     * @return bool
      */
     public function isAdmin(): bool
     {
         return $this->isAdmin;
     }
 
-    /**
-     * Set the value of isAdmin
-     *
-     * @param bool $isAdmin
-     * @return  self
-     */
-    public function setIsAdmin(bool $isAdmin): self
-    {
-        $this->isAdmin = $isAdmin;
+// --Commented out by Inspection START (20/04/2022 16:18):
+//    /**
+//     * @param bool $isAdmin
+//     * @return  self
+//     */
+//    public function setIsAdmin(bool $isAdmin): self
+//    {
+//        $this->isAdmin = $isAdmin;
+//
+//        return $this;
+//    }
+// --Commented out by Inspection STOP (20/04/2022 16:18)
 
-        return $this;
-    }
 
     /**
-     * Get the value of username
+     * @return string
      */
     public function getUsername(): string
     {
         return $this->username;
     }
 
+// --Commented out by Inspection START (20/04/2022 16:18):
+//    /**
+//     * @param $username
+//     * @return $this
+//     */
+//    public function setUsername($username): static
+//    {
+//        $this->username = $username;
+//
+//        return $this;
+//    }
+// --Commented out by Inspection STOP (20/04/2022 16:18)
+
+
+// --Commented out by Inspection START (20/04/2022 16:18):
+//    /**
+//     * @return string
+//     */
+//    public function getEmail(): string
+//    {
+//        return $this->email;
+//    }
+// --Commented out by Inspection STOP (20/04/2022 16:18)
+
+
+// --Commented out by Inspection START (20/04/2022 16:18):
+//    /**
+//     * @param $email
+//     * @return $this
+//     */
+//    public function setEmail($email): static
+//    {
+//        $this->email = $email;
+//
+//        return $this;
+//    }
+// --Commented out by Inspection STOP (20/04/2022 16:18)
+
+
+// --Commented out by Inspection START (20/04/2022 16:18):
+//    /**
+//     * @return DateTime
+//     */
+//    public function getDateRegister(): DateTime
+//    {
+//        return $this->dateRegister;
+//    }
+// --Commented out by Inspection STOP (20/04/2022 16:18)
+
+
+// --Commented out by Inspection START (20/04/2022 16:18):
+//    /**
+//     * @param $dateRegister
+//     * @return $this
+//     */
+//    public function setDateRegister($dateRegister): static
+//    {
+//        $this->dateRegister = $dateRegister;
+//
+//        return $this;
+//    }
+// --Commented out by Inspection STOP (20/04/2022 16:18)
+
+
     /**
-     * Set the value of username
-     *
-     * @param $username
-     * @return  self
-     */
-    public function setUsername($username): static
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of email
-     */
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set the value of email
-     *
-     * @param $email
-     * @return  self
-     */
-    public function setEmail($email): static
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of dateRegister
-     */
-    public function getDateRegister(): DateTime
-    {
-        return $this->dateRegister;
-    }
-
-    /**
-     * Set the value of dateRegister
-     *
-     * @param $dateRegister
-     * @return  self
-     */
-    public function setDateRegister($dateRegister): static
-    {
-        $this->dateRegister = $dateRegister;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of currentUsernameURI
+     * @return string|null
      */
     public static function getCurrentUsernameURI(): ?string
     {
@@ -222,36 +234,53 @@ class User
     }
 
     /**
-     * Set the value of currentUsernameURI
+     * @param string|null $currentUsernameURI
+     * @return void
      */
     public static function setCurrentUsernameURI(?string $currentUsernameURI): void
     {
         self::$currentUsernameURI = $currentUsernameURI;
     }
 
-
-
     /**
-     * Get the value of idUser
+     * @return int
      */
     public function getIdUser(): int
     {
         return $this->idUser;
     }
 
+// --Commented out by Inspection START (20/04/2022 16:18):
+//    /**
+//     * Get the value of usersConnected
+//     */
+//    public static function getUsersConnected(): array
+//    {
+//        return self::$usersConnected;
+//    }
+// --Commented out by Inspection STOP (20/04/2022 16:18)
+
+
     /**
-     * Get the value of usersConnected
+     * @return string
      */
-    public static function getUsersConnected(): array
+    public function getPassword(): string
     {
-        return self::$usersConnected;
+        return $this->password;
     }
 
+    /**
+     * @return User|null
+     */
     public static function getCurrentUser() : ?User
     {
         return $_SESSION['user'];
     }
 
+    /**
+     * @param User $user
+     * @return void
+     */
     public static function setCurrentUser(User $user): void
     {
         $_SESSION['user'] = $user;

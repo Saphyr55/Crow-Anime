@@ -27,17 +27,23 @@ abstract class Form {
         return $i === count($data) && $i !== 0;
     }
 
-    public function getData() : array
-    {
-        return $this->data;
-    }
+// --Commented out by Inspection START (20/04/2022 16:18):
+//    public function getData() : array
+//    {
+//        return $this->data;
+//    }
+// --Commented out by Inspection STOP (20/04/2022 16:18)
 
-    public function setData(array $data) : self
-    {
-        $this->data = $data;
 
-        return $this;
-    }
+// --Commented out by Inspection START (20/04/2022 16:18):
+//    public function setData(array $data) : self
+//    {
+//        $this->data = $data;
+//
+//        return $this;
+//    }
+// --Commented out by Inspection STOP (20/04/2022 16:18)
+
 
     public static function upload_file(string $name_file, array $allowed, string $uploadfile): void
     {

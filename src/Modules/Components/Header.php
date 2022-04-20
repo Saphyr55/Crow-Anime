@@ -2,14 +2,14 @@
 
 namespace CrowAnime\Modules\Components;
 
-use CrowAnime\Core\Path;
+use CrowAnime\Core\Entities\Path;
 
 /**
  * Class Header
  * 
  * Permet de contenir le lien du header
  */
-class Header
+class Header implements Component
 {
 
     private static ?Header $header = null;
@@ -36,6 +36,7 @@ class Header
     /**
      * Set the value of pathHeader
      *
+     * @param $pathHeader
      * @return  self
      */
     public function setPathHeader($pathHeader): self

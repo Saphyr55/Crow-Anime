@@ -1,6 +1,6 @@
 <?php
 
-namespace CrowAnime\Core;
+namespace CrowAnime\Core\Entities;
 
 class Path
 {
@@ -9,5 +9,5 @@ class Path
     const CSS = "src/resources/css/";
     
     // Configs
-    const CONFIGS = "src/Core/Config/configs/";
+    // --Commented out by Inspection (20/04/2022 16:18):const CONFIGS = "src/Core/Config/configs/";
 }

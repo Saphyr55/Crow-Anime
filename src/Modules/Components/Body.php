@@ -2,7 +2,7 @@
 
 namespace CrowAnime\Modules\Components;
 
-use CrowAnime\Core\Path;
+use CrowAnime\Core\Entities\Path;
 
 /**
  * Class Body
@@ -10,7 +10,7 @@ use CrowAnime\Core\Path;
  * Permet de contenir le chemin du composents qui va servir de body,
  * un header, et un footer
  */
-class Body implements IComponent
+class Body implements Component
 {
     private string $pathComponent;
     private ?Header $header;
@@ -80,8 +80,8 @@ class Body implements IComponent
 
     /**
      * Get the value of header
-     * 
-     * @return header
+     *
+     * @return header|null
      */
     public function getHeader(): ?header
     {

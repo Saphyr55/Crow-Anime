@@ -2,10 +2,10 @@
 
 namespace CrowAnime\Core\Controller\Entities;
 
-use CrowAnime\Entities\Anime;
-use CrowAnime\Entities\Manga;
+use CrowAnime\Core\Controller\Controller;
+use CrowAnime\Core\Entities\Anime;
 
-class ControllerAnimes extends \CrowAnime\Core\Controller\Controller
+class ControllerAnimes extends Controller
 {
     private string $stylePopular;
     private string $styleTop;
