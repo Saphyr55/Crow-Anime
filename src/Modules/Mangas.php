@@ -4,7 +4,7 @@ namespace CrowAnime\Modules;
 
 use CrowAnime\Core\Controller\Controller;
 use CrowAnime\Core\Controller\Entities\ControllerMangas;
-use CrowAnime\Core\Module;
+use CrowAnime\Module;
 use CrowAnime\Core\Path;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Modules\Components\Body;
@@ -53,7 +53,7 @@ class Mangas extends Module
 
     }
 
-    public static function getModule()
+    public static function getModule(): Module|Mangas|null
     {
         if (self::$_mangas === null)
             self::$_mangas = new Mangas();

@@ -12,14 +12,13 @@ use CrowAnime\Core\Path;
 class Header
 {
 
-    private static $header;
-    private $pathHeader;
+    private static ?Header $header = null;
+    private string $pathHeader;
 
     /**
      * __construct
      *
-     * @param  mixed $pathHeader
-     * @return void
+     * @param string $nameFileHeader
      */
     public function __construct(string $nameFileHeader)
     {
@@ -29,7 +28,7 @@ class Header
     /**
      * Get the value of pathHeader
      */
-    public function getPathHeader()
+    public function getPathHeader(): string
     {
         return $this->pathHeader;
     }
@@ -39,7 +38,7 @@ class Header
      *
      * @return  self
      */
-    public function setPathHeader($pathHeader)
+    public function setPathHeader($pathHeader): self
     {
         $this->pathHeader = $pathHeader;
 
@@ -49,7 +48,7 @@ class Header
     /**
      * Get the value of header
      */
-    public static function getHeader()
+    public static function getHeader(): Header
     {
         if (self::$header === null) {
             self::$header = new Header('header');
@@ -57,15 +56,4 @@ class Header
         return self::$header;
     }
 
-    /**
-     * Set the value of header
-     *
-     * @return  self
-     */
-    public function setHeader($header)
-    {
-        $this->header = $header;
-
-        return $this;
-    }
 }

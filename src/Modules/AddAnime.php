@@ -4,7 +4,7 @@ namespace CrowAnime\Modules;
 
 use CrowAnime\App;
 use CrowAnime\Core\Controller\Entities\ControllerAddAnime;
-use CrowAnime\Core\Module;
+use CrowAnime\Module;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Core\User;
 use CrowAnime\Modules\Components\Body;
@@ -52,7 +52,7 @@ class AddAnime extends Module
         );
     }
 
-    public static function getModule()
+    public static function getModule(): Module|AddAnime|null
     {
         if (self::$_add_anime === null)
             self::$_add_anime = new AddAnime();

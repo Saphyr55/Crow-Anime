@@ -1,9 +1,9 @@
-<?php
+<?php /** @noinspection PhpMissingFieldTypeInspection */
 
 namespace CrowAnime\Core\Controller\Entities;
 
 use CrowAnime\Core\Controller\Controller;
-use CrowAnime\Work\Manga;
+use CrowAnime\Entities\Manga;
 
 class ControllerMangas extends Controller
 {
@@ -13,7 +13,7 @@ class ControllerMangas extends Controller
     public function __construct()
     {
         $this->styles();
-        $this->datas = $this->with([
+        $this->with([
             'mangas' => $this->mangas(),
             'styles' => [
                 'popular' => $this->stylePopular,
@@ -22,16 +22,13 @@ class ControllerMangas extends Controller
         ]);
     }
 
-    private function mangas()
+    private function mangas(): array
     {
-        switch ($_GET['type']) {
-            case 'popular':
-                return Manga::getMostPopularMangas();
-            case 'recent_upload':
-                return Manga::recentUpload();
-            default:
-                return Manga::getTopMangas();
-        }
+        return match ($_GET['type']) {
+            'popular' => Manga::getMostPopularMangas(),
+            'recent_upload' => Manga::recentUpload(),
+            default => Manga::getTopMangas(),
+        };
     }
 
     private function styles()
@@ -41,10 +38,6 @@ class ControllerMangas extends Controller
                 $this->styleTop = "style='border-color: transpared;'";
                 $this->stylePopular = "style='border-color: white;'";
                 break;
-            case 'top':
-                $this->styleTop = "style='border-color: white;'";
-                $this->stylePopular = "style='border-color: transpared;'";
-                break;
             case 'recent_upload':
                 $this->styleTop = "style='border-color: transpared;'";
                 $this->stylePopular = "style='border-color: transpared;'";
@@ -54,5 +47,10 @@ class ControllerMangas extends Controller
                 $this->stylePopular = "style='border-color: transpared;'";
                 break;
         }
+    }
+
+    public function action() : void
+    {
+        // TODO: Implement action() method.
     }
 }

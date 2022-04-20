@@ -9,7 +9,7 @@
 			<a href=<?= "http://$_SERVER[HTTP_HOST]/signup" ?>>
 				<p class="inscription">Je n'ai pas de <span>compte</span>. Je m'en <span>crée</span> un.</p>
 			</a>
-			<button type="submit">Se connecter</button>
+			<button name="login" type="submit">Se connecter</button>
 			<p class="error-message"><?= $error ?></p>
 		</div>
 	</form>

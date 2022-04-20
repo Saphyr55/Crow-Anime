@@ -38,7 +38,7 @@
             <?php for ($i = 0; $i < 20; $i++) : ?>
                 <a href="" class="list-item">
                     <?php if ($i <= (count($animes) - 1)) : ?>
-                        <img class="list-item-filter" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' ?>">
+                        <img class="list-item-filter" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' ?>" alt="">
                     <?php endif; ?>
                     <div class="list-item-desc">
                         <?= ($i <= count($animes) - 1) ? $animes[$i]->getTitle_ja() : "Anime Title" ?>
