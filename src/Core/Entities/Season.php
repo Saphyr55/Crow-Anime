@@ -1,6 +1,6 @@
 <?php
 
-namespace CrowAnime\Entities;
+namespace CrowAnime\Core\Entities;
 
 abstract class Season
 {   

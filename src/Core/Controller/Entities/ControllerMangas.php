@@ -3,7 +3,7 @@
 namespace CrowAnime\Core\Controller\Entities;
 
 use CrowAnime\Core\Controller\Controller;
-use CrowAnime\Entities\Manga;
+use CrowAnime\Core\Entities\Manga;
 
 class ControllerMangas extends Controller
 {

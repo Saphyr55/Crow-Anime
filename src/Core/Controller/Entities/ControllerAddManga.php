@@ -4,10 +4,10 @@ namespace CrowAnime\Core\Controller\Entities;
 
 use CrowAnime\Core\Controller\Controller;
 use CrowAnime\Core\Database\Database;
+use CrowAnime\Core\Entities\Manga;
+use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Form\Form;
 use CrowAnime\Core\Form\MangaForm;
-use CrowAnime\Core\User;
-use CrowAnime\Entities\Manga;
 
 class ControllerAddManga extends Controller
 {
@@ -16,7 +16,7 @@ class ControllerAddManga extends Controller
 
     public function __construct()
     {
-        if (User::getCurrentUser() !== null)
+        if (User::getCurrentUser() instanceof User)
             $this->preview_path_replace = "/assets/img/manga/preview_" . User::getCurrentUser()->getIdUser() . '.jpg';
         else
             $this->preview_path_replace = "";

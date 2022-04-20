@@ -3,14 +3,11 @@
 namespace CrowAnime\Core\Form\Auth;
 
 use CrowAnime\Core\Database\Database;
-use CrowAnime\Core\Database\DBException;
-use CrowAnime\Core\User;
+use CrowAnime\Core\Form\Form;
 
-class SignupForm extends \CrowAnime\Core\Form\Form
+class SignupForm extends Form
 {
     private string $errorMsg = "";
-
-    public static $user;
 
     public function signup()
     {
@@ -44,9 +41,7 @@ class SignupForm extends \CrowAnime\Core\Form\Form
                                 'email' => $email
                             ]
                         );
-                        self::$user = $user;
                         if ($user === []) {
-                            $user = $user[0];
                             Database::getDatabase()->execute(
                                 'INSERT INTO _user (username, password, is_admin, email) 
                                          VALUES (:username, :password,:is_admin, :email)',

@@ -3,11 +3,11 @@
 namespace CrowAnime\Core\Controller\Entities;
 
 use CrowAnime\Core\Controller\Controller;
+use CrowAnime\Core\Entities\Anime;
+use CrowAnime\Core\Entities\Season;
+use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Form\AnimeForm;
-use CrowAnime\Core\User;
 use CrowAnime\Core\Form\Form;
-use CrowAnime\Entities\Anime;
-use CrowAnime\Entities\Season;
 
 class ControllerAddAnime extends Controller
 {
@@ -20,7 +20,7 @@ class ControllerAddAnime extends Controller
                 'summer' => Season::SUMMER,
                 'fall' => Season::FALL,
                 'winter' => Season::WINTER,
-                'path_replace' => (User::getCurrentUser() !== null) ? "/assets/img/anime/preview_" . User::getCurrentUser()->getIdUser() . '.jpg' : null,
+                'path_replace' => (User::getCurrentUser() instanceof User) ? "/assets/img/anime/preview_" . User::getCurrentUser()->getIdUser() . '.jpg' : null,
                 'manage_bool' => isset($_POST['submit']) || isset($_POST['preview']),
                 'allowed' => ["jpg" => "image/jpg", "jpeg" => "image/jpeg", "png" => "image/png"],
                 'uploaddir' => getcwd() . DIRECTORY_SEPARATOR . '/assets/img/anime/',
@@ -32,13 +32,12 @@ class ControllerAddAnime extends Controller
 
     private function build() : ?Anime
     {
-        $path_replace = (User::getCurrentUser() !== null) ? "/assets/img/anime/preview_" . User::getCurrentUser()->getIdUser() . '.jpg' : null;
+        $path_replace = (User::getCurrentUser() instanceof User) ? "/assets/img/anime/preview_" . User::getCurrentUser()->getIdUser() . '.jpg' : null;
         $allowed = ["jpg" => "image/jpg", "jpeg" => "image/jpeg", "png" => "image/png"];
         $upload_dir = getcwd() . DIRECTORY_SEPARATOR . '/assets/img/anime/';
         $name_file = 'anime_picture';
         $this->checkFile($path_replace);
-        $anime = $this->checkData(AnimeForm::recoverDataForm(), $path_replace, $name_file, $allowed, $upload_dir);
-        return $anime;
+        return $this->checkData(AnimeForm::recoverDataForm(), $path_replace, $name_file, $allowed, $upload_dir);
     }
 
     private function checkFile($path_replace)

@@ -27,7 +27,7 @@
     </div>
     <div class="list-container">
         <div class="list-items">
-            <?php $mangas = CrowAnime\Core\User::getCurrentUser()->mangasView(); ?>
+            <?php $mangas = \CrowAnime\Core\Entities\User::getCurrentUser()->mangasView(); ?>
             <?php if (count($mangas) !== 0) : ?>
                 <?php for ($i = 0; $i < count($mangas); $i++) : ?>
                     <a href="" class="list-item">

@@ -1,10 +1,10 @@
 <?php
 
-namespace CrowAnime\Core;
+namespace CrowAnime\Core\Entities;
 
 use CrowAnime\Core\Database\Database;
-use CrowAnime\Entities\Anime;
-use CrowAnime\Entities\Manga;
+use CrowAnime\Core\Entities\Anime;
+use CrowAnime\Core\Entities\Manga;
 use DateTime;
 
 class User
@@ -104,7 +104,7 @@ class User
             $user['password'],
             $user['is_admin'],
             new DateTime(),
-            new DateTime()#date_create_from_format("Y-m-d H:i:s", $user['user_date'])
+            new DateTime()
         );
     }
 

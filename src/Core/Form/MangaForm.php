@@ -2,8 +2,7 @@
 
 namespace CrowAnime\Core\Form;
 
-use CrowAnime\Entities\Manga;
-use CrowAnime\Core\Form\Form;
+use CrowAnime\Core\Entities\Manga;
 
 class MangaForm extends Form
 {

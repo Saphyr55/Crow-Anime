@@ -2,7 +2,9 @@
 
 namespace CrowAnime\Core\Controller\AuthController;
 
-class ControllerLogout extends \CrowAnime\Core\Controller\Controller
+use CrowAnime\Core\Controller\Controller;
+
+class ControllerLogout extends Controller
 {
 
     public function __construct()

@@ -2,9 +2,9 @@
 
 namespace CrowAnime\Modules\Components;
 
-use CrowAnime\Core\Path;
+use CrowAnime\Core\Entities\Path;
 
-class Head implements IComponent
+class Head implements Component
 {
     private string $title;
     private array $linksCSS;

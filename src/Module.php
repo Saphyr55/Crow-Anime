@@ -6,16 +6,15 @@ use CrowAnime\Core\Controller\Controller;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Head;
-use CrowAnime\Modules\Components\IComponent;
+use CrowAnime\Modules\Components\Component;
 
 /**
  * Class Module
  * 
  * Permet de contenir le contenu d'une page html (head et body)
  */
-class Module implements IComponent
+class Module implements Component
 {
-
     protected Head $head;
     protected Body $body;
     protected string $redirectionURI;

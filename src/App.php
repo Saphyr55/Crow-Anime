@@ -3,7 +3,8 @@
 namespace CrowAnime;
 
 use CrowAnime\Core\Database\Database;
-use CrowAnime\Core\User;
+use CrowAnime\Core\Entities\User;
+use CrowAnime\Modules\Components\Component;
 use CrowAnime\Router\Router;
 
 /**
@@ -17,7 +18,7 @@ class App
 {
     private array $modules;
     private string $actualURI;
-    private Module $errorPage;
+    private Component $errorPage;
     private Router $router;
 
     /**
@@ -26,7 +27,7 @@ class App
      * @param  array $modules
      * @param  Module $errorPage
      */
-    public function __construct(array $modules, Module $errorPage)
+    public function __construct(array $modules, Component $errorPage)
     {   
         $this->errorPage = $errorPage;
         $this->actualURI = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -54,7 +55,7 @@ class App
             strcmp(explode('/', $uri)[1], 'admin') === 0
         ) {
 
-            $theoricUser = explode('/', $uri)[2];
+            $theoreticUser = explode('/', $uri)[2];
 
             $users = Database::getDatabase()->query(
                 "SELECT username FROM _user"
@@ -64,8 +65,8 @@ class App
 
                 $user = (array) $user;
 
-                if (strcmp($theoricUser, $user['username']) === 0)
-                    User::setCurrentUsernameURI($theoricUser);
+                if (strcmp($theoreticUser, $user['username']) === 0)
+                    User::setCurrentUsernameURI($theoreticUser);
             }
         }
     }
@@ -81,7 +82,7 @@ class App
     /**
      * Get the value of errorPage
      */
-    public function getErrorPage(): Module
+    public function getErrorPage(): Component
     {
         return $this->errorPage;
     }

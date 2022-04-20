@@ -1,12 +1,13 @@
 <?php
 
-namespace CrowAnime\Entities;
+namespace CrowAnime\Core\Entities;
 
 use CrowAnime\Core\Database\Database;
+use CrowAnime\Core\Entities\Work;
 use DateTime;
 
 class Anime extends Work
-{   
+{
     private static array $recentAnimesUpload = [];
     private static array $animesCurrentSeason = [];
     private static array $topAnimes = [];
@@ -159,7 +160,7 @@ class Anime extends Work
     }
 
     public static function recentAnimesUpload(): array
-    {   
+    {
         if (self::$recentAnimesUpload === []) {
             $recentAnimesUpload = Database::getDatabase()->query(
                 "SELECT * FROM anime ORDER BY id_anime DESC"
@@ -186,7 +187,6 @@ class Anime extends Work
 
     /**
      * Get the value of number_season
-     * @noinspection PhpUndefinedFieldInspection
      */
     public function getNumberSeason()
     {
@@ -196,6 +196,7 @@ class Anime extends Work
     /**
      * Set the value of number_season
      *
+     * @param $number_season
      * @return self
      */
     public function setNumberSeason($number_season): static
@@ -216,6 +217,7 @@ class Anime extends Work
     /**
      * Set the value of season
      *
+     * @param $season
      * @return  self
      */
     public function setSeason($season): static
@@ -227,7 +229,6 @@ class Anime extends Work
 
     /**
      * Get the value of current_season
-     * @noinspection PhpUndefinedFieldInspection
      */
     public function getCurrentSeason()
     {
@@ -237,6 +238,7 @@ class Anime extends Work
     /**
      * Set the value of current_season
      *
+     * @param $current_season
      * @return  self
      */
     public function setCurrentSeason($current_season): static
@@ -257,6 +259,7 @@ class Anime extends Work
     /**
      * Set the value of studio
      *
+     * @param $studio
      * @return  self
      */
     public function setStudio($studio): static
