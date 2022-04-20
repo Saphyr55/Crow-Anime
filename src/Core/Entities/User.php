@@ -104,7 +104,7 @@ class User
             $user['password'],
             $user['is_admin'],
             new DateTime(),
-            new DateTime()#date_create_from_format("Y-m-d H:i:s", $user['user_date'])
+            new DateTime()
         );
     }
 
