@@ -1,9 +1,9 @@
 <?php
 
-namespace CrowAnime\Entities;
+namespace CrowAnime\Core\Entities;
 
+use CrowAnime\Core\Entities\Anime;
 use DateTime;
-use http\Encoding\Stream\Deflate;
 
 abstract class Work
 {
@@ -54,8 +54,8 @@ abstract class Work
     {
         $file_url_image_anime = file_get_contents(
             $_SERVER["DOCUMENT_ROOT"] .
-                "/assets/img/" . explode("\\", strtolower($work::class))[2]
-                . "/$format" . "/" . $work->getIdWork() . ".json"
+            "/assets/img/" . explode("\\", strtolower($work::class))[2]
+            . "/$format" . "/" . $work->getIdWork() . ".json"
         );
         $json_url_image_anime = json_decode($file_url_image_anime);
         return ((array)$json_url_image_anime)['url'];
@@ -97,7 +97,7 @@ abstract class Work
     public function setSysnopis($synopsis): static
     {
         if ($this instanceof Anime) {
-            //requete sql  
+            //requete sql
         } elseif ($this instanceof Manga) {
             //requete sql
         }

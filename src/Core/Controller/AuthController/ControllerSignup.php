@@ -2,10 +2,11 @@
 
 namespace CrowAnime\Core\Controller\AuthController;
 
+use CrowAnime\Core\Controller\Controller;
 use CrowAnime\Core\Form\Auth\SignupForm;
 use CrowAnime\Core\Form\Form;
 
-class ControllerSignup extends \CrowAnime\Core\Controller\Controller
+class ControllerSignup extends Controller
 {
     private Form $form;
 

@@ -3,7 +3,7 @@
 namespace CrowAnime\Core\Form;
 
 use CrowAnime\Core\Database\Database;
-use CrowAnime\Entities\Anime;
+use CrowAnime\Core\Entities\Anime;
 
 class AnimeForm extends Form
 {

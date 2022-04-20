@@ -1,6 +1,6 @@
 <?php
 
-namespace CrowAnime\Entities;
+namespace CrowAnime\Core\Entities;
 
 use CrowAnime\Core\Database\Database;
 use DateTime;
@@ -53,8 +53,8 @@ class Manga extends Work
 
     public static function getMostPopularMangas(): array
     {
-        if (self::$mostPopularMangas === []) {
-            $mostPopularMangas = Database::getDatabase()->query(
+       if (self::$mostPopularMangas === []) {
+           $mostPopularMangas = Database::getDatabase()->query(
                 "SELECT m.*, COUNT(l.id_user) FROM manga m
                 INNER JOIN lister_manga l ON m.id_manga=l.id_manga
                 GROUP BY l.id_manga
@@ -67,12 +67,12 @@ class Manga extends Work
                     $value['manga_title_ja'],
                     $value['manga_title_en'],
                     $value['manga_finish'],
-                    $value['manga_synopsis'],
+                   $value['manga_synopsis'],
                     $value['manga_author'],
                     $value['manga_edition'],
                     $value['manga_volumes'],
                     $value['manga_date']
-                );
+               );
 
                 $manga->setIdWork($value['id_manga']);
                 $manga->setScore($value['COUNT(id_user)']);
@@ -81,6 +81,7 @@ class Manga extends Work
         }
         return self::$mostPopularMangas;
     }
+
 
     public static function getTopMangas(): array
     {
@@ -113,32 +114,34 @@ class Manga extends Work
         return self::$topMangas;
     }
 
-    public static function recentUpload(): array
-    {
-        if (self::$recentMangasUpload === []) {
-            $recentMangasUpload = Database::getDatabase()->query(
-                "SELECT * FROM manga ORDER BY id_manga DESC"
-            );
 
-            foreach ($recentMangasUpload as $value) {
-                $value = (array) $value;
-                $manga = new Manga(
-                    $value['manga_title_ja'],
-                    $value['manga_title_en'],
-                    $value['manga_finish'],
-                    $value['manga_synopsis'],
-                    $value['manga_author'],
-                    $value['manga_edition'],
+   public static function recentUpload(): array
+   {
+       if (self::$recentMangasUpload === []) {
+            $recentMangasUpload = Database::getDatabase()->query(
+               "SELECT * FROM manga ORDER BY id_manga DESC"
+           );
+
+           foreach ($recentMangasUpload as $value) {
+               $value = (array) $value;
+               $manga = new Manga(
+                   $value['manga_title_ja'],
+                   $value['manga_title_en'],
+                   $value['manga_finish'],
+                   $value['manga_synopsis'],
+                   $value['manga_author'],
+                   $value['manga_edition'],
                     $value['manga_volumes'],
                     $value['manga_date']
                 );
 
-                $manga->setIdWork($value['id_manga']);
+               $manga->setIdWork($value['id_manga']);
                 self::$recentMangasUpload[] = $manga;
             }
         }
         return self::$recentMangasUpload;
     }
+
 
     public function getAuthors(): ?string
     {
@@ -148,9 +151,9 @@ class Manga extends Work
     public function setAuthors(?string $authors): self
     {
         $this->authors = $authors;
-
         return $this;
     }
+
 
     public function getPublishingHouse(): ?string
     {
@@ -160,9 +163,9 @@ class Manga extends Work
     public function setPublishingHouse(?string $publishingHouse): self
     {
         $this->publishingHouse = $publishingHouse;
-
         return $this;
     }
+
 
     public function getVolumes(): int
     {
@@ -174,5 +177,6 @@ class Manga extends Work
         $this->volumes = $volumes;
 
         return $this;
-    }
+   }
+
 }

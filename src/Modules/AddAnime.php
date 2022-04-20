@@ -4,9 +4,9 @@ namespace CrowAnime\Modules;
 
 use CrowAnime\App;
 use CrowAnime\Core\Controller\Entities\ControllerAddAnime;
-use CrowAnime\Module;
+use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Rule\Rules;
-use CrowAnime\Core\User;
+use CrowAnime\Module;
 use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Footer;
 use CrowAnime\Modules\Components\Head;

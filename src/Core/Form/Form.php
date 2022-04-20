@@ -32,12 +32,14 @@ abstract class Form {
         return $this->data;
     }
 
+
     public function setData(array $data) : self
     {
-        $this->data = $data;
+       $this->data = $data;
 
         return $this;
     }
+
 
     public static function upload_file(string $name_file, array $allowed, string $uploadfile): void
     {

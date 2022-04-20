@@ -2,14 +2,14 @@
 
 namespace CrowAnime\Modules\Components;
 
-use CrowAnime\Core\Path;
+use CrowAnime\Core\Entities\Path;
 
 /**
  * Class Footer
  * 
  * Permet de contenir le lien du footer
  */
-class Footer implements IComponent
+class Footer implements Component
 {
     private static ?Footer $footer = null;
     private string $pathFooter;

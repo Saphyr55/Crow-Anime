@@ -1,10 +1,8 @@
 <?php
 
-namespace CrowAnime\Core;
+namespace CrowAnime\Core\Entities;
 
 use CrowAnime\Core\Database\Database;
-use CrowAnime\Entities\Anime;
-use CrowAnime\Entities\Manga;
 use DateTime;
 
 class User
@@ -247,7 +245,7 @@ class User
         return self::$usersConnected;
     }
 
-    public static function getCurrentUser() : ?User
+    public static function getCurrentUser()
     {
         return $_SESSION['user'];
     }
