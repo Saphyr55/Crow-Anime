@@ -123,6 +123,32 @@ class User
         else return false;
     }
 
+    public static function setUserURI() : void
+    {
+        $uri = $_SERVER['REQUEST_URI'];
+        if (
+            strcmp(explode('/', $uri)[1], 'profile') === 0 ||
+            strcmp(explode('/', $uri)[1], 'admin') === 0
+        ) {
+            $theoreticUser = explode('/', $uri)[2];
+            $user = Database::getDatabase()->execute(
+                "SELECT * FROM _user WHERE username=:username", [':username' => $theoreticUser]
+            );
+            if (strcmp($theoreticUser, $user[0]['username']) === 0)
+                self::setCurrentUserURI(
+                    new User(
+                        $user[0]['id_user'],
+                        $user[0]['username'],
+                        $user[0]['email'],
+                        $user[0]['password'],
+                        $user[0]['is_admin'],
+                        null,
+                        $user[0]['user_date']
+                    )
+                );
+            else self::setCurrentUserURI(new User(-1, "","","","","",""));
+        } else self::setCurrentUserURI(new User(-1, "","","","","",""));
+    }
     /**
      * Get the value of dateConnection
      */
@@ -229,29 +255,6 @@ class User
         return $this;
     }
 
-    public static function setUserURI() : void
-    {
-        $uri = $_SERVER['REQUEST_URI'];
-        if (
-            strcmp(explode('/', $uri)[1], 'profile') === 0 ||
-            strcmp(explode('/', $uri)[1], 'admin') === 0
-        ) {
-            $theoreticUser = explode('/', $uri)[2];
-            $user = Database::getDatabase()->execute(
-                "SELECT * FROM _user WHERE username=:username", [':username' => $theoreticUser]
-            );
-            if (strcmp($theoreticUser, $user[0]['username']) === 0)
-                User::setCurrentUserURI(new User(
-                    $user[0]['id_user'],
-                    $user[0]['username'],
-                    $user[0]['email'],
-                    $user[0]['password'],
-                    $user[0]['is_admin'],
-                    null,
-                    $user[0]['user_date']
-                ));
-        }
-    }
 
     /**
      * Get the value of currentUsernameURI
@@ -264,7 +267,7 @@ class User
     /**
      * Set the value of currentUsernameURI
      */
-    public static function setCurrentUserURI(User $currentUserURI): void
+    public static function setCurrentUserURI(?User $currentUserURI): void
     {
         $_SESSION['user_uri'] = $currentUserURI;
     }

@@ -15,9 +15,8 @@ class ProfileAnimeList extends Module
     
     private static ?Module $profileAnimes = null;
 
-    public function __construct() 
+    public function __construct()
     {
-        
         $this->nameModule = "profile/" . User::getCurrentUserURI()->getUsername() . "/animeslist";
         $this->head = new Head(
             User::getCurrentUserURI()->getUsername() . " : Anime List", [

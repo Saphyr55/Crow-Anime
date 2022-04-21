@@ -2,6 +2,7 @@
 
 namespace CrowAnime;
 
+use CrowAnime\Core\Controllers\AuthControllers\ControllerLogout;
 use CrowAnime\Core\Database\Database;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Modules\Components\Component;
@@ -17,7 +18,6 @@ use CrowAnime\Router\Router;
 class App
 {
     private array $modules;
-    private string $actualURI;
     private Component $errorPage;
     private Router $router;
 
@@ -30,10 +30,8 @@ class App
     public function __construct(array $modules, Component $errorPage)
     {   
         $this->errorPage = $errorPage;
-        $this->actualURI = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $this->modules = $modules;
     }
-
 
     /**
      * Lance l'application en recuperant tous les modules
@@ -47,12 +45,12 @@ class App
         return $this;
     }
 
-    /**
-     * Get the value of actualURI
-     */
-    public function getActualURI(): string
+    public static function start(): void
     {
-        return $this->actualURI;
+        session_start();
+        User::setUserURI();
+        if (strcmp($_SERVER['REQUEST_URI'], '/logout'))
+            Router::saveURI($_SERVER['REQUEST_URI']);
     }
 
     /**

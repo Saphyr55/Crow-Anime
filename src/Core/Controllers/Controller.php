@@ -5,9 +5,9 @@ namespace CrowAnime\Core\Controllers;
 abstract class Controller implements ControllerInterface
 {
 
-    protected array $data;
+    protected array $data = [];
 
-    public function with(array $data): array
+    public function with(array $data = []): array
     {
         $keys = [];
         foreach ($data as $key => $value) {

@@ -27,7 +27,7 @@
     </div>
     <div class="list-container">
         <div class="list-items">
-            <?php $animes = \CrowAnime\Core\Entities\User::getCurrentUser()->animesView(); ?>
+            <?php $animes = \CrowAnime\Core\Entities\User::getCurrentUserURI()->animesView(); ?>
             <?php if (count($animes) !== 0) : ?>
                 <?php for ($i = 0; $i < count($animes); $i++) : ?>
                     <a href="" class="list-item">

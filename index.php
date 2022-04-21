@@ -11,8 +11,7 @@ use CrowAnime\Modules\Components\Header;
 
 require_once './vendor/autoload.php';
 
-session_start();
-User::setUserURI();
+App::start();
 
 $app = new App(
     [
@@ -41,5 +40,4 @@ $app = new App(
         new Rules([Rules::ALL])
     )
 );
-
-$app->run(); // Launcj de l'application
+$app->run();

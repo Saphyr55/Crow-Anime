@@ -3,16 +3,17 @@
 namespace CrowAnime\Core\Controllers\AuthControllers;
 
 use CrowAnime\Core\Controllers\Controller;
-use JetBrains\PhpStorm\NoReturn;
+use CrowAnime\Router\Router;
 
 class ControllerLogout extends Controller
 {
+
     public function action() : void
     {
-        $this->with([]);
+        error_log("http://$_SERVER[HTTP_HOST]".Router::uri());
         if (isset($_SESSION['user']))
             session_destroy();
-        header("Location: http://$_SERVER[HTTP_HOST]");
+        header("Location: http://$_SERVER[HTTP_HOST]".Router::uri());
         exit();
     }
 }

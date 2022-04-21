@@ -3,15 +3,15 @@
 namespace CrowAnime\Router;
 
 use CrowAnime\Module;
+use CrowAnime\Modules\Components\Component;
 
 class Router
 {
     private array $modules;
-    private static $currentModule;
-    private Module $errorPage;
+    private Component $errorPage;
+    private static Component $currentModule;
 
-
-    public function __construct(array $modules, Module $errorPage)
+    public function __construct(array $modules, Component $errorPage)
     {
         $this->modules = $modules;
         $this->errorPage = $errorPage;
@@ -51,9 +51,29 @@ class Router
                 ($i == (count($this->modules) - 1))
             ) {
                  error_log("Error : " . $uri . " not found");
-                 $this->errorPage->generate($this->errorPage);
+                 $this->errorPage->generate();
                  break;
             }
         }
     }
+
+    /**
+     * @param string $URI
+     */
+    public static function saveURI(string $URI): void
+    {
+        if (isset($_COOKIE['url_b'])) {
+            unset($_COOKIE['url_b']);
+            setcookie('url_b', $URI, time()+86400, '/');
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public static function uri() : string
+    {
+        return htmlspecialchars_decode($_COOKIE['url_b']);
+    }
+
 }
