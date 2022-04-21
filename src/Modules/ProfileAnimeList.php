@@ -32,6 +32,7 @@ class ProfileAnimeList extends Module
         $this->rules = new Rules([
             Rules::ALL,
         ]);
+
         parent::__construct($this->nameModule, $this->head, $this->body, $this->rules);
     }
 

@@ -16,7 +16,7 @@ class LoginForm extends Form
         $this->errorMsg = "";
     }
 
-    private function checkInput() : bool
+    private function checkInput(): bool
     {
         return isset($_POST['username']) &&
             !empty($_POST['username']) &&
@@ -30,7 +30,7 @@ class LoginForm extends Form
             if ($this->checkInput()) {
                 $username = htmlspecialchars($_POST['username']);
                 $user = Database::getDatabase()->execute(
-                    "SELECT * FROM _user WHERE username=:username",['username' => $username]
+                    "SELECT * FROM _user WHERE username=:username", ['username' => $username]
                 );
                 if ($user !== []) {
                     $user = $user[0];

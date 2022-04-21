@@ -3,6 +3,7 @@
 namespace CrowAnime\Modules;
 
 use CrowAnime\Core\Controllers\AuthControllers\ControllerLogin;
+use CrowAnime\Core\Entities\User;
 use CrowAnime\Module;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Modules\Components\Body;
@@ -34,7 +35,7 @@ class Login extends Module
             Rules::NOT_LOGIN_REQUIRED,
         ]);
 
-        $this->controller = new ControllerLogin();
+        $this->controller = new ControllerLogin($this);
 
         parent::__construct($this->nameModule, $this->head, $this->body, $this->rules, $this->controller);
     }

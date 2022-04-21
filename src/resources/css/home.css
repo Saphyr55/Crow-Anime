@@ -3,7 +3,7 @@ body {
     display: grid;
     margin: auto;
     text-decoration: none;
-    list-style-type:none;
+    list-style-type: none;
     background-color: #2e2e2e;
     grid-template-columns: 1fr;
     grid-template-rows: .2fr .6fr .2fr;
@@ -22,7 +22,6 @@ body {
 }
 
 .news {
-    margin-top: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,8 +30,8 @@ body {
 .img-news {
     opacity: 0.5;
     position: relative;
-    width: 100vh;
-    height: 60vh;
+    width: 1000px;
+    height: 500px;
 }
 
 .news-space-right {
@@ -132,7 +131,7 @@ body {
     grid-template-rows: .5fr .25fr .25fr;
     grid-template-areas: "tp ti na" 
                          "tp ti sc" 
-                         "tp ti mb" ;
+                         "tp ti mb";
 }
 
 .top-number {
@@ -140,7 +139,7 @@ body {
     font-size: 40px;
     text-align: center;
     grid-area: tp;
-} 
+}
 
 .top-img {
     margin: auto;
@@ -156,7 +155,7 @@ body {
 }
 
 .na {
-    margin-top: 0px;
+    margin-top: 0;
     grid-area: na;
 }
 
@@ -165,7 +164,7 @@ body {
     margin-left: 20px;
 }
 
-.ol-top-anime li a img{
+.ol-top-anime li a img {
     width: 100px;
     height: 120px;
 }
@@ -185,7 +184,7 @@ body {
     }
 
     .p-top-anime {
-        margin-top: 0%;
+        margin-top: 0;
     }
 
 }

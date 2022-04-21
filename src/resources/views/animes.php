@@ -1,7 +1,7 @@
 <div class="sort">
     <div class="sort-by">
         <div class="sort-by-alphabet">
-            <a href="" class="sort-by-alphabet-All">Tout</a> <a href="" class="sort-by-alphabet-#">#</a>
+            <a href="" class="sort-by-alphabet-All"><?= $all ?></a> <a href="" class="sort-by-alphabet-#">#</a>
             <a href="" class="sort-by-alphabet-A">A</a> <a href="" class="sort-by-alphabet-B">B</a>
             <a href="" class="sort-by-alphabet-C">C</a> <a href="" class="sort-by-alphabet-D">D</a>
             <a href="" class="sort-by-alphabet-E">E</a> <a href="" class="sort-by-alphabet-F">F</a>
@@ -24,13 +24,13 @@
 <div class="list">
     <div class="list-top-name">
         <a href="<?= "http://$_SERVER[HTTP_HOST]/animes" ?>">
-            <p <?= $styles['top'] ?> class="list-top-name-p">Top Animes</p>
+            <p <?= $styles['top'] ?> class="list-top-name-p"><?= $top_anime ?></p>
         </a>
         <a href="<?= "http://$_SERVER[HTTP_HOST]/animes?type=popular" ?>">
-            <p <?= $styles['popular'] ?> class="list-top-name-p">Most Popular</p>
+            <p <?= $styles['popular'] ?> class="list-top-name-p"><?= $most_popular ?></p>
         </a>
         <a href="<?= "http://$_SERVER[HTTP_HOST]/animes?type=seasonal" ?>">
-            <p <?= $styles['seasonal'] ?> class="list-top-name-p">Spring 2022</p>
+            <p <?= $styles['seasonal'] ?> class="list-top-name-p"><?= $current_season ?><?= $current_year ?></p>
         </a>
     </div>
     <div class="list-container">
@@ -38,7 +38,9 @@
             <?php for ($i = 0; $i < 20; $i++) : ?>
                 <a href="" class="list-item">
                     <?php if ($i <= (count($animes) - 1)) : ?>
-                        <img class="list-item-filter" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' ?>" alt="">
+                        <img class="list-item-filter"
+                             src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' ?>"
+                             alt="">
                     <?php endif; ?>
                     <div class="list-item-desc">
                         <?= ($i <= count($animes) - 1) ? $animes[$i]->getTitle_ja() : "Anime Title" ?>

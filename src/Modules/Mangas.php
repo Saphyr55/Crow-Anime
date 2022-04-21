@@ -2,7 +2,7 @@
 
 namespace CrowAnime\Modules;
 
-use CrowAnime\Core\Controllers\Entities\ControllerMangas;
+use CrowAnime\Core\Controllers\Components\ControllerMangas;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 use CrowAnime\Modules\Components\Body;
@@ -39,7 +39,7 @@ class Mangas extends Module
             Rules::ALL,
         ]);
 
-        $this->controller = new ControllerMangas();
+        $this->controller = new ControllerMangas($this);
 
         parent::__construct(
             $this->nameModule,

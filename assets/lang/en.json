@@ -1,3 +1,75 @@
 {
-    
+    "home" : {
+      "best_manga" : "Best Manga",
+      "name_anime" : "Name Manga"
+    },
+    "add_manga" : {
+      "name_english" : "English manga name",
+      "name_japanese" : "Japanese manga name",
+      "year" : "Release Date",
+      "choose_picture" : "Choose a anime picture : ",
+      "is_finish" : "Is finish ?",
+      "volumes" : "Volumes",
+      "preview" : "Preview Manga",
+      "register" : "Register Manga",
+      "publishing_house" : "Publishing house",
+      "authors" : "Authors"
+    },
+    "add_anime" : {
+      "name_english" : "English manga name",
+      "name_japanese" : "Japanese manga name",
+      "year" : "Release Date",
+      "choose_picture" : "Choose a anime picture : ",
+      "is_finish" : "Is finish ?",
+      "studio" : "Studio",
+      "register" : "Register Anime",
+      "preview" : "Preview Anime"
+    },
+    "animes" : {
+      "all" : "All",
+      "top_anime" : "Top Animes",
+      "most_popular": "Most Popular"
+    },
+    "mangas" : {
+      "all" : "All",
+      "top_manga" : "Top Mangas",
+      "most_popular" : "Most Popular"
+    },
+    "footer" : {
+      "footer" : "OFFICIAL SITE"
+    },
+    "header" : {
+      "login": "Login",
+      "signup" : "Signup",
+      "profile": "Profile",
+      "admin": "Admin",
+      "list_anime" : "List Animes",
+      "list_manga": "List Mangas",
+      "logout" : "Logout",
+      "anime" : "Anime",
+      "manga" : "Manga",
+      "search" : "Research..."
+    },
+    "login" : {
+      "username" : "Username",
+      "password" : "Password",
+      "dont_have_account" : "I don't have any <span>account</span>. I <span>create</span> one.",
+      "login" : "Login"
+    },
+    "profile_animes" : {
+      "animes_watch" : "Anime watch",
+      "any_anime_watch" : "You have not registered any Anime"
+    },
+    "profile_mangas" : {
+      "mangas_read" : "Manga read",
+      "any_manga_read" : "You have not registered any manga"
+    },
+    "signup" : {
+      "inscription" : "Inscription",
+      "signup" : "Signup",
+      "username" : "Username",
+      "email" : "Email,",
+      "password" : "Password",
+      "repeat_password" : "Repeat password"
+    }
 }

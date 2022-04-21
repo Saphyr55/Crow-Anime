@@ -2,22 +2,24 @@
 
 namespace CrowAnime\Core\Forms;
 
-abstract class Form {
+abstract class Form
+{
 
     protected array $data;
 
-    public function __construct(array $data = []) {
+    public function __construct(array $data = [])
+    {
         $this->data = $data;
     }
-    
-    public static function check(array $data) : bool
-    {   
+
+    public static function check(array $data): bool
+    {
         $i = 0;
         foreach ($data as $key => $value) {
-            if (strcmp($key, 'manga_volumes')!==0) {
-                if (isset($value) ) {
-                    if (is_string($value) ) {
-                        if( empty($value) || strlen(trim($value)) == 0 )
+            if (strcmp($key, 'manga_volumes') !== 0) {
+                if (isset($value)) {
+                    if (is_string($value)) {
+                        if (empty($value) || strlen(trim($value)) == 0)
                             return false;
                     }
                 }
@@ -27,12 +29,12 @@ abstract class Form {
         return $i === count($data) && $i !== 0;
     }
 
-    public function getData() : array
+    public function getData(): array
     {
         return $this->data;
     }
 
-    public function setData(array $data) : self
+    public function setData(array $data): self
     {
         $this->data = $data;
 

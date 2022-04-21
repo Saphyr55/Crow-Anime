@@ -20,8 +20,8 @@ class MangaForm extends Form
 
     private function checkFile()
     {
-        if (file_exists("$_SERVER[DOCUMENT_ROOT]".$this->preview_path_replace))
-            unlink("$_SERVER[DOCUMENT_ROOT]".$this->preview_path_replace);
+        if (file_exists("$_SERVER[DOCUMENT_ROOT]" . $this->preview_path_replace))
+            unlink("$_SERVER[DOCUMENT_ROOT]" . $this->preview_path_replace);
     }
 
     public function build(): ?Manga
@@ -44,7 +44,7 @@ class MangaForm extends Form
                 $manga->sendDatabase();
 
                 // recupere le dernier enregistrement
-                $last_manga = (array) Database::getDatabase()->query("SELECT * FROM manga ORDER BY id_manga DESC")[0];
+                $last_manga = (array)Database::getDatabase()->query("SELECT * FROM manga ORDER BY id_manga DESC")[0];
                 $manga->setIdWork($last_manga['id_manga']);
                 Form::upload_file($name_file, $allowed, $upload_file);
                 rename(
@@ -57,12 +57,13 @@ class MangaForm extends Form
                 Form::upload_file($name_file, $allowed, $upload_file);
                 rename(
                     "$_SERVER[DOCUMENT_ROOT]/assets/img/manga/" . $_FILES[$name_file]['name'],
-                    "$_SERVER[DOCUMENT_ROOT]".$this->preview_path_replace
+                    "$_SERVER[DOCUMENT_ROOT]" . $this->preview_path_replace
                 );
             }
 
             return $manga;
-        } return null;
+        }
+        return null;
     }
 
     public function createManga(): Manga

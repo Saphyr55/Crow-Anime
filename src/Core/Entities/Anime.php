@@ -3,7 +3,6 @@
 namespace CrowAnime\Core\Entities;
 
 use CrowAnime\Core\Database\Database;
-use CrowAnime\Core\Entities\Work;
 use DateTime;
 
 class Anime extends Work
@@ -14,30 +13,29 @@ class Anime extends Work
     private static array $mostPopularAnimes = [];
     private ?string $season;
     private ?string $studio;
-    private $current_season;
-    private $number_season;
 
     private function __construct(
-        ?string $title_en = "",
-        ?string $title_ja = "",
-        ?bool $is_finish = false,
-        ?string $synopsis = "",
-        ?string $season = null,
-        ?string $studio = "",
+        ?string              $title_en = "",
+        ?string              $title_ja = "",
+        ?bool                $is_finish = false,
+        ?string              $synopsis = "",
+        ?string              $season = null,
+        ?string              $studio = "",
         DateTime|string|null $date = ""
-    ) {
+    )
+    {
         parent::__construct($title_en, $title_ja, $is_finish, $synopsis, $date);
         $this->season = $season;
         $this->studio = $studio;
     }
 
     public static function build(
-        string $title_en,
-        string $title_ja,
-        bool $is_finish,
-        string $synopsis,
-        string $season,
-        string $studio,
+        string          $title_en,
+        string          $title_ja,
+        bool            $is_finish,
+        string          $synopsis,
+        string          $season,
+        string          $studio,
         DateTime|string $date
     ): Anime
     {
@@ -61,13 +59,13 @@ class Anime extends Work
             VALUES (:anime_title_en, :anime_title_ja, :anime_finish, :anime_season,
              :anime_synopsis, :anime_studio, :anime_date)",
             [
-                ':anime_title_en'  => $this->getTitle_en(),
-                ':anime_title_ja'  => $this->getTitle_ja(),
-                ':anime_finish'    => $this->isFinish() ? 1 : 0,
-                ':anime_season'    => $this->getSeason(),
-                ':anime_synopsis'  => $this->getSysnopis(),
-                ':anime_studio'    => $this->getStudio(),
-                ':anime_date'      => $this->getDate()
+                ':anime_title_en' => $this->getTitle_en(),
+                ':anime_title_ja' => $this->getTitle_ja(),
+                ':anime_finish' => $this->isFinish() ? 1 : 0,
+                ':anime_season' => $this->getSeason(),
+                ':anime_synopsis' => $this->getSynopsis(),
+                ':anime_studio' => $this->getStudio(),
+                ':anime_date' => $this->getDate()
             ]
         );
     }
@@ -112,7 +110,7 @@ class Anime extends Work
             );
 
             foreach ($mostPopularAnimes as $value) {
-                $value = (array) $value;
+                $value = (array)$value;
                 $anime = Anime::build(
                     $value['anime_title_en'],
                     $value['anime_title_ja'],
@@ -141,7 +139,7 @@ class Anime extends Work
             );
 
             foreach ($topAnimes as $value) {
-                $value = (array) $value;
+                $value = (array)$value;
                 $anime = Anime::build(
                     $value['anime_title_en'],
                     $value['anime_title_ja'],
@@ -167,7 +165,7 @@ class Anime extends Work
             );
 
             foreach ($recentAnimesUpload as $value) {
-                $value = (array) $value;
+                $value = (array)$value;
                 $anime = Anime::build(
                     $value['anime_title_en'],
                     $value['anime_title_ja'],

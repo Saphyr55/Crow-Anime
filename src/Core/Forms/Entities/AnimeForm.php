@@ -17,7 +17,7 @@ class AnimeForm extends Form
         $this->data['anime_score'] = null;
     }
 
-    public function getAnime() : ?Anime
+    public function getAnime(): ?Anime
     {
         $path_replace = (User::getCurrentUser() instanceof User) ? "/assets/img/anime/preview_" . User::getCurrentUser()->getIdUser() . '.jpg' : null;
         $allowed = ["jpg" => "image/jpg", "jpeg" => "image/jpeg", "png" => "image/png"];
@@ -33,7 +33,7 @@ class AnimeForm extends Form
             unlink("$_SERVER[DOCUMENT_ROOT]$path_replace");
     }
 
-    private function checkData($data, $path_replace, $name_file, $allowed, $upload_dir) : ?Anime
+    private function checkData($data, $path_replace, $name_file, $allowed, $upload_dir): ?Anime
     {
         if (Form::check($data)) {
             $animeForm = new AnimeForm($data);
@@ -89,7 +89,7 @@ class AnimeForm extends Form
             $anime->sendDatabase();
 
             // recover the last register
-            $last_anime = (array) Database::getDatabase()->query("SELECT * FROM anime ORDER BY id_anime DESC")[0];
+            $last_anime = (array)Database::getDatabase()->query("SELECT * FROM anime ORDER BY id_anime DESC")[0];
 
             $anime->setIdWork($last_anime['id_anime']);
 

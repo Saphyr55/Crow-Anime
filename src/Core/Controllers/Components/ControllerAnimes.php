@@ -1,15 +1,18 @@
 <?php
 
-namespace CrowAnime\Core\Controllers\Entities;
+namespace CrowAnime\Core\Controllers\Components;
 
 use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Anime;
+use CrowAnime\Core\Entities\Season;
+use CrowAnime\Core\Language\Language;
 
 class ControllerAnimes extends Controller
 {
-    private string $stylePopular;
-    private string $styleTop;
-    private string $styleSeasonal;
+    private string $stylePopular = '';
+    private string $styleTop = '';
+    private string $styleSeasonal = '';
+
 
     private function mangas(): array
     {
@@ -25,30 +28,20 @@ class ControllerAnimes extends Controller
     {
         switch ($_GET['type']) {
             case 'popular':
-                $this->styleTop = "style='border-color: transpared;'";
                 $this->stylePopular = "style='border-color: white;'";
-                $this->styleSeasonal = "style='border-color: transpared;'";
-                break;
-            case 'recent_upload':
-                $this->styleTop = "style='border-color: transpared;'";
-                $this->stylePopular = "style='border-color: transpared;'";
-                $this->styleSeasonal = "style='border-color: transpared;'";
                 break;
             case 'seasonal' :
-                $this->stylePopular =  "style='border-color: transpared;'";
-                $this->styleTop = "style='border-color: transpared;'";
                 $this->styleSeasonal = "style='border-color: white;'";
                 break;
             default:
                 $this->styleTop = "style='border-color: white;'";
-                $this->stylePopular = "style='border-color: transpared;'";
-                $this->styleSeasonal = "style='border-color: transpared;'";
                 break;
         }
     }
 
-    public function action() : void
+    public function action(): void
     {
+        $this->language(Language::getInstance()->for('animes'));
         $this->styles();
         $this->with([
             'animes' => $this->mangas(),
@@ -56,7 +49,9 @@ class ControllerAnimes extends Controller
                 'popular' => $this->stylePopular,
                 'top' => $this->styleTop,
                 'seasonal' => $this->styleSeasonal
-            ]
+            ],
+            'current_season' => ucfirst(strtolower(Season::getCurrentSeason())) . ' ',
+            'current_year' => date('Y')
         ]);
     }
 }

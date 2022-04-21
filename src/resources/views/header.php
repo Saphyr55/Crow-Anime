@@ -1,54 +1,58 @@
 <header id="header">
     <div class="top-header">
-        <div class=''>
+        <div class="">
             <a href="<?= "http://$_SERVER[HTTP_HOST]/home" ?>">
-                <img class='logo' src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/logo.png" ?>" alt='' srcset=''>
+                <img class='logo' src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/logo.png" ?>" alt="" srcset="">
             </a>
         </div>
-        <?php if (!isset($_SESSION['user'])) : ?>
-            <div class='profile profil'>
+        <?php if (!$exist_user) : ?>
+            <div class='profile profile-div'>
                 <a href="<?= "http://$_SERVER[HTTP_HOST]/login" ?> ">
-                    <p class='connected'>SE CONNECTER</p>
+                    <p class='connected'><?= $login ?></p>
                 </a>
                 <a href="<?= "http://$_SERVER[HTTP_HOST]/signup" ?> ">
-                    <p>S'ENREGISTER</p>
+                    <p><?= $signup ?></p>
                 </a>
             </div>
         <?php else : ?>
-            <?php $username = $_SESSION['user']->getUsername(); ?>
-            <div class="profil">
+            <div class="profile-div">
                 <div class="div-profile">
                     <a class="" onclick="displayScrollMenuOnClick()">
                         <i class="fa-solid fa-bars white"></i>
-                        <p class="p-profile"><?= $_SESSION['user']->getUsername() ?></p>
+                        <p class="p-profile"><?= $header_username ?></p>
                     </a>
                     <div id="scroll-menu" class="scroll-menu">
                         <ul>
                             <li>
-                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $username ?>" class="white"><i class="fa-solid fa-user"></i>
-                                    <p>Profile</p>
+                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $header_username ?>" class="white"><i
+                                            class="fa-solid fa-user"></i>
+                                    <p><?= $profile ?></p>
                                 </a>
                             </li>
-                            <?php if ($_SESSION['user']->isAdmin()) : ?>
+                            <?php if ($is_admin) : ?>
                                 <li>
-                                    <a href="<?= "http://$_SERVER[HTTP_HOST]/admin/" . $username ?>" class="white"><i class="fa-solid fa-hammer"></i>
-                                        <p>Admin</p>
+                                    <a href="<?= "http://$_SERVER[HTTP_HOST]/admin/" . $header_username ?>" class="white"><i
+                                                class="fa-solid fa-hammer"></i>
+                                        <p><?= $admin ?></p>
                                     </a>
                                 </li>
                             <?php endif; ?>
                             <li>
-                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $username . "/animeslist" ?>" class="white"><i class="fa-solid fa-book"></i>
-                                    <p>List Animes</p>
+                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $header_username . "/animeslist" ?>"
+                                   class="white"><i class="fa-solid fa-book"></i>
+                                    <p><?= $list_anime ?></p>
                                 </a>
                             </li>
                             <li>
-                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $username . "/mangaslist" ?>" class="white"><i class="fa-solid fa-book"></i>
-                                    <p>List Mangas</p>
+                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $header_username . "/mangaslist" ?>"
+                                   class="white"><i class="fa-solid fa-book"></i>
+                                    <p><?= $list_manga ?></p>
                                 </a>
                             </li>
                             <li>
-                                <a href="<?= "http://$_SERVER[HTTP_HOST]/logout"?>" class="white"><i class="fa-solid fa-right-from-bracket"></i>
-                                    <p>Lougout</p>
+                                <a href="<?= "http://$_SERVER[HTTP_HOST]/logout" ?>" class="white"><i
+                                            class="fa-solid fa-right-from-bracket"></i>
+                                    <p><?= $logout ?></p>
                                 </a>
                             </li>
                         </ul>
@@ -67,14 +71,14 @@
     <div class=" bottom-header">
         <div>
             <a href=<?= "http://$_SERVER[HTTP_HOST]/animes" ?>>
-                <p>ANIME</p>
+                <p><?= $anime ?></p>
             </a>
             <a href=<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>>
-                <p>MANGA</p>
+                <p><?= $manga ?></p>
             </a>
         </div>
         <div class="search-bar">
-            <input class="input" type="text" placeholder="Rechercher...">
+            <input class="input" type="text" placeholder="<?= $search ?>">
             <a href="">
                 <div class="button-search">
                     <i class="fa-solid fa-magnifying-glass white"></i>

@@ -33,7 +33,7 @@ label {
 
 .form {
     width: 70vh;
-    height: 400px auto;
+    height: auto 400px;
     min-height: 400px;
     background-color: rgb(136, 116, 116);
     margin-left: 10px;
@@ -43,7 +43,7 @@ form {
     margin: 4%;
 }
 
-.form input[type=text] {
+.form > form > input[type=text] {
     outline: none;
     padding: 2%;
     min-width: 80%;
@@ -59,7 +59,7 @@ form {
     font-size: 17px;
 }
 
-.form input[type=text]:focus {
+.form > form input[type=text]:focus {
     border: 2px solid #2e2e2e;
 }
 

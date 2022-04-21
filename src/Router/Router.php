@@ -30,30 +30,29 @@ class Router
     {
         $uri = explode("?", $_SERVER['REQUEST_URI'])[0];
         for ($i = 0; $i < count($this->modules); $i++) {
+            if ((self::$currentModule = $this->modules[$i]) !== null) {
+                if (
+                    strcmp($uri, '/' . self::$currentModule->getNameModule()) === 0
+                ) {
+                    self::$currentModule->generate();
+                    exit();
+                } elseif (strcmp($uri, '/' . self::$currentModule->getNameModule() . '/') === 0) {
 
-            self::$currentModule = $this->modules[$i];
+                    header('Location: ' . substr($uri, 0, -1)); // redirection si l'uri termine par /
+                    exit();
+                } elseif (strcmp($uri, "/") == 0) {
 
-            if (
-                strcmp($uri, '/' . self::$currentModule->getNameModule()) === 0
-            ) {
-
-                self::$currentModule->generate();
-                break;
-            } elseif (strcmp($uri, '/' . self::$currentModule->getNameModule() . '/') === 0) {
-
-                header('Location: ' . substr($uri, 0, -1)); // redirection si l'uri termine par /
-                break;
-            } elseif (strcmp($uri, "/") == 0) {
-
-                ($this->modules[0])->generate($this->modules[0]);
-                break;
-            } elseif (
-                ($i == (count($this->modules) - 1))
-            ) {
-                 error_log("Error : " . $uri . " not found");
-                 $this->errorPage->generate();
-                 break;
+                    ($this->modules[0])->generate($this->modules[0]);
+                    exit();
+                } elseif (
+                    ($i == (count($this->modules) - 1))
+                ) {
+                    error_log("Error : " . $uri . " not found");
+                    $this->errorPage->generate();
+                    exit();
+                }
             }
+
         }
     }
 

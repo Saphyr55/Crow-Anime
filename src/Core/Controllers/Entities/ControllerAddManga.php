@@ -3,17 +3,16 @@
 namespace CrowAnime\Core\Controllers\Entities;
 
 use CrowAnime\Core\Controllers\Controller;
-use CrowAnime\Core\Database\Database;
-use CrowAnime\Core\Entities\Manga;
-use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Forms\Entities\MangaForm;
-use CrowAnime\Core\Forms\Form;
+use CrowAnime\Core\Language\Language;
+use CrowAnime\Module;
 
 class ControllerAddManga extends Controller
 {
 
-    public function action() : void
+    public function action(): void
     {
+        $this->language(Language::getInstance()->for('add_animes'));
         $manga = (new MangaForm())->build();
         $this->with(
             [

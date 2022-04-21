@@ -20,7 +20,9 @@ class Signup extends Module
         $rules = new Rules([
             Rules::NOT_LOGIN_REQUIRED
         ]);
-        $controller = new ControllerSignup();
+
+        $controller = new ControllerSignup($this);
+
         parent::__construct($nameModule, $head, $body, $rules, $controller);
     }
 

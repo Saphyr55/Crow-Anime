@@ -15,15 +15,16 @@ class Manga extends Work
     private int $volumes;
 
     public function __construct(
-        ?string $title_en = '',
-        ?string $title_ja = '',
-        ?bool $is_finish = false,
-        ?string $synopsis = '',
-        string|null $authors = null,
-        string|null $publishingHouse = null,
-        ?int $volumes = null,
+        ?string              $title_en = '',
+        ?string              $title_ja = '',
+        ?bool                $is_finish = false,
+        ?string              $synopsis = '',
+        string|null          $authors = null,
+        string|null          $publishingHouse = null,
+        ?int                 $volumes = null,
         DateTime|string|null $date = null
-    ) {
+    )
+    {
         parent::__construct($title_en, $title_ja, $is_finish, $synopsis, $date);
         $this->volumes = $volumes;
         $this->authors = $authors;
@@ -39,22 +40,22 @@ class Manga extends Work
             VALUES (:manga_title_ja, :manga_title_en, :manga_date, :manga_finish,
              :manga_author, :manga_edition, :manga_synopsis, :manga_volumes)",
             [
-                ':manga_title_ja'  => $this->getTitle_en(),
-                ':manga_title_en'  => $this->getTitle_ja(),
-                ':manga_date'    => $this->getDate(),
-                ':manga_finish'    => $this->isFinish() ? 1 : 0,
-                ':manga_author'  => $this->getAuthors(),
-                ':manga_edition'    => $this->getPublishingHouse(),
-                ':manga_synopsis' => $this->getSysnopis(),
-                ':manga_volumes'      => $this->getVolumes()
+                ':manga_title_ja' => $this->getTitle_en(),
+                ':manga_title_en' => $this->getTitle_ja(),
+                ':manga_date' => $this->getDate(),
+                ':manga_finish' => $this->isFinish() ? 1 : 0,
+                ':manga_author' => $this->getAuthors(),
+                ':manga_edition' => $this->getPublishingHouse(),
+                ':manga_synopsis' => $this->getSynopsis(),
+                ':manga_volumes' => $this->getVolumes()
             ]
         );
     }
 
     public static function getMostPopularMangas(): array
     {
-       if (self::$mostPopularMangas === []) {
-           $mostPopularMangas = Database::getDatabase()->query(
+        if (self::$mostPopularMangas === []) {
+            $mostPopularMangas = Database::getDatabase()->query(
                 "SELECT m.*, COUNT(l.id_user) FROM manga m
                 INNER JOIN lister_manga l ON m.id_manga=l.id_manga
                 GROUP BY l.id_manga
@@ -62,17 +63,17 @@ class Manga extends Work
             );
 
             foreach ($mostPopularMangas as $value) {
-                $value = (array) $value;
+                $value = (array)$value;
                 $manga = new Manga(
                     $value['manga_title_ja'],
                     $value['manga_title_en'],
                     $value['manga_finish'],
-                   $value['manga_synopsis'],
+                    $value['manga_synopsis'],
                     $value['manga_author'],
                     $value['manga_edition'],
                     $value['manga_volumes'],
                     $value['manga_date']
-               );
+                );
 
                 $manga->setIdWork($value['id_manga']);
                 $manga->setScore($value['COUNT(id_user)']);
@@ -94,7 +95,7 @@ class Manga extends Work
             );
 
             foreach ($topMangas as $value) {
-                $value = (array) $value;
+                $value = (array)$value;
                 $manga = new Manga(
                     $value['manga_title_ja'],
                     $value['manga_title_en'],
@@ -115,27 +116,27 @@ class Manga extends Work
     }
 
 
-   public static function recentUpload(): array
-   {
-       if (self::$recentMangasUpload === []) {
+    public static function recentUpload(): array
+    {
+        if (self::$recentMangasUpload === []) {
             $recentMangasUpload = Database::getDatabase()->query(
-               "SELECT * FROM manga ORDER BY id_manga DESC"
-           );
+                "SELECT * FROM manga ORDER BY id_manga DESC"
+            );
 
-           foreach ($recentMangasUpload as $value) {
-               $value = (array) $value;
-               $manga = new Manga(
-                   $value['manga_title_ja'],
-                   $value['manga_title_en'],
-                   $value['manga_finish'],
-                   $value['manga_synopsis'],
-                   $value['manga_author'],
-                   $value['manga_edition'],
+            foreach ($recentMangasUpload as $value) {
+                $value = (array)$value;
+                $manga = new Manga(
+                    $value['manga_title_ja'],
+                    $value['manga_title_en'],
+                    $value['manga_finish'],
+                    $value['manga_synopsis'],
+                    $value['manga_author'],
+                    $value['manga_edition'],
                     $value['manga_volumes'],
                     $value['manga_date']
                 );
 
-               $manga->setIdWork($value['id_manga']);
+                $manga->setIdWork($value['id_manga']);
                 self::$recentMangasUpload[] = $manga;
             }
         }
@@ -177,6 +178,6 @@ class Manga extends Work
         $this->volumes = $volumes;
 
         return $this;
-   }
+    }
 
 }

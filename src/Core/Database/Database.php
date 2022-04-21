@@ -49,8 +49,8 @@ class Database
     {
         if (self::$pdo === null) {
             self::$pdo = new PDO(
-                    "sqlite:$_SERVER[DOCUMENT_ROOT]/crow-anime.sqlite",
-                );
+                "sqlite:$_SERVER[DOCUMENT_ROOT]/crow-anime.sqlite",
+            );
             self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
@@ -68,17 +68,17 @@ class Database
     }
 
     /**
-     * Permet de recuperer des donner avec la requette sql mis en parametre 
+     * Permet de recuperer des donner avec la requette sql mis en parametre
      *
-     * @param  string $statement
+     * @param string $statement
      * @return mixed
      */
-    public function query(string $statement) : array
+    public function query(string $statement): array
     {
         try {
             $pdo_statement = $this->getPDO()->query($statement);
             $data = $pdo_statement->fetchAll(PDO::FETCH_OBJ);
-            return (array) $data;
+            return (array)$data;
         } catch (Throwable $th) {
             error_log($th->getMessage());
             return [];

@@ -1,3 +1,3 @@
 <footer id="footer">
-        <a href="">&copy; 2022 CROW ANIME, OFFICIAL SITE</a>
+    <a href="">&copy; <?= $current_date ?> CROW ANIME, <?= $_footer ?></a>
 </footer>

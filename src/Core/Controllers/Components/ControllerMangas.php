@@ -1,14 +1,16 @@
 <?php /** @noinspection PhpMissingFieldTypeInspection */
 
-namespace CrowAnime\Core\Controllers\Entities;
+namespace CrowAnime\Core\Controllers\Components;
 
 use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Manga;
+use CrowAnime\Core\Language\Language;
 
 class ControllerMangas extends Controller
 {
-    private $stylePopular;
-    private $styleTop;
+    private $stylePopular = "";
+    private $styleTop = "";
+
 
     private function mangas(): array
     {
@@ -23,22 +25,17 @@ class ControllerMangas extends Controller
     {
         switch ($_GET['type']) {
             case 'popular':
-                $this->styleTop = "style='border-color: transpared;'";
                 $this->stylePopular = "style='border-color: white;'";
-                break;
-            case 'recent_upload':
-                $this->styleTop = "style='border-color: transpared;'";
-                $this->stylePopular = "style='border-color: transpared;'";
                 break;
             default:
                 $this->styleTop = "style='border-color: white;'";
-                $this->stylePopular = "style='border-color: transpared;'";
                 break;
         }
     }
 
-    public function action() : void
+    public function action(): void
     {
+        $this->language(Language::getInstance()->for('mangas'));
         $this->styles();
         $this->with([
             'mangas' => $this->mangas(),

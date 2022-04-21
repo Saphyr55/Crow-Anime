@@ -2,7 +2,6 @@
 
 namespace CrowAnime\Core\Rule;
 
-use CrowAnime\App;
 use CrowAnime\Core\Entities\User;
 
 class Rules
@@ -39,9 +38,9 @@ class Rules
 
     }
 
-    private function user_current_only() : void
+    private function user_current_only(): void
     {
-        if (!User::getCurrentUser()->isInURI()){
+        if (!User::getCurrentUser()->isInURI()) {
             header("Location: http://$_SERVER[HTTP_HOST]/not-found");
             exit();
         }

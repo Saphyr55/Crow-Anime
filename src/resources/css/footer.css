@@ -1,9 +1,9 @@
 #footer {
-    position: absolute; 
+    position: absolute;
     display: flex;
     align-items: center;
-    bottom: 0; 
-    left: 0; 
+    bottom: 0;
+    left: 0;
     right: 0;
     height: 50px;
     background-color: #1D1D1D;

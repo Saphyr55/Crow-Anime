@@ -18,7 +18,9 @@
             <?php for ($i = 0; $i < 6; $i++) : ?>
                 <li class="anime">
                     <a href="">
-                        <img class="anime-img" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' ?>" alt="" srcset="">
+                        <img class="anime-img"
+                             src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' ?>"
+                             alt="" srcset="">
                         <p class="name-anime">
                             <?= $animes[$i]->getTitle_ja() ?>
                         </p>
@@ -30,7 +32,7 @@
     <div class="season-anime">
         <p class="p-anime">
             <a href="">
-                DERNIER EPISODE
+                <?= $best_manga ?>
             </a>
         </p>
         <ol class="season-anime-img" style="list-style-type:none;">
@@ -38,7 +40,7 @@
                 <li class='anime'>
                     <a href=''>
                         <img class='anime-img' src='/assets/img/not_found.png' alt='' srcset=''>
-                        <p class='name-anime'>Name anime</p>
+                        <p class='name-anime'><?= $name_anime ?></p>
                     </a>
                 </li>
             <?php endfor; ?>

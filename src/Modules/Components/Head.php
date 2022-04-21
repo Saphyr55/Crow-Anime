@@ -3,6 +3,7 @@
 namespace CrowAnime\Modules\Components;
 
 use CrowAnime\Core\Entities\Path;
+use CrowAnime\Core\Language\Language;
 
 class Head implements Component
 {
@@ -16,6 +17,7 @@ class Head implements Component
     public function __construct(string $title, array $namesFilesCSS = [])
     {
         $this->title = $title;
+        $this->lang = Language::getInstance()->getCurrentLanguage();
         $this->linksCSS = [];
         if (isset($namesFilesCSS)) {
             foreach ($namesFilesCSS as $value) {

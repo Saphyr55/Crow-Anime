@@ -40,7 +40,7 @@ class AddManga extends Module
             Rules::USER_CURRENT_ONLY
         ]);
 
-        $this->controller = new ControllerAddManga();
+        $this->controller = new ControllerAddManga($this);
 
         parent::__construct(
             $this->nameModule,

@@ -4,7 +4,7 @@ namespace CrowAnime\Core\Controllers;
 
 interface ControllerInterface
 {
-    function action() : void;
+    function action(): void;
 
     function with(array $data): array;
 

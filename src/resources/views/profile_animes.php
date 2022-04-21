@@ -27,11 +27,14 @@
     </div>
     <div class="list-container">
         <div class="list-items">
-            <?php $animes = \CrowAnime\Core\Entities\User::getCurrentUserURI()->animesView(); ?>
+            <?php use CrowAnime\Core\Entities\User;
+
+            $animes = User::getCurrentUserURI()->animesView(); ?>
             <?php if (count($animes) !== 0) : ?>
                 <?php for ($i = 0; $i < count($animes); $i++) : ?>
                     <a href="" class="list-item">
-                        <img class="list-item-filter" src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' ?>">
+                        <img class="list-item-filter"
+                             src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' ?>">
                         <div class="list-item-desc">
                             <?= $animes[$i]->getTitle_ja() ?>
                         </div>

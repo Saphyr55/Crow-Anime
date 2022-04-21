@@ -11,6 +11,8 @@ use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Footer;
 use CrowAnime\Modules\Components\Head;
 use CrowAnime\Modules\Components\Header;
+use CrowAnime\Router\Router;
+use phpDocumentor\Reflection\Types\This;
 
 class AddAnime extends Module
 {
@@ -32,7 +34,7 @@ class AddAnime extends Module
             Rules::USER_CURRENT_ONLY
         ]);
 
-        $this->controller = new ControllerAddAnime();
+        $this->controller = new ControllerAddAnime($this);
 
         parent::__construct(
             $this->nameModule,

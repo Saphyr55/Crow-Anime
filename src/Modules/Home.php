@@ -2,9 +2,9 @@
 
 namespace CrowAnime\Modules;
 
-use CrowAnime\Core\Controllers\Entities\ControllerHome;
-use CrowAnime\Module;
+use CrowAnime\Core\Controllers\Components\ControllerHome;
 use CrowAnime\Core\Rule\Rules;
+use CrowAnime\Module;
 use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Footer;
 use CrowAnime\Modules\Components\Head;
@@ -39,7 +39,7 @@ class Home extends Module
             Rules::ALL,
         ]);
 
-        $this->controller = new ControllerHome();
+        $this->controller = new ControllerHome($this);
 
         parent::__construct(
             $this->nameModule,

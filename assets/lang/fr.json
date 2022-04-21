@@ -1,3 +1,75 @@
 {
-    
+  "home" : {
+    "best_manga" : "Meilleurs Mangas",
+    "name_anime" : "Nom Manga"
+  },
+  "add_manga" : {
+    "name_english" : "Nom du manga en anglais",
+    "name_japanese" : "Nom de manga japonais",
+    "year" : "Date de sortie",
+    "choose_picture" : "Choisissez une image d'anime : ",
+    "is_finish" : "Est-il fini?",
+    "_volumes" : "Volumes",
+    "preview" : "Aperçu Manga",
+    "register" : "Enregistrer Manga",
+    "_publishing_house" : "Maison d'édition",
+    "_authors" : " Auteurs "
+  },
+  "add_anime" : {
+    "name_english" : "Nom du manga en anglais",
+    "name_japanese" : "Nom du manga en japonais",
+    "year" : "Date de sortie",
+    "choose_picture" : "Choisissez une image d'anime : ",
+    "is_finish" : "Is finished ?",
+    "_studio" : "Studio",
+    "register" : "Register Anime",
+    "preview" : "Preview Anime"
+  },
+  "animes" : {
+    "all" : "Tout",
+    "top_anime" : "Meilleurs Animes",
+    "most_popular": "Animes Populaires"
+  },
+  "mangas" : {
+    "all" : "Tout",
+    "top_manga" : "Meilleurs Mangas",
+    "most_popular" : "Mangas Populaires"
+  },
+  "footer" : {
+    "_footer" : "SITE OFFICIEL"
+  },
+  "header" : {
+    "login": "Se connectez",
+    "signup" : "S'inscrire",
+    "profile": "Profile",
+    "admin": "Admin",
+    "list_anime" : "Liste Animes",
+    "list_manga": "Liste Mangas",
+    "logout" : "Se déconnecter",
+    "anime" : "Anime",
+    "manga" : "Manga",
+    "search" : "Recherche..."
+  },
+  "login" : {
+    "username" : "Nom d'utilisateur",
+    "password" : "Mot de passe",
+    "dont_have_account" : "Je n'ai pas de <span>compte</span>. Je m'en <span>creer</span> un.",
+    "login" : "Se connecter"
+  },
+  "profile_animes" : {
+    "animes_watch" : "Montre d'anime",
+    "any_anime_watch" : "Vous n'avez enregistré aucun Anime"
+  },
+  "profile_mangas" : {
+    "mangas_read" : "Manga lu",
+    "any_manga_read" : "Vous n'avez enregistré aucun manga"
+  },
+  "signup" : {
+    "inscription" : "Inscription",
+    "signup" : "S'inscire",
+    "username" : "Nom d'utilisateur",
+    "email" : "Email",
+    "password" : "Mot de passe",
+    "repeat_password" : "Répéter le mot de passe"
+  }
 }

@@ -3,8 +3,6 @@
 namespace CrowAnime\Core\Entities;
 
 use CrowAnime\Core\Database\Database;
-use CrowAnime\Core\Entities\Anime;
-use CrowAnime\Core\Entities\Manga;
 use DateTime;
 
 class User
@@ -95,7 +93,7 @@ class User
         return $mangas_r;
     }
 
-    public static function arrayToUser(array $user) : User
+    public static function arrayToUser(array $user): User
     {
         return new User(
             $user['id_user'],
@@ -119,11 +117,10 @@ class User
             if (strcmp(self::getCurrentUserURI()->getUsername(), self::getCurrentUser()->username) === 0)
                 return true;
             else return false;
-        }
-        else return false;
+        } else return false;
     }
 
-    public static function setUserURI() : void
+    public static function setUserURI(): void
     {
         $uri = $_SERVER['REQUEST_URI'];
         if (
@@ -146,9 +143,10 @@ class User
                         $user[0]['user_date']
                     )
                 );
-            else self::setCurrentUserURI(new User(-1, "","","","","",""));
-        } else self::setCurrentUserURI(new User(-1, "","","","","",""));
+            else self::setCurrentUserURI(new User(-1, "", "", "", "", "", ""));
+        } else self::setCurrentUserURI(new User(-1, "", "", "", "", "", ""));
     }
+
     /**
      * Get the value of dateConnection
      */
@@ -288,7 +286,7 @@ class User
         return self::$usersConnected;
     }
 
-    public static function getCurrentUser() : ?User
+    public static function getCurrentUser(): ?User
     {
         return $_SESSION['user'];
     }

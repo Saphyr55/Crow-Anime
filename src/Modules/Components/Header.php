@@ -2,6 +2,8 @@
 
 namespace CrowAnime\Modules\Components;
 
+use CrowAnime\Core\Controllers\Components\ControllerHeader;
+use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Path;
 
 /**
@@ -14,6 +16,7 @@ class Header implements Component
 
     private static ?Header $header = null;
     private string $pathHeader;
+    private ?Controller $controller;
 
     /**
      * __construct
@@ -23,6 +26,7 @@ class Header implements Component
     public function __construct(string $nameFileHeader)
     {
         $this->pathHeader = Path::VIEWS . $nameFileHeader . '.php';
+        $this->controller = new ControllerHeader();
     }
 
     /**
@@ -45,6 +49,23 @@ class Header implements Component
 
         return $this;
     }
+
+    /**
+     * @return Controller|null
+     */
+    public function getController(): ?Controller
+    {
+        return $this->controller;
+    }
+
+    /**
+     * @param Controller|null $controller
+     */
+    public function setController(?Controller $controller): void
+    {
+        $this->controller = $controller;
+    }
+
 
     /**
      * Get the value of header

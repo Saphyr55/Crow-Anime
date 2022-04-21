@@ -2,7 +2,6 @@
 
 namespace CrowAnime\Core\Entities;
 
-use CrowAnime\Core\Entities\Anime;
 use DateTime;
 
 abstract class Work
@@ -16,12 +15,13 @@ abstract class Work
     protected string|null|DateTime $date;
 
     public function __construct(
-        ?string $title_en,
-        ?string $title_ja,
-        ?bool $is_finish,
-        ?string $synopsis,
+        ?string              $title_en,
+        ?string              $title_ja,
+        ?bool                $is_finish,
+        ?string              $synopsis,
         null|string|DateTime $date
-    ) {
+    )
+    {
         //$this->score = 0;
         $this->title_en = $title_en;
         $this->title_ja = $title_ja;

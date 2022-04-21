@@ -3,6 +3,7 @@
 namespace CrowAnime;
 
 use CrowAnime\Core\Controllers\Controller;
+use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Head;
@@ -18,10 +19,9 @@ class Module implements Component
     protected Head $head;
     protected Body $body;
     protected string $redirectionURI;
-    protected string $nameModule;
+    protected string $nameModule = "";
     protected Rules $rules;
     protected ?Controller $controller;
-
 
     /**
      * @param string $nameModule
@@ -34,25 +34,40 @@ class Module implements Component
     {
         $this->nameModule = $nameModule;
         $this->redirectionURI = "http://$_SERVER[HTTP_HOST]/$nameModule";
-        $this->head  = $head;
-        $this->body  = $body;
+        $this->head = $head;
+        $this->body = $body;
         $this->rules = $rules;
         $this->controller = $controller;
     }
 
     /**
      * Permet de generer le code php|html en fonction d'un module
-     *
      */
     public function generate() : void
     {
-        if ($this->controller !== null){
-            $this->controller->action();
-            extract($this->controller->getData());
-        }
-
         $body = $this->getBody();
         $this->getRules()->check();
+        if ($this->getBody()->getFooter() !== null && $this->getBody()->getHeader() !== null){
+            $controller_header = $body->getHeader()->getController();
+            $controller_footer = $body->getFooter()->getController();
+            if ($controller_header !== null &&
+                $controller_footer !== null)
+            {
+                $controller_header->action();
+                $controller_footer->action();
+                extract($controller_footer->getData());
+                extract($controller_footer->getStrings());
+                extract($controller_header->getData());
+                extract($controller_header->getStrings());
+            }
+        }
+
+        if ($this->controller !== null){
+
+            $this->controller->action();
+            extract($this->controller->getData());
+            extract($this->controller->getStrings());
+        }
 
         foreach ($this->getHead()->sendHTML() as $value)
             echo $value;
@@ -118,7 +133,6 @@ class Module implements Component
     {
         return $this->nameModule;
     }
-
 
     /**
      * Get the value of rules
