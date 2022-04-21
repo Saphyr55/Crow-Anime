@@ -1,6 +1,6 @@
 <?php
 
-use CrowAnime\Core\Controller\Controller;
+use CrowAnime\Core\Controllers\Controller;
 use PHPUnit\Framework\TestCase;
  
 

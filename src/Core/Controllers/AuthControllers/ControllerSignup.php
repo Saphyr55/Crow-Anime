@@ -1,26 +1,20 @@
 <?php
 
-namespace CrowAnime\Core\Controller\AuthController;
+namespace CrowAnime\Core\Controllers\AuthControllers;
 
-use CrowAnime\Core\Controller\Controller;
-use CrowAnime\Core\Form\Auth\SignupForm;
-use CrowAnime\Core\Form\Form;
+use CrowAnime\Core\Controllers\Controller;
+use CrowAnime\Core\Forms\Auths\SignupForm;
+use CrowAnime\Core\Forms\Form;
 
 class ControllerSignup extends Controller
 {
-    private Form $form;
-
-    public function __construct()
-    {
-        $this->form = new SignupForm();
-        $this->form->signup();
-        $this->with([
-            'error' => $this->form->getErrorMsg()
-        ]);
-    }
 
     public function action(): void
     {
-        // TODO: Implement action() method.
+        $form = new SignupForm();
+        $form->signup();
+        $this->with([
+            'error' => $form->getErrorMsg()
+        ]);
     }
 }

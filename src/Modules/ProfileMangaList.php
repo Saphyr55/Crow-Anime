@@ -19,10 +19,10 @@ class ProfileMangaList extends Module
     {
 
         $this->nameModule = 
-        "profile/" . User::getCurrentUsernameURI() . "/mangaslist";
+        "profile/" . User::getCurrentUserURI()->getUsername() . "/mangaslist";
         
         $this->head = new Head(
-            User::getCurrentUsernameURI() . " : Manga List",
+            User::getCurrentUserURI()->getUsername() . " : Manga List",
             [
                 "mangas",
                 "profile_mangas"

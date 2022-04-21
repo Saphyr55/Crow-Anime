@@ -1,26 +1,14 @@
 <?php /** @noinspection PhpMissingFieldTypeInspection */
 
-namespace CrowAnime\Core\Controller\Entities;
+namespace CrowAnime\Core\Controllers\Entities;
 
-use CrowAnime\Core\Controller\Controller;
+use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Manga;
 
 class ControllerMangas extends Controller
 {
     private $stylePopular;
     private $styleTop;
-
-    public function __construct()
-    {
-        $this->styles();
-        $this->with([
-            'mangas' => $this->mangas(),
-            'styles' => [
-                'popular' => $this->stylePopular,
-                'top' => $this->styleTop
-            ]
-        ]);
-    }
 
     private function mangas(): array
     {
@@ -51,6 +39,13 @@ class ControllerMangas extends Controller
 
     public function action() : void
     {
-        // TODO: Implement action() method.
+        $this->styles();
+        $this->with([
+            'mangas' => $this->mangas(),
+            'styles' => [
+                'popular' => $this->stylePopular,
+                'top' => $this->styleTop
+            ]
+        ]);
     }
 }

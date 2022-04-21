@@ -42,19 +42,6 @@ class Body implements Component
     }
 
     /**
-     * Set the value of pathComponent
-     **
-     * @param string $pathComponent
-     * @return self
-     */
-    public function setPathComponent(string $pathComponent): static
-    {
-        $this->pathComponent = $pathComponent;
-
-        return $this;
-    }
-
-    /**
      * Get the value of footer
      *
      * @return Footer|null
@@ -62,20 +49,6 @@ class Body implements Component
     public function getFooter() : ?Footer
     {
         return $this->footer;
-    }
-
-    /**
-     * Set the value of footer
-     *
-     * @param footer
-     * 
-     * @return  self
-     */
-    public function setFooter($footer): static
-    {
-        $this->footer = $footer;
-
-        return $this;
     }
 
     /**
@@ -88,17 +61,4 @@ class Body implements Component
         return $this->header;
     }
 
-    /**
-     * Set the value of header
-     *
-     * @param header
-     * 
-     * @return self
-     */
-    public function setHeader($header): static
-    {
-        $this->header = $header;
-
-        return $this;
-    }
 }

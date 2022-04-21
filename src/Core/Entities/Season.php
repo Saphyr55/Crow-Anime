@@ -8,11 +8,17 @@ abstract class Season
     const FALL   = "FALL";
     const SPRING = "SPRING";
     const SUMMER = "SUMMER";
-    
-    private static string $current_season = Season::SPRING;
 
-    public static function getCurrentSeason() : string 
+    public static function getCurrentSeason() : string
     {
-        return self::$current_season;
+        if (date('n') >= 1 && date('n') <= 3)
+             return self::WINTER;
+        if (date('n') >= 4 && date('n') <= 6)
+            return self::SPRING;
+        if (date('n') >= 7 && date('n') <= 9)
+            return self::SUMMER;
+        if (date('n') >= 10 && date('n') <= 12)
+            return self::WINTER;
+        return "SEASON NOT DEFINED";
     }
 }

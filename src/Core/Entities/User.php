@@ -16,8 +16,8 @@ class User
     private string $email;
     private string $password;
     private bool $isAdmin;
-    private DateTime $dateConnection;
-    private DateTime $dateRegister;
+    private string|DateTime|null $dateConnection;
+    private string|DateTime $dateRegister;
 
     /**
      *
@@ -26,10 +26,10 @@ class User
      * @param string $email
      * @param string $password
      * @param bool $isAdmin
-     * @param string|DateTime $dateConnection
+     * @param string|DateTime|null $dateConnection
      * @param string|DateTime $dateRegister
      */
-    public function __construct(int $idUser, string $username, string $email, string $password, bool $isAdmin, string|DateTime $dateConnection, string|DateTime $dateRegister)
+    public function __construct(int $idUser, string $username, string $email, string $password, bool $isAdmin, string|DateTime|null $dateConnection, string|DateTime $dateRegister)
     {
         $this->idUser = $idUser;
         $this->username = $username;
@@ -108,6 +108,21 @@ class User
         );
     }
 
+
+    public function isInURI(): bool
+    {
+        $uri = $_SERVER['REQUEST_URI'];
+        if (
+            strcmp(explode('/', $uri)[1], 'profile') === 0 ||
+            strcmp(explode('/', $uri)[1], 'admin') === 0
+        ) {
+            if (strcmp(self::getCurrentUserURI()->getUsername(), self::getCurrentUser()->username) === 0)
+                return true;
+            else return false;
+        }
+        else return false;
+    }
+
     /**
      * Get the value of dateConnection
      */
@@ -115,6 +130,7 @@ class User
     {
         return $this->dateConnection;
     }
+
 
     /**
      * Set the value of dateConnection
@@ -213,23 +229,45 @@ class User
         return $this;
     }
 
+    public static function setUserURI() : void
+    {
+        $uri = $_SERVER['REQUEST_URI'];
+        if (
+            strcmp(explode('/', $uri)[1], 'profile') === 0 ||
+            strcmp(explode('/', $uri)[1], 'admin') === 0
+        ) {
+            $theoreticUser = explode('/', $uri)[2];
+            $user = Database::getDatabase()->execute(
+                "SELECT * FROM _user WHERE username=:username", [':username' => $theoreticUser]
+            );
+            if (strcmp($theoreticUser, $user[0]['username']) === 0)
+                User::setCurrentUserURI(new User(
+                    $user[0]['id_user'],
+                    $user[0]['username'],
+                    $user[0]['email'],
+                    $user[0]['password'],
+                    $user[0]['is_admin'],
+                    null,
+                    $user[0]['user_date']
+                ));
+        }
+    }
+
     /**
      * Get the value of currentUsernameURI
      */
-    public static function getCurrentUsernameURI(): ?string
+    public static function getCurrentUserURI(): ?User
     {
-        return self::$currentUsernameURI;
+        return $_SESSION['user_uri'];
     }
 
     /**
      * Set the value of currentUsernameURI
      */
-    public static function setCurrentUsernameURI(?string $currentUsernameURI): void
+    public static function setCurrentUserURI(User $currentUserURI): void
     {
-        self::$currentUsernameURI = $currentUsernameURI;
+        $_SESSION['user_uri'] = $currentUserURI;
     }
-
-
 
     /**
      * Get the value of idUser

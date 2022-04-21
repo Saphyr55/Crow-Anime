@@ -1,8 +1,8 @@
 <?php
 
-namespace CrowAnime\Core\Controller\Entities;
+namespace CrowAnime\Core\Controllers\Entities;
 
-use CrowAnime\Core\Controller\Controller;
+use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Anime;
 
 class ControllerAnimes extends Controller
@@ -10,19 +10,6 @@ class ControllerAnimes extends Controller
     private string $stylePopular;
     private string $styleTop;
     private string $styleSeasonal;
-
-    public function __construct()
-    {
-        $this->styles();
-        $this->with([
-            'animes' => $this->mangas(),
-            'styles' => [
-                'popular' => $this->stylePopular,
-                'top' => $this->styleTop,
-                'seasonal' => $this->styleSeasonal
-            ]
-        ]);
-    }
 
     private function mangas(): array
     {
@@ -62,6 +49,14 @@ class ControllerAnimes extends Controller
 
     public function action() : void
     {
-        // TODO: Implement action() method.
+        $this->styles();
+        $this->with([
+            'animes' => $this->mangas(),
+            'styles' => [
+                'popular' => $this->stylePopular,
+                'top' => $this->styleTop,
+                'seasonal' => $this->styleSeasonal
+            ]
+        ]);
     }
 }

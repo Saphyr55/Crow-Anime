@@ -2,7 +2,7 @@
 
 namespace CrowAnime;
 
-use CrowAnime\Core\Controller\Controller;
+use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Head;
@@ -44,7 +44,7 @@ class Module implements Component
      * Permet de generer le code php|html en fonction d'un module
      *
      */
-    public function generate()
+    public function generate() : void
     {
         if ($this->controller !== null){
             $this->controller->action();

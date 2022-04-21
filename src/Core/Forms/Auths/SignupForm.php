@@ -1,9 +1,9 @@
 <?php
 
-namespace CrowAnime\Core\Form\Auth;
+namespace CrowAnime\Core\Forms\Auths;
 
 use CrowAnime\Core\Database\Database;
-use CrowAnime\Core\Form\Form;
+use CrowAnime\Core\Forms\Form;
 
 class SignupForm extends Form
 {

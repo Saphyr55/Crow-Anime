@@ -14,8 +14,6 @@ abstract class Work
     protected ?string $synopsis;
     protected mixed $score;
     protected string|null|DateTime $date;
-    protected mixed $urlImageWork54x74;
-    protected mixed $urlImageWork225x316;
 
     public function __construct(
         ?string $title_en,
@@ -32,35 +30,6 @@ abstract class Work
         $this->date = $date;
     }
 
-    public function getUrlImageWork225x316()
-    {
-        if ($this->urlImageWork225x316 === null) {
-            $urlImageWork225x316 = self::getImageUrl($this, "225x316");
-            $this->urlImageWork225x316 = $urlImageWork225x316;
-        }
-        return $this->urlImageWork225x316;
-    }
-
-    public function getUrlImageWork54x71()
-    {
-        if ($this->urlImageWork54x74 === null) {
-            $urlImageWork54x74 = self::getImageUrl($this, "54x74");
-            $this->urlImageWork54x74 = $urlImageWork54x74;
-        }
-        return $this->urlImageWork54x74;
-    }
-
-    private static function getImageUrl(Work $work, string $format)
-    {
-        $file_url_image_anime = file_get_contents(
-            $_SERVER["DOCUMENT_ROOT"] .
-            "/assets/img/" . explode("\\", strtolower($work::class))[2]
-            . "/$format" . "/" . $work->getIdWork() . ".json"
-        );
-        $json_url_image_anime = json_decode($file_url_image_anime);
-        return ((array)$json_url_image_anime)['url'];
-    }
-
     /**
      * Get the value of finish
      */
@@ -72,6 +41,7 @@ abstract class Work
     /**
      * Set the value of finish
      *
+     * @param $is_finish
      * @return  self
      */
     public function setFinish($is_finish): static
@@ -82,24 +52,25 @@ abstract class Work
     }
 
     /**
-     * Get the value of sysnopis
+     * Get the value of synopsis
      */
-    public function getSysnopis(): ?string
+    public function getSynopsis(): ?string
     {
         return $this->synopsis;
     }
 
     /**
-     * Set the value of sysnopis
+     * Set the value of synopsis
      *
+     * @param $synopsis
      * @return  self
      */
-    public function setSysnopis($synopsis): static
+    public function setSynopsis($synopsis): static
     {
         if ($this instanceof Anime) {
-            //requete sql
+            //request sql
         } elseif ($this instanceof Manga) {
-            //requete sql
+            //request sql
         }
         $this->synopsis = $synopsis;
 
@@ -117,6 +88,7 @@ abstract class Work
     /**
      * Set the value of title_ja
      *
+     * @param $title_ja
      * @return  self
      */
     public function setTitle_ja($title_ja): static
@@ -137,6 +109,7 @@ abstract class Work
     /**
      * Set the value of title_en
      *
+     * @param $title_en
      * @return  self
      */
     public function setTitle_en($title_en): static
@@ -149,7 +122,7 @@ abstract class Work
     /**
      * Get the value of id_work
      */
-    public function getIdWork()
+    public function getIdWork(): int
     {
         return $this->idWork;
     }
@@ -157,6 +130,7 @@ abstract class Work
     /**
      * Set the value of id_work
      *
+     * @param $idWork
      * @return  self
      */
     public function setIdWork($idWork): static
@@ -195,6 +169,7 @@ abstract class Work
     /**
      * Set the value of date
      *
+     * @param $date
      * @return  self
      */
     public function setDate($date): static

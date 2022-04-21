@@ -3,7 +3,7 @@
 namespace CrowAnime\Modules;
 
 use CrowAnime\App;
-use CrowAnime\Core\Controller\Entities\ControllerAddAnime;
+use CrowAnime\Core\Controllers\Entities\ControllerAddAnime;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
@@ -18,18 +18,8 @@ class AddAnime extends Module
 
     public function __construct()
     {
-        App::checkProfileURI();
-
-        $this->nameModule =
-            "admin/" . User::getCurrentUsernameURI() . "/add-anime";
-
-        $this->head = new Head(
-            "Admin - Add anime",
-            [
-                "add_anime",
-            ]
-        );
-
+        $this->nameModule = "admin/" . User::getCurrentUserURI()->getUsername() . "/add-anime";
+        $this->head = new Head("Admin - Add anime", ["add_anime"]);
         $this->body = new Body(
             "add_anime",
             Header::getHeader(),
@@ -38,7 +28,8 @@ class AddAnime extends Module
 
         $this->rules = new Rules([
             Rules::LOGIN_REQUIRED,
-            Rules::ADMIN_ONLY
+            Rules::ADMIN_ONLY,
+            Rules::USER_CURRENT_ONLY
         ]);
 
         $this->controller = new ControllerAddAnime();

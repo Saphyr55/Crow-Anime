@@ -38,7 +38,6 @@ url_anime = all_animes[0].get_attribute("href")
 
 # recupere la url de l'image de l'anime de profil et l'enregistre dans fichier json
 
-
 def create_json_url_image():
     url_image_anime = driver.find_elements(By.CLASS_NAME, "lazyloaded")[0].get_attribute("src")
     json_url_image_anime = {

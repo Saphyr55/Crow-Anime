@@ -1,6 +1,6 @@
 <?php
 
-namespace CrowAnime\Core\Controller;
+namespace CrowAnime\Core\Controllers;
 
 interface ControllerInterface
 {

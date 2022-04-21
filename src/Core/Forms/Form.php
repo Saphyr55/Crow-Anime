@@ -1,6 +1,6 @@
 <?php
 
-namespace CrowAnime\Core\Form;
+namespace CrowAnime\Core\Forms;
 
 abstract class Form {
 

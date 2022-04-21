@@ -2,7 +2,7 @@
 
 namespace CrowAnime\Modules;
 
-use CrowAnime\Core\Controller\Entities\ControllerMangas;
+use CrowAnime\Core\Controllers\Entities\ControllerMangas;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 use CrowAnime\Modules\Components\Body;

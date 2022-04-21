@@ -2,6 +2,7 @@
 
 namespace CrowAnime\Core\Rule;
 
+use CrowAnime\App;
 use CrowAnime\Core\Entities\User;
 
 class Rules
@@ -10,6 +11,7 @@ class Rules
     const LOGIN_REQUIRED = 1;
     const NOT_LOGIN_REQUIRED = 3;
     const ADMIN_ONLY = 9;
+    const USER_CURRENT_ONLY = 2;
 
     private array $rules;
 
@@ -31,19 +33,31 @@ class Rules
 
         if (in_array(Rules::NOT_LOGIN_REQUIRED, $this->rules))
             $this->not_login_required();
+
+        if (in_array(Rules::USER_CURRENT_ONLY, $this->rules))
+            $this->user_current_only();
+
+    }
+
+    private function user_current_only() : void
+    {
+        if (!User::getCurrentUser()->isInURI()){
+            header("Location: http://$_SERVER[HTTP_HOST]/not-found");
+            exit();
+        }
     }
 
     private function admin_only(): void
     {
-        if (User::getCurrentUser() !== null || !(User::getCurrentUser()->isAdmin())) {
-            header("Location: http://$_SERVER[HTTP_HOST]/not-permission");
+        if (!(User::getCurrentUser()->isAdmin())) {
+            header("Location: http://$_SERVER[HTTP_HOST]/not-found");
             exit;
         }
     }
 
     private function login_required(): void
     {
-        if (User::getCurrentUser() !== null) {
+        if (User::getCurrentUser() === null) {
             header("Location: http://$_SERVER[HTTP_HOST]/");
             exit;
         }

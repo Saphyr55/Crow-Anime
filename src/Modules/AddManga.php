@@ -3,7 +3,7 @@
 namespace CrowAnime\Modules;
 
 use CrowAnime\App;
-use CrowAnime\Core\Controller\Entities\ControllerAddManga;
+use CrowAnime\Core\Controllers\Entities\ControllerAddManga;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
@@ -18,10 +18,8 @@ class AddManga extends Module
 
     public function __construct()
     {
-        App::checkProfileURI();
-
         $this->nameModule =
-            "admin/" . User::getCurrentUsernameURI() . "/add-manga";
+            "admin/" . User::getCurrentUserURI()->getUsername() . "/add-manga";
 
         $this->head = new Head(
             "Admin - Add Manga",
@@ -38,7 +36,8 @@ class AddManga extends Module
 
         $this->rules = new Rules([
             Rules::LOGIN_REQUIRED,
-            Rules::ADMIN_ONLY
+            Rules::ADMIN_ONLY,
+            Rules::USER_CURRENT_ONLY
         ]);
 
         $this->controller = new ControllerAddManga();

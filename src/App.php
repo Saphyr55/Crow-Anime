@@ -47,30 +47,6 @@ class App
         return $this;
     }
 
-    public static function checkProfileURI(): void
-    {
-        $uri = $_SERVER['REQUEST_URI'];
-        if (
-            strcmp(explode('/', $uri)[1], 'profile') === 0 ||
-            strcmp(explode('/', $uri)[1], 'admin') === 0
-        ) {
-
-            $theoreticUser = explode('/', $uri)[2];
-
-            $users = Database::getDatabase()->query(
-                "SELECT username FROM _user"
-            );
-
-            foreach ($users as $user) {
-
-                $user = (array) $user;
-
-                if (strcmp($theoreticUser, $user['username']) === 0)
-                    User::setCurrentUsernameURI($theoreticUser);
-            }
-        }
-    }
-
     /**
      * Get the value of actualURI
      */

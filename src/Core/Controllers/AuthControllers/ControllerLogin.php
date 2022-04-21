@@ -1,25 +1,18 @@
 <?php
 
-namespace CrowAnime\Core\Controller\AuthController;
+namespace CrowAnime\Core\Controllers\AuthControllers;
 
-use CrowAnime\Core\Controller\Controller;
-use CrowAnime\Core\Form\Auth\LoginForm;
+use CrowAnime\Core\Controllers\Controller;
+use CrowAnime\Core\Forms\Auths\LoginForm;
 
 class ControllerLogin extends Controller
 {
-    private LoginForm $userForm;
-
-    public function __construct()
-    {
-        $this->userForm = new LoginForm();
-        $this->userForm->login();
-        $this->with([
-            'error' => $this->userForm->getErrorMsg()
-        ]);
-    }
-
     public function action(): void
     {
-        // TODO: Implement action() method.
+        $userForm = new LoginForm();
+        $userForm->login();
+        $this->with([
+            'error' => $userForm->getErrorMsg()
+        ]);
     }
 }

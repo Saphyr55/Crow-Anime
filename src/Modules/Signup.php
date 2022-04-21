@@ -2,7 +2,7 @@
 
 namespace CrowAnime\Modules;
 
-use CrowAnime\Core\Controller\AuthController\ControllerSignup;
+use CrowAnime\Core\Controllers\AuthControllers\ControllerSignup;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Head;

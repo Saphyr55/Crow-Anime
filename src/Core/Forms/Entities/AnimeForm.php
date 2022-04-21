@@ -1,9 +1,11 @@
 <?php
 
-namespace CrowAnime\Core\Forms;
+namespace CrowAnime\Core\Forms\Entities;
 
 use CrowAnime\Core\Database\Database;
 use CrowAnime\Core\Entities\Anime;
+use CrowAnime\Core\Entities\User;
+use CrowAnime\Core\Forms\Form;
 
 class AnimeForm extends Form
 {
@@ -15,6 +17,34 @@ class AnimeForm extends Form
         $this->data['anime_score'] = null;
     }
 
+    public function getAnime() : ?Anime
+    {
+        $path_replace = (User::getCurrentUser() instanceof User) ? "/assets/img/anime/preview_" . User::getCurrentUser()->getIdUser() . '.jpg' : null;
+        $allowed = ["jpg" => "image/jpg", "jpeg" => "image/jpeg", "png" => "image/png"];
+        $upload_dir = getcwd() . DIRECTORY_SEPARATOR . '/assets/img/anime/';
+        $name_file = 'anime_picture';
+        $this->checkFile($path_replace);
+        return $this->checkData(AnimeForm::recoverDataForm(), $path_replace, $name_file, $allowed, $upload_dir);
+    }
+
+    private function checkFile($path_replace)
+    {
+        if (file_exists("$_SERVER[DOCUMENT_ROOT]$path_replace"))
+            unlink("$_SERVER[DOCUMENT_ROOT]$path_replace");
+    }
+
+    private function checkData($data, $path_replace, $name_file, $allowed, $upload_dir) : ?Anime
+    {
+        if (Form::check($data)) {
+            $animeForm = new AnimeForm($data);
+            $anime = $animeForm->createAnime();
+            $upload_file = $upload_dir . basename($_FILES['anime_picture']['name']);
+            $animeForm->issetSubmit($anime, $name_file, $allowed, $upload_file);
+            $animeForm->issetPreview($path_replace, $name_file, $allowed, $upload_file);
+            return $anime;
+        }
+        return null;
+    }
 
     public function createAnime(): Anime
     {
