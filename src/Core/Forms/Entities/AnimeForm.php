@@ -1,6 +1,6 @@
 <?php
 
-namespace CrowAnime\Core\Form;
+namespace CrowAnime\Core\Forms;
 
 use CrowAnime\Core\Database\Database;
 use CrowAnime\Core\Entities\Anime;
