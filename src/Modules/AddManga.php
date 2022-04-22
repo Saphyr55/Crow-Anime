@@ -3,7 +3,7 @@
 namespace CrowAnime\Modules;
 
 use CrowAnime\App;
-use CrowAnime\Core\Controllers\Entities\ControllerAddManga;
+use CrowAnime\Core\Controllers\Entities\AddMangaController;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
@@ -18,36 +18,25 @@ class AddManga extends Module
 
     public function __construct()
     {
-        $this->nameModule =
-            "admin/" . User::getCurrentUserURI()->getUsername() . "/add-manga";
-
-        $this->head = new Head(
-            "Admin - Add Manga",
-            [
-                "add_anime",
-            ]
-        );
-
-        $this->body = new Body(
-            "add_manga",
-            Header::getHeader(),
-            Footer::getFooter()
-        );
-
-        $this->rules = new Rules([
-            Rules::LOGIN_REQUIRED,
-            Rules::ADMIN_ONLY,
-            Rules::USER_CURRENT_ONLY
-        ]);
-
-        $this->controller = new ControllerAddManga($this);
-
         parent::__construct(
-            $this->nameModule,
-            $this->head,
-            $this->body,
-            $this->rules,
-            $this->controller
+            "admin/" . User::getCurrentUserURI()->getUsername() . "/add-manga",
+            new Head(
+                "Admin - Add Manga",
+                [
+                    "add_anime",
+                ]
+            ),
+            new Body(
+                "add_manga",
+                Header::getHeader(),
+                Footer::getFooter()
+            ),
+            new Rules([
+                Rules::LOGIN_REQUIRED,
+                Rules::ADMIN_ONLY,
+                Rules::USER_CURRENT_ONLY
+            ]),
+            new AddMangaController()
         );
     }
 

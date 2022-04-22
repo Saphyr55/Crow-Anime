@@ -3,11 +3,13 @@
 namespace CrowAnime;
 
 use CrowAnime\Core\Controllers\Controller;
+use CrowAnime\Core\Entities\Path;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Head;
 use CrowAnime\Modules\Components\Component;
+use CrowAnime\Template\FunctionsTemplate;
 
 /**
  * Class Module
@@ -19,23 +21,23 @@ class Module implements Component
     protected Head $head;
     protected Body $body;
     protected string $redirectionURI;
-    protected string $nameModule = "";
     protected Rules $rules;
     protected ?Controller $controller;
+    protected string $namePathModule;
 
     /**
-     * @param string $nameModule
-     * @param Head $head
-     * @param Body $body
+     * @param string $namePathModule
+     * @param ?Head $head
+     * @param ?Body $body
      * @param Rules $rules
      * @param Controller|null $controller
      */
-    public function __construct(string $nameModule, Head $head, Body $body, Rules $rules, ?Controller $controller = null)
+    public function __construct(string $namePathModule, ?Head $head, ?Body $body, Rules $rules, ?Controller $controller = null)
     {
-        $this->nameModule = $nameModule;
-        $this->redirectionURI = "http://$_SERVER[HTTP_HOST]/$nameModule";
-        $this->head = $head;
+        $this->namePathModule = $namePathModule;
+        $this->head= $head;
         $this->body = $body;
+        $this->redirectionURI = "http://$_SERVER[HTTP_HOST]/$namePathModule";
         $this->rules = $rules;
         $this->controller = $controller;
     }
@@ -45,6 +47,7 @@ class Module implements Component
      */
     public function generate() : void
     {
+        extract((new FunctionsTemplate())->getFunctions());
         $body = $this->getBody();
         $this->getRules()->check();
         if ($this->getBody()->getFooter() !== null && $this->getBody()->getHeader() !== null){
@@ -63,13 +66,12 @@ class Module implements Component
         }
 
         if ($this->controller !== null){
-
             $this->controller->action();
             extract($this->controller->getData());
             extract($this->controller->getStrings());
         }
 
-        foreach ($this->getHead()->sendHTML() as $value)
+        foreach ($this->getHead()->getContentHead() as $value)
             echo $value;
 
         if ($body->getHeader() !== null)
@@ -105,23 +107,11 @@ class Module implements Component
     /**
      * Get the value of redirectionURI
      * 
-     * @return string $redirectionURI
+     * @return string $redirectionURL
      */
-    public function getRedirectionURI(): string
+    public function getURL(): string
     {
         return $this->redirectionURI;
-    }
-
-    /**
-     * Set the value of redirectionURI
-     *
-     * @return self $this
-     */
-    public function setRedirectionURI($redirectionURI): self
-    {
-        $this->redirectionURI = $redirectionURI;
-
-        return $this;
     }
 
     /**
@@ -129,9 +119,9 @@ class Module implements Component
      * 
      * @return string $nameModule
      */
-    public function getNameModule(): string
+    public function getNamePathModule(): string
     {
-        return $this->nameModule;
+        return $this->namePathModule;
     }
 
     /**

@@ -2,16 +2,17 @@
 
 namespace CrowAnime\Router;
 
+use CrowAnime\Core\Errors\Error;
 use CrowAnime\Module;
 use CrowAnime\Modules\Components\Component;
 
 class Router
 {
     private array $modules;
-    private Component $errorPage;
-    private static Component $currentModule;
+    private Module $errorPage;
+    private static Module $currentModule;
 
-    public function __construct(array $modules, Component $errorPage)
+    public function __construct(array $modules, Module $errorPage)
     {
         $this->modules = $modules;
         $this->errorPage = $errorPage;
@@ -32,11 +33,11 @@ class Router
         for ($i = 0; $i < count($this->modules); $i++) {
             if ((self::$currentModule = $this->modules[$i]) !== null) {
                 if (
-                    strcmp($uri, '/' . self::$currentModule->getNameModule()) === 0
+                    strcmp($uri, '/' . self::$currentModule->getNamePathModule()) === 0
                 ) {
                     self::$currentModule->generate();
                     exit();
-                } elseif (strcmp($uri, '/' . self::$currentModule->getNameModule() . '/') === 0) {
+                } elseif (strcmp($uri, '/' . self::$currentModule->getNamePathModule() . '/') === 0) {
 
                     header('Location: ' . substr($uri, 0, -1)); // redirection si l'uri termine par /
                     exit();
@@ -47,12 +48,11 @@ class Router
                 } elseif (
                     ($i == (count($this->modules) - 1))
                 ) {
-                    error_log("Error : " . $uri . " not found");
+                    Error::set('404 Page Not Found');
                     $this->errorPage->generate();
                     exit();
                 }
             }
-
         }
     }
 

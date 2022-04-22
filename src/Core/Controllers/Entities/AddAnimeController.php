@@ -8,12 +8,12 @@ use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Forms\Entities\AnimeForm;
 use CrowAnime\Core\Language\Language;
 
-class ControllerAddAnime extends Controller
+class AddAnimeController extends Controller
 {
 
     public function action(): void
     {
-        $this->language(Language::getInstance()->for('add_anime'));
+        $this->language(Language::getStrings()->for('add_anime'));
         $animeForm = new AnimeForm();
         $anime = $animeForm->getAnime();
         $this->with(

@@ -19,7 +19,6 @@
                 <div class="div-profile">
                     <a class="" onclick="displayScrollMenuOnClick()">
                         <i class="fa-solid fa-bars white"></i>
-                        <p class="p-profile"><?= $header_username ?></p>
                     </a>
                     <div id="scroll-menu" class="scroll-menu">
                         <ul>
@@ -38,13 +37,13 @@
                                 </li>
                             <?php endif; ?>
                             <li>
-                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $header_username . "/animeslist" ?>"
+                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $header_username . "/animes" ?>"
                                    class="white"><i class="fa-solid fa-book"></i>
                                     <p><?= $list_anime ?></p>
                                 </a>
                             </li>
                             <li>
-                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $header_username . "/mangaslist" ?>"
+                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $header_username . "/mangas" ?>"
                                    class="white"><i class="fa-solid fa-book"></i>
                                     <p><?= $list_manga ?></p>
                                 </a>

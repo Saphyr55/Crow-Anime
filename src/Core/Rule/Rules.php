@@ -48,6 +48,7 @@ class Rules
 
     private function admin_only(): void
     {
+        $this->login_required();
         if (!(User::getCurrentUser()->isAdmin())) {
             header("Location: http://$_SERVER[HTTP_HOST]/not-found");
             exit;

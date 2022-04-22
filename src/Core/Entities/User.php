@@ -3,6 +3,8 @@
 namespace CrowAnime\Core\Entities;
 
 use CrowAnime\Core\Database\Database;
+use CrowAnime\Core\Errors\Error;
+use CrowAnime\Core\Errors\ErrorsType;
 use DateTime;
 
 class User
@@ -10,7 +12,7 @@ class User
     private static array $usersConnected = [];
     private static ?string $currentUsernameURI = null;
     private int $idUser;
-    private string $username;
+    private string $username = "";
     private string $email;
     private string $password;
     private bool $isAdmin;
@@ -122,29 +124,33 @@ class User
 
     public static function setUserURI(): void
     {
-        $uri = $_SERVER['REQUEST_URI'];
-        if (
-            strcmp(explode('/', $uri)[1], 'profile') === 0 ||
-            strcmp(explode('/', $uri)[1], 'admin') === 0
-        ) {
-            $theoreticUser = explode('/', $uri)[2];
-            $user = Database::getDatabase()->execute(
-                "SELECT * FROM _user WHERE username=:username", [':username' => $theoreticUser]
-            );
-            if (strcmp($theoreticUser, $user[0]['username']) === 0)
-                self::setCurrentUserURI(
-                    new User(
-                        $user[0]['id_user'],
-                        $user[0]['username'],
-                        $user[0]['email'],
-                        $user[0]['password'],
-                        $user[0]['is_admin'],
-                        null,
-                        $user[0]['user_date']
-                    )
+            $uri = $_SERVER['REQUEST_URI'];
+            if (
+                strcmp(explode('/', $uri)[1], 'profile') === 0 ||
+                strcmp(explode('/', $uri)[1], 'admin') === 0
+            ) {
+                $theoreticUser = explode('/', $uri)[2];
+                $user = Database::getDatabase()->execute(
+                    "SELECT * FROM _user WHERE username=:username", [':username' => $theoreticUser]
                 );
-            else self::setCurrentUserURI(new User(-1, "", "", "", "", "", ""));
-        } else self::setCurrentUserURI(new User(-1, "", "", "", "", "", ""));
+                if (!strcmp($theoreticUser, $user[0]['username'])) {
+                    if(isset($theoreticUser) && isset($user[0]['username'])){
+                        self::setCurrentUserURI(
+                            new User(
+                                $user[0]['id_user'],
+                                $user[0]['username'],
+                                $user[0]['email'],
+                                $user[0]['password'],
+                                $user[0]['is_admin'],
+                                null,
+                                $user[0]['user_date']
+                            )
+                        );
+                    }
+                } else self::setCurrentUserURI(new User(-1, "", "", "", "", "", ""));
+            } else self::setCurrentUserURI(new User(-1, "", "", "", "", "", ""));
+
+
     }
 
     /**

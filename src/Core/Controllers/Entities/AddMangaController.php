@@ -7,12 +7,12 @@ use CrowAnime\Core\Forms\Entities\MangaForm;
 use CrowAnime\Core\Language\Language;
 use CrowAnime\Module;
 
-class ControllerAddManga extends Controller
+class AddMangaController extends Controller
 {
 
     public function action(): void
     {
-        $this->language(Language::getInstance()->for('add_animes'));
+        $this->language(Language::getStrings()->for('add_animes'));
         $manga = (new MangaForm())->build();
         $this->with(
             [

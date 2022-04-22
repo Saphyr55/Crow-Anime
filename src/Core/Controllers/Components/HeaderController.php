@@ -5,12 +5,12 @@ namespace CrowAnime\Core\Controllers\Components;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Language\Language;
 
-class ControllerHeader extends \CrowAnime\Core\Controllers\Controller
+class HeaderController extends \CrowAnime\Core\Controllers\Controller
 {
 
     public function action(): void
     {
-        $this->language(Language::getInstance()->for('header'));
+        $this->language(Language::getStrings()->for('header'));
         $this->with([
             'exist_user' => $this->issetUser(),
             'header_username' => ($this->issetUser()) ? $_SESSION['user']->getUsername() : 'null',

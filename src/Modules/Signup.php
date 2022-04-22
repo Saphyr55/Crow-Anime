@@ -2,7 +2,7 @@
 
 namespace CrowAnime\Modules;
 
-use CrowAnime\Core\Controllers\AuthControllers\ControllerSignup;
+use CrowAnime\Core\Controllers\Auths\SignupController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Modules\Components\Body;
 use CrowAnime\Modules\Components\Head;
@@ -20,8 +20,7 @@ class Signup extends Module
         $rules = new Rules([
             Rules::NOT_LOGIN_REQUIRED
         ]);
-
-        $controller = new ControllerSignup($this);
+        $controller = new SignupController();
 
         parent::__construct($nameModule, $head, $body, $rules, $controller);
     }

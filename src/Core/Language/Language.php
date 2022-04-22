@@ -40,7 +40,7 @@ class Language
         if (isset($_COOKIE['active_browser_lang'])) {
             unset($_COOKIE['active_browser_lang']);
         }
-        setcookie('active_browser_lang', strval($active), time() + 99999, '/');
+        setcookie('active_browser_lang', strval($active), time() + (10 * 365 * 24 * 60 * 60), '/');
     }
 
     public function for(string $name): array
@@ -79,10 +79,10 @@ class Language
         if (isset($_COOKIE['lang'])) {
             unset($_COOKIE['lang']);
         }
-        setcookie('lang', $currentLanguage, time() + 99999, '/');
+        setcookie('lang', $currentLanguage, time() + (10 * 365 * 24 * 60 * 60), '/');
     }
 
-    public static function getInstance(): self
+    public static function getStrings(): self
     {
         if (self::$languageInstance === null) {
             self::$languageInstance = new Language();

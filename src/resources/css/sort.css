@@ -1,0 +1,35 @@
+.sort {
+    background-color: #353535;
+    width: 100vw;
+    height: 120px;
+    padding-top: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sort-by {
+    background-color: #1d1d1d;
+    width: 540px;
+    margin-top: 0.8%;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.sort-by-alphabet {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    display: flex;
+}
+
+.sort-by-alphabet > a {
+    background-color: #525252;
+    border-radius: 5px;
+    padding: 0.3% 0.4%;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: "Roboto", sans-serif;
+    color: #ffffff;
+}

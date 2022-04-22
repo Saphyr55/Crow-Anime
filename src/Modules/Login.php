@@ -2,7 +2,7 @@
 
 namespace CrowAnime\Modules;
 
-use CrowAnime\Core\Controllers\AuthControllers\ControllerLogin;
+use CrowAnime\Core\Controllers\Auths\LoginController;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Module;
 use CrowAnime\Core\Rule\Rules;
@@ -15,29 +15,24 @@ class Login extends Module
 {
     private static ?Module $_login = null;
 
-    public function __construct() {
-        
-        $this->nameModule = "login";
-        
-        $this->head = new Head(
-            "Crow Anime - Login", [
-                "login",
-            ]
-        );
-        
-        $this->body = new Body(
+    public function __construct()
+    {
+        parent::__construct(
             "login",
-            Header::getHeader(),
-            Footer::getFooter()
-        );
-
-        $this->rules = new Rules([
-            Rules::NOT_LOGIN_REQUIRED,
-        ]);
-
-        $this->controller = new ControllerLogin($this);
-
-        parent::__construct($this->nameModule, $this->head, $this->body, $this->rules, $this->controller);
+            new Head(
+                "Crow Anime - Login", [
+                    "login",
+                ]
+            ),
+            new Body(
+                "login",
+                Header::getHeader(),
+                Footer::getFooter()
+            ),
+            new Rules([
+                Rules::NOT_LOGIN_REQUIRED,
+            ]),
+            new LoginController());
     }
 
     public static function getModule(): Module|Login|null

@@ -2,7 +2,7 @@
 
 namespace CrowAnime\Modules\Components;
 
-use CrowAnime\Core\Controllers\Components\ControllerFooter;
+use CrowAnime\Core\Controllers\Components\FooterController;
 use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Path;
 
@@ -25,7 +25,7 @@ class Footer implements Component
     public function __construct(string $nameFileFooter) 
     {
         $this->pathFooter = Path::VIEWS . $nameFileFooter . '.php';
-        $this->controller = new ControllerFooter();
+        $this->controller = new FooterController();
     }
 
     /**
@@ -39,9 +39,9 @@ class Footer implements Component
     }
 
     /**
-     * @return ControllerFooter|Controller|null
+     * @return FooterController|Controller|null
      */
-    public function getController(): null|Controller|ControllerFooter
+    public function getController(): null|Controller|FooterController
     {
         return $this->controller;
     }

@@ -1,19 +1,19 @@
 <?php
 
-namespace CrowAnime\Core\Controllers\AuthControllers;
+namespace CrowAnime\Core\Controllers\Auths;
 
 use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Forms\Auths\LoginForm;
 use CrowAnime\Core\Language\Language;
 use CrowAnime\Module;
 
-class ControllerLogin extends Controller
+class LoginController extends Controller
 {
 
 
     public function action(): void
     {
-        $this->language(Language::getInstance()->for('login'));
+        $this->language(Language::getStrings()->for('login'));
         $userForm = new LoginForm();
         $userForm->login();
         $this->with([

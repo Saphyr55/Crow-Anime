@@ -1,5 +1,5 @@
 <body>
-<p class="p-not-found">404 Not Found</p>
+<p class="p-not-found"><?= $error_msg ?></p>
 <style>
     body {
         background-color: #2e2e2e;
