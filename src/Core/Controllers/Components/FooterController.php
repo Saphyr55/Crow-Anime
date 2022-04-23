@@ -8,7 +8,7 @@ class FooterController extends \CrowAnime\Core\Controllers\Controller
 {
     public function action(): void
     {
-        $this->language(Language::getStrings()->for('footer'));
+        $this->language(Language::getLanguage()->for('footer'));
         $this->with([]);
     }
 }

@@ -73,7 +73,7 @@ class Module implements Component
 
         foreach ($this->getHead()->getContentHead() as $value)
             echo $value;
-
+        echo "<body>\n";
         if ($body->getHeader() !== null)
             require $body->getHeader()->getPathHeader();
 
@@ -81,6 +81,8 @@ class Module implements Component
 
         if ($body->getFooter() !== null)
             require $body->getFooter()->getPathFooter();
+        echo "</body>\n";
+
     }
 
     /**

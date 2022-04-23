@@ -12,7 +12,7 @@ class AddMangaController extends Controller
 
     public function action(): void
     {
-        $this->language(Language::getStrings()->for('add_animes'));
+        $this->language(Language::getLanguage()->for('add_animes'));
         $manga = (new MangaForm())->build();
         $this->with(
             [

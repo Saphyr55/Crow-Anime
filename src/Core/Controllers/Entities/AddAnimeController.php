@@ -13,7 +13,7 @@ class AddAnimeController extends Controller
 
     public function action(): void
     {
-        $this->language(Language::getStrings()->for('add_anime'));
+        $this->language(Language::getLanguage()->for('add_anime'));
         $animeForm = new AnimeForm();
         $anime = $animeForm->getAnime();
         $this->with(

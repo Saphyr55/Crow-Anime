@@ -1,6 +1,6 @@
 <?php
 
-namespace CrowAnime\Core\Controllers\Components;
+namespace CrowAnime\Core\Controllers\Entities;
 
 use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Anime;
@@ -42,7 +42,7 @@ class AnimesController extends Controller
 
     public function action(): void
     {
-        $this->language(Language::getStrings()->for('animes'));
+        $this->language(Language::getLanguage()->for('animes'));
         $this->styles();
         $this->with([
             'animes' => $this->mangas(),

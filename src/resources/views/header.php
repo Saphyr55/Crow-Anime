@@ -85,8 +85,8 @@
             <div class="dropdown">
                 <button class="drop-btn">France</button>
                 <div class="dropdown-content">
-                    <a href="#">France</a>
-                    <a href="#">English</a>
+                    <a href="?lang=fr">France</a>
+                    <a href="?lang=en">English</a>
                 </div>
             </div>
         </div>

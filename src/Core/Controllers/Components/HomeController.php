@@ -12,7 +12,7 @@ class HomeController extends Controller
 
     public function action(): void
     {
-        $this->language(Language::getStrings()->for('home'));
+        $this->language(Language::getLanguage()->for('home'));
         $this->with([
             'anime_season' => ucfirst(strtolower(Season::getCurrentSeason())) . ' ',
             'actual_date' => date('Y') . ' ',

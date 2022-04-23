@@ -12,7 +12,7 @@ class SignupController extends Controller
 
     public function action(): void
     {
-        $this->language(Language::getStrings()->for('signup'));
+        $this->language(Language::getLanguage()->for('signup'));
         $form = new SignupForm();
         $form->signup();
         $this->with([

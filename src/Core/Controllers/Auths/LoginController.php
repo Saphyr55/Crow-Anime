@@ -13,7 +13,7 @@ class LoginController extends Controller
 
     public function action(): void
     {
-        $this->language(Language::getStrings()->for('login'));
+        $this->language(Language::getLanguage()->for('login'));
         $userForm = new LoginForm();
         $userForm->login();
         $this->with([

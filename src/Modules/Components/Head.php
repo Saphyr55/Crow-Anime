@@ -17,7 +17,7 @@ class Head implements Component
     public function __construct(string $title, array $namesFilesCSS = [])
     {
         $this->title = $title;
-        $this->lang = Language::getStrings()->getCurrentLanguage();
+        $this->lang = Language::getLanguage()->getCurrentLanguage();
         $this->linksCSS = [];
         if (isset($namesFilesCSS)) {
             foreach ($namesFilesCSS as $value) {

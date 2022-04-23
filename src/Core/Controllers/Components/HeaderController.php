@@ -10,7 +10,9 @@ class HeaderController extends \CrowAnime\Core\Controllers\Controller
 
     public function action(): void
     {
-        $this->language(Language::getStrings()->for('header'));
+        $language = Language::getLanguage();
+        $language->switchLanguage();
+        $this->language($language->for('header'));
         $this->with([
             'exist_user' => $this->issetUser(),
             'header_username' => ($this->issetUser()) ? $_SESSION['user']->getUsername() : 'null',
@@ -18,7 +20,7 @@ class HeaderController extends \CrowAnime\Core\Controllers\Controller
         ]);
     }
 
-    private function issetUser()
+    private function issetUser(): bool
     {
         return isset($_SESSION['user']);
     }

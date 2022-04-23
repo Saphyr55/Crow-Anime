@@ -1,6 +1,6 @@
 <?php /** @noinspection PhpMissingFieldTypeInspection */
 
-namespace CrowAnime\Core\Controllers\Components;
+namespace CrowAnime\Core\Controllers\Entities;
 
 use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Manga;
@@ -35,7 +35,7 @@ class MangasController extends Controller
 
     public function action(): void
     {
-        $this->language(Language::getStrings()->for('mangas'));
+        $this->language(Language::getLanguage()->for('mangas'));
         $this->styles();
         $this->with([
             'mangas' => $this->mangas(),
