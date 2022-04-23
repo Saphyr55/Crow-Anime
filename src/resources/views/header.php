@@ -67,22 +67,27 @@
             else div.style.display = 'block';
         }
     </script>
-    <div class=" bottom-header">
-        <div>
-            <a href=<?= "http://$_SERVER[HTTP_HOST]/animes" ?>>
-                <p><?= $anime ?></p>
-            </a>
-            <a href=<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>>
-                <p><?= $manga ?></p>
-            </a>
-        </div>
-        <div class="search-bar">
-            <input class="input" type="text" placeholder="<?= $search ?>">
-            <a href="">
-                <div class="button-search">
+    <div class="bottom-header">
+            <nav>
+                <a class="f-a-nav-bottom-header" href=<?= "http://$_SERVER[HTTP_HOST]/animes" ?>>
+                    <p><?= $anime ?></p>
+                </a>
+                <a href=<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>>
+                    <p><?= $manga ?></p>
+                </a>
+            </nav>
+            <div class="all-search-bar">
+                <input class="search-bar input" type="text" placeholder="<?= $search ?>">
+                <a href="">
                     <i class="fa-solid fa-magnifying-glass white"></i>
+                </a>
+            </div>
+            <div class="dropdown">
+                <button class="drop-btn">France</button>
+                <div class="dropdown-content">
+                    <a href="#">France</a>
+                    <a href="#">English</a>
                 </div>
-            </a>
+            </div>
         </div>
-    </div>
 </header>

@@ -14,7 +14,7 @@ require_once './vendor/autoload.php';
 App::start();
 
 $app = new App(
-    [
+        CrowAnime\Modules\Error::getModule(),
         CrowAnime\Modules\Home::getModule(),
         CrowAnime\Modules\UserListAnime::getModule(),
         CrowAnime\Modules\UserListManga::getModule(),
@@ -24,9 +24,7 @@ $app = new App(
         CrowAnime\Modules\Login::getModule(),
         CrowAnime\Modules\Logout::getModule(),
         CrowAnime\Modules\AddAnime::getModule(),
-        CrowAnime\Modules\AddManga::getModule()
-    ],
-    CrowAnime\Modules\Error::getModule()
+        CrowAnime\Modules\AddManga::getModule(),
 );
 $app->run();
 

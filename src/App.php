@@ -28,7 +28,7 @@ class App
      * @param  array $modules
      * @param  Module $errorPage
      */
-    public function __construct(array $modules, Component $errorPage)
+    public function __construct(Module $errorPage, Module ...$modules)
     {   
         $this->errorPage = $errorPage;
         $this->modules = $modules;

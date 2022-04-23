@@ -1,7 +1,8 @@
 {
   "home" : {
     "best_manga" : "Meilleurs Mangas",
-    "name_anime" : "Nom Manga"
+    "name_anime" : "Nom Manga",
+    "news": "Les News"
   },
   "add_manga" : {
     "name_english" : "Nom du manga en anglais",

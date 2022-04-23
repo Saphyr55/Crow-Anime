@@ -1,7 +1,8 @@
 {
     "home" : {
       "best_manga" : "Best Manga",
-      "name_anime" : "Name Manga"
+      "name_anime" : "Name Manga",
+      "news": "The News"
     },
     "add_manga" : {
       "name_english" : "English manga name",
@@ -36,7 +37,7 @@
       "most_popular" : "Most Popular"
     },
     "footer" : {
-      "footer" : "OFFICIAL SITE"
+      "_footer" : "OFFICIAL SITE"
     },
     "header" : {
       "login": "Login",
@@ -68,7 +69,7 @@
       "inscription" : "Inscription",
       "signup" : "Signup",
       "username" : "Username",
-      "email" : "Email,",
+      "email" : "Email",
       "password" : "Password",
       "repeat_password" : "Repeat password"
     }

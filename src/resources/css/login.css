@@ -1,23 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 body {
-    height: 100vh;
     background-color: #2e2e2e;
     font-family: 'Roboto', sans-serif;
 }
 
 #section {
-    margin-top: 20px;
+    margin-top: 100px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-}
-
-.afficher-mot-de-passe {
-    display: flex;
-    text-align: center;
-    justify-content: center;
 }
 
 form {
@@ -26,10 +19,11 @@ form {
     min-width: 300px;
     margin-top: 20px;
     background: #9152f8;
-    background: -webkit-linear-gradient(bottom, #1f1515, #5d4b40);
-    background: -o-linear-gradient(bottom, #1f1515, #5d4b40);
-    background: -moz-linear-gradient(bottom, #5d4b40, #1f1515);
-    background: linear-gradient(bottom, #1f1515, #5d4b40);
+    box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px, rgba(0, 0, 0, 0.12) 0 -12px 30px, rgba(0, 0, 0, 0.12) 0 4px 6px, rgba(0, 0, 0, 0.17) 0 12px 13px, rgba(0, 0, 0, 0.09) 0 -3px 5px;
+    background: -webkit-linear-gradient(bottom, #e9e9e9, #929292);
+    background: -o-linear-gradient(bottom, #1f1515, #929292);
+    background: -moz-linear-gradient(bottom, #1f1515, #929292);
+    background: linear-gradient(bottom, #1f1515, #929292);
     position: relative;
     z-index: 1;
     -webkit-transition: all 0.4s;
@@ -39,6 +33,7 @@ form {
 }
 
 form h1 {
+    font-size: 50px;
     color: #fff;
     text-align: center;
 }
@@ -51,6 +46,7 @@ form .social-media {
 }
 
 form .social-media p {
+    font-size: 30px;
     padding: 5px;
     width: 20px;
     margin-left: 10px;
@@ -72,6 +68,7 @@ form .inputs {
 }
 
 form .inputs input[type='email ou Username'], input[type='password'] {
+    font-size: 30px;
     padding: 15px;
     border: none;
     border-radius: 5px;
@@ -81,12 +78,13 @@ form .inputs input[type='email ou Username'], input[type='password'] {
 }
 
 form p.inscription {
-    font-size: 14px;
+    font-size: 30px;
     margin-bottom: 20px;
     color: #fff;
 }
 
 form p.inscription span {
+    font-size: 30px;
     color: #545454;
 }
 
@@ -94,7 +92,7 @@ form button {
     padding: 15px 25px;
     border-radius: 5px;
     border: none;
-    font-size: 15px;
+    font-size: 30px;
     color: #fff;
     background-color: #545454;
     outline: none;
@@ -104,4 +102,8 @@ form button {
 .error-message {
     font-size: 20px;
     color: rgb(110, 16, 16);
+}
+
+#footer {
+    margin-top: 40vh;
 }
