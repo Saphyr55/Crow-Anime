@@ -2,7 +2,7 @@
 
 namespace CrowAnime\Modules;
 
-use CrowAnime\Core\Controllers\Components\ControllerHome;
+use CrowAnime\Core\Controllers\Components\HomeController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 use CrowAnime\Modules\Components\Body;
@@ -19,34 +19,19 @@ class Home extends Module
 
     public function __construct()
     {
-
-        $this->nameModule = Home::PATH;
-
-        $this->head = new Head(
-            Home::TITLE,
-            [
-                $this->nameModule,
-            ]
-        );
-
-        $this->body = new Body(
-            $this->nameModule,
-            Header::getHeader(),
-            Footer::getFooter()
-        );
-
-        $this->rules = new Rules([
-            Rules::ALL,
-        ]);
-
-        $this->controller = new ControllerHome($this);
-
         parent::__construct(
-            $this->nameModule,
-            $this->head,
-            $this->body,
-            $this->rules,
-            $this->controller
+            Home::PATH,
+            new Head(Home::TITLE, ['home']
+            ),
+            new Body(
+                'home',
+                Header::getHeader(),
+                Footer::getFooter()
+            ),
+            new Rules([
+                Rules::ALL,
+            ]),
+            new HomeController()
         );
     }
 

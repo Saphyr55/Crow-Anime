@@ -11,7 +11,6 @@ abstract class Controller implements ControllerInterface
     protected array $data = [];
     protected array $strings = [];
 
-
     public function with(array $data = []): array
     {
         $this->data = self::compactData($data);

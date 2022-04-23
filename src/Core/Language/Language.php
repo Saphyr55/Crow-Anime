@@ -3,6 +3,7 @@
 namespace CrowAnime\Core\Language;
 
 use CrowAnime\Core\Entities\Path;
+use CrowAnime\Router\Router;
 
 class Language
 {
@@ -22,7 +23,7 @@ class Language
         if (strval($this->isActiveBrowserLanguage()) == 1)
             $this->setCurrentLanguage($this->langBrowser);
         else
-            $this->setCurrentLanguage(self::DEFAULT_LANG);
+            $this->setCurrentLanguage($this->getCookieLanguage());
     }
 
     private function getBrowserLanguage(): string
@@ -40,7 +41,7 @@ class Language
         if (isset($_COOKIE['active_browser_lang'])) {
             unset($_COOKIE['active_browser_lang']);
         }
-        setcookie('active_browser_lang', strval($active), time() + 99999, '/');
+        setcookie('active_browser_lang', intval($active), time() + (10 * 365 * 24 * 60 * 60), '/');
     }
 
     public function for(string $name): array
@@ -48,6 +49,17 @@ class Language
         $content = file_get_contents("$_SERVER[DOCUMENT_ROOT]/" . Path::LANG . $this->currentLanguage . '.json');
         $strings = json_decode($content, true);
         return $strings[$name];
+    }
+
+    public function switchLanguage(): void
+    {
+        if (isset($_GET['lang']) && !empty($_GET['lang'])) {
+            $lang = htmlspecialchars($_GET['lang']);
+            if (in_array($lang ,Language::LANG)) {
+                self::activeBrowserLanguage(false);
+                self::getLanguage()->setCurrentLanguage($lang);
+            }
+        }
     }
 
     /**
@@ -79,10 +91,10 @@ class Language
         if (isset($_COOKIE['lang'])) {
             unset($_COOKIE['lang']);
         }
-        setcookie('lang', $currentLanguage, time() + 99999, '/');
+        setcookie('lang', $currentLanguage, time() + (10 * 365 * 24 * 60 * 60), '/');
     }
 
-    public static function getInstance(): self
+    public static function getLanguage(): self
     {
         if (self::$languageInstance === null) {
             self::$languageInstance = new Language();

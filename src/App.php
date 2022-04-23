@@ -2,9 +2,10 @@
 
 namespace CrowAnime;
 
-use CrowAnime\Core\Controllers\AuthControllers\ControllerLogout;
+use CrowAnime\Core\Controllers\Auths\LogoutController;
 use CrowAnime\Core\Database\Database;
 use CrowAnime\Core\Entities\User;
+use CrowAnime\Core\Errors\Error;
 use CrowAnime\Modules\Components\Component;
 use CrowAnime\Router\Router;
 
@@ -27,7 +28,7 @@ class App
      * @param  array $modules
      * @param  Module $errorPage
      */
-    public function __construct(array $modules, Component $errorPage)
+    public function __construct(Module $errorPage, Module ...$modules)
     {   
         $this->errorPage = $errorPage;
         $this->modules = $modules;

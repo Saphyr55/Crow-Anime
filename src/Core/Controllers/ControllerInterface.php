@@ -4,9 +4,18 @@ namespace CrowAnime\Core\Controllers;
 
 interface ControllerInterface
 {
-    function action(): void;
+    /**
+     * @return void
+     */
+    public function action(): void;
 
-    function with(array $data): array;
+    /**
+     * Genere les variables sous forme compacter pour les views
+     *
+     * @param array $data
+     * @return array
+     */
+    public function with(array $data): array;
 
     public function getData(): array;
 

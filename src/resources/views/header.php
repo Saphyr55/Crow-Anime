@@ -19,7 +19,6 @@
                 <div class="div-profile">
                     <a class="" onclick="displayScrollMenuOnClick()">
                         <i class="fa-solid fa-bars white"></i>
-                        <p class="p-profile"><?= $header_username ?></p>
                     </a>
                     <div id="scroll-menu" class="scroll-menu">
                         <ul>
@@ -38,13 +37,13 @@
                                 </li>
                             <?php endif; ?>
                             <li>
-                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $header_username . "/animeslist" ?>"
+                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $header_username . "/animes" ?>"
                                    class="white"><i class="fa-solid fa-book"></i>
                                     <p><?= $list_anime ?></p>
                                 </a>
                             </li>
                             <li>
-                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $header_username . "/mangaslist" ?>"
+                                <a href="<?= "http://$_SERVER[HTTP_HOST]/profile/" . $header_username . "/mangas" ?>"
                                    class="white"><i class="fa-solid fa-book"></i>
                                     <p><?= $list_manga ?></p>
                                 </a>
@@ -68,22 +67,27 @@
             else div.style.display = 'block';
         }
     </script>
-    <div class=" bottom-header">
-        <div>
-            <a href=<?= "http://$_SERVER[HTTP_HOST]/animes" ?>>
-                <p><?= $anime ?></p>
-            </a>
-            <a href=<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>>
-                <p><?= $manga ?></p>
-            </a>
-        </div>
-        <div class="search-bar">
-            <input class="input" type="text" placeholder="<?= $search ?>">
-            <a href="">
-                <div class="button-search">
+    <div class="bottom-header">
+            <nav>
+                <a class="f-a-nav-bottom-header" href=<?= "http://$_SERVER[HTTP_HOST]/animes" ?>>
+                    <p><?= $anime ?></p>
+                </a>
+                <a href=<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>>
+                    <p><?= $manga ?></p>
+                </a>
+            </nav>
+            <div class="all-search-bar">
+                <input class="search-bar input" type="text" placeholder="<?= $search ?>">
+                <a href="">
                     <i class="fa-solid fa-magnifying-glass white"></i>
+                </a>
+            </div>
+            <div class="dropdown">
+                <button class="drop-btn">France</button>
+                <div class="dropdown-content">
+                    <a href="?lang=fr">France</a>
+                    <a href="?lang=en">English</a>
                 </div>
-            </a>
+            </div>
         </div>
-    </div>
 </header>

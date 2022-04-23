@@ -1,7 +1,8 @@
 {
   "home" : {
     "best_manga" : "Meilleurs Mangas",
-    "name_anime" : "Nom Manga"
+    "name_anime" : "Nom Manga",
+    "news": "Les News"
   },
   "add_manga" : {
     "name_english" : "Nom du manga en anglais",
@@ -56,12 +57,12 @@
     "dont_have_account" : "Je n'ai pas de <span>compte</span>. Je m'en <span>creer</span> un.",
     "login" : "Se connecter"
   },
-  "profile_animes" : {
-    "animes_watch" : "Montre d'anime",
+  "user_list_animes" : {
+    "animes_watch" : "Animes vus",
     "any_anime_watch" : "Vous n'avez enregistré aucun Anime"
   },
-  "profile_mangas" : {
-    "mangas_read" : "Manga lu",
+  "user_list_mangas" : {
+    "mangas_read" : "Mangas lus",
     "any_manga_read" : "Vous n'avez enregistré aucun manga"
   },
   "signup" : {

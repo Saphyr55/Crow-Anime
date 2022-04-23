@@ -15,7 +15,6 @@ class Body implements Component
     private string $pathComponent;
     private ?Header $header;
     private ?Footer $footer;
-    const _BODY_PATH_ = Path::VIEWS . 'body.php';
 
     /**
      * Constructeur du Body

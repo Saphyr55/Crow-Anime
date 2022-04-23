@@ -14,31 +14,17 @@ require_once './vendor/autoload.php';
 App::start();
 
 $app = new App(
-    [
+        CrowAnime\Modules\Error::getModule(),
         CrowAnime\Modules\Home::getModule(),
-        CrowAnime\Modules\ProfileAnimeList::getModule(),
-        CrowAnime\Modules\ProfileMangaList::getModule(),
+        CrowAnime\Modules\UserListAnime::getModule(),
+        CrowAnime\Modules\UserListManga::getModule(),
         CrowAnime\Modules\Animes::getModule(),
         CrowAnime\Modules\Mangas::getModule(),
         CrowAnime\Modules\Signup::getModule(),
         CrowAnime\Modules\Login::getModule(),
         CrowAnime\Modules\Logout::getModule(),
         CrowAnime\Modules\AddAnime::getModule(),
-        CrowAnime\Modules\AddManga::getModule()
-    ],
-    new Module( # put an error page when the URL isn't found
-        "not-found",
-        new Head(
-            "Page Not Found",
-            []
-        ),
-        new Body(
-            "not_found",
-            Header::getHeader(),
-            Footer::getFooter()
-        ),
-        new Rules([Rules::ALL])
-    )
+        CrowAnime\Modules\AddManga::getModule(),
 );
 $app->run();
 

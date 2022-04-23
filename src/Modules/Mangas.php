@@ -2,7 +2,7 @@
 
 namespace CrowAnime\Modules;
 
-use CrowAnime\Core\Controllers\Components\ControllerMangas;
+use CrowAnime\Core\Controllers\Entities\MangasController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 use CrowAnime\Modules\Components\Body;
@@ -19,34 +19,23 @@ class Mangas extends Module
 
     public function __construct()
     {
-
-        $this->nameModule = Mangas::PATH;
-
-        $this->head =  new Head(
-            Mangas::TITLE,
-            [
-                $this->nameModule,
-            ]
-        );
-
-        $this->body = new Body(
-            $this->nameModule,
-            Header::getHeader(),
-            Footer::getFooter()
-        );
-
-        $this->rules = new Rules([
-            Rules::ALL,
-        ]);
-
-        $this->controller = new ControllerMangas($this);
-
         parent::__construct(
-            $this->nameModule,
-            $this->head,
-            $this->body,
-            $this->rules,
-            $this->controller
+            Mangas::PATH,
+            new Head(
+                Mangas::TITLE,
+                [
+                    'mangas', 'sort'
+                ]
+            ),
+            new Body(
+                'mangas',
+                Header::getHeader(),
+                Footer::getFooter()
+            ),
+            new Rules([
+                Rules::ALL,
+            ]),
+            new MangasController()
         );
 
     }

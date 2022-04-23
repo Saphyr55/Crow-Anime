@@ -1,13 +1,13 @@
 <?php
 
-namespace CrowAnime\Core\Controllers\Components;
+namespace CrowAnime\Core\Controllers\Entities;
 
 use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Anime;
 use CrowAnime\Core\Entities\Season;
 use CrowAnime\Core\Language\Language;
 
-class ControllerAnimes extends Controller
+class AnimesController extends Controller
 {
     private string $stylePopular = '';
     private string $styleTop = '';
@@ -26,7 +26,8 @@ class ControllerAnimes extends Controller
 
     private function styles()
     {
-        switch ($_GET['type']) {
+        switch ($_GET['type'])
+        {
             case 'popular':
                 $this->stylePopular = "style='border-color: white;'";
                 break;
@@ -41,7 +42,7 @@ class ControllerAnimes extends Controller
 
     public function action(): void
     {
-        $this->language(Language::getInstance()->for('animes'));
+        $this->language(Language::getLanguage()->for('animes'));
         $this->styles();
         $this->with([
             'animes' => $this->mangas(),

@@ -17,22 +17,22 @@ class Head implements Component
     public function __construct(string $title, array $namesFilesCSS = [])
     {
         $this->title = $title;
-        $this->lang = Language::getInstance()->getCurrentLanguage();
+        $this->lang = Language::getLanguage()->getCurrentLanguage();
         $this->linksCSS = [];
         if (isset($namesFilesCSS)) {
             foreach ($namesFilesCSS as $value) {
                 $this->linksCSS[] = Path::CSS . $value . '.css';
             }
         }
-        $this->htmlHead = $this->htmlCreateHead();
+        $this->htmlHead = $this->head();
     }
 
-    public function sendHTML(): string|array
+    public function getContentHead(): string|array
     {
         return $this->htmlHead;
     }
 
-    private function htmlCreateHead(): array
+    private function head(): array
     {
         $htmlHeadBeforeLinksCSS = [
             "<!DOCTYPE html>\n",
