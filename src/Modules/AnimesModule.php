@@ -2,15 +2,15 @@
 
 namespace CrowAnime\Modules;
 
+use CrowAnime\Components\Body;
+use CrowAnime\Components\Footer;
+use CrowAnime\Components\Head;
+use CrowAnime\Components\Header;
 use CrowAnime\Core\Controllers\Entities\AnimesController;
-use CrowAnime\Core\Rule\Rules;
+use CrowAnime\Core\Rules\Rules;
 use CrowAnime\Module;
-use CrowAnime\Modules\Components\Body;
-use CrowAnime\Modules\Components\Footer;
-use CrowAnime\Modules\Components\Head;
-use CrowAnime\Modules\Components\Header;
 
-class Animes extends Module
+class AnimesModule extends Module
 {
     private static ?Module $_animes = null;
 
@@ -18,7 +18,7 @@ class Animes extends Module
     {
         parent::__construct(
             "animes",
-            new Head("Crow Anime - All Animes", ["animes",'sort']),
+            new Head("Crow Anime - All AnimesModule", ["animes",'sort']),
             new Body(
                 "animes",
                 Header::getHeader(),
@@ -29,10 +29,10 @@ class Animes extends Module
         );
     }
 
-    public static function getModule(): Animes|Module|null
+    public static function getModule(): AnimesModule|Module|null
     {
         if(self::$_animes === null)
-            self::$_animes = new Animes();
+            self::$_animes = new AnimesModule();
      
         return self::$_animes;
     }

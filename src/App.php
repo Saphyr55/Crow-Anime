@@ -2,11 +2,8 @@
 
 namespace CrowAnime;
 
-use CrowAnime\Core\Controllers\Auths\LogoutController;
-use CrowAnime\Core\Database\Database;
+use CrowAnime\Components\Component;
 use CrowAnime\Core\Entities\User;
-use CrowAnime\Core\Errors\Error;
-use CrowAnime\Modules\Components\Component;
 use CrowAnime\Router\Router;
 
 /**

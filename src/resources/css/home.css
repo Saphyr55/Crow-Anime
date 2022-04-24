@@ -55,7 +55,7 @@ body {
     background-color: rgba(0,0,0,0.8);
 }
 
-.fade > img {
+.fade > a > img {
     width: 600px;
     height: 400px;
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace CrowAnime\Modules\Components;
+namespace CrowAnime\Components;
 
 use CrowAnime\Core\Controllers\Components\HeaderController;
 use CrowAnime\Core\Controllers\Controller;

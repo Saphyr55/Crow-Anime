@@ -1,18 +1,17 @@
 <?php
 
-namespace CrowAnime\Modules;
+namespace CrowAnime\Modules\Admin;
 
-use CrowAnime\App;
+use CrowAnime\Components\Body;
+use CrowAnime\Components\Footer;
+use CrowAnime\Components\Head;
+use CrowAnime\Components\Header;
 use CrowAnime\Core\Controllers\Entities\AddMangaController;
 use CrowAnime\Core\Entities\User;
-use CrowAnime\Core\Rule\Rules;
+use CrowAnime\Core\Rules\Rules;
 use CrowAnime\Module;
-use CrowAnime\Modules\Components\Body;
-use CrowAnime\Modules\Components\Footer;
-use CrowAnime\Modules\Components\Head;
-use CrowAnime\Modules\Components\Header;
 
-class AddManga extends Module
+class AddMangaModule extends Module
 {
     private static ?Module $_add_manga = null;
 
@@ -40,10 +39,10 @@ class AddManga extends Module
         );
     }
 
-    public static function getModule(): AddManga|Module|null
+    public static function getModule(): AddMangaModule|Module|null
     {
         if (self::$_add_manga === null)
-            self::$_add_manga = new Addmanga();
+            self::$_add_manga = new AddMangaModule();
 
         return self::$_add_manga;
     }

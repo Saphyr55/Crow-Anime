@@ -2,14 +2,13 @@
 
 namespace CrowAnime\Modules;
 
+use CrowAnime\Components\Body;
+use CrowAnime\Components\Head;
 use CrowAnime\Core\Controllers\Auths\LogoutController;
-use CrowAnime\Core\Entities\User;
+use CrowAnime\Core\Rules\Rules;
 use CrowAnime\Module;
-use CrowAnime\Core\Rule\Rules;
-use CrowAnime\Modules\Components\Body;
-use CrowAnime\Modules\Components\Head;
 
-class Logout extends Module 
+class LogoutModule extends Module
 {
     private static ?Module $_logout = null;
 
@@ -18,7 +17,7 @@ class Logout extends Module
         parent::__construct(
             "logout",
             new Head(
-                "Crow Anime - Logout",[]
+                "Crow Anime - LogoutModule",[]
             ),
             new Body(
             "logout", null, null
@@ -30,10 +29,10 @@ class Logout extends Module
         );
     }
 
-    public static function getModule(): Logout|Module|null
+    public static function getModule(): LogoutModule|Module|null
     {
         if(self::$_logout === null)
-            self::$_logout = new Logout();  
+            self::$_logout = new LogoutModule();
      
         return self::$_logout;
     }

@@ -2,16 +2,16 @@
 
 namespace CrowAnime\Modules;
 
+use CrowAnime\Components\Body;
+use CrowAnime\Components\Footer;
+use CrowAnime\Components\Head;
+use CrowAnime\Components\Header;
 use CrowAnime\Core\Controllers\Components\ErrorController;
 use CrowAnime\Core\Errors\CAError;
-use CrowAnime\Core\Rule\Rules;
+use CrowAnime\Core\Rules\Rules;
 use CrowAnime\Module;
-use CrowAnime\Modules\Components\Body;
-use CrowAnime\Modules\Components\Footer;
-use CrowAnime\Modules\Components\Head;
-use CrowAnime\Modules\Components\Header;
 
-class Error extends \CrowAnime\Module
+class ErrorModule extends \CrowAnime\Module
 {
     private static ?Module $module = null;
 
@@ -36,7 +36,7 @@ class Error extends \CrowAnime\Module
     public static function getModule(): Module|null
     {
         if(self::$module === null)
-            self::$module = new Error();
+            self::$module = new ErrorModule();
         return self::$module;
     }
 

@@ -1,6 +1,6 @@
 <?php /** @noinspection ALL */
 
-namespace CrowAnime\Modules\Components;
+namespace CrowAnime\Components;
 
 use CrowAnime\Core\Entities\Path;
 use CrowAnime\Core\Language\Language;

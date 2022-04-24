@@ -1,17 +1,17 @@
 <?php
 
-namespace CrowAnime\Modules;
+namespace CrowAnime\Modules\Profile;
 
+use CrowAnime\Components\Body;
+use CrowAnime\Components\Footer;
+use CrowAnime\Components\Head;
+use CrowAnime\Components\Header;
 use CrowAnime\Core\Controllers\Entities\UserListMangasController;
 use CrowAnime\Core\Entities\User;
-use CrowAnime\Core\Rule\Rules;
+use CrowAnime\Core\Rules\Rules;
 use CrowAnime\Module;
-use CrowAnime\Modules\Components\Body;
-use CrowAnime\Modules\Components\Footer;
-use CrowAnime\Modules\Components\Head;
-use CrowAnime\Modules\Components\Header;
 
-class UserListManga extends Module
+class UserListMangaModule extends Module
 {
     
     private static ?Module $profileMangas = null;
@@ -27,10 +27,10 @@ class UserListManga extends Module
         );
     }
 
-    public static function getModule(): UserListManga|Module|null
+    public static function getModule(): UserListMangaModule|Module|null
     {
         if(self::$profileMangas === null)
-            self::$profileMangas = new UserListManga();
+            self::$profileMangas = new UserListMangaModule();
             
         return self::$profileMangas;
     }

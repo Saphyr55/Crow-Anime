@@ -1,31 +1,25 @@
 <?php
 
 use CrowAnime\App;
-use CrowAnime\Core\Entities\User;
-use CrowAnime\Module;
-use CrowAnime\Core\Rule\Rules;
-use CrowAnime\Modules\Components\Body;
-use CrowAnime\Modules\Components\Head;
-use CrowAnime\Modules\Components\Footer;
-use CrowAnime\Modules\Components\Header;
 
 require_once './vendor/autoload.php';
 
 App::start();
 
 $app = new App(
-        CrowAnime\Modules\Error::getModule(),
-        CrowAnime\Modules\Home::getModule(),
-        CrowAnime\Modules\UserListAnime::getModule(),
-        CrowAnime\Modules\UserListManga::getModule(),
-        CrowAnime\Modules\Animes::getModule(),
-        CrowAnime\Modules\Mangas::getModule(),
-        CrowAnime\Modules\Signup::getModule(),
-        CrowAnime\Modules\Login::getModule(),
-        CrowAnime\Modules\Logout::getModule(),
-        CrowAnime\Modules\AddAnime::getModule(),
-        CrowAnime\Modules\AddManga::getModule(),
-        CrowAnime\Modules\UserProfile::getModule()
+        CrowAnime\Modules\ErrorModule::getModule(),
+        CrowAnime\Modules\HomeModule::getModule(),
+        CrowAnime\Modules\Profile\UserListAnimeModule::getModule(),
+        CrowAnime\Modules\Profile\UserListMangaModule::getModule(),
+        CrowAnime\Modules\AnimesModule::getModule(),
+        CrowAnime\Modules\MangasModule::getModule(),
+        CrowAnime\Modules\SignupModule::getModule(),
+        CrowAnime\Modules\LoginModule::getModule(),
+        CrowAnime\Modules\LogoutModule::getModule(),
+        CrowAnime\Modules\Admin\AddAnimeModule::getModule(),
+        CrowAnime\Modules\Admin\AddMangaModule::getModule(),
+        CrowAnime\Modules\Profile\UserProfileModule::getModule(),
+        CrowAnime\Modules\NewsModule::getModule()
 );
 $app->run();
 

@@ -1,20 +1,17 @@
 <?php
 
-namespace CrowAnime\Modules;
+namespace CrowAnime\Modules\Admin;
 
-use CrowAnime\App;
+use CrowAnime\Components\Body;
+use CrowAnime\Components\Footer;
+use CrowAnime\Components\Head;
+use CrowAnime\Components\Header;
 use CrowAnime\Core\Controllers\Entities\AddAnimeController;
 use CrowAnime\Core\Entities\User;
-use CrowAnime\Core\Rule\Rules;
+use CrowAnime\Core\Rules\Rules;
 use CrowAnime\Module;
-use CrowAnime\Modules\Components\Body;
-use CrowAnime\Modules\Components\Footer;
-use CrowAnime\Modules\Components\Head;
-use CrowAnime\Modules\Components\Header;
-use CrowAnime\Router\Router;
-use phpDocumentor\Reflection\Types\This;
 
-class AddAnime extends Module
+class AddAnimeModule extends Module
 {
     private static ?Module $_add_anime = null;
 
@@ -37,10 +34,10 @@ class AddAnime extends Module
         );
     }
 
-    public static function getModule(): Module|AddAnime|null
+    public static function getModule(): Module|AddAnimeModule|null
     {
         if (self::$_add_anime === null)
-            self::$_add_anime = new AddAnime();
+            self::$_add_anime = new AddAnimeModule();
 
         return self::$_add_anime;
     }

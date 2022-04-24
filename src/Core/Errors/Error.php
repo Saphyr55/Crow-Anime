@@ -33,7 +33,7 @@ class Error implements ErrorInterface
         if ($message !== null)
             self::set($message);
         else self::set(self::get());
-        header('Location: '.\CrowAnime\Modules\Error::getModule()->getURL());
+        header('Location: '.\CrowAnime\Modules\ErrorModule::getModule()->getURL());
         exit();
     }
 

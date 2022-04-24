@@ -4,7 +4,6 @@ namespace CrowAnime\Router;
 
 use CrowAnime\Core\Errors\Error;
 use CrowAnime\Module;
-use CrowAnime\Modules\Components\Component;
 
 class Router
 {

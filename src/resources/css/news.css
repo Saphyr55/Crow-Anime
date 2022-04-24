@@ -1,0 +1,104 @@
+body {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    list-style-type: none;
+    background-color: #2e2e2e;
+}
+
+main {
+    margin-top: 50px;
+    display: grid;
+}
+
+.top-main {
+    height: 50px;
+    margin: 0 auto 10px;
+    max-width: 168px;
+    background-color: #848484;
+    padding-right: 50px;
+    padding-left: 50px;
+    border-radius: 20px;
+    box-shadow:
+            rgba(0, 0, 0, 0.25) 0 54px 55px,
+            rgba(0, 0, 0, 0.12) 0 -12px 30px,
+            rgba(0, 0, 0, 0.12) 0 4px 6px,
+            rgba(0, 0, 0, 0.17) 0 12px 13px,
+            rgba(0, 0, 0, 0.09) 0 -3px 5px;
+}
+
+.top-main > div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    top: -45px;
+    left: 400px;
+}
+
+.top-main > div > a {
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    color: #070707;
+    margin: 0 auto;
+    background-color: #f1f1f1;
+    height: 50px;
+    width: 50px;
+    font-size: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-main > div > a:hover {
+    opacity: 0.9;
+}
+
+.top-main > p {
+    margin: 0 auto;
+    font-size: 40px;
+    max-width: 217px;
+}
+
+.news {
+    margin: 0 auto 100px;
+    display: flex;
+    max-width: 1000px;
+    background-color: #1D1D1D;
+    box-shadow: rgba(14, 30, 37, 0.12) 0 2px 4px 0, rgba(14, 30, 37, 0.32) 0 2px 16px 0;
+    padding: 30px;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+.news > img {
+    width: 800px;
+    height: 400px;
+}
+
+.add-news {
+    padding: 5px;
+    transition: 1s all;
+    box-shadow: rgba(14, 30, 37, 0.12) 0 2px 4px 0, rgba(14, 30, 37, 0.32) 0 2px 16px 0;
+    text-align: center;
+    border-radius: 50px;
+    position: relative;
+    z-index: 30;
+    width: 300px;
+    background-color: #ababab;
+}
+
+.add-news > form > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-news > form > div > input {
+    margin: 0 auto;
+}
+
+.title-form {
+    text-shadow: 1px 1px 2px black;
+    font-size: 30px;
+    text-align: center;
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace CrowAnime\Core\Rule;
+namespace CrowAnime\Core\Rules;
 
 use CrowAnime\Core\Entities\User;
 

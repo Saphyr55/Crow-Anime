@@ -2,13 +2,11 @@
 
 namespace CrowAnime;
 
+use CrowAnime\Components\Body;
+use CrowAnime\Components\Component;
+use CrowAnime\Components\Head;
 use CrowAnime\Core\Controllers\Controller;
-use CrowAnime\Core\Entities\Path;
-use CrowAnime\Core\Entities\User;
-use CrowAnime\Core\Rule\Rules;
-use CrowAnime\Modules\Components\Body;
-use CrowAnime\Modules\Components\Head;
-use CrowAnime\Modules\Components\Component;
+use CrowAnime\Core\Rules\Rules;
 use CrowAnime\Template\FunctionsTemplate;
 
 /**
