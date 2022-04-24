@@ -41,9 +41,9 @@ class Router
 
                     header('Location: ' . substr($uri, 0, -1)); // redirection si l'uri termine par /
                     exit();
-                } elseif (strcmp($uri, "/") == 0) {
+                } elseif (strcmp($uri, "/") == 0) { // home module generate
 
-                    ($this->modules[0])->generate($this->modules[0]);
+                    $this->modules[0]->generate($this->modules[0]);
                     exit();
                 } elseif (
                     ($i == (count($this->modules) - 1))

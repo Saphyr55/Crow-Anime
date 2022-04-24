@@ -1,0 +1,85 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #2e2e2e;
+}
+
+main {
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-evenly;
+}
+
+h1, h2, h3, a, label{
+    font-family: "Roboto", sans-serif;
+    color: white;
+}
+
+.profile-part {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-part > img {
+    width: 300px;
+    height: 300px;
+}
+
+.profile-part-last {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-part-last > div {
+    margin-top: 20px;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.anime-part, .manga-part {
+    padding: 20px;
+    min-height: 100%;
+    min-width: 300px;
+    background-color: #848484;
+    box-shadow:
+            rgba(50, 50, 93, 0.25) 0 30px 60px -12px,
+            rgba(0, 0, 0, 0.3) 0 18px 36px -18px;}
+
+.button-to-list {
+    background-color: #f1f1f1;
+    padding: 15px 35px;
+    font-size: 15px;
+    font-family: "Roboto", sans-serif;
+    color: black;
+}
+
+.last-update {
+    display: flex;
+    flex-direction: column;
+}
+
+.last-update > div {
+    display: flex;
+    align-items: center;
+    max-width: 300px;
+}
+
+.last-update > div > a > img{
+    width: 80px;
+    height: 120px;
+    margin-right: 10px;
+}
+
+.bold {
+    font-size: 22px;
+}
+
+input[type="file"] {
+    display: none;
+}

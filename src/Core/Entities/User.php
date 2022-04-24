@@ -17,7 +17,7 @@ class User
     private string $password;
     private bool $isAdmin;
     private string|DateTime|null $dateConnection;
-    private string|DateTime $dateRegister;
+    private string|DateTime|null $dateRegister;
 
     /**
      *
@@ -27,9 +27,9 @@ class User
      * @param string $password
      * @param bool $isAdmin
      * @param string|DateTime|null $dateConnection
-     * @param string|DateTime $dateRegister
+     * @param string|DateTime|null $dateRegister
      */
-    public function __construct(int $idUser, string $username, string $email, string $password, bool $isAdmin, string|DateTime|null $dateConnection, string|DateTime $dateRegister)
+    public function __construct(int $idUser, string $username, string $email, string $password, bool $isAdmin, string|DateTime|null $dateConnection, string|DateTime|null $dateRegister)
     {
         $this->idUser = $idUser;
         $this->username = $username;
@@ -39,6 +39,45 @@ class User
         $this->dateConnection = $dateConnection;
         $this->dateRegister = $dateRegister;
         self::$usersConnected[] = $this;
+    }
+
+    public function totalAnime()
+    {
+        return Database::getDatabase()->execute(
+            "SELECT COUNT(id_anime) FROM lister_anime
+            WHERE id_user=:id_user GROUP BY id_user",
+            [':id_user' => $this->getIdUser()]
+        )[0]['COUNT(id_anime)'];
+    }
+
+    public function totalManga()
+    {
+        return Database::getDatabase()->execute(
+            "SELECT COUNT(id_manga) FROM lister_manga
+            WHERE id_user=:id_user
+            GROUP BY id_user",
+            [':id_user' => $this->getIdUser()]
+        )[0]['COUNT(id_manga)'];
+    }
+
+    public function meanMangas()
+    {
+        return Database::getDatabase()->execute(
+            "SELECT AVG(score) FROM lister_manga
+            WHERE id_user=:id_user
+            GROUP BY id_user",
+            [':id_user' => $this->getIdUser()]
+        )[0]['AVG(score)'];
+    }
+
+    public function meanAnimes()
+    {
+        return Database::getDatabase()->execute(
+            "SELECT AVG(score) FROM lister_anime 
+            WHERE id_user=:id_user
+            GROUP BY id_user",
+            [':id_user' => $this->getIdUser()]
+        )[0]['AVG(score)'];
     }
 
     public function animesView(): array
@@ -51,25 +90,33 @@ class User
             ORDER BY lister_anime.score",
             [':id_user' => $this->getIdUser()]
         );
-        foreach ($anime_from_database as $value) {
-            $anime = Anime::build(
-                $value['anime_title_en'],
-                $value['anime_title_ja'],
-                $value['anime_finish'],
-                $value['anime_synopsis'],
-                $value['anime_season'],
-                $value['anime_studio'],
-                $value['anime_date'],
-            );
-            $anime->setIdWork($value['id_anime']);
-            $anime_for_views[] = $anime;
-        }
-        return $anime_for_views;
+        return $this->createAnimeByArray($anime_from_database, $anime_for_views);
+    }
+
+    public function animesRecentAdd(): array
+    {
+        return Database::getDatabase()->execute(
+            "SELECT * FROM anime 
+            INNER JOIN lister_anime ON anime.id_anime=lister_anime.id_anime
+            WHERE lister_anime.id_user=:id_user
+            ORDER BY lister_anime.add_date DESC",
+            [':id_user' => $this->getIdUser()]
+        );
+    }
+
+    public function mangasRecentAdd(): array
+    {
+        return Database::getDatabase()->execute(
+            "SELECT * FROM manga 
+            INNER JOIN lister_manga ON manga.id_manga=lister_manga.id_manga
+            WHERE lister_manga.id_user=:id_user
+            ORDER BY lister_manga.add_date DESC",
+            [':id_user' => $this->getIdUser()]
+        );
     }
 
     public function mangasView(): array
     {
-        $mangas_r = [];
         $mangas = Database::getDatabase()->execute(
             "SELECT * FROM manga 
             INNER JOIN lister_manga ON manga.id_manga=lister_manga.id_manga
@@ -78,21 +125,7 @@ class User
             [':id_user' => $this->getIdUser()]
         );
 
-        foreach ($mangas as $value) {
-            $manga = new Manga(
-                $value['manga_title_ja'],
-                $value['manga_title_en'],
-                $value['manga_finish'],
-                $value['manga_synopsis'],
-                $value['manga_author'],
-                $value['manga_edition'],
-                $value['manga_volumes'],
-                $value['manga_date']
-            );
-            $manga->setIdWork($value['id_manga']);
-            $mangas_r[] = $manga;
-        }
-        return $mangas_r;
+        return $this->createMangaByArray($mangas);
     }
 
     public static function arrayToUser(array $user): User
@@ -107,7 +140,6 @@ class User
             new DateTime()
         );
     }
-
 
     public function isInURI(): bool
     {
@@ -125,6 +157,7 @@ class User
     public static function setUserURI(): void
     {
             $uri = $_SERVER['REQUEST_URI'];
+            $uri = explode('?', $uri)[0];
             if (
                 strcmp(explode('/', $uri)[1], 'profile') === 0 ||
                 strcmp(explode('/', $uri)[1], 'admin') === 0
@@ -301,4 +334,54 @@ class User
     {
         $_SESSION['user'] = $user;
     }
+
+    /**
+     * @param bool|array $mangas
+     * @param array $mangas_r
+     * @return array
+     */
+    private function createMangaByArray(bool|array $mangas): array
+    {
+        $mangas_r =[];
+        foreach ($mangas as $value) {
+            $manga = new Manga(
+                $value['manga_title_ja'],
+                $value['manga_title_en'],
+                $value['manga_finish'],
+                $value['manga_synopsis'],
+                $value['manga_author'],
+                $value['manga_edition'],
+                $value['manga_volumes'],
+                $value['manga_date']
+            );
+            $manga->setIdWork($value['id_manga']);
+            $mangas_r[] = $manga;
+        }
+        return $mangas_r;
+    }
+
+    /**
+     * @param bool|array $anime_from_database
+     * @param array $anime_for_vews
+     * @return array
+     */
+    private function createAnimeByArray(bool|array $anime_from_database, array $anime_for_vews): array
+    {
+        foreach ($anime_from_database as $value) {
+            $anime = Anime::build(
+                $value['anime_title_en'],
+                $value['anime_title_ja'],
+                $value['anime_finish'],
+                $value['anime_synopsis'],
+                $value['anime_season'],
+                $value['anime_studio'],
+                $value['anime_date'],
+            );
+            $anime->setIdWork($value['id_anime']);
+            $anime_for_vews[] = $anime;
+        }
+        return $anime_for_vews;
+    }
+
+
 }

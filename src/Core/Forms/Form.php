@@ -41,11 +41,11 @@ abstract class Form
         return $this;
     }
 
-    public static function upload_file(string $name_file, array $allowed, string $uploadfile): void
+    public static function upload_file(string $name_file, array $allowed, string $upload_file): void
     {
         foreach ($allowed as $value) {
             if ($_FILES[$name_file]['type'] === $value) {
-                move_uploaded_file($_FILES[$name_file]["tmp_name"], $uploadfile);
+                move_uploaded_file($_FILES[$name_file]["tmp_name"], $upload_file);
                 break;
             }
         }

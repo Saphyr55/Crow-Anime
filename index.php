@@ -25,6 +25,7 @@ $app = new App(
         CrowAnime\Modules\Logout::getModule(),
         CrowAnime\Modules\AddAnime::getModule(),
         CrowAnime\Modules\AddManga::getModule(),
+        CrowAnime\Modules\UserProfile::getModule()
 );
 $app->run();
 

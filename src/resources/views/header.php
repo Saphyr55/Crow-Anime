@@ -83,10 +83,10 @@
                 </a>
             </div>
             <div class="dropdown">
-                <button class="drop-btn">France</button>
+                <button class="drop-btn"><?= $current_language ?></button>
                 <div class="dropdown-content">
-                    <a href="?lang=fr">France</a>
-                    <a href="?lang=en">English</a>
+                    <a href="?lang=fr">FR</a>
+                    <a href="?lang=en">EN</a>
                 </div>
             </div>
         </div>

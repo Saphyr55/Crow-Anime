@@ -14,6 +14,7 @@ class HeaderController extends \CrowAnime\Core\Controllers\Controller
         $language->switchLanguage();
         $this->language($language->for('header'));
         $this->with([
+            'current_language' => strtoupper(Language::getLanguage()->getCurrentLanguage()),
             'exist_user' => $this->issetUser(),
             'header_username' => ($this->issetUser()) ? $_SESSION['user']->getUsername() : 'null',
             'is_admin' => $this->issetUser() && $_SESSION['user']->isAdmin()
