@@ -17,7 +17,7 @@ body {
     margin: 100px auto auto;
 }
 
-.slideshow-container > h1 {
+.slideshow-container > a > h1 {
     background-color: #2e2e2e;
     font-family: "Roboto", sans-serif;
     text-align: center;
@@ -55,7 +55,7 @@ body {
     background-color: rgba(0,0,0,0.8);
 }
 
-.fade > a > img {
+.fade  > iframe {
     width: 600px;
     height: 400px;
 }
@@ -69,19 +69,6 @@ body {
 @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
-}
-
-.news {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.img-news {
-    opacity: 0.5;
-    position: relative;
-    width: 1000px;
-    height: 500px;
 }
 
 .news-space-right {

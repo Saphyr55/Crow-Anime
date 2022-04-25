@@ -1,13 +1,13 @@
 <section id="section-left">
     <div class="slideshow-container">
-        <h1>Les News</h1>
-        <div class="mySlides fade">
-            <a href="/news"><img src="/assets/img/not_found.png" style="width:100%" alt=""></a></div>
-        <div class="mySlides fade">
-            <a href="/news"><img src="/assets/img/not_found.png" style="width:100%" alt=""></a>
-        </div>
-        <div class="mySlides fade">
-            <a href="/news"><img src="/assets/img/distance.jpg" style="width:100%" alt=""></a></div>
+        <a href="/news"><h1>Les News</h1></a>
+        <?php for ($i = 0; $i < 3 ; $i++) : ?>
+            <?php if(count($all_news) > $i) : ?>
+            <div class="mySlides fade">
+                <iframe src="<?= $all_news[$i]->getNewsURLVideo() ?>" style="width:100%"  frameborder="0" allowfullscreen></iframe>
+            </div>
+            <?php endif; ?>
+        <?php endfor; ?>
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>

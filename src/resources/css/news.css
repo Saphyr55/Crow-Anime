@@ -11,6 +11,14 @@ main {
     display: grid;
 }
 
+label {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-shadow: 1px 1px black;
+    font-size: 20px;
+    text-align: center;
+}
+
 .top-main {
     height: 50px;
     margin: 0 auto 10px;
@@ -55,7 +63,7 @@ main {
 
 .top-main > p {
     margin: 0 auto;
-    font-size: 40px;
+    font-size: 38px;
     max-width: 217px;
 }
 
@@ -71,12 +79,13 @@ main {
     align-items: center;
 }
 
-.news > img {
+.news > iframe {
     width: 800px;
     height: 400px;
 }
 
 .add-news {
+    border: 10px solid #070707;
     padding: 5px;
     transition: 1s all;
     box-shadow: rgba(14, 30, 37, 0.12) 0 2px 4px 0, rgba(14, 30, 37, 0.32) 0 2px 16px 0;

@@ -6,6 +6,7 @@ use CrowAnime\Components\Body;
 use CrowAnime\Components\Footer;
 use CrowAnime\Components\Head;
 use CrowAnime\Components\Header;
+use CrowAnime\Core\Controllers\Entities\NewsController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
@@ -21,7 +22,7 @@ class NewsModule extends \CrowAnime\Module
             new Head('CrowAnime - NewsModule', ['news']),
             new Body('news', Header::getHeader(), Footer::getFooter()),
             new Rules([Rules::ALL]),
-            null);
+            new NewsController());
     }
 
     public static function getModule(): Module|null
