@@ -5,7 +5,6 @@ namespace CrowAnime;
 use CrowAnime\Components\Component;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Language\Language;
-use CrowAnime\Core\Errors\Error;
 use CrowAnime\Router\Router;
 
 /**
@@ -45,6 +44,14 @@ class App
         return $this;
     }
 
+    /**
+     * Active les cookies pour la langue
+     * Commence la session
+     * Creer un user depuis uri
+     *
+     *
+     * @return void
+     */
     public static function start(): void
     {
         session_start();

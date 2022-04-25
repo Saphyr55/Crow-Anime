@@ -9,8 +9,6 @@ use CrowAnime\Module;
 
 class LoginController extends Controller
 {
-
-
     public function action(): void
     {
         $this->language(Language::getLanguage()->for('login'));

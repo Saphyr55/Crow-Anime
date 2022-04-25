@@ -1,7 +1,5 @@
-.idea/*
 .idea
 assets/data/connection.json
-vendor
 phpcs.xml
 phpunit.xml
 server.sh
