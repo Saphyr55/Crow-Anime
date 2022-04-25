@@ -2,17 +2,17 @@
 
 namespace CrowAnime\Modules;
 
+use CrowAnime\Components\Body;
+use CrowAnime\Components\Footer;
+use CrowAnime\Components\Head;
+use CrowAnime\Components\Header;
 use CrowAnime\Core\Controllers\Entities\MangasController;
-use CrowAnime\Core\Rule\Rules;
+use CrowAnime\Core\Rules\Rules;
 use CrowAnime\Module;
-use CrowAnime\Modules\Components\Body;
-use CrowAnime\Modules\Components\Footer;
-use CrowAnime\Modules\Components\Head;
-use CrowAnime\Modules\Components\Header;
 
-class Mangas extends Module
+class MangasModule extends Module
 {
-    const TITLE = "Crow Anime - All Mangas";
+    const TITLE = "Crow Anime - All MangasModule";
     const PATH = "mangas";
 
     private static ?Module $_mangas = null;
@@ -20,9 +20,9 @@ class Mangas extends Module
     public function __construct()
     {
         parent::__construct(
-            Mangas::PATH,
+            MangasModule::PATH,
             new Head(
-                Mangas::TITLE,
+                MangasModule::TITLE,
                 [
                     'mangas', 'sort'
                 ]
@@ -40,10 +40,10 @@ class Mangas extends Module
 
     }
 
-    public static function getModule(): Module|Mangas|null
+    public static function getModule(): Module|MangasModule|null
     {
         if (self::$_mangas === null)
-            self::$_mangas = new Mangas();
+            self::$_mangas = new MangasModule();
 
         return self::$_mangas;
     }

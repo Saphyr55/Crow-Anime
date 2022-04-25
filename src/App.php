@@ -2,9 +2,9 @@
 
 namespace CrowAnime;
 
-use CrowAnime\Core\Controllers\Auths\LogoutController;
-use CrowAnime\Core\Database\Database;
+use CrowAnime\Components\Component;
 use CrowAnime\Core\Entities\User;
+use CrowAnime\Core\Language\Language;
 use CrowAnime\Core\Errors\Error;
 use CrowAnime\Core\Language\Language;
 use CrowAnime\Modules\Components\Component;

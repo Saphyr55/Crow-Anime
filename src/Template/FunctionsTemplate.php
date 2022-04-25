@@ -4,6 +4,7 @@ namespace CrowAnime\Template;
 
 use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Path;
+use CrowAnime\Core\Entities\User;
 
 class FunctionsTemplate
 {
@@ -18,6 +19,15 @@ class FunctionsTemplate
             },
             'date' => function (string $format) {
                 return date($format);
+            },
+            'is_current_user' => function () {
+                if(User::getCurrentUser() !== null) {
+                    return User::getCurrentUserURI()->getIdUser() == User::getCurrentUser()->getIdUser();
+                }
+                else return false;
+            },
+            'current_user_is_admin' => function () {
+                return !(User::getCurrentUser() === null) && User::getCurrentUser()->isAdmin();
             }
         ];
         $this->functions = Controller::compactData($this->functions);

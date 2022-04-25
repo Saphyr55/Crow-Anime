@@ -2,17 +2,17 @@
 
 namespace CrowAnime\Modules;
 
+use CrowAnime\Components\Body;
+use CrowAnime\Components\Footer;
+use CrowAnime\Components\Head;
+use CrowAnime\Components\Header;
 use CrowAnime\Core\Controllers\Components\HomeController;
-use CrowAnime\Core\Rule\Rules;
+use CrowAnime\Core\Rules\Rules;
 use CrowAnime\Module;
-use CrowAnime\Modules\Components\Body;
-use CrowAnime\Modules\Components\Footer;
-use CrowAnime\Modules\Components\Head;
-use CrowAnime\Modules\Components\Header;
 
-class Home extends Module
+class HomeModule extends Module
 {
-    const TITLE = "Crow Anime - Home";
+    const TITLE = "Crow Anime - HomeModule";
     const PATH = "home";
 
     private static ?Module $_home = null;
@@ -20,8 +20,8 @@ class Home extends Module
     public function __construct()
     {
         parent::__construct(
-            Home::PATH,
-            new Head(Home::TITLE, ['home']
+            HomeModule::PATH,
+            new Head(HomeModule::TITLE, ['home']
             ),
             new Body(
                 'home',
@@ -35,10 +35,10 @@ class Home extends Module
         );
     }
 
-    public static function getModule(): Home|Module|null
+    public static function getModule(): HomeModule|Module|null
     {
         if (self::$_home === null) {
-            self::$_home = new Home();
+            self::$_home = new HomeModule();
         }
         return self::$_home;
     }

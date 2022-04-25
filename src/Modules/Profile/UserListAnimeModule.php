@@ -1,17 +1,17 @@
 <?php
 
-namespace CrowAnime\Modules;
+namespace CrowAnime\Modules\Profile;
 
+use CrowAnime\Components\Body;
+use CrowAnime\Components\Footer;
+use CrowAnime\Components\Head;
+use CrowAnime\Components\Header;
 use CrowAnime\Core\Controllers\Entities\UserListAnimesController;
 use CrowAnime\Core\Entities\User;
-use CrowAnime\Core\Rule\Rules;
+use CrowAnime\Core\Rules\Rules;
 use CrowAnime\Module;
-use CrowAnime\Modules\Components\Body;
-use CrowAnime\Modules\Components\Footer;
-use CrowAnime\Modules\Components\Head;
-use CrowAnime\Modules\Components\Header;
 
-class UserListAnime extends Module
+class UserListAnimeModule extends Module
 {
     
     private static ?Module $profileAnimes = null;
@@ -36,11 +36,11 @@ class UserListAnime extends Module
         new UserListAnimesController());
     }
 
-    public static function getModule(): UserListAnime|Module|null
+    public static function getModule(): UserListAnimeModule|Module|null
     {
  
         if(self::$profileAnimes === null)
-            self::$profileAnimes = new UserListAnime();
+            self::$profileAnimes = new UserListAnimeModule();
         return self::$profileAnimes;
     }
 

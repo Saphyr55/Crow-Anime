@@ -2,13 +2,13 @@
 
 namespace CrowAnime\Modules;
 
+use CrowAnime\Components\Body;
+use CrowAnime\Components\Head;
 use CrowAnime\Core\Controllers\Auths\SignupController;
-use CrowAnime\Core\Rule\Rules;
-use CrowAnime\Modules\Components\Body;
-use CrowAnime\Modules\Components\Head;
+use CrowAnime\Core\Rules\Rules;
 use CrowAnime\Module;
 
-class Signup extends Module
+class SignupModule extends Module
 {
     protected static ?Module $_signup = null;
 
@@ -25,10 +25,10 @@ class Signup extends Module
         parent::__construct($nameModule, $head, $body, $rules, $controller);
     }
 
-    public static function getModule(): ?Signup
+    public static function getModule(): ?SignupModule
     {
         if (self::$_signup === null)
-            self::$_signup = new Signup();
+            self::$_signup = new SignupModule();
 
         return self::$_signup;
     }
