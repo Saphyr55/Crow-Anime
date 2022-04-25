@@ -4,6 +4,7 @@ namespace CrowAnime;
 
 use CrowAnime\Components\Component;
 use CrowAnime\Core\Entities\User;
+use CrowAnime\Core\Language\Language;
 use CrowAnime\Router\Router;
 
 /**
@@ -49,6 +50,9 @@ class App
         User::setUserURI();
         if (strcmp($_SERVER['REQUEST_URI'], '/logout'))
             Router::saveURI($_SERVER['REQUEST_URI']);
+        if(!isset($_COOKIE['active_browser_lang'])) {
+            Language::activeBrowserLanguage(true);
+        }
     }
 
     /**
