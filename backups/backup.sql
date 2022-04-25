@@ -82,6 +82,10 @@ CREATE TABLE _user(
 INSERT INTO _user VALUES(1,'Saphyr','$2y$10$FRo1LBOMkQaf0iOZsQqaO.GMkdejejvEN4YYjj76nCT2C0fwUzV6.','2022-03-29',0,'test@test.com');
 INSERT INTO _user VALUES(2,'SaphyrAdmin','$2y$10$U2PrDmS/AX8k2vU7ut2rCum22W9y/5vlzBuQUNj1UPMcFGqn9d0.6','2022-03-29',1,'test@test1.com');
 INSERT INTO _user VALUES(3,'Saphyr1','$2y$10$HmjEdknsXPwR6NR2x2gjRuH.Pz8AHs/x.aNv8wi.SumX9v7zYs0Py',NULL,0,'test@test3.com');
+INSERT INTO _user VALUES(4,'Saphyr5','$2y$10$msOTRKP20bUtVFWoem33E.yaqqtGwUee1XwGmE8sWedbQFPUUkeES',NULL,0,'test5@gmail.com');
+INSERT INTO _user VALUES(5,'Saphyr155','$2y$10$ym8pd2C01S93.X3KIZPzs.BuzllwXHteXzFLFhuJb4vlawWIkUfA6',NULL,0,'test@test5.com');
+INSERT INTO _user VALUES(6,'Saphyr14','$2y$10$Y04wdNI6iwrZQ0z.hoOVAOUZ3AZEiey3LYt4PQvE1BOvOKFViz3HK',NULL,0,'test44@test.com');
+INSERT INTO _user VALUES(7,'Saphyr15','$2y$10$cvwFjBGCtFbs0OQqdgxUi.lY3V.Qhqi0vi7WjARTqjZViw54pygmi',NULL,0,'test15@test.pf');
 CREATE TABLE manga(
   id_manga INTEGER PRIMARY KEY NOT NULL,
   manga_title_ja VARCHAR(250),
