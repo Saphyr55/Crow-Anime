@@ -3,7 +3,6 @@
 namespace CrowAnime\Core\Language;
 
 use CrowAnime\Core\Entities\Path;
-use CrowAnime\Router\Router;
 
 class Language
 {
@@ -18,9 +17,9 @@ class Language
     private string $langBrowser;
 
     public function __construct()
-    {
+    {   
         $this->langBrowser = in_array($this->getBrowserLanguage(), self::LANG) ? $this->getBrowserLanguage() : self::DEFAULT_LANG;
-        if (strval($this->isActiveBrowserLanguage()) == 1)
+        if (intval($this->isActiveBrowserLanguage()) == 1)
             $this->setCurrentLanguage($this->langBrowser);
         else
             $this->setCurrentLanguage($this->getCookieLanguage());

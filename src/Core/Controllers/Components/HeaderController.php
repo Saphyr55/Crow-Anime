@@ -2,7 +2,6 @@
 
 namespace CrowAnime\Core\Controllers\Components;
 
-use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Language\Language;
 
 class HeaderController extends \CrowAnime\Core\Controllers\Controller
