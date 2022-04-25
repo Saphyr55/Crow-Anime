@@ -6,8 +6,6 @@ use CrowAnime\Components\Component;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Language\Language;
 use CrowAnime\Core\Errors\Error;
-use CrowAnime\Core\Language\Language;
-use CrowAnime\Modules\Components\Component;
 use CrowAnime\Router\Router;
 
 /**

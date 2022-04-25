@@ -83,10 +83,19 @@
                 </a>
             </div>
             <div class="dropdown">
+<<<<<<< HEAD
+                <div class="dropdown">
+                    <button class="drop-btn"><?= $current_language ?></button>
+                    <div class="dropdown-content">
+                        <a href="?lang=fr">FR</a>
+                        <a href="?lang=en">EN</a>
+                    </div>
+=======
                 <button class="drop-btn"><?= $current_language ?></button>
                 <div class="dropdown-content">
                     <a href="?lang=fr">FR</a>
                     <a href="?lang=en">EN</a>
+>>>>>>> 07416f507a0800470f753ed0b898004de1789fc6
                 </div>
             </div>
         </div>

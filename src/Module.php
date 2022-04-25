@@ -6,7 +6,11 @@ use CrowAnime\Components\Body;
 use CrowAnime\Components\Component;
 use CrowAnime\Components\Head;
 use CrowAnime\Core\Controllers\Controller;
+<<<<<<< HEAD
+use CrowAnime\Core\Rule\Rules;
+=======
 use CrowAnime\Core\Rules\Rules;
+>>>>>>> 07416f507a0800470f753ed0b898004de1789fc6
 use CrowAnime\Template\FunctionsTemplate;
 
 /**

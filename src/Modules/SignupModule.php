@@ -5,7 +5,11 @@ namespace CrowAnime\Modules;
 use CrowAnime\Components\Body;
 use CrowAnime\Components\Head;
 use CrowAnime\Core\Controllers\Auths\SignupController;
+<<<<<<< HEAD:src/Modules/Signup.php
+use CrowAnime\Core\Rule\Rules;
+=======
 use CrowAnime\Core\Rules\Rules;
+>>>>>>> 07416f507a0800470f753ed0b898004de1789fc6:src/Modules/SignupModule.php
 use CrowAnime\Module;
 
 class SignupModule extends Module
