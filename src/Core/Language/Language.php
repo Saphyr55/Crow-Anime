@@ -17,7 +17,7 @@ class Language
     private string $langBrowser;
 
     public function __construct()
-    {
+    {   
         $this->langBrowser = in_array($this->getBrowserLanguage(), self::LANG) ? $this->getBrowserLanguage() : self::DEFAULT_LANG;
         if (intval($this->isActiveBrowserLanguage()) == 1)
             $this->setCurrentLanguage($this->langBrowser);
