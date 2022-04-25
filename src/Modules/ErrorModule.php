@@ -7,8 +7,7 @@ use CrowAnime\Components\Footer;
 use CrowAnime\Components\Head;
 use CrowAnime\Components\Header;
 use CrowAnime\Core\Controllers\Components\ErrorController;
-use CrowAnime\Core\Errors\CAError;
-use CrowAnime\Core\Rules\Rules;
+use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
 class ErrorModule extends \CrowAnime\Module

@@ -5,11 +5,7 @@ namespace CrowAnime\Modules;
 use CrowAnime\Components\Body;
 use CrowAnime\Components\Head;
 use CrowAnime\Core\Controllers\Auths\LogoutController;
-<<<<<<< HEAD:src/Modules/Logout.php
 use CrowAnime\Core\Rule\Rules;
-=======
-use CrowAnime\Core\Rules\Rules;
->>>>>>> 07416f507a0800470f753ed0b898004de1789fc6:src/Modules/LogoutModule.php
 use CrowAnime\Module;
 
 class LogoutModule extends Module

@@ -8,6 +8,7 @@ main {
     display: flex;
     margin-top: 50px;
     justify-content: space-evenly;
+    min-height: 100vh;
 }
 
 h1, h2, h3, a, label{

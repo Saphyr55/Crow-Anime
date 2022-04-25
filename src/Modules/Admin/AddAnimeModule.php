@@ -8,7 +8,7 @@ use CrowAnime\Components\Head;
 use CrowAnime\Components\Header;
 use CrowAnime\Core\Controllers\Entities\AddAnimeController;
 use CrowAnime\Core\Entities\User;
-use CrowAnime\Core\Rules\Rules;
+use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
 class AddAnimeModule extends Module

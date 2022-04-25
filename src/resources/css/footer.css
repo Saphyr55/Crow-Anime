@@ -1,8 +1,9 @@
 #footer {
-    margin-top: auto;
     display: flex;
     align-items: center;
     height: 50px;
+    max-height: 50px;
+    min-height: 50px;
     background-color: #1D1D1D;
 }
 

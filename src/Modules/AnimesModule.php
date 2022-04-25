@@ -7,7 +7,7 @@ use CrowAnime\Components\Footer;
 use CrowAnime\Components\Head;
 use CrowAnime\Components\Header;
 use CrowAnime\Core\Controllers\Entities\AnimesController;
-use CrowAnime\Core\Rules\Rules;
+use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
 class AnimesModule extends Module
