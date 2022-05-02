@@ -8,14 +8,19 @@ use CrowAnime\Components\Head;
 use CrowAnime\Components\Header;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
+use CrowAnime\Core\Entities\Anime;
 
 class ProfileAnimeModule extends Module{
 
     private static ?Module $profileAnime = null;
 
     public function __construct(){
+
+        $anime = Anime::getCurrentAnimeURI();
+
         parent::__construct(
             "anime/id/anime",
+            //"anime/".$anime->getIdWork."/".str_replace(" ", "_", $anime->getTitle_en),
             new Head("Crow Anime - Anime Name",
                 ["profile_anime"]),
                 new Body("profile_anime",
