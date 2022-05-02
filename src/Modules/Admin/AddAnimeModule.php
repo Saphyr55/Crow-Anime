@@ -36,7 +36,7 @@ class AddAnimeModule extends Module
 
     public static function getModule(): Module|AddAnimeModule|null
     {
-        if (self::$_add_anime === null)
+        if (self::$_add_anime === null && !strcmp(explode('/',explode('?',$_SERVER['REQUEST_URI'])[0])[1], 'admin'))
             self::$_add_anime = new AddAnimeModule();
 
         return self::$_add_anime;

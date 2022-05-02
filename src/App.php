@@ -4,6 +4,7 @@ namespace CrowAnime;
 
 use CrowAnime\Components\Component;
 use CrowAnime\Core\Entities\Anime;
+use CrowAnime\Core\Entities\Manga;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Language\Language;
 use CrowAnime\Router\Router;
@@ -27,7 +28,7 @@ class App
      * @param  array $modules
      * @param  Module $errorPage
      */
-    public function __construct(Module $errorPage, Module ...$modules)
+    public function __construct(Module $errorPage, ?Module ...$modules)
     {   
         $this->errorPage = $errorPage;
         $this->modules = $modules;
@@ -48,8 +49,7 @@ class App
     /**
      * Active les cookies pour la langue
      * Commence la session
-     * Creer un user depuis uri
-     *
+     * Creer un entities correspondant depuis uri
      *
      * @return void
      */
@@ -59,11 +59,11 @@ class App
         session_start();
         User::setUserURI();
         Anime::setAnimeURI();
+        Manga::setMangaURI();
         if (strcmp($_SERVER['REQUEST_URI'], '/logout'))
             Router::saveURI($_SERVER['REQUEST_URI']);
-        if(!isset($_COOKIE['active_browser_lang'])) {
+        if(!isset($_COOKIE['active_browser_lang']))
             Language::activeBrowserLanguage(true);
-        }
     }
 
     /**

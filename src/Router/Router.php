@@ -7,11 +7,11 @@ use CrowAnime\Module;
 
 class Router
 {
-    private array $modules;
+    private ?array $modules;
     private Module $errorPage;
-    private static Module $currentModule;
+    private static ?Module $currentModule = null;
 
-    public function __construct(array $modules, Module $errorPage)
+    public function __construct(?array $modules, Module $errorPage)
     {
         $this->modules = $modules;
         $this->errorPage = $errorPage;

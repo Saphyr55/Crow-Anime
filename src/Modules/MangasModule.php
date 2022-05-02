@@ -42,7 +42,7 @@ class MangasModule extends Module
 
     public static function getModule(): Module|MangasModule|null
     {
-        if (self::$_mangas === null)
+        if (self::$_mangas === null && !strcmp(explode('/',explode('?',$_SERVER['REQUEST_URI'])[0])[1], 'mangas') )
             self::$_mangas = new MangasModule();
 
         return self::$_mangas;

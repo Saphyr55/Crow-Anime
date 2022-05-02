@@ -39,7 +39,7 @@ class UserListAnimeModule extends Module
     public static function getModule(): UserListAnimeModule|Module|null
     {
  
-        if(self::$profileAnimes === null)
+        if(self::$profileAnimes === null && !strcmp(explode('/',explode('?',$_SERVER['REQUEST_URI'])[0])[1], 'profile'))
             self::$profileAnimes = new UserListAnimeModule();
         return self::$profileAnimes;
     }

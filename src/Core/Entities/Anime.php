@@ -73,19 +73,18 @@ class Anime extends Work
 
     public static function setAnimeURI()
     {
+        $uri = explode('?', $_SERVER['REQUEST_URI'])[0];
+        $work = explode('/',$uri);
+        if (!strcmp($work[1], 'anime')) {
 
-        $uri = $_SERVER['REQUEST_URI'];
-        $uri = explode('?', $uri)[0];
-        $theoreticAnime = explode('/', $uri)[1];
-        if (
-            strcmp($theoreticAnime, 'manga') === 0 ||
-            strcmp($theoreticAnime, 'anime') === 0
-        ) {
+            $theoreticAnimeId = $work[2];
+
             $anime = Database::getDatabase()->execute(
-                "SELECT * FROM anime WHERE id_anime=:id_anime", [':id_anime' => $theoreticAnime]
+                "SELECT * FROM anime WHERE id_anime=:id_anime", [':id_anime' => $theoreticAnimeId]
             )[0];
-            if (!strcmp($theoreticAnime, $anime['id_anime'])) {
-                if(isset($theoreticAnime) && isset($anime['id_anime'])){
+
+            if (!strcmp($theoreticAnimeId, $anime['id_anime'])) {
+                if(isset($theoreticAnimeId) && isset($anime['id_anime'])){
                     $animeObject =  new Anime(
                         $anime['anime_title_en'],
                         $anime['anime_title_ja'],

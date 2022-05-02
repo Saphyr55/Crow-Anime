@@ -6,24 +6,22 @@ use CrowAnime\Components\Body;
 use CrowAnime\Components\Footer;
 use CrowAnime\Components\Head;
 use CrowAnime\Components\Header;
+use CrowAnime\Core\Entities\Anime;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
-use CrowAnime\Core\Entities\Anime;
 
-class ProfileAnimeModule extends Module{
-
+class ProfileAnimeModule extends Module
+{
     private static ?Module $profileAnime = null;
 
-    public function __construct(){
-
+    public function __construct()
+    {
         $anime = Anime::getCurrentAnimeURI();
-
         parent::__construct(
-            "anime/id/anime",
-            //"anime/".$anime->getIdWork."/".str_replace(" ", "_", $anime->getTitle_en),
-            new Head("Crow Anime - Anime Name",
-                ["profile_anime"]),
-                new Body("profile_anime",
+            'anime/'.$anime->getIdWork().'/'.$anime->getTitle_ja(),
+            new Head('Crow Anime - '.$anime->getTitle_ja(),
+                ['profile_anime']),
+                new Body('profile_anime',
                     Header::getHeader(),
                     Footer::getFooter()
                 ),
@@ -35,7 +33,7 @@ class ProfileAnimeModule extends Module{
 
     public static function getModule(): ProfileAnimeModule|Module|null
     {
-        if(self::$profileAnime === null)
+        if(self::$profileAnime === null && !strcmp(explode('/',explode('?',$_SERVER['REQUEST_URI'])[0])[1], 'anime'))
             self::$profileAnime = new ProfileAnimeModule();
      
         return self::$profileAnime;

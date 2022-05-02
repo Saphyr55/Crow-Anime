@@ -27,7 +27,7 @@ class NewsModule extends \CrowAnime\Module
 
     public static function getModule(): Module|null
     {
-        if(self::$module === null)
+        if(self::$module === null && !strcmp(explode('/',explode('?',$_SERVER['REQUEST_URI'])[0])[1], 'news'))
             self::$module = new NewsModule();
         return self::$module;
     }
