@@ -182,8 +182,6 @@ class User
                     }
                 } else self::setCurrentUserURI(new User(-1, "", "", "", "", "", ""));
             } else self::setCurrentUserURI(new User(-1, "", "", "", "", "", ""));
-
-
     }
 
     /**
