@@ -2,6 +2,7 @@
 
 namespace CrowAnime\Modules;
 
+use CrowAnime\Core\Controllers\Entities\ProfileAnimeController;
 use CrowAnime\Components\Body;
 use CrowAnime\Components\Footer;
 use CrowAnime\Components\Head;
@@ -18,7 +19,7 @@ class ProfileAnimeModule extends Module
     {
         $anime = Anime::getCurrentAnimeURI();
         parent::__construct(
-            'anime/'.$anime->getIdWork().'/'.$anime->getTitle_ja(),
+            'anime/'.$anime->getIdWork(),
             new Head('Crow Anime - '.$anime->getTitle_ja(),
                 ['profile_anime']),
                 new Body('profile_anime',

@@ -85,8 +85,11 @@ main{
     overflow: hidden;
 }
 
-.crow_data_score_num{
+.crow_data_score>div{
     text-align: center;
+}
+
+.crow_data_score_num{
     margin-top: 3px;
     font-size: 14px;
 }
