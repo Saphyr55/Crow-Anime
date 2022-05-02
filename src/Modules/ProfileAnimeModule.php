@@ -27,7 +27,8 @@ class ProfileAnimeModule extends Module{
                     Header::getHeader(),
                     Footer::getFooter()
                 ),
-                new Rules([Rules::ALL])  
+                new Rules([Rules::ALL]),
+                new ProfileAnimeController()
             );
 
     }

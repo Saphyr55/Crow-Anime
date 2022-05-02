@@ -3,22 +3,23 @@ main{
     height: 100vh;
 }
 
-.parent {
+.profile_anime_grid{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr 0.4fr repeat(4, 1fr);
+    grid-template-columns: 0.7fr repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     }
     
     .anime_img { grid-area: 1 / 1 / 3 / 2; }
     .anime_score { grid-area: 1 / 2 / 2 / 6; }
-    .anime_info { grid-area: 3 / 1 / 7 / 2; }
-    .anime_sysnopsis { grid-area: 3 / 2 / 4 / 6; }
-    .anime_charac { grid-area: 4 / 2 / 7 / 6; }
+    .anime_info { grid-area: 3 / 1 / 5 / 2; }
+    .anime_synopsis { grid-area: 2 / 2 / 4 / 6; }
+    .anime_charac { grid-area: 4 / 2 / 5 / 6; }
 
-.parent>div{
+.profile_anime_grid>div{
     font-family: 'Roboto', sans-serif;
+    font-size: 20px;
     padding: 1%;
     background: #353535;
     border-radius: 7px;
@@ -36,9 +37,68 @@ main{
     color: white;
 }
 
+.anime_img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .anime_image{
-    width: 10px;
-    height: 10px;
-    border-radius: 10px;
+    width: 220px;
+    height: 320px;
+    border-radius: 7px;
     overflow: hidden;
+}
+
+.crow_data_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+    
+    .score { grid-area: 1 / 1 / 2 / 2; }
+    .member { grid-area: 1 / 2 / 2 / 3; }
+
+.anime_crow_data{
+    width: 397%;
+}
+
+.crow_data_grid>div {
+    font-size: 16px;
+}
+
+.crow_data_score{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height:130px;
+}
+
+.crow_data_score_content{
+    padding: 12px;
+    background-color: #5271FF;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.crow_data_score_num{
+    text-align: center;
+    margin-top: 3px;
+    font-size: 14px;
+}
+
+.crow_data_member{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.anime_synopsis>p{
+    color: #cccccc;
+    font-size: 14px;
 }
