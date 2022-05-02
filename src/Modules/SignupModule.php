@@ -27,7 +27,7 @@ class SignupModule extends Module
 
     public static function getModule(): ?SignupModule
     {
-        if (self::$_signup === null)
+        if (self::$_signup === null && !strcmp(explode('/',explode('?',$_SERVER['REQUEST_URI'])[0])[1], 'signup'))
             self::$_signup = new SignupModule();
 
         return self::$_signup;

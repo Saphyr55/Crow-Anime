@@ -37,7 +37,7 @@ class UserProfileModule extends Module
 
     public static function getModule(): Module|AddAnimeModule|null
     {
-        if (self::$module === null)
+        if (self::$module === null && !strcmp(explode('/',explode('?',$_SERVER['REQUEST_URI'])[0])[1], 'profile'))
             self::$module = new UserProfileModule();
 
         return self::$module;

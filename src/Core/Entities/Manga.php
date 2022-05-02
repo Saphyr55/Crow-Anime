@@ -11,6 +11,7 @@ class Manga extends Work
     private static array $recentMangasUpload = [];
     private static array $topMangas = [];
     private static array $mostPopularMangas = [];
+    private static ?Manga $currentMangaURI;
     private ?string $authors, $publishingHouse;
     private int $volumes;
 
@@ -50,6 +51,57 @@ class Manga extends Work
                 ':manga_volumes' => $this->getVolumes()
             ]
         );
+    }
+
+    public static function setMangaURI()
+    {
+        $uri = explode('?', $_SERVER['REQUEST_URI'])[0];
+        $work = explode('/',$uri);
+        if (!strcmp($work[1], 'anime')) {
+
+            $theoreticId = $work[2];
+
+            $manga = Database::getDatabase()->execute(
+                "SELECT * FROM manga WHERE id_manga=:id_manga", [':id_manga' => $theoreticId]
+            )[0];
+
+            if (!strcmp($theoreticId, $manga['id_manga'])) {
+
+                if(isset($theoreticId) && isset($manga['id_manga'])){
+
+                    $mangaObject = new Manga(
+                        $manga['anime_title_en'],
+                        $manga['anime_title_ja'],
+                        $manga['anime_finish'],
+                        $manga['anime_synopsis'],
+                        $manga['anime_season'],
+                        $manga['anime_studio'],
+                        $manga['anime_date']
+                    );
+                    $mangaObject
+                        ->setIdWork($manga['id_manga'])
+                        ->setScore(Database::getDatabase()->execute(
+                            "SELECT AVG(l.score) FROM manga a 
+                        INNER JOIN lister_manga l ON a.id_manga=l.id_manga
+                        WHERE a.id_manga=:id_manga
+                        ", [
+                                ':id_manga' => $manga['id_manga']
+                            ]
+                        )[0]["AVG(l.score)"]);
+                    self::setCurrentMangaURI($mangaObject);
+                }
+            }
+        }
+    }
+
+    public static function setCurrentMangaURI(?Manga $manga)
+    {
+        self::$currentMangaURI = $manga;
+    }
+
+    public static function getCurrentMangaURI() : ?Manga
+    {
+        return self::$currentMangaURI;
     }
 
     public static function getMostPopularMangas(): array

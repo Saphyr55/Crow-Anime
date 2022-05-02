@@ -18,7 +18,7 @@ class AnimesModule extends Module
     {
         parent::__construct(
             "animes",
-            new Head("Crow Anime - All AnimesModule", ["animes",'sort']),
+            new Head("Crow Anime - All Animes", ["animes",'sort']),
             new Body(
                 "animes",
                 Header::getHeader(),
@@ -31,7 +31,7 @@ class AnimesModule extends Module
 
     public static function getModule(): AnimesModule|Module|null
     {
-        if(self::$_animes === null)
+        if(self::$_animes === null && !strcmp(explode('/',explode('?',$_SERVER['REQUEST_URI'])[0])[1], 'animes'))
             self::$_animes = new AnimesModule();
      
         return self::$_animes;

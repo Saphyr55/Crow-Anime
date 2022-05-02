@@ -17,7 +17,7 @@ class LogoutModule extends Module
         parent::__construct(
             "logout",
             new Head(
-                "Crow Anime - LogoutModule",[]
+                "Crow Anime - Logout",[]
             ),
             new Body(
             "logout", null, null
@@ -31,7 +31,7 @@ class LogoutModule extends Module
 
     public static function getModule(): LogoutModule|Module|null
     {
-        if(self::$_logout === null)
+        if(self::$_logout === null&& !strcmp(explode('/',explode('?',$_SERVER['REQUEST_URI'])[0])[1], 'logout'))
             self::$_logout = new LogoutModule();
      
         return self::$_logout;

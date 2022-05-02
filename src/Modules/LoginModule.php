@@ -19,7 +19,7 @@ class LoginModule extends Module
         parent::__construct(
             "login",
             new Head(
-                "Crow Anime - LoginModule", [
+                "Crow Anime - Login", [
                     "login",
                 ]
             ),
@@ -36,7 +36,7 @@ class LoginModule extends Module
 
     public static function getModule(): Module|LoginModule|null
     {
-        if(self::$_login === null)
+        if(self::$_login === null && !strcmp(explode('/',explode('?',$_SERVER['REQUEST_URI'])[0])[1], 'login'))
             self::$_login = new LoginModule();
      
         return self::$_login;

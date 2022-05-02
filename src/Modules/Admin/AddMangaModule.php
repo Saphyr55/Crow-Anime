@@ -41,7 +41,7 @@ class AddMangaModule extends Module
 
     public static function getModule(): AddMangaModule|Module|null
     {
-        if (self::$_add_manga === null)
+        if (self::$_add_manga === null && !strcmp(explode('/',explode('?',$_SERVER['REQUEST_URI'])[0])[1], 'admin'))
             self::$_add_manga = new AddMangaModule();
 
         return self::$_add_manga;

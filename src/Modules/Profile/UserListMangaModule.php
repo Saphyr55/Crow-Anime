@@ -29,7 +29,7 @@ class UserListMangaModule extends Module
 
     public static function getModule(): UserListMangaModule|Module|null
     {
-        if(self::$profileMangas === null)
+        if(self::$profileMangas === null && !strcmp(explode('/',explode('?',$_SERVER['REQUEST_URI'])[0])[1], 'profile'))
             self::$profileMangas = new UserListMangaModule();
             
         return self::$profileMangas;
