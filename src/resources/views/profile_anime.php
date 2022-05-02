@@ -7,7 +7,7 @@
                 <div class="crow_data_score">
                     <div class="crow_data_score_content">
                         <div class="crow_data_score_title">SCORE</div>
-                        <div class="crow_data_score_num"></div>
+                        <div class="crow_data_score_num"><?php $current_anime->getScore() ?></div>
                     </div>
                 </div>
                 <div class="crow_data_member">MEMBER :</div>
@@ -18,10 +18,10 @@
         </div>
         <div class="anime_synopsis">
             <div class="area_tittle">Synopsis</div>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae deleniti odio provident autem officia, a sunt veniam accusantium nam nulla aperiam nesciunt similique ipsam vitae quam ea beatae? Similique, nobis.</p>
+            <p><?php $current_anime->getSynopsis() ?></p>
         </div>
         <div class="anime_charac">
-            <div class="area_tittle">Characters & Voice Actors</div>
+            <div class="area_tittle">Characters</div>
         </div>
     </div>
 </main>
