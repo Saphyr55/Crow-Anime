@@ -19,7 +19,8 @@ $app = new App(
         CrowAnime\Modules\Admin\AddAnimeModule::getModule(),
         CrowAnime\Modules\Admin\AddMangaModule::getModule(),
         CrowAnime\Modules\Profile\UserProfileModule::getModule(),
-        CrowAnime\Modules\NewsModule::getModule()
+        CrowAnime\Modules\NewsModule::getModule(),
+        CrowAnime\Modules\ProfileAnimeModule::getModule()
 );
 $app->run();
 
