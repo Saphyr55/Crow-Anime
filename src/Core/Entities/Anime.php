@@ -7,6 +7,7 @@ use DateTime;
 
 class Anime extends Work
 {
+    private static ?Anime $currentAnimeURI = null;
     private static array $recentAnimesUpload = [];
     private static array $animesCurrentSeason = [];
     private static array $topAnimes = [];
@@ -68,6 +69,56 @@ class Anime extends Work
                 ':anime_date' => $this->getDate()
             ]
         );
+    }
+
+    public static function setAnimeURI()
+    {
+
+        $uri = $_SERVER['REQUEST_URI'];
+        $uri = explode('?', $uri)[0];
+        $theoreticAnime = explode('/', $uri)[1];
+        if (
+            strcmp($theoreticAnime, 'manga') === 0 ||
+            strcmp($theoreticAnime, 'anime') === 0
+        ) {
+            $anime = Database::getDatabase()->execute(
+                "SELECT * FROM anime WHERE id_anime=:id_anime", [':id_anime' => $theoreticAnime]
+            )[0];
+            if (!strcmp($theoreticAnime, $anime['id_anime'])) {
+                if(isset($theoreticAnime) && isset($anime['id_anime'])){
+                    $animeObject =  new Anime(
+                        $anime['anime_title_en'],
+                        $anime['anime_title_ja'],
+                        $anime['anime_finish'],
+                        $anime['anime_synopsis'],
+                        $anime['anime_season'],
+                        $anime['anime_studio'],
+                        $anime['anime_date']
+                    );
+                    $animeObject
+                        ->setIdWork($anime['id_anime'])
+                        ->setScore(Database::getDatabase()->execute(
+                        "SELECT AVG(l.score) FROM anime a 
+                        INNER JOIN lister_anime l ON a.id_anime=l.id_anime
+                        WHERE a.id_anime=:id_anime
+                        ", [
+                            ':id_anime' => $anime['id_anime']
+                        ]
+                    )[0]["AVG(l.score)"]);
+                    self::setCurrentAnimeURI($animeObject);
+                }
+            }
+        }
+    }
+
+    public static function setCurrentAnimeURI(?Anime $anime)
+    {
+        self::$currentAnimeURI = $anime;
+    }
+
+    public static function getCurrentAnimeURI() : ?Anime
+    {
+        return self::$currentAnimeURI;
     }
 
     public static function getAnimesOfCurrentSeason(): array

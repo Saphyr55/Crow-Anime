@@ -3,6 +3,7 @@
 namespace CrowAnime;
 
 use CrowAnime\Components\Component;
+use CrowAnime\Core\Entities\Anime;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Language\Language;
 use CrowAnime\Router\Router;
@@ -54,8 +55,10 @@ class App
      */
     public static function start(): void
     {
+        error_reporting(0);
         session_start();
         User::setUserURI();
+        Anime::setAnimeURI();
         if (strcmp($_SERVER['REQUEST_URI'], '/logout'))
             Router::saveURI($_SERVER['REQUEST_URI']);
         if(!isset($_COOKIE['active_browser_lang'])) {
