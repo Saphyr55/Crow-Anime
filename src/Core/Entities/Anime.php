@@ -126,7 +126,7 @@ class Anime extends Work
             $animesCurrentSeason = Database::getDatabase()->execute(
                 "SELECT * FROM anime
                 WHERE anime_season=:anime_season
-                AND strftime('%Y', anime_date)=:anime_date",
+                AND YEAR(anime_date)=:anime_date",
                 [
                     ':anime_season' => Season::getCurrentSeason(),
                     ':anime_date' => date('Y')

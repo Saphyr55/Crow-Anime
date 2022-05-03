@@ -1,11 +1,9 @@
-PRAGMA foreign_keys=OFF;
-BEGIN TRANSACTION;
 CREATE TABLE _character(
   id_character INTEGER PRIMARY KEY NOT NULL,
   name_character VARCHAR(250)
 );
 CREATE TABLE episode(
-  id_episode INTEGER PRIMARY KEY  NOT NULL,
+  id_episode INTEGER PRIMARY KEY NOT NULL,
   episode_date DATE,
   episode_duration TIME,
   id_anime INTEGER NOT NULL,
@@ -118,4 +116,3 @@ CREATE TABLE volumes(
 );
 DELETE FROM sqlite_sequence;
 INSERT INTO sqlite_sequence VALUES('anime',48);
-COMMIT;

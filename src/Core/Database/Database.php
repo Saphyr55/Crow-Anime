@@ -16,19 +16,17 @@ class Database
     private $username;
     private $password;
     private $dbname;
+    private $port;
+    const SQLITE = 0;
+    const MYSQL = 1;
 
     private function __construct()
     {
-        $connection_file = $_SERVER["DOCUMENT_ROOT"] . '../assets/data/connection.json';
-        if (file_exists($connection_file)) {
-            $data_connection = file_get_contents($connection_file);
-
-            $connection = json_decode($data_connection);
-            $this->host = $connection->host;
-            $this->username = $connection->username;
-            $this->password = $connection->password;
-            $this->dbname = $connection->dbname;
-        }
+        $this->host = "localhost";
+        $this->username = 'root';
+        $this->password = '';
+        $this->dbname = 'crow-anime';
+        $this->port = '3306';
     }
 
     /**
@@ -47,6 +45,7 @@ class Database
      */
     public function getPDO(): PDO
     {
+        /*
         if (self::$pdo === null) {
             self::$pdo = new PDO(
                 "sqlite:$_SERVER[DOCUMENT_ROOT]/crow-anime.sqlite",
@@ -54,6 +53,14 @@ class Database
             self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
+        */
+        //var_dump("mysql:host=".$this->host.';port='.$this->port.';dbname='.$this->dbname, $this->username, $this->password);
+
+        if (self::$pdo === null) {
+                self::$pdo = new PDO(
+                    "mysql:host=".$this->host.';port='.$this->port.';dbname='.$this->dbname, $this->username, $this->password
+                );
+            }
         return self::$pdo;
     }
 
