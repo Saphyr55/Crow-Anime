@@ -11,7 +11,7 @@
                 <?php for($i = 0 ; $i < 4 ; $i++) : ?>
                     <?php if ($i <= (count($animes) - 1)) : ?>
                         <div>
-                            <a href="<?= "http://$_SERVER[HTTP_HOST]/anime/".$animes[$i]->getIdWork().'/'. str_replace('%20', '_', $animes[$i]->getTitle_ja() ) ?>">
+                            <a href="<?= "http://$_SERVER[HTTP_HOST]/anime/".$animes[$i]['id_anime'].'/'. str_replace('%20', '_', $animes[$i]['anime_title_ja'] ) ?>">
                                 <img alt="" src="<?= "/assets/img/anime/" . $animes[$i]['id_anime'].'.jpg' ?> " >
                             </a>
                             <div>
@@ -60,7 +60,7 @@
                 <?php for($i = 0 ; $i < 4 ; $i++) : ?>
                     <?php if ($i <= (count($mangas) - 1)) : ?>
                         <div>
-                            <a href="<?= "http://$_SERVER[HTTP_HOST]/manga/".$mangas[$i]->getIdWork().'/'. str_replace(' ', '_',$mangas[$i]->getTitle_ja()) ?>">
+                            <a href="<?= "http://$_SERVER[HTTP_HOST]/manga/".$mangas[$i]['id_manga'].'/'. str_replace(' ', '_',$mangas[$i]['manga_title_ja']) ?>">
                                 <img alt="" src="<?= "/assets/img/manga/" . $mangas[$i]['id_manga'].'.jpg' ?> " >
                             </a>
                             <div>
