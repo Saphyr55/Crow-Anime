@@ -1,5 +1,5 @@
 <section id="section">
-    <form action="" method="POST">
+    <form class="form-login" action="" method="POST">
         <h1><?= $login ?></h1>
         <div class="inputs">
             <input name="username" type="email ou Username" placeholder="<?= $username ?>" pattern="[A-Za-z0-9_]{2,16}"

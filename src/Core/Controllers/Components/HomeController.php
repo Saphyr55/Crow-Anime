@@ -22,5 +22,6 @@ class HomeController extends Controller
             'all_news' => News::getNews(),
             'top_mangas' => Manga::getTopMangas()
         ]);
+
     }
 }

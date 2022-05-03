@@ -134,6 +134,14 @@ ul {
     align-items: center;
 }
 
+.button-search, .button-search > i {
+    cursor: pointer;
+}
+
+.button-search {
+    margin-left: -20px;
+}
+
 .search-bar {
     outline: none;
     border: 4px solid #1d1d1d;

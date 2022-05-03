@@ -19,10 +19,5 @@
                 <p style="margin: 30vh; font-size: 50px; text-align:center;"><?= $any_manga_read ?></p>
             <?php endif; ?>
         </div>
-        <style>
-            .list-top-name {
-                width: max-content;
-            }
-        </style>
     </div>
 </div>

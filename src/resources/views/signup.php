@@ -1,4 +1,4 @@
-<form method="POST">
+<form class="form-register" method="POST">
     <h1><?= $inscription ?></h1>
     <div class="inputs">
         <input name="username" type="Username" placeholder="<?= $username ?>" minlength="2" maxlength="16"
@@ -10,7 +10,7 @@
     </div>
     <div align="center">
         <button name="register" type="submit"><?= $signup ?></button>
-        <p>I have already an <span>account</span>. I <span><a href=<?= "http://$_SERVER[HTTP_HOST]/login" ?>>log in</a></span>.
+        <p class="p-already">I have already an <span>account</span>. I <span><a href=<?= "http://$_SERVER[HTTP_HOST]/login" ?>>log in</a></span>.
         </p>
         <p><?= $error ?></p>
     </div>

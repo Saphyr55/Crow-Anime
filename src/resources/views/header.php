@@ -76,12 +76,12 @@
                     <p><?= $manga ?></p>
                 </a>
             </nav>
-            <div class="all-search-bar">
-                <input class="search-bar input" type="text" placeholder="<?= $search ?>">
-                <a href="">
+            <form class="all-search-bar" action="" method="POST">
+                <input class="search-bar input" name="request" type="text" placeholder="<?= $search ?>">
+                <button name="search_submit"class="button-search" type="submit">
                     <i class="fa-solid fa-magnifying-glass white"></i>
-                </a>
-            </div>
+                </button>
+            </form>
             <div class="dropdown">
                 <div class="dropdown">
                     <button class="drop-btn"><?= $current_language ?></button>

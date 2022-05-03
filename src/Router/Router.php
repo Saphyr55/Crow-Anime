@@ -29,6 +29,9 @@ class Router
     public function generateAllRoutes(): void
     {
         $uri = explode("?", $_SERVER['REQUEST_URI'])[0];
+        if (!strcmp(explode('/', $uri)[1], 'phpmyadmin'))
+            return;
+
         for ($i = 0; $i < count($this->modules); $i++) {
 
             if ((self::$currentModule = $this->modules[$i]) !== null) {

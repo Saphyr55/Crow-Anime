@@ -15,7 +15,7 @@ body {
     align-items: center;
 }
 
-form {
+.form-login {
     padding: 40px 60px;
     border-radius: 10px;
     min-width: 300px;
@@ -34,20 +34,20 @@ form {
     transition: all 0.4s;
 }
 
-form h1 {
+.form-login h1 {
     font-size: 50px;
     color: #fff;
     text-align: center;
 }
 
-form .social-media {
+.form-login .social-media {
     margin-top: -10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-form .social-media p {
+.form-login .social-media p {
     font-size: 30px;
     padding: 5px;
     width: 20px;
@@ -59,17 +59,17 @@ form .social-media p {
     color: #070707;
 }
 
-form p.choose-email {
+.form-login p.choose-email {
     text-align: center;
     color: #fff;
 }
 
-form .inputs {
+.form-login .inputs {
     display: flex;
     flex-direction: column;
 }
 
-form .inputs input[type='email ou Username'], input[type='password'] {
+.form-login .inputs input[type='email ou Username'], input[type='password'] {
     font-size: 30px;
     padding: 15px;
     border: none;
@@ -79,18 +79,18 @@ form .inputs input[type='email ou Username'], input[type='password'] {
     margin-bottom: 15px;
 }
 
-form p.inscription {
+.form-login p.inscription {
     font-size: 30px;
     margin-bottom: 20px;
     color: #fff;
 }
 
-form p.inscription span {
+.form-login p.inscription span {
     font-size: 30px;
     color: #545454;
 }
 
-form button {
+.form-login button {
     padding: 15px 25px;
     border-radius: 5px;
     border: none;
@@ -101,7 +101,7 @@ form button {
     cursor: pointer;
 }
 
-.error-message {
+.section .error-message {
     font-size: 20px;
     color: rgb(110, 16, 16);
 }
