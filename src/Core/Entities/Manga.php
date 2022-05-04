@@ -11,9 +11,9 @@ class Manga extends Work
     private static array $recentMangasUpload = [];
     private static array $topMangas = [];
     private static array $mostPopularMangas = [];
-    private static ?Manga $currentMangaURI;
+    private static ?Manga $currentMangaURI = null;
     private ?string $authors, $publishingHouse;
-    private int $volumes;
+    private int|null|string $volumes;
 
     public function __construct(
         ?string              $title_en = '',
@@ -22,7 +22,7 @@ class Manga extends Work
         ?string              $synopsis = '',
         string|null          $authors = null,
         string|null          $publishingHouse = null,
-        ?int                 $volumes = null,
+        int|null|string      $volumes = null,
         DateTime|string|null $date = null
     )
     {
@@ -57,7 +57,7 @@ class Manga extends Work
     {
         $uri = explode('?', $_SERVER['REQUEST_URI'])[0];
         $work = explode('/',$uri);
-        if (!strcmp($work[1], 'anime')) {
+        if (!strcmp($work[1], 'manga')) {
 
             $theoreticId = $work[2];
 
@@ -70,13 +70,13 @@ class Manga extends Work
                 if(isset($theoreticId) && isset($manga['id_manga'])){
 
                     $mangaObject = new Manga(
-                        $manga['anime_title_en'],
-                        $manga['anime_title_ja'],
-                        $manga['anime_finish'],
-                        $manga['anime_synopsis'],
-                        $manga['anime_season'],
-                        $manga['anime_studio'],
-                        $manga['anime_date']
+                        $manga['manga_title_en'],
+                        $manga['manga_title_ja'],
+                        $manga['manga_finish'],
+                        $manga['manga_synopsis'],
+                        $manga['manga_season'],
+                        $manga['manga_studio'],
+                        $manga['manga_date']
                     );
                     $mangaObject
                         ->setIdWork($manga['id_manga'])
