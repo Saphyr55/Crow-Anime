@@ -185,12 +185,12 @@ class Manga extends Work
     }
 
 
-    public function getVolumes(): int
+    public function getVolumes(): int|null|string
     {
         return $this->volumes;
     }
 
-    public function setVolumes(int $volumes): self
+    public function setVolumes(int|null|string $volumes): self
     {
         $this->volumes = $volumes;
 
