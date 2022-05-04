@@ -11,9 +11,9 @@ class Manga extends Work
     private static array $recentMangasUpload = [];
     private static array $topMangas = [];
     private static array $mostPopularMangas = [];
-    private static ?Manga $currentMangaURI;
+    private static ?Manga $currentMangaURI = null;
     private ?string $authors, $publishingHouse;
-    private null|int|string $volumes;
+    private int|null|string $volumes;
 
     public function __construct(
         ?string              $title_en = '',
@@ -22,7 +22,7 @@ class Manga extends Work
         ?string              $synopsis = '',
         string|null          $authors = null,
         string|null          $publishingHouse = null,
-        null|int|string               $volumes = null,
+        int|null|string      $volumes = null,
         DateTime|string|null $date = null
     )
     {
@@ -84,7 +84,7 @@ class Manga extends Work
     {
         $uri = explode('?', $_SERVER['REQUEST_URI'])[0];
         $work = explode('/',$uri);
-        if (!strcmp($work[1], 'anime')) {
+        if (!strcmp($work[1], 'manga')) {
 
             $theoreticId = $work[2];
 

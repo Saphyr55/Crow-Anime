@@ -21,6 +21,7 @@ $app = new App(
         CrowAnime\Modules\Profile\UserProfileModule::getModule(),
         CrowAnime\Modules\NewsModule::getModule(),
         CrowAnime\Modules\ProfileAnimeModule::getModule(),
+        CrowAnime\Modules\ProfileMangaModule::getModule(),
         CrowAnime\Modules\SearchModule::getModule(),
 );
 $app->run();
