@@ -17,7 +17,12 @@
             <div class="area_title_info">Informations</div>
             <div class="manga_info_content">
                 <div class="manga_info_title_en">Titre anglais : <?= $current_manga->getTitle_en()?></div>
-                <div class="manga_info_title_jp">Titre japonais: <?= $current_manga->getTitle_ja()?></div>
+                <div class="manga_info_title_jp">Titre japonais : <?= $current_manga->getTitle_ja()?></div>
+                <div class="manga_info_finish">Fini : <?= $current_manga->isFinish() ? 1 : 0?></div>
+                <div class="manga_info_author">Auteur : <?= $current_manga->getAuthors()?></div>
+                <div class="manga_info_edition">Edition : <?= $current_manga->getPublishingHouse()?></div>
+                <div class="manga_info_volumes">Volumes : <?= $current_manga->getVolumes()?></div>
+                <div class="manga_info_date">Date : <?= $current_manga->getDate()?></div>
             </div>
         </div>
         <div class="manga_synopsis">
