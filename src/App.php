@@ -19,7 +19,7 @@ use CrowAnime\Router\Router;
 class App
 {
     private array $modules;
-    private Component $errorPage;
+    private Module $errorPage;
     private Router $router;
 
     /**

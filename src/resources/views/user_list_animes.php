@@ -7,7 +7,7 @@
         <div class="list-items">
             <?php if (count($animes) !== 0) : ?>
                 <?php for ($i = 0; $i < count($animes); $i++) : ?>
-                    <a href="" class="list-item">
+                    <a href="<?= "http://$_SERVER[HTTP_HOST]/anime/".$animes[$i]->getIdWork() ?>" class="list-item">
                         <img class="list-item-filter"
                              src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' ?>">
                         <div class="list-item-desc">

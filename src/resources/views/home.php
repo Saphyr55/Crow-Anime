@@ -21,7 +21,7 @@
         <ol class="season-anime-img" style="list-style-type:none;">
             <?php for ($i = 0; $i < 6; $i++) : ?>
                 <li class="anime">
-                    <a href="<?= "http://$_SERVER[HTTP_HOST]/".$animes[$i]->getIdWork().'/'. $animes[$i]->getTitle_ja() ?>">
+                    <a href="<?= "http://$_SERVER[HTTP_HOST]/anime/".$animes[$i]->getIdWork()?>">
                         <img class="anime-img"
                              src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' ?>"
                              alt="" srcset="">
@@ -43,7 +43,7 @@
             <?php for ($i = 0; $i < 6; $i++) : ?>
                 <?php if($i < count($top_mangas)) : ?>
                 <li class="anime">
-                    <a href="<?= "http://$_SERVER[HTTP_HOST]/".$top_mangas[$i]->getIdWork().'/'. $top_mangas[$i]->getTitle_ja() ?>">
+                    <a href="<?= "http://$_SERVER[HTTP_HOST]/manga/".$top_mangas[$i]->getIdWork() ?>">
                         <img class="anime-img"
                              src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/manga/" . $top_mangas[$i]->getIdWork() . '.jpg' ?>"
                              alt=""

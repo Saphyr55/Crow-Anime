@@ -3,15 +3,13 @@
 body {
     display: flex;
     flex-direction: column;
-    display: flex;
     justify-content: center;
-    flex-direction: column;
     align-items: center;
     background-color: #2e2e2e;
     font-family: 'Roboto', sans-serif;
 }
 
-form {
+.form-register {
     padding: 40px 60px;
     border-radius: 10px;
     min-width: 300px;
@@ -30,19 +28,19 @@ form {
     transition: all 0.4s;
 }
 
-form h1 {
+.form-register h1 {
     color: #fff;
     text-align: center;
 }
 
-form .social-media {
+.form-register .social-media {
     margin-top: -10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-form .social-media p {
+.form-register .social-media p {
     padding: 5px;
     width: 20px;
     margin-left: 10px;
@@ -53,17 +51,17 @@ form .social-media p {
     color: #070707;
 }
 
-form p.choose-email {
+.form-register p.choose-email {
     text-align: center;
     color: #fff;
 }
 
-form .inputs {
+.form-register .inputs {
     display: flex;
     flex-direction: column;
 }
 
-form .inputs input[type='email'], input[type='Username'], input[type='password'], input[type='confirmez password'] {
+.form-register .inputs input[type='email'], input[type='Username'], input[type='password'], input[type='confirmez password'] {
     font-size: 30px;
     padding: 15px;
     border: none;
@@ -73,7 +71,7 @@ form .inputs input[type='email'], input[type='Username'], input[type='password']
     margin-bottom: 15px;
 }
 
-form button {
+.form-register button {
     padding: 15px 25px;
     border-radius: 5px;
     border: none;
@@ -82,4 +80,8 @@ form button {
     background-color: #545454;
     outline: none;
     cursor: pointer;
+}
+
+.p-already {
+    color: black;
 }

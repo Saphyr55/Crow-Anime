@@ -16,8 +16,19 @@ class HeaderController extends \CrowAnime\Core\Controllers\Controller
             'current_language' => strtoupper(Language::getLanguage()->getCurrentLanguage()),
             'exist_user' => $this->issetUser(),
             'header_username' => ($this->issetUser()) ? $_SESSION['user']->getUsername() : 'null',
-            'is_admin' => $this->issetUser() && $_SESSION['user']->isAdmin()
+            'is_admin' => $this->issetUser() && $_SESSION['user']->isAdmin(),
         ]);
+        $this->search();
+
+    }
+
+    private function search()
+    {
+        if (isset($_POST['search_submit']))
+        {
+            header("Location: http://$_SERVER[HTTP_HOST]/search?request=".htmlspecialchars($_POST['request']));
+            exit();
+        }
     }
 
     private function issetUser(): bool

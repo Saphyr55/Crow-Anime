@@ -29,10 +29,9 @@ class ProfileAnimeModule extends Module
                 new Rules([Rules::ALL]),
                 new ProfileAnimeController()
             );
-
     }
 
-    public static function getModule(): ProfileAnimeModule|Module|null
+    public static function getModule(): ProfileAnimeModule|null
     {
         if(self::$profileAnime === null && !strcmp(explode('/',explode('?',$_SERVER['REQUEST_URI'])[0])[1], 'anime'))
             self::$profileAnime = new ProfileAnimeModule();

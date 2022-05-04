@@ -29,28 +29,31 @@ class Router
     public function generateAllRoutes(): void
     {
         $uri = explode("?", $_SERVER['REQUEST_URI'])[0];
+        if (!strcmp(explode('/', $uri)[1], 'phpmyadmin'))
+            return;
+
         for ($i = 0; $i < count($this->modules); $i++) {
+
             if ((self::$currentModule = $this->modules[$i]) !== null) {
-                if (
-                    strcmp($uri, '/' . self::$currentModule->getNamePathModule()) === 0
-                ) {
+                if (!strcmp($uri, '/' . self::$currentModule->getNamePathModule())) {
                     self::$currentModule->generate();
                     exit();
-                } elseif (strcmp($uri, '/' . self::$currentModule->getNamePathModule() . '/') === 0) {
+                } elseif (!strcmp($uri, '/' . self::$currentModule->getNamePathModule() . '/')) {
 
-                    header('Location: ' . substr($uri, 0, -1)); // redirection si l'uri termine par /
+                    header('Location: ' . substr($uri , 0, -1)); // redirection si l'uri termine par /
                     exit();
-                } elseif (strcmp($uri, "/") == 0) { // home module generate
+                } elseif (!strcmp($uri, "/")) { // home module generate
 
                     $this->modules[0]->generate($this->modules[0]);
                     exit();
-                } elseif (
-                    ($i == (count($this->modules) - 1))
-                ) {
-                    Error::set('404 Page Not Found');
-                    $this->errorPage->generate();
-                    exit();
                 }
+            }
+            elseif (
+                ($i == (count($this->modules) - 1))
+            ) {
+                Error::set('404 Page Not Found');
+                $this->errorPage->generate();
+                exit();
             }
         }
     }

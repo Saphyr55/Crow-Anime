@@ -7,7 +7,7 @@
         <div class="list-items">
             <?php if (count($mangas) !== 0) : ?>
                 <?php for ($i = 0; $i < count($mangas); $i++) : ?>
-                    <a href="" class="list-item">
+                    <a href="<?= "http://$_SERVER[HTTP_HOST]/manga/".$mangas[$i]->getIdWork()?>" class="list-item">
                         <img class="list-item-filter"
                              src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/manga/" . $mangas[$i]->getIdWork() . '.jpg' ?>">
                         <div class="list-item-desc">
@@ -19,10 +19,5 @@
                 <p style="margin: 30vh; font-size: 50px; text-align:center;"><?= $any_manga_read ?></p>
             <?php endif; ?>
         </div>
-        <style>
-            .list-top-name {
-                width: max-content;
-            }
-        </style>
     </div>
 </div>
