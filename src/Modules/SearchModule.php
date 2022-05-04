@@ -6,8 +6,7 @@ use CrowAnime\Components\Body;
 use CrowAnime\Components\Footer;
 use CrowAnime\Components\Head;
 use CrowAnime\Components\Header;
-use CrowAnime\Core\Controllers\Auths\SearchController;
-use CrowAnime\Core\Controllers\Controller;
+use CrowAnime\Core\Controllers\Components\SearchController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 

@@ -32,6 +32,33 @@ class Manga extends Work
         $this->publishingHouse = $publishingHouse;
     }
 
+    public static function convertMangaDBtoObjectManga(array $manga): ?Manga
+    {
+        $mangaObject = null;
+        if (!empty($manga)) {
+            $mangaObject = new Manga(
+                $manga['manga_title_en'],
+                $manga['manga_title_ja'],
+                $manga['manga_finish'],
+                $manga['manga_synopsis'],
+                $manga['manga_season'],
+                $manga['manga_studio'],
+                $manga['manga_date']
+            );
+            $mangaObject
+                ->setIdWork($manga['id_manga'])
+                ->setScore(Database::getDatabase()->execute(
+                    "SELECT AVG(l.score) FROM manga a 
+                                INNER JOIN lister_manga l ON a.id_manga=l.id_manga
+                                WHERE a.id_manga=:id_manga
+                                ", [
+                        ':id_manga' => $manga['id_manga']
+                    ]
+                )[0]["AVG(l.score)"]);
+        }
+        return $mangaObject;
+    }
+
     public function sendDatabase()
     {
         Database::getDatabase()->execute(
@@ -66,29 +93,8 @@ class Manga extends Work
             )[0];
 
             if (!strcmp($theoreticId, $manga['id_manga'])) {
-
                 if(isset($theoreticId) && isset($manga['id_manga'])){
-
-                    $mangaObject = new Manga(
-                        $manga['manga_title_en'],
-                        $manga['manga_title_ja'],
-                        $manga['manga_finish'],
-                        $manga['manga_synopsis'],
-                        $manga['manga_season'],
-                        $manga['manga_studio'],
-                        $manga['manga_date']
-                    );
-                    $mangaObject
-                        ->setIdWork($manga['id_manga'])
-                        ->setScore(Database::getDatabase()->execute(
-                            "SELECT AVG(l.score) FROM manga a 
-                        INNER JOIN lister_manga l ON a.id_manga=l.id_manga
-                        WHERE a.id_manga=:id_manga
-                        ", [
-                                ':id_manga' => $manga['id_manga']
-                            ]
-                        )[0]["AVG(l.score)"]);
-                    self::setCurrentMangaURI($mangaObject);
+                    self::setCurrentMangaURI(self::convertMangaDBtoObjectManga($manga));
                 }
             }
         }
@@ -115,21 +121,7 @@ class Manga extends Work
             );
 
             foreach ($mostPopularMangas as $value) {
-                $value = (array)$value;
-                $manga = new Manga(
-                    $value['manga_title_ja'],
-                    $value['manga_title_en'],
-                    $value['manga_finish'],
-                    $value['manga_synopsis'],
-                    $value['manga_author'],
-                    $value['manga_edition'],
-                    $value['manga_volumes'],
-                    $value['manga_date']
-                );
-
-                $manga->setIdWork($value['id_manga']);
-                $manga->setScore($value['COUNT(id_user)']);
-                self::$mostPopularMangas[] = $manga;
+                self::$mostPopularMangas[] = self::convertMangaDBtoObjectManga((array)$value);
             }
         }
         return self::$mostPopularMangas;
@@ -147,21 +139,7 @@ class Manga extends Work
             );
 
             foreach ($topMangas as $value) {
-                $value = (array)$value;
-                $manga = new Manga(
-                    $value['manga_title_ja'],
-                    $value['manga_title_en'],
-                    $value['manga_finish'],
-                    $value['manga_synopsis'],
-                    $value['manga_author'],
-                    $value['manga_edition'],
-                    $value['manga_volumes'],
-                    $value['manga_date']
-                );
-
-                $manga->setIdWork($value['id_manga']);
-                $manga->setScore($value['AVG(score)']);
-                self::$topMangas[] = $manga;
+                self::$topMangas[] = self::convertMangaDBtoObjectManga((array)$value);
             }
         }
         return self::$topMangas;
@@ -176,20 +154,7 @@ class Manga extends Work
             );
 
             foreach ($recentMangasUpload as $value) {
-                $value = (array)$value;
-                $manga = new Manga(
-                    $value['manga_title_ja'],
-                    $value['manga_title_en'],
-                    $value['manga_finish'],
-                    $value['manga_synopsis'],
-                    $value['manga_author'],
-                    $value['manga_edition'],
-                    $value['manga_volumes'],
-                    $value['manga_date']
-                );
-
-                $manga->setIdWork($value['id_manga']);
-                self::$recentMangasUpload[] = $manga;
+                self::$recentMangasUpload[] = self::convertMangaDBtoObjectManga((array)$value);
             }
         }
         return self::$recentMangasUpload;

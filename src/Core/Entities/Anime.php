@@ -85,26 +85,7 @@ class Anime extends Work
 
             if (!strcmp($theoreticAnimeId, $anime['id_anime'])) {
                 if(isset($theoreticAnimeId) && isset($anime['id_anime'])){
-                    $animeObject =  new Anime(
-                        $anime['anime_title_en'],
-                        $anime['anime_title_ja'],
-                        $anime['anime_finish'],
-                        $anime['anime_synopsis'],
-                        $anime['anime_season'],
-                        $anime['anime_studio'],
-                        $anime['anime_date']
-                    );
-                    $animeObject
-                        ->setIdWork($anime['id_anime'])
-                        ->setScore(Database::getDatabase()->execute(
-                        "SELECT AVG(l.score) FROM anime a 
-                        INNER JOIN lister_anime l ON a.id_anime=l.id_anime
-                        WHERE a.id_anime=:id_anime
-                        ", [
-                            ':id_anime' => $anime['id_anime']
-                        ]
-                    )[0]["AVG(l.score)"]);
-                    self::setCurrentAnimeURI($animeObject);
+                    self::setCurrentAnimeURI(self::convertAnimeDBtoObjectAnime($anime));
                 }
             }
         }
@@ -120,30 +101,48 @@ class Anime extends Work
         return self::$currentAnimeURI;
     }
 
+    public static function convertAnimeDBtoObjectAnime(array $anime) : ?Anime
+    {
+        $animeObject = null;
+        if (!empty($anime)) {
+            $animeObject =  new Anime(
+                $anime['anime_title_en'],
+                $anime['anime_title_ja'],
+                $anime['anime_finish'],
+                $anime['anime_synopsis'],
+                $anime['anime_season'],
+                $anime['anime_studio'],
+                $anime['anime_date']
+            );
+            $animeObject
+                ->setIdWork($anime['id_anime'])
+                ->setScore(Database::getDatabase()->execute(
+                    "SELECT AVG(l.score) FROM anime a 
+                        INNER JOIN lister_anime l ON a.id_anime=l.id_anime
+                        WHERE a.id_anime=:id_anime
+                        ", [
+                        ':id_anime' => $anime['id_anime']
+                    ]
+                )[0]["AVG(l.score)"]);
+        }
+
+        return $animeObject;
+    }
+
     public static function getAnimesOfCurrentSeason(): array
     {
         if (self::$animesCurrentSeason === []) {
             $animesCurrentSeason = Database::getDatabase()->execute(
                 "SELECT * FROM anime
                 WHERE anime_season=:anime_season
-                AND strftime('%Y', anime_date)=:anime_date",
+                AND YEAR(anime_date)=:anime_date",
                 [
                     ':anime_season' => Season::getCurrentSeason(),
                     ':anime_date' => date('Y')
                 ]
             );
             foreach ($animesCurrentSeason as $value) {
-                $anime = Anime::build(
-                    $value['anime_title_en'],
-                    $value['anime_title_ja'],
-                    $value['anime_finish'],
-                    $value['anime_synopsis'],
-                    $value['anime_season'],
-                    $value['anime_studio'],
-                    $value['anime_date'],
-                );
-                $anime->setIdWork($value['id_anime']);
-                self::$animesCurrentSeason[] = $anime;
+                self::$animesCurrentSeason[] = self::convertAnimeDBtoObjectAnime($value);
             }
         }
         return self::$animesCurrentSeason;
@@ -161,18 +160,7 @@ class Anime extends Work
 
             foreach ($mostPopularAnimes as $value) {
                 $value = (array)$value;
-                $anime = Anime::build(
-                    $value['anime_title_en'],
-                    $value['anime_title_ja'],
-                    $value['anime_finish'],
-                    $value['anime_synopsis'],
-                    $value['anime_season'],
-                    $value['anime_studio'],
-                    $value['anime_date'],
-                );
-                $anime->setIdWork($value['id_anime']);
-                $anime->setScore($value['COUNT(id_user)']);
-                self::$mostPopularAnimes[] = $anime;
+                self::$mostPopularAnimes[] = self::convertAnimeDBtoObjectAnime($value);
             }
         }
         return self::$mostPopularAnimes;
@@ -189,19 +177,8 @@ class Anime extends Work
             );
 
             foreach ($topAnimes as $value) {
-                $value = (array)$value;
-                $anime = Anime::build(
-                    $value['anime_title_en'],
-                    $value['anime_title_ja'],
-                    $value['anime_finish'],
-                    $value['anime_synopsis'],
-                    $value['anime_season'],
-                    $value['anime_studio'],
-                    $value['anime_date'],
-                );
-                $anime->setIdWork($value['id_anime']);
-                $anime->setScore($value['AVG(score)']);
-                self::$topAnimes[] = $anime;
+                $value = (array) $value;
+                self::$topAnimes[] = self::convertAnimeDBtoObjectAnime($value);
             }
         }
         return self::$topAnimes;

@@ -7,18 +7,22 @@
         </div>
         <div class="list-container">
             <div class="list-items">
-                <?php for ($i = 0; $i < 20; $i++) : ?>
-                    <?php if ($i <= (count($animes) - 1)) : ?>
-                        <a href="<?= "http://$_SERVER[HTTP_HOST]/anime/".$animes[$i]->getIdWork() ?>" class="list-item">
-                                <img class="list-item-filter"
-                                     src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' ?>"
-                                     alt="">
-                            <div class="list-item-desc">
-                                <?= ($i <= count($animes) - 1) ? $animes[$i]->getTitle_ja() : "Anime Title" ?>
-                            </div>
-                        </a>
-                    <?php endif; ?>
+                <?php if (!empty($animes)) : ?>
+                    <?php for ($i = 0; $i < 20; $i++) : ?>
+                        <?php if ($i <= (count($animes) - 1)) : ?>
+                            <a href="<?= "http://$_SERVER[HTTP_HOST]/anime/".$animes[$i]->getIdWork() ?>" class="list-item">
+                                    <img class="list-item-filter"
+                                         src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/anime/" . $animes[$i]->getIdWork() . '.jpg' ?>"
+                                         alt="">
+                                <div class="list-item-desc">
+                                    <?= $animes[$i]->getTitle_ja() ?>
+                                </div>
+                            </a>
+                        <?php endif; ?>
                 <?php endfor; ?>
+                <?php else: ?>
+                    <p style="font-size: 30px">Aucun anime trouvé</p>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -30,17 +34,21 @@
         </div>
         <div class="list-container">
             <div class="list-items">
-                <?php for ($i = 0; $i < 20; $i++) : ?>
+                <?php if (!empty($mangas)) : ?>
+                    <?php for ($i = 0; $i < 20; $i++) : ?>
                     <?php if ($i <= (count($mangas) - 1)) : ?>
                         <a href="<?= "http://$_SERVER[HTTP_HOST]/manga/".$mangas[$i]->getIdWork() ?>" class="list-item">
                                 <img class="list-item-filter"
                                      src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/manga/" . $mangas[$i]->getIdWork() . '.jpg' ?>" alt="">
                             <div class="list-item-desc">
-                                <?= ($i <= count($mangas) - 1) ? $mangas[$i]->getTitle_ja() : "Manga Title" ?>
+                                <?= $mangas[$i]->getTitle_ja() ?>
                             </div>
                         </a>
                     <?php endif; ?>
                 <?php endfor; ?>
+                <?php else: ?>
+                    <p style="font-size: 30px">Aucun manga trouvé</p>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -52,17 +60,21 @@
         </div>
         <div class="list-container">
             <div class="list-items">
+                <?php if (!empty($profiles)) : ?>
                 <?php for ($i = 0; $i < 20; $i++) : ?>
-                    <?php if ($i <= (count($mangas) - 1)) : ?>
-                        <a href="<?= "http://$_SERVER[HTTP_HOST]/manga/".$mangas[$i]->getIdWork() ?>" class="list-item">
+                    <?php if ($i <= (count($profiles) - 1)) : ?>
+                        <a href="<?= "/profile/".$profiles[$i]->getUsername() ?>" class="list-item">
                             <img class="list-item-filter"
-                                 src="<?= "http://$_SERVER[HTTP_HOST]/assets/img/manga/" . $mangas[$i]->getIdWork() . '.jpg' ?>" alt="">
+                                 src="<?=  "/assets/img/users/" . $profiles[$i]->getIdUser() . '.jpg' ?>" alt="">
                             <div class="list-item-desc">
-                                <?= ($i <= count($mangas) - 1) ? $mangas[$i]->getTitle_ja() : "Manga Title" ?>
+                                <?= $profiles[$i]->getUsername() ?>
                             </div>
                         </a>
                     <?php endif; ?>
                 <?php endfor; ?>
+                <?php else: ?>
+                    <p style="font-size: 30px">Aucun profile trouvé</p>
+                <?php endif; ?>
             </div>
         </div>
     </div>

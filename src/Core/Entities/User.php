@@ -41,6 +41,10 @@ class User
         self::$usersConnected[] = $this;
     }
 
+    public static function convertUserDBtoObjectUser(array $param)
+    {
+    }
+
     public function totalAnime()
     {
         return Database::getDatabase()->execute(
@@ -137,7 +141,7 @@ class User
             $user['password'],
             $user['is_admin'],
             new DateTime(),
-            new DateTime()
+            $user['user_date'],
         );
     }
 
