@@ -42,13 +42,9 @@ class MangaForm extends Form
             $name_file = "manga_picture";
             $upload_file = $uploaddir . basename($_FILES[$name_file]['name']);
 
-            error_log("Salut");
-
             if (isset($_POST['submit'])) {
 
                 $manga->sendDatabase();
-
-                error_log("Salut");
 
                 // recupere le dernier enregistrement
                 $last_manga = (array)Database::getDatabase()->query("SELECT * FROM manga ORDER BY id_manga DESC")[0];
