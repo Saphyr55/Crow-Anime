@@ -1,16 +1,30 @@
 <main>
+<?php if($currentUserExist): ?>
     <div class="manga_user_input">
-        <div class="manga_ajout">+ Ajouter à ma liste</div>
+        <?php if(!$isInList): ?>
+        <div class="manga_ajout">
+            <form action="" method="post">
+                <button type="submit" name="button_add" id="manga_ajout_button">+ Ajouter à ma liste</button>
+            </form>
+        </div> 
+        <?php else: ?>
+            <div class="manga_ajout">
+                <form action="" method="post">
+                    <button type="submit" name="button_delete" id="manga_ajout_button">- Retirer à ma liste</button>
+                </form>
+            </div>
+        <?php endif; ?>
         <div class="manga_note">
             <form action="" method="post">
                 <div class="manga_note_content">Notez
-                    <input type="range" id="note" name="note" min="0" max="10" oninput="this.nextElementSibling.value = this.value">
-                    <output>5</output>
-                    <input type="submit" id="note_submit" name="submit">
+                    <input type="range" id="note" name="note_value" value="<?= $score ?>" min="0" max="10" oninput="this.nextElementSibling.value = this.value">
+                    <output><?= $score ?></output>
+                    <input type="submit" name="note_submit" id="note_submit" name="submit">
                 </div>   
             </form>
         </div>
     </div>
+    <?php endif; ?>
     <div class="profile_manga_grid">
         <div class="manga_img"><img class="manga_image" src=<?= "/assets/img/manga/".$current_manga->getIdWork() . '.jpg'?> alt="assets/img/not_found.png" /></div>
         <div class="manga_crow_data">
@@ -30,11 +44,11 @@
             <div class="manga_info_content">
                 <div class="manga_info_title_en">Titre anglais : <?= $current_manga->getTitle_en()?></div>
                 <div class="manga_info_title_jp">Titre japonais : <?= $current_manga->getTitle_ja()?></div>
-                <div class="manga_info_finish">Fini : <?= $current_manga->isFinish() ? 1 : 0?></div>
+                <div class="manga_info_finish">Fini : <?= intval($current_manga->isFinish())===0 ? "Non" : "Oui" ?></div>
                 <div class="manga_info_author">Auteur : <?= $current_manga->getAuthors()?></div>
                 <div class="manga_info_edition">Edition : <?= $current_manga->getPublishingHouse()?></div>
                 <div class="manga_info_volumes">Volumes : <?= $current_manga->getVolumes()?></div>
-                <div class="manga_info_date">Date : <?= $current_manga->getDate() ?></div>
+                <div class="manga_info_date">Date : <?= explode(" ",$current_manga->getDate())[0] ?></div>
             </div>
         </div>
         <div class="manga_synopsis">

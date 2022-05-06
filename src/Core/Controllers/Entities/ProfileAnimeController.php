@@ -5,6 +5,7 @@ namespace CrowAnime\Core\Controllers\Entities;
 use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Anime;
 use CrowAnime\Core\Database\Database;
+use CrowAnime\Router\Router;
 
 class ProfileAnimeController extends Controller{
 
@@ -26,7 +27,24 @@ class ProfileAnimeController extends Controller{
             "members" => $members,
             "currentUserExist" =>$_SESSION['user']!=null,
             "isInList" => $this->isInList(),
+            "score" => $this->getScore()===null? 5 : $this->getScore(),
         ]);
+    }
+
+    public function getScore(): int|string|null {
+        if($_SESSION['user']!=null){
+            $data = Database::getDatabase()->execute(
+                "SELECT score FROM lister_anime
+                WHERE id_anime=:id_anime and id_user=:id_user
+                ",
+                [
+                    ":id_anime"=>$this->anime->getIdWork(),
+                    ":id_user"=>$_SESSION['user']->getIdUser()
+                ]
+            );
+            return $data[0]['score'];
+        }
+        return null;
     }
 
     public function isInList(): bool{
@@ -64,7 +82,7 @@ class ProfileAnimeController extends Controller{
     public function deleteInList(): void{
         if($_SESSION['user']!=null){
             Database::getDatabase()->execute(
-               "DELETE  FROM lister_anime
+               "DELETE FROM lister_anime
                WHERE id_user = :id_user and id_anime=:id_anime",
                 [
                     ":id_anime"=>$this->anime->getIdWork(),
@@ -92,18 +110,21 @@ class ProfileAnimeController extends Controller{
     public function submitForm(): void{
         if(isset($_POST['button_add'])){
             $this->addInList(null);
+            Router::redirect("anime/".Anime::getCurrentAnimeURI()->getIdWork());
         }
         if(isset($_POST['button_delete'])){
             $this->deleteInList();
+            Router::redirect("anime/".Anime::getCurrentAnimeURI()->getIdWork());
         }
         if(isset($_POST['note_submit'])){
             if($this->isInList()){
                 $this->changeScore(intval($_POST['note_value']));
+                Router::redirect("anime/".Anime::getCurrentAnimeURI()->getIdWork());
             }
             else{
                 $this->addInList($_POST['note_value']);
+                Router::redirect("anime/".Anime::getCurrentAnimeURI()->getIdWork());
             }
         }
     }
 }
-

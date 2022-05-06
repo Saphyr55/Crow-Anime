@@ -17,8 +17,8 @@
         <div class="anime_note">
             <form action="" method="post">
                 <div class="anime_note_content">Notez
-                    <input type="range" id="note" name="note_value" min="0" max="10" oninput="this.nextElementSibling.value = this.value">
-                    <output>5</output>
+                    <input type="range" id="note" name="note_value" value="<?= $score ?>" min="0" max="10" oninput="this.nextElementSibling.value = this.value">
+                    <output><?= $score ?></output>
                     <input type="submit" name="note_submit" id="note_submit" name="submit">
                 </div>   
             </form>
@@ -44,10 +44,10 @@
             <div class="anime_info_content">
                 <div class="anime_info_title_en">Titre anglais : <?=$current_anime->getTitle_en()?></div>
                 <div class="anime_info_title_jp">Titre japonais : <?=$current_anime->getTitle_ja()?></div>
-                <div class="anime_info_finsih">Fini : <?=$current_anime->isFinish() ? 1 : 0?></div>
+                <div class="anime_info_finsih">Fini : <?=intval($current_anime->isFinish())===0 ? "Non" : "Oui" ?></div>
                 <div class="anime_info_season">Saison(s) : <?= $current_anime->getSeason() ?></div>
                 <div class="anime_info_studio">Studio : <?= $current_anime->getStudio() ?></div>
-                <div class="anime_info_date">Date : <?= $current_anime->getDate() ?></div>
+                <div class="anime_info_date">Date : <?= explode(" ",$current_anime->getDate())[0] ?></div>
             </div>
         </div>
         <div class="anime_synopsis">

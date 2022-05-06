@@ -151,6 +151,7 @@ main{
 }
 
 #note_submit{
+    font-family: 'Roboto', sans-serif;
     float: right;
     background: transparent;
     border: none;
@@ -160,6 +161,19 @@ main{
 }
 
 #note_submit:hover{
+    cursor: pointer;
+    color: #cecece;
+}
+
+#manga_ajout_button{
+    border: none;
+    background: transparent;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+
+#manga_ajout_button:hover{
     cursor: pointer;
     color: #cecece;
 }
