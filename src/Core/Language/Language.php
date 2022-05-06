@@ -43,7 +43,7 @@ class Language
         setcookie('active_browser_lang', intval($active), time() + (10 * 365 * 24 * 60 * 60), '/');
     }
 
-    public function for(string $name): array
+    public function for(string $name): ?array
     {
         $content = file_get_contents("$_SERVER[DOCUMENT_ROOT]/" . Path::LANG . $this->currentLanguage . '.json');
         $strings = json_decode($content, true);

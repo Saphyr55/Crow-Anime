@@ -69,6 +69,9 @@ class Anime extends Work
                 ':anime_date' => $this->getDate()
             ]
         );
+        $last_anime = Database::getDatabase()->execute("SELECT id_anime FROM anime ORDER BY id_anime DESC LIMIT 1")[0];
+        Database::getDatabase()->execute("INSERT INTO lister_anime 
+        (id_user, id_anime) VALUES (8, :id_manga)", [":id_anime"=>$last_anime['id_anime']]);
     }
 
     public static function setAnimeURI()

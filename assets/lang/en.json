@@ -10,15 +10,15 @@
       "year" : "Release Date",
       "choose_picture" : "Choose a anime picture : ",
       "is_finish" : "Is finish ?",
-      "volumes" : "Volumes",
+      "_volumes" : "Volumes",
       "preview" : "Preview Manga",
       "register" : "Register Manga",
-      "publishing_house" : "Publishing house",
-      "authors" : "Authors"
+      "_publishing_house" : "Publishing house",
+      "_authors" : "Authors"
     },
     "add_anime" : {
-      "name_english" : "English manga name",
-      "name_japanese" : "Japanese manga name",
+      "name_english" : "English anime name",
+      "name_japanese" : "Japanese anime name",
       "year" : "Release Date",
       "choose_picture" : "Choose a anime picture : ",
       "is_finish" : "Is finish ?",
@@ -47,8 +47,8 @@
       "list_anime" : "List Animes",
       "list_manga": "List Mangas",
       "logout" : "Logout",
-      "anime" : "Anime",
-      "manga" : "Manga",
+      "header_anime" : "Anime",
+      "header_manga" : "Manga",
       "search" : "Research..."
     },
     "login" : {

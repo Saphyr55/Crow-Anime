@@ -69,6 +69,12 @@ class Router
         }
     }
 
+    public static function redirect(string $route , bool $exit = true): void
+    {
+        header("Location: http://$_SERVER[HTTP_HOST]/$route");
+        if ($exit) exit();
+    }
+
     /**
      * @return string
      */

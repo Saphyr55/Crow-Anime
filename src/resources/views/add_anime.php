@@ -18,6 +18,10 @@
             </div>
             <br>
             <div>
+                <textarea class="anime-synopsis" name="anime_synopsis" placeholder="Synopsis" required><?= $anime_synopsis ?></textarea>
+            </div>
+            <br>
+            <div>
                 <input type="text" name="studio" placeholder="<?= $_studio ?>" id="" value="<?= $studio ?>">
             </div>
             <br>

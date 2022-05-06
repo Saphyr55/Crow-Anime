@@ -1,4 +1,3 @@
-<?php $get_view('header/sort') ?>
 <div class="list">
     <div class="list-top-name">
         <p class="list-top-name-p"><?= $mangas_read ?></p>

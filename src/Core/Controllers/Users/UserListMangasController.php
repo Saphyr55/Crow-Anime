@@ -1,11 +1,12 @@
 <?php
 
-namespace CrowAnime\Core\Controllers\Entities;
+namespace CrowAnime\Core\Controllers\Users;
 
+use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Language\Language;
 
-class UserListMangasController extends \CrowAnime\Core\Controllers\Controller
+class UserListMangasController extends Controller
 {
     public function action(): void
     {

@@ -22,6 +22,7 @@ class AddAnimeController extends Controller
                 'title_en' => $this->manage() ? htmlspecialchars($_POST['title_en']) : '',
                 'title_ja' => $this->manage() ? htmlspecialchars($_POST['title_ja']) : '',
                 'studio' => $this->manage() ? htmlspecialchars($_POST['studio']) : '',
+                'anime_synopsis' => $this->manage() ? htmlspecialchars($_POST['anime_synopsis']) : '',
                 'spring' => Season::SPRING,
                 'summer' => Season::SUMMER,
                 'fall' => Season::FALL,

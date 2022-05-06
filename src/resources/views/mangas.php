@@ -1,4 +1,3 @@
-<?php $get_view('header/sort') ?>
 <div class="list">
     <div class="list-top-name">
         <a href="<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>">
