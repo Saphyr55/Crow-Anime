@@ -152,6 +152,10 @@ main{
     margin-right: 30px;
 }
 
+#note:hover{
+    cursor: pointer;
+}
+
 #note_submit{
     font-family: 'Roboto', sans-serif;
     float: right;

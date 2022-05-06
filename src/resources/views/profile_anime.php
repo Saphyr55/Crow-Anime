@@ -16,10 +16,10 @@
         <?php endif; ?>
         <div class="anime_note">
             <form action="" method="post">
-                <div class="anime_note_content">Notez
+                <div class="anime_note_content"><?= $rate ?>
                     <input type="range" id="note" name="note_value" value="<?= $score ?>" min="0" max="10" oninput="this.nextElementSibling.value = this.value">
                     <output><?= $score ?></output>
-                    <input type="submit" name="note_submit" id="note_submit" name="submit">
+                    <input type="submit" id="note_submit" value="<?=$send_note?>">
                 </div>   
             </form>
         </div>
@@ -42,10 +42,10 @@
         <div class="anime_info">
             <div class="area_title_info">Informations</div>
             <div class="anime_info_content">
-                <div class="anime_info_title_en">Titre anglais : <?=$current_anime->getTitle_en()?></div>
-                <div class="anime_info_title_jp">Titre japonais : <?=$current_anime->getTitle_ja()?></div>
-                <div class="anime_info_finsih">Fini : <?=intval($current_anime->isFinish())===0 ? "Non" : "Oui" ?></div>
-                <div class="anime_info_season">Saison(s) : <?= $current_anime->getSeason() ?></div>
+                <div class="anime_info_title_en"><?= $anime_info_title_en ?> <?=$current_anime->getTitle_en()?></div>
+                <div class="anime_info_title_jp"><?= $anime_info_title_jp ?> <?=$current_anime->getTitle_ja()?></div>
+                <div class="anime_info_finsih"><?= $anime_info_finsih ?> <?=intval($current_anime->isFinish())===0 ? "Non" : "Oui" ?></div>
+                <div class="anime_info_season"><?= $anime_info_season ?> <?= $current_anime->getSeason() ?></div>
                 <div class="anime_info_studio">Studio : <?= $current_anime->getStudio() ?></div>
                 <div class="anime_info_date">Date : <?= explode(" ",$current_anime->getDate())[0] ?></div>
             </div>
@@ -55,7 +55,7 @@
             <p><?= $current_anime->getSynopsis() ?></p>
         </div>
         <div class="anime_charac">
-            <div class="area_title">Characters</div>
+            <div class="area_title"><?= $anime_charac ?></div>
         </div>
     </div>
 </main>
