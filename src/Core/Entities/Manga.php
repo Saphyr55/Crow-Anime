@@ -41,7 +41,7 @@ class Manga extends Work
                 $manga['manga_title_ja'],
                 $manga['manga_finish'],
                 $manga['manga_synopsis'],
-                $manga['manga_authors'],
+                $manga['manga_author'],
                 $manga['manga_edition'],
                 $manga['manga_volumes'],
                 $manga['manga_date']
