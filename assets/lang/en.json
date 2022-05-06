@@ -82,7 +82,9 @@
       "anime_info_title_jp" : "Japanese Title : ",
       "anime_info_finsih" : "Finished : ",
       "anime_info_season" : "Season(s) : ",
-      "anime_charac" : "Characters"
+      "anime_charac" : "Characters",
+      "yes" : "yes",
+      "no" : "no"
 
     },
     "profile_manga" : {
@@ -94,6 +96,8 @@
       "anime_info_title_jp" : "Japanese title : ",
       "anime_info_finsih" : "Finished : ",
       "manga_info_author" : "Author : ",
-      "anime_charac" : "Personnages"
+      "anime_charac" : "Personnages",
+      "yes" : "yes",
+      "no" : "no"
     }
 }

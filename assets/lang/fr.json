@@ -82,7 +82,9 @@
     "anime_info_title_jp" : "Titre japonais : ",
     "anime_info_finsih" : "Fini : ",
     "anime_info_season" : "Saison(s) : ",
-    "anime_charac" : "Personnages"
+    "anime_charac" : "Personnages",
+    "yes" : "oui",
+    "no" : "non"
   },
   "profile_manga" : {
     "add_list" : "+ Ajouter à ma liste",
@@ -95,6 +97,8 @@
     "manga_info_author" : "Auteur : ",
     "manga_info_edition" : "Edition : ",
     "manga_info_volumes" : "Volumes : ",
-    "anime_charac" : "Personnages"
+    "anime_charac" : "Personnages",
+    "yes" : "oui",
+    "no" : "non"
   }
 }

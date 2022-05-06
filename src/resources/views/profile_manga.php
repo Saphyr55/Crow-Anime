@@ -44,7 +44,7 @@
             <div class="manga_info_content">
                 <div class="manga_info_title_en"><?= $anime_info_title_en ?> <?= $current_manga->getTitle_en()?></div>
                 <div class="manga_info_title_jp"><?= $anime_info_title_jp ?> <?= $current_manga->getTitle_ja()?></div>
-                <div class="manga_info_finish"><?= $anime_info_finsih ?> <?= intval($current_manga->isFinish())===0 ? "Non" : "Oui" ?></div>
+                <div class="manga_info_finish"><?= $anime_info_finsih ?> <?= intval($current_manga->isFinish())===0 ? $no  : $yes ?></div>
                 <div class="manga_info_author"><?= $manga_info_author ?> <?= $current_manga->getAuthors()?></div>
                 <div class="manga_info_edition">Edition : <?= $current_manga->getPublishingHouse()?></div>
                 <div class="manga_info_volumes">Volumes : <?= $current_manga->getVolumes()?></div>

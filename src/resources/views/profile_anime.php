@@ -44,7 +44,7 @@
             <div class="anime_info_content">
                 <div class="anime_info_title_en"><?= $anime_info_title_en ?> <?=$current_anime->getTitle_en()?></div>
                 <div class="anime_info_title_jp"><?= $anime_info_title_jp ?> <?=$current_anime->getTitle_ja()?></div>
-                <div class="anime_info_finsih"><?= $anime_info_finsih ?> <?=intval($current_anime->isFinish())===0 ? "Non" : "Oui" ?></div>
+                <div class="anime_info_finsih"><?= $anime_info_finsih ?> <?=intval($current_anime->isFinish())===0 ? $no  : $yes ?></div>
                 <div class="anime_info_season"><?= $anime_info_season ?> <?= $current_anime->getSeason() ?></div>
                 <div class="anime_info_studio">Studio : <?= $current_anime->getStudio() ?></div>
                 <div class="anime_info_date">Date : <?= explode(" ",$current_anime->getDate())[0] ?></div>
