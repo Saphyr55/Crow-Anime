@@ -1,4 +1,30 @@
 <main>
+    <?php if($currentUserExist): ?>
+    <div class="anime_user_input">
+        <?php if(!$isInList): ?>
+        <div class="anime_ajout">
+            <form action="" method="post">
+                <button type="submit" name="button_add" id="anime_ajout_button">+ Ajouter à ma liste</button>
+            </form>
+        </div> 
+        <?php else: ?>
+            <div class="anime_ajout">
+                <form action="" method="post">
+                    <button type="submit" name="button_delete" id="anime_ajout_button">- Retirer à ma liste</button>
+                </form>
+            </div>
+        <?php endif; ?>
+        <div class="anime_note">
+            <form action="" method="post">
+                <div class="anime_note_content">Notez
+                    <input type="range" id="note" name="note_value" min="0" max="10" oninput="this.nextElementSibling.value = this.value">
+                    <output>5</output>
+                    <input type="submit" name="note_submit" id="note_submit" name="submit">
+                </div>   
+            </form>
+        </div>
+    </div>
+    <?php endif; ?>
     <div class="profile_anime_grid">
         <div class="anime_img"><img class="anime_image" src=<?= "/assets/img/anime/".$current_anime->getIdWork() . '.jpg'?> alt="assets/img/not_found.png" /></div>
         <div class="anime_crow_data">

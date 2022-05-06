@@ -1,4 +1,16 @@
 <main>
+    <div class="manga_user_input">
+        <div class="manga_ajout">+ Ajouter à ma liste</div>
+        <div class="manga_note">
+            <form action="" method="post">
+                <div class="manga_note_content">Notez
+                    <input type="range" id="note" name="note" min="0" max="10" oninput="this.nextElementSibling.value = this.value">
+                    <output>5</output>
+                    <input type="submit" id="note_submit" name="submit">
+                </div>   
+            </form>
+        </div>
+    </div>
     <div class="profile_manga_grid">
         <div class="manga_img"><img class="manga_image" src=<?= "/assets/img/manga/".$current_manga->getIdWork() . '.jpg'?> alt="assets/img/not_found.png" /></div>
         <div class="manga_crow_data">

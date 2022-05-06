@@ -7,17 +7,103 @@ use CrowAnime\Core\Entities\Anime;
 use CrowAnime\Core\Database\Database;
 
 class ProfileAnimeController extends Controller{
+
+    private $anime;
+
     public function action (): void{
-        $anime = Anime::getCurrentAnimeURI();
-        $members = Database::getDatabase()->execute("SELECT Count(id_user) 
-                                                    FROM lister_anime 
-                                                    WHERE id_anime=:id_anime",
-                                                                    [":id_anime"=>$anime->getIdWork()])
-                                                                    [0]["Count(id_user)"];                                                         
+
+        $this->anime = Anime::getCurrentAnimeURI();
+
+        $members = Database::getDatabase()->execute(
+            "SELECT Count(id_user) FROM lister_anime 
+            WHERE id_anime=:id_anime",
+            [":id_anime"=>$this->anime->getIdWork()])[0]["Count(id_user)"];                                                    
+       
+        $this->submitForm();
+
         $this->with([
-            "current_anime" => $anime,
+            "current_anime" => $this->anime,
             "members" => $members,
+            "currentUserExist" =>$_SESSION['user']!=null,
+            "isInList" => $this->isInList(),
         ]);
+    }
+
+    public function isInList(): bool{
+        if($_SESSION['user']!=null){
+            $data = Database::getDatabase()->execute(
+                "SELECT * FROM lister_anime
+                WHERE id_anime=:id_anime and id_user=:id_user",
+                [
+                    ":id_anime"=>$this->anime->getIdWork(),
+                    ":id_user"=>$_SESSION['user']->getIdUser()
+                ]
+            );
+            if(!empty($data)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public function addInList(int|string|null $score): void{
+        if($_SESSION['user']!=null){
+            Database::getDatabase()->execute(
+                "INSERT INTO lister_anime(id_anime, id_user, add_date, score)
+                VALUES(:id_anime, :id_user, :add_date, :score)",
+                [
+                    ":id_anime"=>$this->anime->getIdWork(),
+                    ":id_user"=>$_SESSION['user']->getIdUser(),
+                    ":add_date"=>date("Y-m-d"),
+                    "score"=> $score,
+                ]
+                );
+        }
+    }
+
+    public function deleteInList(): void{
+        if($_SESSION['user']!=null){
+            Database::getDatabase()->execute(
+               "DELETE  FROM lister_anime
+               WHERE id_user = :id_user and id_anime=:id_anime",
+                [
+                    ":id_anime"=>$this->anime->getIdWork(),
+                    ":id_user"=>$_SESSION['user']->getIdUser(),
+                ]
+                );
+        }
+    }
+
+    public function changeScore($score): void{
+        if($_SESSION['user']!=null){
+            Database::getDatabase()->execute(
+                "UPDATE lister_anime
+                SET score = :score
+                WHERE id_user = :id_user and id_anime=:id_anime",
+                [
+                    ":id_anime"=>$this->anime->getIdWork(),
+                    ":id_user"=>$_SESSION['user']->getIdUser(),
+                    ":score"=>$score,
+                ]
+            );
+        }
+    }
+
+    public function submitForm(): void{
+        if(isset($_POST['button_add'])){
+            $this->addInList(null);
+        }
+        if(isset($_POST['button_delete'])){
+            $this->deleteInList();
+        }
+        if(isset($_POST['note_submit'])){
+            if($this->isInList()){
+                $this->changeScore(intval($_POST['note_value']));
+            }
+            else{
+                $this->addInList($_POST['note_value']);
+            }
+        }
     }
 }
 

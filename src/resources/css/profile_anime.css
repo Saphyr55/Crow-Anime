@@ -111,3 +111,71 @@ main{
     font-size: 15px;
     color: white;
 }
+
+.anime_user_input{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.anime_user_input>div{
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    padding: 1%;
+    background: #353535;
+    border-radius: 7px;
+    color: #cccccc;
+    border-bottom: 1px solid #404040;
+    border-left: 1px solid #404040;
+}
+
+.anime_note_content{
+    text-align:left;
+    border-bottom : solid 2px #5271FF;
+    color: white;
+}
+
+.anime_ajout{
+    text-align: center;
+}
+
+.anime_ajout:hover{
+    color: #5271FF;
+    cursor: pointer;
+}
+
+#note{
+    width: 300px;
+    margin-left: 175px;
+    margin-right: 30px;
+}
+
+#note_submit{
+    font-family: 'Roboto', sans-serif;
+    float: right;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 18px
+
+}
+
+#note_submit:hover{
+    cursor: pointer;
+    color: #cecece;
+}
+
+#anime_ajout_button{
+    border: none;
+    background: transparent;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+
+#anime_ajout_button:hover{
+    cursor: pointer;
+    color: #cecece;
+}
