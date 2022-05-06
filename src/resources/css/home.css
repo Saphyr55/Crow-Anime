@@ -89,6 +89,16 @@
     text-align: center;
 }
 
+#p-anime-1{
+    border: 2px solid #5271FF;
+    border-left: 0;
+}
+
+#p-anime-2{
+    border: 2px solid #FF66C4;
+    border-left: 0;
+}
+
 .anime a {
     display: flex;
     flex-direction: column;
@@ -133,7 +143,9 @@
 }
 
 .name-anime {
+    text-align: center;
     width: auto;
+    min-height: 40px;
     max-width: 300px;
     position: relative;
 }

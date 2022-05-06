@@ -74,12 +74,12 @@
                 </a>
                 <a href=<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>>
                     <p><?= $header_manga ?></p>
-                </a>
+                </a>    
             </nav>
             <form class="all-search-bar" action="" method="POST">
                 <input class="search-bar input" name="request" type="text" placeholder="<?= $search ?>">
                 <button name="search_submit"class="button-search" type="submit">
-                    <i class="fa-solid fa-magnifying-glass white"></i>
+                    <i id ="icon-search" class="fa-solid fa-magnifying-glass white"></i>
                 </button>
             </form>
             <div class="dropdown">

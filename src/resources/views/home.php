@@ -1,6 +1,6 @@
-<section id="section-left">
+<section>
     <div class="slideshow-container">
-        <a href="/news"><h1>Les News</h1></a>
+        <a href="/news"><h1>News</h1></a>
         <?php for ($i = 0; $i < 3 ; $i++) : ?>
             <?php if(count($all_news) > $i) : ?>
             <div class="mySlides fade">
@@ -13,13 +13,13 @@
     </div>
     <br>
     <div class="season-anime">
-        <p class="p-anime">
+        <p class="p-anime" id="p-anime-1">
             <a href="<?= "http://$_SERVER[HTTP_HOST]/animes?type=seasonal" ?>">
                 <?= $anime_season ?> <?= $actual_date ?> Anime
             </a>
         </p>
         <ol class="season-anime-img" style="list-style-type:none;">
-            <?php for ($i = 0; $i < 6; $i++) : ?>
+            <?php for ($i = 0; $i < 5; $i++) : ?>
                 <li class="anime">
                     <a href="<?= "http://$_SERVER[HTTP_HOST]/anime/".$animes[$i]->getIdWork()?>">
                         <img class="anime-img"
@@ -34,13 +34,13 @@
         </ol>
     </div>
     <div class="season-anime">
-        <p class="p-anime">
+        <p class="p-anime" id="p-anime-2">
             <a href="<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>">
                 <?= $best_manga ?>
             </a>
         </p>
         <ol class="season-anime-img" style="list-style-type:none;">
-            <?php for ($i = 0; $i < 6; $i++) : ?>
+            <?php for ($i = 0; $i < 5; $i++) : ?>
                 <?php if($i < count($top_mangas)) : ?>
                 <li class="anime">
                     <a href="<?= "http://$_SERVER[HTTP_HOST]/manga/".$top_mangas[$i]->getIdWork() ?>">

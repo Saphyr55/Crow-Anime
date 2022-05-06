@@ -145,15 +145,22 @@ ul {
 .button-search {
     padding: -5px;
     margin-left: -20px;
+    background: none;
+    border: none;
 }
 
 .search-bar {
     outline: none;
     border: 4px solid #1d1d1d;
-    font-size: 30px;
+    font-size: 25px;
     height: 40px;
     width: 600px;
+    border: none;
     border-radius: 15px 0 0 15px;
+}
+
+.search-bar::placeholder {
+    padding-left: 20px;
 }
 
 .fa-magnifying-glass {
@@ -171,6 +178,7 @@ ul {
     padding: 16px;
     font-size: 25px;
     border: none;
+    border-radius: 5px;
 }
 
 .dropdown {
