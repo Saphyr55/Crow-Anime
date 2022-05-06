@@ -14,11 +14,11 @@
     "preview" : "Aperçu Manga",
     "register" : "Enregistrer Manga",
     "_publishing_house" : "Maison d'édition",
-    "_authors" : " Auteurs "
+    "_authors" : "Auteurs"
   },
   "add_anime" : {
-    "name_english" : "Nom du manga en anglais",
-    "name_japanese" : "Nom du manga en japonais",
+    "name_english" : "Nom du anime en anglais",
+    "name_japanese" : "Nom du anime en japonais",
     "year" : "Date de sortie",
     "choose_picture" : "Choisissez une image d'anime : ",
     "is_finish" : "Is finished ?",
@@ -47,8 +47,8 @@
     "list_anime" : "Liste Animes",
     "list_manga": "Liste Mangas",
     "logout" : "Se déconnecter",
-    "anime" : "Anime",
-    "manga" : "Manga",
+    "header_anime" : "Anime",
+    "header_manga" : "Manga",
     "search" : "Recherche..."
   },
   "login" : {

@@ -52,6 +52,7 @@ class SignupForm extends Form
                                     ":email" => $email
                                 ]
                             );
+                            header("Location: http://$_SERVER[HTTP_HOST]/profile/".$username);
                         } else $this->errorMsg = "Username ou email déjà utiliser";
                     } else $this->errorMsg = "Mot de passe non conrespondant";
                 } catch (\PDOException $e) {
@@ -59,7 +60,6 @@ class SignupForm extends Form
                     $this->errorMsg = "Username ou email déjà utiliser";
                 }
             } else $this->errorMsg = "Veuillez remplir les champs";
-
         }
     }
 

@@ -6,7 +6,7 @@ use CrowAnime\Components\Body;
 use CrowAnime\Components\Footer;
 use CrowAnime\Components\Head;
 use CrowAnime\Components\Header;
-use CrowAnime\Core\Controllers\Entities\UserProfileController;
+use CrowAnime\Core\Controllers\Users\UserProfileController;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;

@@ -18,11 +18,15 @@
             </div>
             <br>
             <div>
+                <textarea class="anime-synopsis" name="anime_synopsis" placeholder="Synopsis" required><?= $anime_synopsis ?></textarea>
+            </div>
+            <br>
+            <div>
                 <input type="text" name="studio" placeholder="<?= $_studio ?>" id="" value="<?= $studio ?>">
             </div>
             <br>
             <div class="choose-picture">
-                <label><?= $choose_picture ?>></label><br>
+                <label><?= $choose_picture ?></label><br>
                 <input type="file" id="anime-picture" name="anime_picture" accept="image/png, image/jpeg">
             </div>
             <br>

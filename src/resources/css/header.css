@@ -3,6 +3,10 @@
 body {
     margin: 0 auto;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    list-style-type: none;
     background-color: #2e2e2e;
 }
 

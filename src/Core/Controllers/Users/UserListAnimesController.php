@@ -1,6 +1,6 @@
 <?php
 
-namespace CrowAnime\Core\Controllers\Entities;
+namespace CrowAnime\Core\Controllers\Users;
 
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Language\Language;

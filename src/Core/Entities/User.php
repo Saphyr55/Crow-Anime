@@ -276,7 +276,7 @@ class User
     /**
      * Get the value of dateRegister
      */
-    public function getDateRegister(): DateTime
+    public function getDateRegister(): DateTime|string
     {
         return $this->dateRegister;
     }

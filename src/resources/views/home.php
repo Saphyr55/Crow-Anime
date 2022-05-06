@@ -35,7 +35,7 @@
     </div>
     <div class="season-anime">
         <p class="p-anime">
-            <a href="">
+            <a href="<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>">
                 <?= $best_manga ?>
             </a>
         </p>

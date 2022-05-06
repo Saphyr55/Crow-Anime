@@ -70,10 +70,10 @@
     <div class="bottom-header">
             <nav>
                 <a class="f-a-nav-bottom-header" href=<?= "http://$_SERVER[HTTP_HOST]/animes" ?>>
-                    <p><?= $anime ?></p>
+                    <p><?= $header_anime ?></p>
                 </a>
                 <a href=<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>>
-                    <p><?= $manga ?></p>
+                    <p><?= $header_manga ?></p>
                 </a>
             </nav>
             <form class="all-search-bar" action="" method="POST">

@@ -13,7 +13,6 @@ class AnimeForm extends Form
     public function __construct(array $data = [])
     {
         parent::__construct($data);
-        $this->data['anime_synopsis'] = "";
         $this->data['anime_score'] = null;
     }
 
@@ -35,7 +34,8 @@ class AnimeForm extends Form
 
     private function checkData($data, $path_replace, $name_file, $allowed, $upload_dir): ?Anime
     {
-        if (Form::check($data)) {
+        if (Form::check($data))
+        {
             $animeForm = new AnimeForm($data);
             $anime = $animeForm->createAnime();
             $upload_file = $upload_dir . basename($_FILES['anime_picture']['name']);
@@ -68,7 +68,8 @@ class AnimeForm extends Form
                 "anime_season" => htmlspecialchars($_POST['season_anime']),
                 "anime_date" => htmlspecialchars(date('Y-m-d', strtotime($_POST['date']))),
                 "anime_studio" => htmlspecialchars($_POST['studio']),
-                "anime_finish" => htmlspecialchars($_POST['finish']) === "on"
+                "anime_finish" => htmlspecialchars($_POST['finish']) === "on",
+                'anime_synopsis' => htmlspecialchars($_POST['anime_synopsis'])
             ];
     }
 

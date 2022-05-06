@@ -35,7 +35,7 @@
                 <a class="button-to-list" href="<?= $redirect_animes_list ?>">Anime List</a>
                 <a class="button-to-list" href="<?= $redirect_mangas_list ?>">Manga List</a>
             </div>
-            <p>Joined : </p>
+            <p>Joined : <?= $profile_date_join ?></p>
             <?php if($is_current_user()) : ?>
                 <form action="" method="POST" enctype="multipart/form-data">
                     <label for="picture-profile">

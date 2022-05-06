@@ -1,11 +1,12 @@
 <?php
 
-namespace CrowAnime\Core\Controllers\Entities;
+namespace CrowAnime\Core\Controllers\Users;
 
+use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Forms\Form;
 
-class UserProfileController extends \CrowAnime\Core\Controllers\Controller
+class UserProfileController extends Controller
 {
 
     public function action(): void
@@ -23,6 +24,7 @@ class UserProfileController extends \CrowAnime\Core\Controllers\Controller
             'total_manga' => $user->totalManga() === null ? '---' : $user->totalManga(),
             'redirect_animes_list' => '/profile/'.$user->getUsername() . '/animes',
             'redirect_mangas_list' => '/profile/'.$user->getUsername() . '/mangas',
+            'profile_date_join' => explode(' ', $user->getDateRegister())[0]
         ]);
     }
 

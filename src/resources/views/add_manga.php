@@ -17,8 +17,12 @@
                 <input class="input-pa" type="text" name="authors" id="" placeholder="<?= $_authors ?>" value="<?= $authors ?>">
             </div>
             <br>
+            <div>
+                <textarea class="anime-synopsis" name="manga_synopsis" placeholder="Synopsis" required><?= "$manga_synopsis" ?></textarea>
+            </div>
+            <br>
             <div class="choose-picture">
-                <label><?= $choose_picture ?>></label><br>
+                <label><?= $choose_picture ?></label><br>
                 <input type="file" id="anime-picture" name="manga_picture" accept="image/png, image/jpeg">
             </div>
             <div>

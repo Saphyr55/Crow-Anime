@@ -41,8 +41,9 @@ class Manga extends Work
                 $manga['manga_title_ja'],
                 $manga['manga_finish'],
                 $manga['manga_synopsis'],
-                $manga['manga_season'],
-                $manga['manga_studio'],
+                $manga['manga_authors'],
+                $manga['manga_edition'],
+                $manga['manga_volumes'],
                 $manga['manga_date']
             );
             $mangaObject
@@ -78,7 +79,10 @@ class Manga extends Work
                 ':manga_volumes' => $this->getVolumes()
             ]
         );
-    }
+        $last_manga = Database::getDatabase()->execute("SELECT id_manga FROM manga ORDER BY id_manga DESC LIMIT 1")[0];
+        Database::getDatabase()->execute("INSERT INTO lister_manga 
+        (id_user, id_manga) VALUES (8, :id_manga)", [":id_manga"=>$last_manga['id_manga']]);
+;    }
 
     public static function setMangaURI()
     {

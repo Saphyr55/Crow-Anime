@@ -2,12 +2,13 @@
 
 namespace CrowAnime\Core\Controllers\Components;
 
+use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Database\Database;
 use CrowAnime\Core\Entities\Anime;
 use CrowAnime\Core\Entities\Manga;
 use CrowAnime\Core\Entities\User;
 
-class SearchController extends \CrowAnime\Core\Controllers\Controller
+class SearchController extends Controller
 {
 
     public function action(): void

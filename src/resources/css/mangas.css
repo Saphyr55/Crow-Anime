@@ -1,15 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=New+Rocker&family=Roboto:wght@500&family=Rock+Salt&display=swap");
 
-body {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    margin: 0;
-}
-
 .list {
-    border-top: 3px solid #1d1d1d;
-    padding-top: 20px;
+    padding-top: 100px;
     padding-bottom: 20px;
     background-color: #353535;
 }

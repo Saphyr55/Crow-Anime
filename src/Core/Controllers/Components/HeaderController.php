@@ -2,9 +2,11 @@
 
 namespace CrowAnime\Core\Controllers\Components;
 
+use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Language\Language;
+use CrowAnime\Router\Router;
 
-class HeaderController extends \CrowAnime\Core\Controllers\Controller
+class HeaderController extends Controller
 {
 
     public function action(): void
@@ -25,10 +27,7 @@ class HeaderController extends \CrowAnime\Core\Controllers\Controller
     private function search()
     {
         if (isset($_POST['search_submit']))
-        {
-            header("Location: http://$_SERVER[HTTP_HOST]/search?request=".htmlspecialchars($_POST['request']));
-            exit();
-        }
+            Router::redirect("search?request=".htmlspecialchars($_POST['request']));
     }
 
     private function issetUser(): bool

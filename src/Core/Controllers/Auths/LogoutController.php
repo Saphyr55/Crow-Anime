@@ -13,7 +13,6 @@ class LogoutController extends Controller
     {
         if (isset($_SESSION['user']))
             session_destroy();
-        header("Location: http://$_SERVER[HTTP_HOST]" . Router::uri());
-        exit();
+        Router::redirect(Router::uri());
     }
 }
