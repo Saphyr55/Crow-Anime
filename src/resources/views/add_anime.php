@@ -26,7 +26,7 @@
             </div>
             <br>
             <div class="choose-picture">
-                <label><?= $choose_picture ?>></label><br>
+                <label><?= $choose_picture ?></label><br>
                 <input type="file" id="anime-picture" name="anime_picture" accept="image/png, image/jpeg">
             </div>
             <br>
