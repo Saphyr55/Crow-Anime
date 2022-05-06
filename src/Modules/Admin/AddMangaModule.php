@@ -22,7 +22,7 @@ class AddMangaModule extends Module
             new Head(
                 "Admin - Add Manga",
                 [
-                    "add_anime",
+                    "add_manga",
                 ]
             ),
             new Body(

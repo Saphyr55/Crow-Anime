@@ -72,5 +72,13 @@
       "email" : "Email",
       "password" : "Password",
       "repeat_password" : "Repeat password"
+    },
+    "profile_anime" : {
+      "add_list" : "+ Add at my list",
+      "delete_list" : "- Delete from my list"
+    },
+    "profile_manga" : {
+      "add_list" : "+ Ajouter à ma liste",
+      "delete_list" : "- Retirer de ma list"
     }
 }

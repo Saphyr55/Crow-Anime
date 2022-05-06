@@ -4,13 +4,13 @@
         <?php if(!$isInList): ?>
         <div class="manga_ajout">
             <form action="" method="post">
-                <button type="submit" name="button_add" id="manga_ajout_button">+ Ajouter à ma liste</button>
+                <button type="submit" name="button_add" id="manga_ajout_button"><?= $add_list ?></button>
             </form>
         </div> 
         <?php else: ?>
             <div class="manga_ajout">
                 <form action="" method="post">
-                    <button type="submit" name="button_delete" id="manga_ajout_button">- Retirer à ma liste</button>
+                    <button type="submit" name="button_delete" id="manga_ajout_button"><?= $delete_list ?></button>
                 </form>
             </div>
         <?php endif; ?>

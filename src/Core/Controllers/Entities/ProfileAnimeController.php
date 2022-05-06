@@ -6,12 +6,15 @@ use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Anime;
 use CrowAnime\Core\Database\Database;
 use CrowAnime\Router\Router;
+use CrowAnime\Core\Language\Language;
 
 class ProfileAnimeController extends Controller{
 
     private $anime;
 
     public function action (): void{
+
+        $this->language(Language::getLanguage()->for('profile_anime'));
 
         $this->anime = Anime::getCurrentAnimeURI();
 

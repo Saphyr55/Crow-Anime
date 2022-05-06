@@ -21,7 +21,7 @@
     "name_japanese" : "Nom du anime en japonais",
     "year" : "Date de sortie",
     "choose_picture" : "Choisissez une image d'anime : ",
-    "is_finish" : "Is finished ?",
+    "is_finish" : "Est-il fini?",
     "_studio" : "Studio",
     "register" : "Register Anime",
     "preview" : "Preview Anime"
@@ -72,5 +72,13 @@
     "email" : "Email",
     "password" : "Mot de passe",
     "repeat_password" : "Répéter le mot de passe"
+  },
+  "profile_anime" : {
+    "add_list" : "+ Ajouter à ma liste",
+    "delete_list" : "- Retirer de ma list"
+  },
+  "profile_manga" : {
+    "add_list" : "+ Ajouter à ma liste",
+    "delete_list" : "- Retirer de ma list"
   }
 }
