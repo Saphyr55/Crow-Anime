@@ -88,15 +88,15 @@
 
     },
     "profile_manga" : {
-      "add_list" : "+ Ajouter à ma liste",
-      "delete_list" : "- Retirer de ma list",
+      "add_list" : "+ Add at my list",
+      "delete_list" : "- Delete from my list",
       "rate" : "Rate",
       "send_note" : "Send",
       "manga_info_title_en" : "Englisg title : ",
       "manga_info_title_jp" : "Japanese title : ",
       "manga_info_finsih" : "Finished : ",
       "manga_info_author" : "Author : ",
-      "manga_charac" : "Personnages",
+      "manga_charac" : "Characters",
       "yes" : "yes",
       "no" : "no"
     }
