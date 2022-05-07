@@ -103,6 +103,8 @@
     "manga_charac" : "Personnages",
     "yes" : "oui",
     "no" : "non",
-    "crow_data_member" : "MEMBRE : "
+    "crow_data_member" : "MEMBRE : ",
+    "manga_add_charac" : "+ Ajoutez personnage",
+    "modal_title" : "Ajoutez personnage"
   }
 }
