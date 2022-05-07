@@ -75,10 +75,29 @@
     },
     "profile_anime" : {
       "add_list" : "+ Add at my list",
-      "delete_list" : "- Delete from my list"
+      "delete_list" : "- Delete from my list",
+      "rate" : "Rate",
+      "send_note" : "Send",
+      "anime_info_title_en" : "English Title : ",
+      "anime_info_title_jp" : "Japanese Title : ",
+      "anime_info_finsih" : "Finished : ",
+      "anime_info_season" : "Season(s) : ",
+      "anime_charac" : "Characters",
+      "yes" : "yes",
+      "no" : "no"
+
     },
     "profile_manga" : {
       "add_list" : "+ Ajouter à ma liste",
-      "delete_list" : "- Retirer de ma list"
+      "delete_list" : "- Retirer de ma list",
+      "rate" : "Rate",
+      "send_note" : "Send",
+      "anime_info_title_en" : "Englisg title : ",
+      "anime_info_title_jp" : "Japanese title : ",
+      "anime_info_finsih" : "Finished : ",
+      "manga_info_author" : "Author : ",
+      "anime_charac" : "Personnages",
+      "yes" : "yes",
+      "no" : "no"
     }
 }

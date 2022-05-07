@@ -16,10 +16,10 @@
         <?php endif; ?>
         <div class="manga_note">
             <form action="" method="post">
-                <div class="manga_note_content">Notez
+                <div class="manga_note_content"><?= $rate ?>
                     <input type="range" id="note" name="note_value" value="<?= $score ?>" min="0" max="10" oninput="this.nextElementSibling.value = this.value">
                     <output><?= $score ?></output>
-                    <input type="submit" name="note_submit" id="note_submit" name="submit">
+                    <input type="submit" value="<?=$send_note?>" id="note_submit">
                 </div>   
             </form>
         </div>
@@ -42,10 +42,10 @@
         <div class="manga_info">
             <div class="area_title_info">Informations</div>
             <div class="manga_info_content">
-                <div class="manga_info_title_en">Titre anglais : <?= $current_manga->getTitle_en()?></div>
-                <div class="manga_info_title_jp">Titre japonais : <?= $current_manga->getTitle_ja()?></div>
-                <div class="manga_info_finish">Fini : <?= intval($current_manga->isFinish())===0 ? "Non" : "Oui" ?></div>
-                <div class="manga_info_author">Auteur : <?= $current_manga->getAuthors()?></div>
+                <div class="manga_info_title_en"><?= $anime_info_title_en ?> <?= $current_manga->getTitle_en()?></div>
+                <div class="manga_info_title_jp"><?= $anime_info_title_jp ?> <?= $current_manga->getTitle_ja()?></div>
+                <div class="manga_info_finish"><?= $anime_info_finsih ?> <?= intval($current_manga->isFinish())===0 ? $no  : $yes ?></div>
+                <div class="manga_info_author"><?= $manga_info_author ?> <?= $current_manga->getAuthors()?></div>
                 <div class="manga_info_edition">Edition : <?= $current_manga->getPublishingHouse()?></div>
                 <div class="manga_info_volumes">Volumes : <?= $current_manga->getVolumes()?></div>
                 <div class="manga_info_date">Date : <?= explode(" ",$current_manga->getDate())[0] ?></div>
@@ -56,7 +56,7 @@
             <p><?= $current_manga->getSynopsis() ?></p>
         </div>
         <div class="manga_charac">
-            <div class="area_title">Characters</div>
+            <div class="area_title"><?= $anime_charac ?></div>
         </div>
     </div>
 </main>

@@ -56,6 +56,10 @@ label {
     border-right: 2px solid #757575;
 }
 
+.input_area:hover, #input_area:hover{
+    cursor: pointer;
+}
+
 form {
     margin: 4%;
 }
@@ -126,10 +130,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 400px;
     min-height: 400px;
     border-radius: 7px;
-}
-
-.choose-picture {
-    margin-bottom: 10px;
 }
 
 #picture_select{
