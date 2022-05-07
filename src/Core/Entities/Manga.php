@@ -90,13 +90,8 @@ class Manga extends Work
         $uri = explode('?', $_SERVER['REQUEST_URI'])[0];
         $work = explode('/',$uri);
         if (!strcmp($work[1], 'manga')) {
-
             $theoreticId = $work[2];
-
-            $manga = Database::getDatabase()->execute(
-                "SELECT * FROM manga WHERE id_manga=:id_manga", [':id_manga' => $theoreticId]
-            )[0];
-
+            $manga = Database::getDatabase()->execute("SELECT * FROM manga WHERE id_manga=:id_manga", [':id_manga' => $theoreticId])[0];
             if (!strcmp($theoreticId, $manga['id_manga'])) {
                 if(isset($theoreticId) && isset($manga['id_manga'])){
                     self::setCurrentMangaURI(self::convertMangaDBtoObjectManga($manga));
