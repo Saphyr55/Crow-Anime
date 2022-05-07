@@ -1,6 +1,6 @@
 <?php
 
-namespace CrowAnime\Core\Controllers\Entities;
+namespace CrowAnime\Core\Controllers\Admin;
 
 use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Season;

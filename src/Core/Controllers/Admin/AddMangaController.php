@@ -1,12 +1,11 @@
 <?php
 
-namespace CrowAnime\Core\Controllers\Entities;
+namespace CrowAnime\Core\Controllers\Admin;
 
 use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Forms\Entities\MangaForm;
 use CrowAnime\Core\Language\Language;
-use CrowAnime\Module;
 
 class AddMangaController extends Controller
 {

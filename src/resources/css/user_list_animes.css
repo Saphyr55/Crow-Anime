@@ -1,8 +1,3 @@
-body {
-    display: flex;
-    flex-direction: column;
-}
-
 .list-top-name {
     width: max-content;
 }
