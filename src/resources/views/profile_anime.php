@@ -19,7 +19,7 @@
                 <div class="anime_note_content"><?= $rate ?>
                     <input type="range" id="note" name="note_value" value="<?= $score ?>" min="0" max="10" oninput="this.nextElementSibling.value = this.value">
                     <output><?= $score ?></output>
-                    <input type="submit" id="note_submit" value="<?=$send_note?>">
+                    <input name="note_submit" type="submit" id="note_submit" value="<?=$send_note?>">
                 </div>   
             </form>
         </div>

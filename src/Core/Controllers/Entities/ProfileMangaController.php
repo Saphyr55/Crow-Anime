@@ -51,7 +51,7 @@ class ProfileMangaController extends Controller{
     }
 
     public function isInList(): bool{
-        if($_SESSION['user']!=null){
+        if($_SESSION['user']!==null){
             $data = Database::getDatabase()->execute(
                 "SELECT * FROM lister_manga
                 WHERE id_manga=:id_manga and id_user=:id_user",
@@ -66,9 +66,9 @@ class ProfileMangaController extends Controller{
         }
         return false;
     }
-    
-    public function addInList(int|string|null $score): void{
-        if($_SESSION['user']!=null){
+
+    public function addInList(int|string|null $score = null): void{
+        if($_SESSION['user']!==null){
             Database::getDatabase()->execute(
                 "INSERT INTO lister_manga(id_manga, id_user, add_date, score)
                 VALUES(:id_manga, :id_user, :add_date, :score)",
@@ -83,7 +83,7 @@ class ProfileMangaController extends Controller{
     }
 
     public function deleteInList(): void{
-        if($_SESSION['user']!=null){
+        if($_SESSION['user']!==null){
             Database::getDatabase()->execute(
                "DELETE FROM lister_manga
                WHERE id_user = :id_user and id_manga=:id_manga",
@@ -96,7 +96,7 @@ class ProfileMangaController extends Controller{
     }
 
     public function changeScore($score): void{
-        if($_SESSION['user']!=null){
+        if($_SESSION['user']!==null){
             Database::getDatabase()->execute(
                 "UPDATE lister_manga
                 SET score = :score
@@ -112,7 +112,7 @@ class ProfileMangaController extends Controller{
 
     public function submitForm(): void{
         if(isset($_POST['button_add'])){
-            $this->addInList(null);
+            $this->addInList();
             Router::redirect("manga/".Manga::getCurrentMangaURI()->getIdWork());
         }
         if(isset($_POST['button_delete'])){
@@ -122,12 +122,11 @@ class ProfileMangaController extends Controller{
         if(isset($_POST['note_submit'])){
             if($this->isInList()){
                 $this->changeScore(intval($_POST['note_value']));
-                Router::redirect("manga/".Manga::getCurrentMangaURI()->getIdWork());
             }
             else{
                 $this->addInList($_POST['note_value']);
-                Router::redirect("manga/".Manga::getCurrentMangaURI()->getIdWork());
             }
+            Router::redirect("manga/".Manga::getCurrentMangaURI()->getIdWork());
         }
     }
 }

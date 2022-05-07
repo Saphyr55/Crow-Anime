@@ -67,7 +67,7 @@ class ProfileAnimeController extends Controller{
         return false;
     }
     
-    public function addInList(int|string|null $score): void{
+    public function addInList(int|string|null $score = null): void{
         if($_SESSION['user']!=null){
             Database::getDatabase()->execute(
                 "INSERT INTO lister_anime(id_anime, id_user, add_date, score)
@@ -112,7 +112,7 @@ class ProfileAnimeController extends Controller{
 
     public function submitForm(): void{
         if(isset($_POST['button_add'])){
-            $this->addInList(null);
+            $this->addInList();
             Router::redirect("anime/".Anime::getCurrentAnimeURI()->getIdWork());
         }
         if(isset($_POST['button_delete'])){
@@ -120,14 +120,14 @@ class ProfileAnimeController extends Controller{
             Router::redirect("anime/".Anime::getCurrentAnimeURI()->getIdWork());
         }
         if(isset($_POST['note_submit'])){
+            var_dump("Salut");
             if($this->isInList()){
                 $this->changeScore(intval($_POST['note_value']));
-                Router::redirect("anime/".Anime::getCurrentAnimeURI()->getIdWork());
             }
             else{
                 $this->addInList($_POST['note_value']);
-                Router::redirect("anime/".Anime::getCurrentAnimeURI()->getIdWork());
             }
+            Router::redirect("anime/".Anime::getCurrentAnimeURI()->getIdWork());
         }
     }
 }
