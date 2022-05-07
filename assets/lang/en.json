@@ -92,11 +92,11 @@
       "delete_list" : "- Retirer de ma list",
       "rate" : "Rate",
       "send_note" : "Send",
-      "anime_info_title_en" : "Englisg title : ",
-      "anime_info_title_jp" : "Japanese title : ",
-      "anime_info_finsih" : "Finished : ",
+      "manga_info_title_en" : "Englisg title : ",
+      "manga_info_title_jp" : "Japanese title : ",
+      "manga_info_finsih" : "Finished : ",
       "manga_info_author" : "Author : ",
-      "anime_charac" : "Personnages",
+      "manga_charac" : "Personnages",
       "yes" : "yes",
       "no" : "no"
     }

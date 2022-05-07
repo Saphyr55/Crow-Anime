@@ -91,13 +91,13 @@
     "delete_list" : "- Retirer de ma list",
     "rate" : "Notez",
     "send_note" : "Envoyez",
-    "anime_info_title_en" : "Titre anglais : ",
-    "anime_info_title_jp" : "Titre japonais : ",
-    "anime_info_finsih" : "Fini : ",
+    "manga_info_title_en" : "Titre anglais : ",
+    "manga_info_title_jp" : "Titre japonais : ",
+    "manga_info_finsih" : "Fini : ",
     "manga_info_author" : "Auteur : ",
     "manga_info_edition" : "Edition : ",
     "manga_info_volumes" : "Volumes : ",
-    "anime_charac" : "Personnages",
+    "manga_charac" : "Personnages",
     "yes" : "oui",
     "no" : "non"
   }

@@ -14,7 +14,7 @@ class ProfileMangaController extends Controller{
 
     public function action (): void{
 
-        $this->language(Language::getLanguage()->for('profile_anime'));
+        $this->language(Language::getLanguage()->for('profile_manga'));
 
         $this->manga = Manga::getCurrentMangaURI();
 

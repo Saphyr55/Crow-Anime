@@ -42,9 +42,9 @@
         <div class="manga_info">
             <div class="area_title_info">Informations</div>
             <div class="manga_info_content">
-                <div class="manga_info_title_en"><?= $anime_info_title_en ?> <?= $current_manga->getTitle_en()?></div>
-                <div class="manga_info_title_jp"><?= $anime_info_title_jp ?> <?= $current_manga->getTitle_ja()?></div>
-                <div class="manga_info_finish"><?= $anime_info_finsih ?> <?= intval($current_manga->isFinish())===0 ? $no  : $yes ?></div>
+                <div class="manga_info_title_en"><?= $manga_info_title_en ?> <?= $current_manga->getTitle_en()?></div>
+                <div class="manga_info_title_jp"><?= $manga_info_title_jp ?> <?= $current_manga->getTitle_ja()?></div>
+                <div class="manga_info_finish"><?= $manga_info_finsih ?> <?= intval($current_manga->isFinish())===0 ? $no  : $yes ?></div>
                 <div class="manga_info_author"><?= $manga_info_author ?> <?= $current_manga->getAuthors()?></div>
                 <div class="manga_info_edition">Edition : <?= $current_manga->getPublishingHouse()?></div>
                 <div class="manga_info_volumes">Volumes : <?= $current_manga->getVolumes()?></div>
@@ -56,7 +56,7 @@
             <p><?= $current_manga->getSynopsis() ?></p>
         </div>
         <div class="manga_charac">
-            <div class="area_title"><?= $anime_charac ?></div>
+            <div class="area_title"><?= $manga_charac ?></div>
         </div>
     </div>
 </main>
