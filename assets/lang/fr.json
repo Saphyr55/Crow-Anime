@@ -54,7 +54,7 @@
   "login" : {
     "username" : "Nom d'utilisateur",
     "password" : "Mot de passe",
-    "dont_have_account" : "Je n'ai pas de <span>compte</span>. Je m'en <span>creer</span> un.",
+    "dont_have_account" : "Je n'ai pas de compte. Je m'en <span>créer</span> un.",
     "login" : "Se connecter"
   },
   "user_list_animes" : {

@@ -54,7 +54,7 @@
     "login" : {
       "username" : "Username",
       "password" : "Password",
-      "dont_have_account" : "I don't have any <span>account</span>. I <span>create</span> one.",
+      "dont_have_account" : "I don't have any account. I <span>create</span> one.",
       "login" : "Login"
     },
     "user_list_animes" : {
