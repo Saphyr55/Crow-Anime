@@ -41,7 +41,7 @@ class SearchController extends Controller
                 OR anime_title_en LIKE '%".$_GET['request']."%')"
         );
         foreach ($animes as $anime)
-            $animesObject[] = Anime::convertAnimeDBtoObjectAnime((array)$anime);
+            $animesObject[] = Anime::convertAnimeDBtoObjectEntity((array)$anime);
 
         return $animesObject;
     }

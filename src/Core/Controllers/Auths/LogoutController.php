@@ -12,7 +12,7 @@ class LogoutController extends Controller
     public function action(): void
     {
         if (isset($_SESSION['user']))
-            session_destroy();
+            unset($_SESSION['user']);
         Router::redirect(Router::uri());
     }
 }

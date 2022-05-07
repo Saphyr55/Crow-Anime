@@ -120,7 +120,6 @@ class ProfileAnimeController extends Controller{
             Router::redirect("anime/".Anime::getCurrentAnimeURI()->getIdWork());
         }
         if(isset($_POST['note_submit'])){
-            var_dump("Salut");
             if($this->isInList()){
                 $this->changeScore(intval($_POST['note_value']));
             }

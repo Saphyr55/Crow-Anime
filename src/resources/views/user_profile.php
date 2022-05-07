@@ -11,11 +11,13 @@
                 <?php for($i = 0 ; $i < 4 ; $i++) : ?>
                     <?php if ($i <= (count($animes) - 1)) : ?>
                         <div>
-                            <a href="<?= "http://$_SERVER[HTTP_HOST]/anime/".$animes[$i]['id_anime'].'/'. str_replace('%20', '_', $animes[$i]['anime_title_ja'] ) ?>">
+                            <a href="<?= "/anime/".$animes[$i]['id_anime'] ?>">
                                 <img alt="" src="<?= "/assets/img/anime/" . $animes[$i]['id_anime'].'.jpg' ?> " >
                             </a>
                             <div>
-                                <a class="title" href=""><?= $animes[$i]['anime_title_ja'] ?> </a>
+                                <a class="title" href="<?= "/anime/".$animes[$i]['id_anime'] ?>">
+                                    <?= $animes[$i]['anime_title_ja'] ?>
+                                </a>
                                 <p>scored : <?= $animes[$i]['score'] ?> </p>
                                 <p>Date : <?= $animes[$i]['add_date']?></p>
                             </div>
@@ -60,11 +62,13 @@
                 <?php for($i = 0 ; $i < 4 ; $i++) : ?>
                     <?php if ($i <= (count($mangas) - 1)) : ?>
                         <div>
-                            <a href="<?= "http://$_SERVER[HTTP_HOST]/manga/".$mangas[$i]['id_manga'].'/'. str_replace(' ', '_',$mangas[$i]['manga_title_ja']) ?>">
+                            <a href="<?= "/manga/".$mangas[$i]['id_manga'] ?>">
                                 <img alt="" src="<?= "/assets/img/manga/" . $mangas[$i]['id_manga'].'.jpg' ?> " >
                             </a>
                             <div>
-                                <a class="title" href=""><?= $mangas[$i]['manga_title_ja'] ?> </a>
+                                <a class="title" href="<?= "/manga/".$mangas[$i]['id_manga'] ?>">
+                                    <?= $mangas[$i]['manga_title_ja'] ?>
+                                </a>
                                 <p>scored :  <?= $mangas[$i]['score'] ?></p>
                                 <p>Date : <?= $mangas[$i]['add_date']?></p>
                             </div>

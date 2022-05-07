@@ -3,6 +3,7 @@
 namespace CrowAnime\Core\Entities;
 
 use CrowAnime\Core\Database\Database;
+use CrowAnime\Core\Sessions\Session;
 use DateTime;
 
 class Manga extends Work
@@ -11,7 +12,7 @@ class Manga extends Work
     private static array $recentMangasUpload = [];
     private static array $topMangas = [];
     private static array $mostPopularMangas = [];
-    private static ?Manga $currentMangaURI = null;
+    private static ?array $currentMangaURI = [];
     private ?string $authors, $publishingHouse;
     private int|null|string $volumes;
 
@@ -60,7 +61,7 @@ class Manga extends Work
         return $mangaObject;
     }
 
-    public function sendDatabase()
+    public function sendDatabase() : void
     {
         Database::getDatabase()->execute(
             "INSERT INTO manga 
@@ -106,12 +107,12 @@ class Manga extends Work
 
     public static function setCurrentMangaURI(?Manga $manga)
     {
-        self::$currentMangaURI = $manga;
+        self::$currentMangaURI[Session::getSession()->getId()]['current_manga_uri'] = $manga;
     }
 
     public static function getCurrentMangaURI() : ?Manga
     {
-        return self::$currentMangaURI;
+        return self::$currentMangaURI[Session::getSession()->getId()]['current_manga_uri'];
     }
 
     public static function getMostPopularMangas(): array

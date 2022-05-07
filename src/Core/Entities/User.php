@@ -41,10 +41,6 @@ class User
         self::$usersConnected[] = $this;
     }
 
-    public static function convertUserDBtoObjectUser(array $param)
-    {
-    }
-
     public function totalAnime()
     {
         return Database::getDatabase()->execute(
@@ -184,8 +180,8 @@ class User
                             )
                         );
                     }
-                } else self::setCurrentUserURI(new User(-1, "", "", "", "", "", ""));
-            } else self::setCurrentUserURI(new User(-1, "", "", "", "", "", ""));
+                } else self::setCurrentUserURI(null);
+            } else self::setCurrentUserURI(null);
     }
 
     /**

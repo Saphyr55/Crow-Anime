@@ -2,9 +2,10 @@
 
 namespace CrowAnime\Core\Entities;
 
+use CrowAnime\Core\Entities\Entity;
 use DateTime;
 
-abstract class Work
+abstract class Work extends Entity
 {
     public int $idWork;
     protected ?string $title_en;
@@ -57,24 +58,6 @@ abstract class Work
     public function getSynopsis(): ?string
     {
         return $this->synopsis;
-    }
-
-    /**
-     * Set the value of synopsis
-     *
-     * @param $synopsis
-     * @return  self
-     */
-    public function setSynopsis($synopsis): static
-    {
-        if ($this instanceof Anime) {
-            //request sql
-        } elseif ($this instanceof Manga) {
-            //request sql
-        }
-        $this->synopsis = $synopsis;
-
-        return $this;
     }
 
     /**

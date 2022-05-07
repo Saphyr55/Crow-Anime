@@ -3,15 +3,19 @@
 namespace CrowAnime\Core\Entities;
 
 use CrowAnime\Core\Database\Database;
+use CrowAnime\Core\Sessions\Session;
 use DateTime;
 
 class Anime extends Work
 {
-    private static ?Anime $currentAnimeURI = null;
+    private static ?Anime $instance = null;
+
+    private static array $currentAnimeURI = [];
     private static array $recentAnimesUpload = [];
     private static array $animesCurrentSeason = [];
     private static array $topAnimes = [];
     private static array $mostPopularAnimes = [];
+
     private ?string $season;
     private ?string $studio;
 
@@ -51,7 +55,7 @@ class Anime extends Work
         );
     }
 
-    public function sendDatabase()
+    public function sendDatabase() : void
     {
         Database::getDatabase()->execute(
             "INSERT INTO anime 
@@ -88,7 +92,7 @@ class Anime extends Work
 
             if (!strcmp($theoreticAnimeId, $anime['id_anime'])) {
                 if(isset($theoreticAnimeId) && isset($anime['id_anime'])){
-                    self::setCurrentAnimeURI(self::convertAnimeDBtoObjectAnime($anime));
+                    self::setCurrentAnimeURI(self::convertAnimeDBtoObjectEntity($anime));
                 }
             }
         }
@@ -96,35 +100,35 @@ class Anime extends Work
 
     public static function setCurrentAnimeURI(?Anime $anime)
     {
-        self::$currentAnimeURI = $anime;
+        self::$currentAnimeURI[Session::getSession()->getId()]['current_anime_uri'] = $anime;
     }
 
     public static function getCurrentAnimeURI() : ?Anime
     {
-        return self::$currentAnimeURI;
+        return self::$currentAnimeURI[Session::getSession()->getId()]['current_anime_uri'];
     }
 
-    public static function convertAnimeDBtoObjectAnime(array $anime) : ?Anime
+    public static function convertAnimeDBtoObjectEntity(array $entity) : ?Anime
     {
         $animeObject = null;
-        if (!empty($anime)) {
+        if (!empty($entity)) {
             $animeObject =  new Anime(
-                $anime['anime_title_en'],
-                $anime['anime_title_ja'],
-                $anime['anime_finish'],
-                $anime['anime_synopsis'],
-                $anime['anime_season'],
-                $anime['anime_studio'],
-                $anime['anime_date']
+                $entity['anime_title_en'],
+                $entity['anime_title_ja'],
+                $entity['anime_finish'],
+                $entity['anime_synopsis'],
+                $entity['anime_season'],
+                $entity['anime_studio'],
+                $entity['anime_date']
             );
             $animeObject
-                ->setIdWork($anime['id_anime'])
+                ->setIdWork($entity['id_anime'])
                 ->setScore(Database::getDatabase()->execute(
                     "SELECT AVG(l.score) FROM anime a 
                         INNER JOIN lister_anime l ON a.id_anime=l.id_anime
                         WHERE a.id_anime=:id_anime
                         ", [
-                        ':id_anime' => $anime['id_anime']
+                        ':id_anime' => $entity['id_anime']
                     ]
                 )[0]["AVG(l.score)"]);
         }
@@ -145,7 +149,7 @@ class Anime extends Work
                 ]
             );
             foreach ($animesCurrentSeason as $value) {
-                self::$animesCurrentSeason[] = self::convertAnimeDBtoObjectAnime($value);
+                self::$animesCurrentSeason[] = self::convertAnimeDBtoObjectEntity($value);
             }
         }
         return self::$animesCurrentSeason;
@@ -163,7 +167,7 @@ class Anime extends Work
 
             foreach ($mostPopularAnimes as $value) {
                 $value = (array)$value;
-                self::$mostPopularAnimes[] = self::convertAnimeDBtoObjectAnime($value);
+                self::$mostPopularAnimes[] = self::convertAnimeDBtoObjectEntity($value);
             }
         }
         return self::$mostPopularAnimes;
@@ -181,7 +185,7 @@ class Anime extends Work
 
             foreach ($topAnimes as $value) {
                 $value = (array) $value;
-                self::$topAnimes[] = self::convertAnimeDBtoObjectAnime($value);
+                self::$topAnimes[] = self::convertAnimeDBtoObjectEntity($value);
             }
         }
         return self::$topAnimes;

@@ -7,6 +7,7 @@ use CrowAnime\Core\Entities\Anime;
 use CrowAnime\Core\Entities\Manga;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Language\Language;
+use CrowAnime\Core\Sessions\Session;
 use CrowAnime\Router\Router;
 
 /**
@@ -56,7 +57,8 @@ class App
     public static function start(): void
     {
         error_reporting(0);
-        session_start();
+        Session::start();
+        Session::getIdSessions();
         User::setUserURI();
         Anime::setAnimeURI();
         Manga::setMangaURI();
