@@ -20,7 +20,7 @@
                     <input type="range" id="note" name="note_value" value="<?= $score ?>" min="0" max="10" oninput="this.nextElementSibling.value = this.value">
                     <output><?= $score ?></output>
                     <input name="note_submit" type="submit" id="note_submit" value="<?=$send_note?>">
-                </div>   
+                </div> 
             </form>
         </div>
     </div>
@@ -55,12 +55,38 @@
             <p><?= $current_anime->getSynopsis() ?></p>
         </div>
         <div class="anime_character">
-            <div class="area_title"><?= $anime_charac ?></div>
+            <div class="area_title"><?= $anime_charac ?>
+                <?php if($current_user_is_admin()): ?>
+                <a href="#charac_modal" class="anime_add_charac">
+                <?= $anime_add_charac ?>
+                </a>
+                <div id="charac_modal" class="modal">
+                    <div class="modal_content">
+                        <div class="modal_title"><?= $modal_title ?>
+                            <form class="charac_all-search-bar" action="" method="POST">
+                                <input class="charac_search-bar input" name="charac_request" type="text" placeholder="<?= $search ?>">
+                                <button name="charac_search_submit"class="charac_button-search" type="submit">
+                                    <i id ="charac_icon-search" class="fa-solid fa-magnifying-glass white"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <a href="#" class="modal_close">&times;</a>
+                        <form action="" class="modal_buttons" method="POST"> 
+                            <?php for ($i = 0; $i < 10; $i++) : ?>
+                                <button class="modal_button">
+                                    Character name
+                                </button>
+                            <?php endfor; ?>
+                        </form>
+                    </div>
+                </div>
+                <?php endif; ?>
+            </div>
             <div class="anime_characs">
-                <?php for ($i = 0; $i < 10; $i++) : ?>
+                <?php for ($i = 0; $i < $numberCharac; $i++) : ?>
                 <div class="anime_charac">
                     <img class="anime_charac_img" src="/assets/img/characters/3.jpg">
-                    <p class="anime_charac_name">Character Name</p>
+                    <p class="anime_charac_name">Anya Forger</p>
                 </div>
                 <?php endfor; ?>
             </div>

@@ -85,7 +85,9 @@
     "anime_charac" : "Personnages",
     "yes" : "oui",
     "no" : "non",
-    "crow_data_member" : "MEMBRE : "
+    "crow_data_member" : "MEMBRE : ",
+    "anime_add_charac" : "+ Ajoutez personnage",
+    "modal_title" : "Ajoutez personnage"
   },
   "profile_manga" : {
     "add_list" : "+ Ajouter à ma liste",
