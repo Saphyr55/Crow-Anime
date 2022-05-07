@@ -54,8 +54,16 @@
             <div class="area_title">Synopsis</div>
             <p><?= $current_anime->getSynopsis() ?></p>
         </div>
-        <div class="anime_characs">
+        <div class="anime_character">
             <div class="area_title"><?= $anime_charac ?></div>
+            <div class="anime_characs">
+                <?php for ($i = 0; $i < 10; $i++) : ?>
+                <div class="anime_charac">
+                    <img class="anime_charac_img" src="/assets/img/characters/3.jpg">
+                    <p class="anime_charac_name">Character Name</p>
+                </div>
+                <?php endfor; ?>
+            </div>
         </div>
     </div>
 </main>

@@ -14,7 +14,7 @@ main{
     .anime_score { grid-area: 1 / 2 / 2 / 6; }
     .anime_info { grid-area: 3 / 1 / 5 / 2; }
     .anime_synopsis { grid-area: 2 / 2 / 4 / 6; }
-    .anime_characs { grid-area: 4 / 2 / 5 / 6; }
+    .anime_character { grid-area: 4 / 2 / 5 / 6; }
 
 .profile_anime_grid>div{
     font-family: 'Roboto', sans-serif;
@@ -181,4 +181,24 @@ main{
 #anime_ajout_button:hover{
     cursor: pointer;
     color: #cecece;
+}
+
+.anime_characs{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+}
+
+.anime_charac{
+    margin: 5px;
+    height: 126px;
+    width: 65px; 
+}
+
+.anime_charac_img{
+    height: 100px;
+}
+
+.anime_charac_name{
+    font-size: 12px;
+    text-align: center;
 }
