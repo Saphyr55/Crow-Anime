@@ -84,7 +84,8 @@
       "anime_info_season" : "Season(s) : ",
       "anime_charac" : "Characters",
       "yes" : "yes",
-      "no" : "no"
+      "no" : "no",
+      "crow_data_member" : "MEMBER : "
 
     },
     "profile_manga" : {
@@ -98,6 +99,7 @@
       "manga_info_author" : "Author : ",
       "manga_charac" : "Characters",
       "yes" : "yes",
-      "no" : "no"
+      "no" : "no",
+      "crow_data_member" : "MEMBER : "
     }
 }

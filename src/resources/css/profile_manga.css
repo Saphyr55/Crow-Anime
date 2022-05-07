@@ -14,7 +14,7 @@ main{
     .manga_score { grid-area: 1 / 2 / 2 / 6; }
     .manga_info { grid-area: 3 / 1 / 5 / 2; }
     .manga_synopsis { grid-area: 2 / 2 / 4 / 6; }
-    .manga_charac { grid-area: 4 / 2 / 5 / 6; }
+    .manga_characs { grid-area: 4 / 2 / 5 / 6; }
 
 .profile_manga_grid>div{
     font-family: 'Roboto', sans-serif;

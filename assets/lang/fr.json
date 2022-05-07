@@ -84,7 +84,8 @@
     "anime_info_season" : "Saison(s) : ",
     "anime_charac" : "Personnages",
     "yes" : "oui",
-    "no" : "non"
+    "no" : "non",
+    "crow_data_member" : "MEMBRE : "
   },
   "profile_manga" : {
     "add_list" : "+ Ajouter à ma liste",
@@ -99,6 +100,7 @@
     "manga_info_volumes" : "Volumes : ",
     "manga_charac" : "Personnages",
     "yes" : "oui",
-    "no" : "non"
+    "no" : "non",
+    "crow_data_member" : "MEMBRE : "
   }
 }

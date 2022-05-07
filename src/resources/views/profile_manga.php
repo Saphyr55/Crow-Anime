@@ -36,7 +36,7 @@
                         <div class="crow_data_score_num"><?= round($current_manga->getScore(), 2) ?></div>
                     </div>
                 </div>
-                <div class="crow_data_member">MEMBER : <?= $members ?></div>
+                <div class="crow_data_member"><?= $crow_data_member ?><?= $members ?></div>
             </div>
         </div>
         <div class="manga_info">
@@ -55,7 +55,7 @@
             <div class="area_title">Synopsis</div>
             <p><?= $current_manga->getSynopsis() ?></p>
         </div>
-        <div class="manga_charac">
+        <div class="manga_characs">
             <div class="area_title"><?= $manga_charac ?></div>
         </div>
     </div>
