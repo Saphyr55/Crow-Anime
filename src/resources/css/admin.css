@@ -60,13 +60,20 @@ main{
     font-family: 'Roboto', sans-serif;
 }
 
-.all-users > div {
+#all-users{
+    margin-top: 20px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
+    height: 500px;
 }
 
-.all-users > div > button {
+#all-users > div {
+    display: flex;
+    flex-direction: row;
+}
+
+#all-users button {
     cursor: pointer;
     margin-left: 50px;
     height: 20px;
@@ -78,7 +85,7 @@ main{
     font-size: 20px;
 }
 
-.all-users > div > p {
+#all-users p {
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
 }
