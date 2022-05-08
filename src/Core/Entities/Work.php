@@ -35,7 +35,8 @@ abstract class Work extends Entity
         $uri = explode('?', $_SERVER['REQUEST_URI'])[0];
         $work = explode('/',$uri);
 
-        if (!strcmp($work[1], 'ajax')){
+        if (!strcmp($work[1], 'ajax'))
+        {
             $uri =  explode('?', $_SERVER['HTTP_REFERER'])[0];
             $work = explode('/', $uri);
             $work = array_merge( (array) $work[1], (array) $work[3], (array) $work[4] );
