@@ -1,0 +1,84 @@
+main{
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.admin-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-button-add {
+    border-radius: 20px;
+    text-align: center;
+    width: 300px;
+    height: 20px;
+    margin-top: 50px;
+    background-color: #FF66C4;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.admin-button-add > a > p {
+    margin-top: 10px;
+    background-color: #5271FF;
+    font-size: 30px;
+}
+
+.admin-button-add > a > p:hover {
+    color: #a0a0a0;
+    transition: all .3s;
+}
+
+.all-users {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.all-users > input {
+    background: #353535;
+    border-radius: 7px;
+    border-bottom: solid 2px #404040;
+    border-left: 2px solid #5271FF;
+    margin-left: 10px;
+    outline: none;
+    padding: 2%;
+    width: 400px;
+    margin-bottom: 10px;
+    font-size: 17px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.all-users > input::placeholder {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.all-users > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.all-users > div > button {
+    cursor: pointer;
+    margin-left: 50px;
+    height: 20px;
+    margin-top: 25px;
+    background: #FF66C4;
+    color: #f1f1f1;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.all-users > div > p {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}

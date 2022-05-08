@@ -1,15 +1,42 @@
-<div style="margin-top: 100px;" align="center">
-    <a href=<?= "/admin/". $current_user()->getUsername() ."/add-anime" ?>>
-        <p class="creerAnime">Nouvel anime</p>
-    </a>
-</div>
-<div align="center">
-    <a href=<?= "/admin/". $current_user()->getUsername() ."/add-manga" ?>>
-        <p class="creerManga">Nouveau manga</p>
-    </a>
-</div>
-<div align="center">
-    <a href=<?= "/admin/". $current_user()->getUsername() ."/add-character" ?>>
-        <p class="creerManga">Nouveau character</p>
-    </a>
-</div>
+<main>
+    <div class="admin-buttons">
+        <div class="admin-button-add">
+            <a href=<?= "/admin/". $current_user()->getUsername() ."/add-anime" ?>>
+                <p>Nouvel anime</p>
+            </a>
+        </div>
+        <div class="admin-button-add">
+            <a href=<?= "/admin/". $current_user()->getUsername() ."/add-manga" ?>>
+                <p>Nouveau manga</p>
+            </a>
+        </div>
+        <div class="admin-button-add">
+            <a href=<?= "/admin/". $current_user()->getUsername() ."/add-character" ?>>
+                <p>Nouveau character</p>
+            </a>
+        </div>
+    </div>
+    <div class="all-users">
+        <input placeholder="Search Users" type="text">
+            <div>
+                <p>Nom User</p>
+                <button>Supprimer</button>
+            </div>
+            <div>
+                <p>Nom User</p>
+                <button>Supprimer</button>
+            </div>
+            <div>
+                <p>Nom User</p>
+                <button>Supprimer</button>
+            </div>
+            <div>
+                <p>Nom User</p>
+                <button>Supprimer</button>
+            </div>
+            <div>
+                <p>Nom User</p>
+                <button>Supprimer</button>
+            </div>
+    </div>
+</main>
