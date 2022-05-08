@@ -9,7 +9,7 @@
       "new_manga" : "New Manga",
       "new_charac" : "New Character",
       "delete" : "Delete",
-      "search_user" : "Search Users"
+      "search_user" : "Search Users ..."
     },
     "add_manga" : {
       "name_english" : "English manga name",
