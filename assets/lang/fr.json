@@ -30,8 +30,8 @@
     "choose_picture" : "Choisissez une image d'anime : ",
     "is_finish" : "Est-il fini?",
     "_studio" : "Studio",
-    "register" : "Register Anime",
-    "preview" : "Preview Anime"
+    "register" : "Aperçu Manga",
+    "preview" : "Enregistrer Manga"
   },
   "animes" : {
     "all" : "Tout",

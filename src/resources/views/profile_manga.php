@@ -78,9 +78,9 @@
             </div>
             <div class="manga_characs">
                 <?php for ($i = 0; $i < count($characters); $i++) : ?>
-                    <div class="anime_charac">
-                        <img class="anime_charac_img" src="<?= "/assets/img/characters/" . $characters[$i]->getCharacterId() .".jpg" ?>">
-                        <p class="anime_charac_name"><?= $characters[$i]->getName() ?></p>
+                    <div class="manga_charac">
+                        <img class="manga_charac_img" src="<?= "/assets/img/characters/" . $characters[$i]->getCharacterId() .".jpg" ?>">
+                        <p class="manga_charac_name"><?= $characters[$i]->getName() ?></p>
                     </div>
                 <?php endfor; ?>
             </div>
