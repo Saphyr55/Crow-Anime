@@ -16,8 +16,8 @@ use CrowAnime\Template\FunctionsTemplate;
  */
 class Module implements Component
 {
-    protected Head $head;
-    protected Body $body;
+    protected ?Head $head;
+    protected ?Body $body;
     protected string $redirectionURI;
     protected Rules $rules;
     protected ?Controller $controller;
@@ -48,18 +48,19 @@ class Module implements Component
         extract((new FunctionsTemplate())->getFunctions());
         $body = $this->getBody();
         $this->getRules()->check();
-        if ($this->getBody()->getFooter() !== null && $this->getBody()->getHeader() !== null){
-            $controller_header = $body->getHeader()->getController();
-            $controller_footer = $body->getFooter()->getController();
-            if ($controller_header !== null &&
-                $controller_footer !== null)
-            {
-                $controller_header->action();
-                $controller_footer->action();
-                extract($controller_footer->getData());
-                extract($controller_footer->getStrings());
-                extract($controller_header->getData());
-                extract($controller_header->getStrings());
+        if ($body !== null) {
+            if ($body->getFooter() !== null && $body->getHeader() !== null) {
+                $controller_header = $body->getHeader()->getController();
+                $controller_footer = $body->getFooter()->getController();
+                if ($controller_header !== null &&
+                    $controller_footer !== null) {
+                    $controller_header->action();
+                    $controller_footer->action();
+                    extract($controller_footer->getData());
+                    extract($controller_footer->getStrings());
+                    extract($controller_header->getData());
+                    extract($controller_header->getStrings());
+                }
             }
         }
 
@@ -69,18 +70,24 @@ class Module implements Component
             extract($this->controller->getStrings());
         }
 
-        foreach ($this->getHead()->getContentHead() as $value)
-            echo $value;
-        echo "<body>\n";
-        if ($body->getHeader() !== null)
-            require $body->getHeader()->getPathHeader();
+        if ($this->getHead() !== null) {
+            foreach ($this->getHead()->getContentHead() as $value)
+                echo $value;
+        }
 
-        require $body->getPathComponent();
+        if ($body !== null) {
+            echo "<body>\n";
 
-        if ($body->getFooter() !== null)
-            require $body->getFooter()->getPathFooter();
-        echo "</body>\n";
+            if ($body->getHeader() !== null)
+                require $body->getHeader()->getPathHeader();
 
+            require $body->getPathComponent();
+
+            if ($body->getFooter() !== null)
+                require $body->getFooter()->getPathFooter();
+
+            echo "<body>\n";
+        }
     }
 
     /**
@@ -88,7 +95,7 @@ class Module implements Component
      *
      * @return Head $head
      */
-    public function getHead(): Head
+    public function getHead(): ?Head
     {
         return $this->head;
     }
@@ -96,9 +103,9 @@ class Module implements Component
     /**
      * Get the value of body
      *
-     * @return Body $body
+     * @return ?Body $body
      */
-    public function getBody(): Body
+    public function getBody(): ?Body
     {
         return $this->body;
     }

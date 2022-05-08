@@ -32,6 +32,9 @@ class Router
         if (!strcmp(explode('/', $uri)[1], 'phpmyadmin'))
             return;
 
+        if (!strcmp(explode('/', $uri)[1], 'app'))
+            return;
+
         for ($i = 0; $i < count($this->modules); $i++) {
 
             if ((self::$currentModule = $this->modules[$i]) !== null) {
