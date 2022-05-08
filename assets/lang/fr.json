@@ -98,7 +98,7 @@
   },
   "profile_anime" : {
     "add_list" : "+ Ajouter à ma liste",
-    "delete_list" : "- Retirer de ma list",
+    "delete_list" : "- Retirer de ma liste",
     "rate" : "Notez",
     "send_note" : "Envoyez",
     "anime_info_title_en" : "Titre anglais : ",
@@ -114,7 +114,7 @@
   },
   "profile_manga" : {
     "add_list" : "+ Ajouter à ma liste",
-    "delete_list" : "- Retirer de ma list",
+    "delete_list" : "- Retirer de ma liste",
     "rate" : "Notez",
     "send_note" : "Envoyez",
     "manga_info_title_en" : "Titre anglais : ",

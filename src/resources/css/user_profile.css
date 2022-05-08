@@ -43,7 +43,7 @@ label:hover{
     width: 300px;
     height: 300px;
     border-radius: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 #submit_picture_profile{
