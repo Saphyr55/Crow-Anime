@@ -1,3 +1,7 @@
 .list-top-name {
     width: max-content;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border: solid 2px #5271FF;
+    border-left: none;
 }
