@@ -5,8 +5,5 @@
             "CrowAnime\\": "src/"
         }
     },
-    "require": {
-        "phpunit/phpunit": "^9.5",
-        "ext-pdo": "*"
-    }
+    "require": {}
 }
