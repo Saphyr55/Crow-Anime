@@ -31,7 +31,7 @@ class AjaxProfileWorkController extends \CrowAnime\Core\Controllers\Controller
                     else $manage = "Unset Admin";
                     echo "
                     <div>
-                        <p>$user[username]</p>
+                        <a href='/profile/$user[username]'>$user[username]</a>
                         <button id=\"button-suppr-user_$user[id_user]\" onclick=\"request_access(this)\">$manage</button>
                     </div>
                     ";
