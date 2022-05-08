@@ -11,7 +11,7 @@ use Throwable;
 class Database
 {
     private static ?Database $database = null;
-    private static ?PDO $pdo;
+    private static ?PDO $pdo = null;
     private string $host;
     private string $username;
     private string $password;
