@@ -4,6 +4,13 @@
     "name_anime" : "Nom Manga",
     "news": "Les News"
   },
+  "admin" : {
+    "new_anime" : "Nouvel Anime",
+    "new_manga" : "Nouveau Manga",
+    "new_charac" : "Nouveau Personnage",
+    "delete" : "Supprimer",
+    "search_user" : "Chercher des Utilisateurs"
+  },
   "add_manga" : {
     "name_english" : "Nom du manga en anglais",
     "name_japanese" : "Nom de manga japonais",

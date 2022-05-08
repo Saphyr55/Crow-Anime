@@ -11,7 +11,7 @@ class AdminController extends Controller
 
     public function action(): void
     {
-        // $this->language(Language::getLanguage()->for('admin'));
+        $this->language(Language::getLanguage()->for('admin'));
 
         Database::getDatabase()->query('SELECT * FROM anime');
 
