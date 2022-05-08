@@ -11,6 +11,28 @@ h1, h2, h3, a, label{
     color: white;
 }
 
+h2{
+    text-align: center;
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+}
+
+h3{
+    text-align: center;
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+label{
+    margin-right: 10px;
+}
+
+label:hover{
+    cursor: pointer;
+    background: #d0d0d0;
+}
+
 .profile-part {
     display: flex;
     flex-direction: column;
@@ -21,6 +43,21 @@ h1, h2, h3, a, label{
 .profile-part > img {
     width: 300px;
     height: 300px;
+    border-radius: 20px;
+    padding-bottom: 20px;
+}
+
+#submit_picture_profile{
+    border-radius: 7px;
+    font-family: "Roboto", sans-serif;
+    padding: 6px 16px;
+    font-size: 14px;
+    border: none;
+}
+
+#submit_picture_profile:hover{
+    cursor: pointer;
+    background: #d0d0d0;
 }
 
 .profile-part-last {
@@ -42,17 +79,48 @@ h1, h2, h3, a, label{
     padding: 20px;
     min-height: 100%;
     min-width: 300px;
-    background-color: #848484;
+    background-color: #484848;
     box-shadow:
             rgba(50, 50, 93, 0.25) 0 30px 60px -12px,
-            rgba(0, 0, 0, 0.3) 0 18px 36px -18px;}
+            rgba(0, 0, 0, 0.3) 0 18px 36px -18px;
+    border-radius: 7px;    
+    }
+
+.anime-part{
+    border-top: solid 3px #5271FF;
+}
+
+.manga-part{
+    border-top: solid 3px #FF66C4;
+}
+
+.button-to{
+    margin-bottom: 10px;
+}
 
 .button-to-list {
-    background-color: #f1f1f1;
-    padding: 15px 35px;
+    padding: 15px 25px;
     font-size: 15px;
     font-family: "Roboto", sans-serif;
     color: black;
+    border-radius: 5px;
+}
+
+#button-to-list-anime {
+    background-color: #5271FF;
+    margin-right: 10px;
+}
+
+#button-to-list-anime:hover {
+    background-color: #5f7cff;
+}
+
+#button-to-list-manga {
+    background-color: #FF66C4;
+}
+
+#button-to-list-manga:hover {
+    background-color: #ff7acc;
 }
 
 .last-update {

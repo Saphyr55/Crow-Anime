@@ -57,6 +57,22 @@
     "dont_have_account" : "Je n'ai pas de compte. Je m'en <span>créer</span> un.",
     "login" : "Se connecter"
   },
+  "user_profile" : {
+    "stats_anime" : "Anime Statistiques",
+    "stats_manga" : "Manga Statistiques",
+    "total_watch" : "Vus totals : ",
+    "total_read" : "Lus totals : ",
+    "mean_score" : "Note Moyen : ",
+    "last_uptade" : "Dernière Mise à Jour",
+    "scored" : "Noté : ",
+    "anime_list" : "Liste Anime",
+    "manga_list" : "Liste Manga",
+    "joined" : "Rejoint : ",
+    "change_picture" : "Changer Image",
+    "save" : "Sauvegarder",
+    "profile" : " Profile"
+
+  },
   "user_list_animes" : {
     "animes_watch" : "Animes vus",
     "any_anime_watch" : "Vous n'avez enregistré aucun Anime"
