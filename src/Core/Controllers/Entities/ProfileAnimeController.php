@@ -22,17 +22,20 @@ class ProfileAnimeController extends Controller{
             "SELECT Count(id_user) FROM lister_anime 
             WHERE id_anime=:id_anime",
             [":id_anime"=>$this->anime->getIdWork()])[0]["Count(id_user)"];                                                    
-       
+
         $this->submitForm();
+
+
 
         $this->with([
             "current_anime" => $this->anime,
             "members" => $members,
             "currentUserExist" =>$_SESSION['user']!=null,
             "isInList" => $this->isInList(),
-            "score" => $this->getScore()===null? 5 : $this->getScore(),
+            "score" => $this->getScore()===null ? 5 : $this->getScore(),
             "numberCharac" => $this->getNumberCharac(),
         ]);
+
     }
 
     public function getScore(): int|string|null {
@@ -144,4 +147,10 @@ class ProfileAnimeController extends Controller{
             Router::redirect("anime/".Anime::getCurrentAnimeURI()->getIdWork());
         }
     }
+
+    public static function ajaxRequest()
+    {
+        echo "Salut";
+    }
+
 }

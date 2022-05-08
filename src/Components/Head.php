@@ -59,6 +59,7 @@ class Head implements Component
             foreach ($this->linksCSS as $linkCSS)
                 $htmlHeadLinksCSS[] = "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/$linkCSS'>\n";
         }
+
         return array_merge($htmlHeadBeforeLinksCSS, $htmlHeadLinksCSS, $htmlHeadAfterLinksCSS);
     }
 

@@ -23,6 +23,7 @@ $app = new App(
         CrowAnime\Modules\LogoutModule::getModule(),
 
         // Admin
+        CrowAnime\Modules\Admin\AdminModule::getModule(),
         CrowAnime\Modules\Admin\AddAnimeModule::getModule(),
         CrowAnime\Modules\Admin\AddMangaModule::getModule(),
         CrowAnime\Modules\Admin\AddCharacterModule::getModule(),
@@ -30,6 +31,7 @@ $app = new App(
         CrowAnime\Modules\Profile\UserProfileModule::getModule(),
         CrowAnime\Modules\ProfileAnimeModule::getModule(),
         CrowAnime\Modules\ProfileMangaModule::getModule(),
+        CrowAnime\Modules\Ajax\AjaxModule::getModule(),
 );
 $app->run();
 

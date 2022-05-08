@@ -183,6 +183,17 @@ main{
     color: #cecece;
 }
 
+.list-character-selected {
+    position: absolute;
+    background-color: #f1f1f1;
+}
+
+.list-character-button {
+    display: flex;
+    flex-direction: column;
+ 
+}
+
 .anime_add_charac{
     float: right;
     font-size: 18px;

@@ -28,6 +28,9 @@ class FunctionsTemplate
             },
             'current_user_is_admin' => function () {
                 return !(User::getCurrentUser() === null) && User::getCurrentUser()->isAdmin();
+            },
+            'current_user' => function () {
+                return User::getCurrentUser();
             }
         ];
         $this->functions = Controller::compactData($this->functions);
