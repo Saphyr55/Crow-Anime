@@ -10,6 +10,9 @@ use CrowAnime\Core\Controllers\Auths\LoginController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
+/**
+ * Module correspondant a la route racine ou /login
+ */
 class LoginModule extends Module
 {
     private static ?Module $_login = null;

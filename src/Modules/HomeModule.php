@@ -10,6 +10,9 @@ use CrowAnime\Core\Controllers\Components\HomeController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
+/**
+ * Module correspondant a la route racine ou /home
+ */
 class HomeModule extends Module
 {
     const TITLE = "Crow Anime - Home";

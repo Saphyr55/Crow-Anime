@@ -10,6 +10,9 @@ use CrowAnime\Core\Controllers\Entities\AnimesController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
+/**
+ * Module correspondant a la route /animes
+ */
 class AnimesModule extends Module
 {
     private static ?Module $_animes = null;

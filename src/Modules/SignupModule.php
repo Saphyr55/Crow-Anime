@@ -8,6 +8,9 @@ use CrowAnime\Core\Controllers\Auths\SignupController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
+/**
+ * Module correspondant a la route racine ou /signup
+ */
 class SignupModule extends Module
 {
     protected static ?Module $_signup = null;
@@ -16,7 +19,7 @@ class SignupModule extends Module
     {
         $nameModule = 'signup';
         $head = new Head('Crow Anime - Sign Up', [$nameModule]);
-        $body = new Body($nameModule);
+        $body = new Body($nameModule); // ne contient pas de header et footer
         $rules = new Rules([
             Rules::NOT_LOGIN_REQUIRED
         ]);

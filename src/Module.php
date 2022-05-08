@@ -12,7 +12,8 @@ use CrowAnime\Template\FunctionsTemplate;
 /**
  * Class Module
  * 
- * Permet de contenir le contenu d'une page html (head et body)
+ * Permet de contenir le contenu d'une page html (head et body) et page genere en fonction de la route
+ * La page est generé avec la view rentrer dans le body
  */
 class Module implements Component
 {
@@ -21,27 +22,29 @@ class Module implements Component
     protected string $redirectionURI;
     protected Rules $rules;
     protected ?Controller $controller;
-    protected string $namePathModule;
+    protected string $route;
 
     /**
-     * @param string $namePathModule
+     * @param string $route
      * @param ?Head $head
      * @param ?Body $body
      * @param Rules $rules
      * @param Controller|null $controller
      */
-    public function __construct(string $namePathModule, ?Head $head, ?Body $body, Rules $rules, ?Controller $controller = null)
+    public function __construct(string $route, ?Head $head, ?Body $body, Rules $rules, ?Controller $controller = null)
     {
-        $this->namePathModule = $namePathModule;
+        $this->route = $route;
         $this->head= $head;
         $this->body = $body;
-        $this->redirectionURI = "http://$_SERVER[HTTP_HOST]/$namePathModule";
+        $this->redirectionURI = "http://$_SERVER[HTTP_HOST]/$route";
         $this->rules = $rules;
         $this->controller = $controller;
     }
 
     /**
-     * Permet de generer le code php|html en fonction d'un module
+     * Permet de generer la page en fonction d'un module
+     * Extrait toutes les variables creer depuis le controlleur
+     * et toutes les fonctions de FunctionsTemplate.
      */
     public function generate() : void
     {
@@ -126,9 +129,9 @@ class Module implements Component
      * 
      * @return string $nameModule
      */
-    public function getNamePathModule(): string
+    public function getRoute(): string
     {
-        return $this->namePathModule;
+        return $this->route;
     }
 
     /**

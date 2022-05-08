@@ -5,13 +5,15 @@ namespace CrowAnime\Components;
 use CrowAnime\Core\Entities\Path;
 use CrowAnime\Core\Language\Language;
 
+/**
+ * Permet de generer le code head html avec un titre et plusieurs lien css
+ */
 class Head implements Component
 {
     private string $title;
     private array $linksCSS;
     private array $htmlHead;
     private $lang;
-    const _HEAD_PATH_ = Path::VIEWS . "head.php";
     private $headPath;
 
     public function __construct(string $title, array $namesFilesCSS = [])
@@ -32,6 +34,11 @@ class Head implements Component
         return $this->htmlHead;
     }
 
+    /**
+     * recuper le code html ( head ) sous forme array
+     *
+     * @return array
+     */
     private function head(): array
     {
         $htmlHeadBeforeLinksCSS = [
@@ -44,8 +51,8 @@ class Head implements Component
         ];
 
         $htmlHeadLinksCSS = [
-            "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/" . Path::CSS . "header.css'>\n",
-            "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/" . Path::CSS . "footer.css'>\n",
+            "<link rel='stylesheet' href='/" . Path::CSS . "header.css'>\n",
+            "<link rel='stylesheet' href='/" . Path::CSS . "footer.css'>\n",
         ];
 
         $htmlHeadAfterLinksCSS  = [
@@ -57,7 +64,7 @@ class Head implements Component
 
         if ($this->linksCSS !== []) {
             foreach ($this->linksCSS as $linkCSS)
-                $htmlHeadLinksCSS[] = "<link rel='stylesheet' href='http://$_SERVER[HTTP_HOST]/$linkCSS'>\n";
+                $htmlHeadLinksCSS[] = "<link rel='stylesheet' href='/$linkCSS'>\n";
         }
 
         return array_merge($htmlHeadBeforeLinksCSS, $htmlHeadLinksCSS, $htmlHeadAfterLinksCSS);

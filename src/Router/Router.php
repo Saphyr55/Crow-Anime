@@ -38,10 +38,10 @@ class Router
         for ($i = 0; $i < count($this->modules); $i++) {
 
             if ((self::$currentModule = $this->modules[$i]) !== null) {
-                if (!strcmp($uri, '/' . self::$currentModule->getNamePathModule())) {
+                if (!strcmp($uri, '/' . self::$currentModule->getRoute())) {
                     self::$currentModule->generate();
                     exit();
-                } elseif (!strcmp($uri, '/' . self::$currentModule->getNamePathModule() . '/')) {
+                } elseif (!strcmp($uri, '/' . self::$currentModule->getRoute() . '/')) {
 
                     header('Location: ' . substr($uri , 0, -1)); // redirection si l'uri termine par /
                     exit();

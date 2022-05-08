@@ -10,6 +10,9 @@ use CrowAnime\Core\Controllers\Entities\MangasController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
+/**
+ * Module correspondant a la route racine ou /mangas
+ */
 class MangasModule extends Module
 {
     const TITLE = "Crow Anime - All MangasModule";

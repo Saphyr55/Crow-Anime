@@ -7,7 +7,7 @@ use CrowAnime\Core\Entities\Path;
 /**
  * Class Body
  * 
- * Permet de contenir le chemin du composents qui va servir de body,
+ * Permet de contenir le chemin de la view,
  * un header, et un footer
  */
 class Body implements Component

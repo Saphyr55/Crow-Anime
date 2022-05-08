@@ -36,7 +36,7 @@ class App
     }
 
     /**
-     * Lance l'application en recuperant tous les modules
+     * Lance l'application en recuperant tous les modules et les genenere
      *  
      * @return self
      */
@@ -57,15 +57,20 @@ class App
     public static function start(): void
     {
         error_reporting(0);
+
         Session::start();
         Session::getIdSessions();
         User::setUserURI();
         Anime::setAnimeURI();
         Manga::setMangaURI();
+
         if (strcmp($_SERVER['REQUEST_URI'], '/logout'))
             Router::saveURI($_SERVER['REQUEST_URI']);
+
         if(!isset($_COOKIE['active_browser_lang']))
             Language::activeBrowserLanguage(true);
+
+
     }
 
     /**

@@ -5,5 +5,7 @@
             "CrowAnime\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+      "ext-pdo": "*"
+    }
 }
