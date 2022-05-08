@@ -10,6 +10,9 @@ use CrowAnime\Core\Controllers\Components\ErrorController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
+/**
+ * Module correspondant a la route /not-found
+ */
 class ErrorModule extends \CrowAnime\Module
 {
     private static ?Module $module = null;

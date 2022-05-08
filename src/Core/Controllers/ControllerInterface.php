@@ -4,13 +4,11 @@ namespace CrowAnime\Core\Controllers;
 
 interface ControllerInterface
 {
-    /**
-     * @return void
-     */
-    public function action(): void;
 
     /**
      * Genere les variables sous forme compacter pour les views
+     * En rentrant un tableau clé valeur avec comme key le nom de la variable voulu
+     * et comme value la valeur de la variables
      *
      * @param array $data
      * @return array

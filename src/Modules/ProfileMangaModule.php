@@ -11,6 +11,9 @@ use CrowAnime\Core\Entities\Manga;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
+/**
+ * Module correspondant a la route racine ou /manga/{id_manga}
+ */
 class ProfileMangaModule extends Module
 {
     private static ?Module $profileManga = null;

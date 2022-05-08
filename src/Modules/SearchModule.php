@@ -10,6 +10,9 @@ use CrowAnime\Core\Controllers\Components\SearchController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
+/**
+ * Module correspondant a la route racine ou /search
+ */
 class SearchModule extends \CrowAnime\Module
 {
     protected static ?Module $_search = null;

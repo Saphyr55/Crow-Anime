@@ -4,6 +4,9 @@ namespace CrowAnime\Core\Language;
 
 use CrowAnime\Core\Entities\Path;
 
+/**
+ * Gestion de langue
+ */
 class Language
 {
     const LANG = [
@@ -25,16 +28,33 @@ class Language
             $this->setCurrentLanguage($this->getCookieLanguage());
     }
 
+    /**
+     * Recuperation de langue du navigateur
+     *
+     * @return string
+     */
     private function getBrowserLanguage(): string
     {
         return substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
     }
 
+    /**
+     * Permet de savoir si la recuperation de langue du navigateur est activer
+     *
+     * @return mixed
+     */
     public function isActiveBrowserLanguage()
     {
         return $_COOKIE['active_browser_lang'];
     }
 
+    /**
+     * Par default la recuperantion de langue du navigateur est activer
+     * On peux la desactiver en activant cette fonction
+     *
+     * @param bool $active
+     * @return void
+     */
     public static function activeBrowserLanguage(bool $active): void
     {
         if (isset($_COOKIE['active_browser_lang'])) {
@@ -43,6 +63,13 @@ class Language
         setcookie('active_browser_lang', intval($active), time() + (10 * 365 * 24 * 60 * 60), '/');
     }
 
+    /**
+     * Recupere tous les clées et valeurs du fichier json dans /assets/lang
+     * en rentrant en parametre le nom du module
+     *
+     * @param string $name
+     * @return array|null
+     */
     public function for(string $name): ?array
     {
         $content = file_get_contents("$_SERVER[DOCUMENT_ROOT]/" . Path::LANG . $this->currentLanguage . '.json');

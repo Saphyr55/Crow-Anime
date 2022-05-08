@@ -8,6 +8,9 @@ use CrowAnime\Core\Controllers\Auths\LogoutController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
+/**
+ * Module correspondant a la route racine ou /logout
+ */
 class LogoutModule extends Module
 {
     private static ?Module $_logout = null;

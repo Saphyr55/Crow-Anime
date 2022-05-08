@@ -6,6 +6,9 @@ use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Path;
 use CrowAnime\Core\Entities\User;
 
+/**
+ * Genere plusieurs fonctions pret a disposition pour la view
+ */
 class FunctionsTemplate
 {
 

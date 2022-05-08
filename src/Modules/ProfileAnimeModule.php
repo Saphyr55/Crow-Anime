@@ -11,6 +11,9 @@ use CrowAnime\Core\Entities\Anime;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
+/**
+ * Module correspondant a la route racine ou /anime/{id_anime}
+ */
 class ProfileAnimeModule extends Module
 {
     private static ?Module $profileAnime = null;

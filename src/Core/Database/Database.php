@@ -11,14 +11,12 @@ use Throwable;
 class Database
 {
     private static ?Database $database = null;
-    private static $pdo;
-    private $host;
-    private $username;
-    private $password;
-    private $dbname;
-    private $port;
-    const SQLITE = 0;
-    const MYSQL = 1;
+    private static ?PDO $pdo;
+    private string $host;
+    private string $username;
+    private string $password;
+    private string $dbname;
+    private string|int $port;
 
     private function __construct()
     {
@@ -45,17 +43,6 @@ class Database
      */
     public function getPDO(): PDO
     {
-        /*
-        if (self::$pdo === null) {
-            self::$pdo = new PDO(
-                "sqlite:$_SERVER[DOCUMENT_ROOT]/crow-anime.sqlite",
-            );
-            self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        }
-        */
-        //var_dump("mysql:host=".$this->host.';port='.$this->port.';dbname='.$this->dbname, $this->username, $this->password);
-
         if (self::$pdo === null) {
                 self::$pdo = new PDO(
                     "mysql:host=".$this->host.';port='.$this->port.';dbname='.$this->dbname, $this->username, $this->password
@@ -65,7 +52,7 @@ class Database
     }
 
     /**
-     * Permet l'insertion de donnée
+     * Permet l'execution dynamique d'une requete sql avec les données mis en parametre
      */
     public function execute(string $statement, array $datas = []): bool|array
     {

@@ -10,6 +10,9 @@ use CrowAnime\Core\Controllers\Entities\NewsController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
+/**
+ * Module correspondant a la route racine ou /news
+ */
 class NewsModule extends \CrowAnime\Module
 {
 
