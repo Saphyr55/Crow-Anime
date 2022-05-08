@@ -20,9 +20,6 @@ body {
     border-radius: 10px;
     min-width: 300px;
     margin-top: 20px;
-    background: #9152f8;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px, rgba(0, 0, 0, 0.12) 0 -12px 30px, rgba(0, 0, 0, 0.12) 0 4px 6px, rgba(0, 0, 0, 0.17) 0 12px 13px, rgba(0, 0, 0, 0.09) 0 -3px 5px;
-    background: -webkit-linear-gradient(bottom, #e9e9e9, #929292);
     background: -o-linear-gradient(bottom, #1f1515, #929292);
     background: -moz-linear-gradient(bottom, #1f1515, #929292);
     background: linear-gradient(bottom, #1f1515, #929292);
@@ -72,7 +69,7 @@ body {
 .form-login .inputs input[type='email ou Username'], input[type='password'] {
     font-size: 30px;
     padding: 15px;
-    border: none;
+    border-left: solid 3px #FF66C4;
     border-radius: 5px;
     background-color: #f2f2f2;
     outline: none;
@@ -87,7 +84,7 @@ body {
 
 .form-login p.inscription span {
     font-size: 30px;
-    color: #545454;
+    color: #5271FF;
 }
 
 .form-login button {
@@ -96,7 +93,7 @@ body {
     border: none;
     font-size: 30px;
     color: #fff;
-    background-color: #545454;
+    background-color: #FF66C4;
     outline: none;
     cursor: pointer;
 }

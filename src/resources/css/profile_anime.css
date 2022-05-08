@@ -14,7 +14,7 @@ main{
     .anime_score { grid-area: 1 / 2 / 2 / 6; }
     .anime_info { grid-area: 3 / 1 / 5 / 2; }
     .anime_synopsis { grid-area: 2 / 2 / 4 / 6; }
-    .anime_characs { grid-area: 4 / 2 / 5 / 6; }
+    .anime_character { grid-area: 4 / 2 / 5 / 6; }
 
 .profile_anime_grid>div{
     font-family: 'Roboto', sans-serif;
@@ -191,5 +191,137 @@ main{
 .list-character-button {
     display: flex;
     flex-direction: column;
+ 
+}
 
+.anime_add_charac{
+    float: right;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.anime_add_charac:hover{
+    cursor: pointer;
+    color: #cecece;
+}
+
+.modal{
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal:target{
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+    background-color: #000000a1;
+}
+
+.modal_content{
+    background-color: #1d1d1d;
+    padding: 4em 4em;
+    width: 500px;
+    max-width: 90%;
+    border-radius: 7px;
+    position: relative;
+    border: solid 1px white;
+}
+
+.modal_title{
+    color:#fff;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-left: 20px;
+    flex-direction: row;
+}
+
+.modal_button{
+    color: #fff;
+    background-color: #404040;
+    font-size: 18px;
+    padding: 10px;
+    margin-right: 50px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    border: none;
+    border-left: solid 2px #FF66C4;
+}
+
+.modal_button:hover{
+    cursor: pointer;
+    color: #FF66C4;
+}
+
+.modal_close{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.charac_all-search-bar {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.charac_button-search, .charac_button-search > i {
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.charac_button-search {
+    padding: -5px;
+    margin-left: -20px;
+    background: none;
+    border: none;
+}
+
+.charac_search-bar {
+    outline: none;
+    border: 4px solid #1d1d1d;
+    font-size: 25px;
+    height: 35px;
+    width: 350px;
+    border: none;
+    border-radius: 15px 0 0 15px;
+}
+
+.charac_search-bar::placeholder {
+    padding-left: 20px;
+}
+
+.anime_characs{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+}
+
+.anime_charac{
+    margin: 5px;
+    height: 126px;
+    width: 65px; 
+}
+
+.anime_charac_img{
+    height: 100px;
+}
+
+.anime_charac_name{
+    font-size: 12px;
+    text-align: center;
 }

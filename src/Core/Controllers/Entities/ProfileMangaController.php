@@ -31,6 +31,7 @@ class ProfileMangaController extends Controller{
             "currentUserExist" =>$_SESSION['user']!=null,
             "isInList" => $this->isInList(),
             "score" => $this->getScore()===null? 5 : $this->getScore(),
+            "numberCharac" => $this->getNumberCharac(),
         ]);
     }
 
@@ -108,6 +109,20 @@ class ProfileMangaController extends Controller{
                 ]
             );
         }
+    }
+
+    public function getNumberCharac(): int|string|null {
+        if($_SESSION['user']!=null){
+            $data = Database::getDatabase()->execute(
+            "SELECT COUNT(*) FROM participer_manga
+            WHERE id_manga=:id_manga",
+            [
+                ":id_manga"=>$this->manga->getIdWork(),
+            ]
+            );
+            return $data[0]['COUNT(*)'];
+        }
+        return null;
     }
 
     public function submitForm(): void{

@@ -54,7 +54,7 @@
     "login" : {
       "username" : "Username",
       "password" : "Password",
-      "dont_have_account" : "I don't have any <span>account</span>. I <span>create</span> one.",
+      "dont_have_account" : "I don't have any account. I <span>create</span> one.",
       "login" : "Login"
     },
     "user_list_animes" : {
@@ -85,7 +85,9 @@
       "anime_charac" : "Characters",
       "yes" : "yes",
       "no" : "no",
-      "crow_data_member" : "MEMBER : "
+      "crow_data_member" : "MEMBER : ",
+      "anime_add_charac" : "+ Add character",
+      "modal_title" : "Add character"
 
     },
     "profile_manga" : {
@@ -100,6 +102,8 @@
       "manga_charac" : "Characters",
       "yes" : "yes",
       "no" : "no",
-      "crow_data_member" : "MEMBER : "
+      "crow_data_member" : "MEMBER : ",
+      "manga_add_charac" : "+ Add character",
+      "modal_title" : "Add character"
     }
 }

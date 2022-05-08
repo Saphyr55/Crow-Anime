@@ -10,7 +10,7 @@
     </div>
     <div align="center">
         <button name="register" type="submit"><?= $signup ?></button>
-        <p class="p-already">I have already an <span>account</span>. I <span><a href=<?= "http://$_SERVER[HTTP_HOST]/login" ?>>log in</a></span>.
+        <p class="p-already">I have already an account. I <span><a href=<?= "http://$_SERVER[HTTP_HOST]/login" ?>>log in</a></span>.
         </p>
         <p><?= $error ?></p>
     </div>

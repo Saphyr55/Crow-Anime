@@ -14,9 +14,8 @@ body {
     border-radius: 10px;
     min-width: 300px;
     margin-top: 20px;
-    background: #9152f8;
     box-shadow: rgba(0, 0, 0, 0.25) 0 54px 55px, rgba(0, 0, 0, 0.12) 0 -12px 30px, rgba(0, 0, 0, 0.12) 0 4px 6px, rgba(0, 0, 0, 0.17) 0 12px 13px, rgba(0, 0, 0, 0.09) 0 -3px 5px;
-    background: -webkit-linear-gradient(bottom, #e9e9e9, #929292);
+    background: #1d1d1d;
     background: -o-linear-gradient(bottom, #1f1515, #929292);
     background: -moz-linear-gradient(bottom, #1f1515, #929292);
     background: linear-gradient(bottom, #1f1515, #929292);
@@ -26,6 +25,7 @@ body {
     -o-transition: all 0.4s;
     -moz-transition: all 0.4s;
     transition: all 0.4s;
+    border: 1px solid #404040;
 }
 
 .form-register h1 {
@@ -64,7 +64,7 @@ body {
 .form-register .inputs input[type='email'], input[type='Username'], input[type='password'], input[type='confirmez password'] {
     font-size: 30px;
     padding: 15px;
-    border: none;
+    border-left: solid 3px #FF66C4;
     border-radius: 5px;
     background-color: #f2f2f2;
     outline: none;
@@ -83,5 +83,9 @@ body {
 }
 
 .p-already {
-    color: black;
+    color: #fff;
+}
+
+a{
+    color: #5271FF;
 }

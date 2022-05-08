@@ -55,8 +55,42 @@
             <div class="area_title">Synopsis</div>
             <p><?= $current_manga->getSynopsis() ?></p>
         </div>
-        <div class="manga_characs">
-            <div class="area_title"><?= $manga_charac ?></div>
+        <div class="manga_character">
+            <div class="area_title"><?= $manga_charac ?>
+                <?php if($current_user_is_admin()): ?>
+                <a href="#charac_modal" class="manga_add_charac">
+                <?= $manga_add_charac ?>
+                </a>
+                <div id="charac_modal" class="modal">
+                    <div class="modal_content">
+                        <div class="modal_title"><?= $modal_title ?>
+                            <form class="charac_all-search-bar" action="" method="POST">
+                                <input class="charac_search-bar input" name="charac_request" type="text" placeholder="<?= $search ?>">
+                                <button name="charac_search_submit"class="charac_button-search" type="submit">
+                                    <i id ="charac_icon-search" class="fa-solid fa-magnifying-glass white"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <a href="#" class="modal_close">&times;</a>
+                        <form action="" class="modal_buttons" method="POST"> 
+                            <?php for ($i = 0; $i < 10; $i++) : ?>
+                                <button class="modal_button">
+                                    Character name
+                                </button>
+                            <?php endfor; ?>
+                        </form>
+                    </div>
+                </div>
+                <?php endif; ?>
+            </div>
+            <div class="manga_characs">
+                <?php for ($i = 0; $i < $numberCharac; $i++) : ?>
+                <div class="manga_charac">
+                    <img class="manga_charac_img" src="/assets/img/characters/3.jpg">
+                    <p class="manga_charac_name">Anya Forger</p>
+                </div>
+                <?php endfor; ?>
+            </div>
         </div>
     </div>
 </main>
