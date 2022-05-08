@@ -13,23 +13,26 @@ main{
 }
 
 .admin-button-add {
-    border-radius: 20px;
     text-align: center;
     width: 300px;
     height: 20px;
     margin-top: 50px;
-    background-color: #FF66C4;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 10px;
 }
 
 .admin-button-add > a > p {
     margin-top: 10px;
-    background-color: #5271FF;
+    padding: 5px;
+    background-color: #404040;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     font-size: 30px;
+    border-left: 3px solid #5271FF;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .admin-button-add > a > p:hover {
-    color: #a0a0a0;
+    color: #5271FF;
     transition: all .3s;
 }
 
@@ -63,7 +66,7 @@ main{
 #all-users{
     margin-top: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-evenly;
     height: 500px;
 }
@@ -73,19 +76,25 @@ main{
     flex-direction: row;
 }
 
-#all-users button {
+#all-users > button {
     cursor: pointer;
     margin-left: 50px;
-    height: 20px;
+    height: 30px;
     margin-top: 25px;
-    background: #FF66C4;
+    background: #404040;
     color: #f1f1f1;
     font-family: 'Roboto', sans-serif;
+    border: none;
+    border-left: solid 3px #FF66C4;
     border-radius: 5px;
     font-size: 20px;
 }
 
-#all-users p {
-    font-size: 20px;
+#all-users > button:hover {
+    color: #FF66C4;
+}
+
+#all-users > p {
+    font-size: 22px;
     font-family: 'Roboto', sans-serif;
 }

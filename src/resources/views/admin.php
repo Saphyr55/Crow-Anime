@@ -2,24 +2,24 @@
     <div class="admin-buttons">
         <div class="admin-button-add">
             <a href=<?= "/admin/". $current_user()->getUsername() ."/add-anime" ?>>
-                <p>Nouvel anime</p>
+                <p><?= $new_anime ?></p>
             </a>
         </div>
         <div class="admin-button-add">
             <a href=<?= "/admin/". $current_user()->getUsername() ."/add-manga" ?>>
-                <p>Nouveau manga</p>
+                <p><?= $new_manga ?></p>
             </a>
         </div>
         <div class="admin-button-add">
             <a href=<?= "/admin/". $current_user()->getUsername() ."/add-character" ?>>
-                <p>Nouveau character</p>
+                <p><?= $new_charac ?></p>
             </a>
         </div>
     </div>
     <div class="all-users">
-        <input id="search-user-input" placeholder="Search Users" type="text">
+        <input id="search-user-input" placeholder="<?= $search_user ?>" type="text">
         <div id="all-users">
-
+            
         </div>
     </div>
 </main>
