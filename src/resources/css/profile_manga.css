@@ -286,8 +286,7 @@ main{
     font-size: 25px;
     height: 35px;
     width: 350px;
-    border: none;
-    border-radius: 15px 0 0 15px;
+    border-radius: 15px 15px 15px 15px;
 }
 
 .charac_search-bar::placeholder {

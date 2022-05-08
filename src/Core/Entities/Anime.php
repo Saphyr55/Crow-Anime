@@ -80,16 +80,12 @@ class Anime extends Work
 
     public static function setAnimeURI()
     {
-        $uri = explode('?', $_SERVER['REQUEST_URI'])[0];
-        $work = explode('/',$uri);
+        $work = Work::checkAjax();
         if (!strcmp($work[1], 'anime')) {
-
             $theoreticAnimeId = $work[2];
-
             $anime = Database::getDatabase()->execute(
                 "SELECT * FROM anime WHERE id_anime=:id_anime", [':id_anime' => $theoreticAnimeId]
             )[0];
-
             if (!strcmp($theoreticAnimeId, $anime['id_anime'])) {
                 if(isset($theoreticAnimeId) && isset($anime['id_anime'])){
                     self::setCurrentAnimeURI(self::convertAnimeDBtoObjectEntity($anime));
@@ -106,6 +102,11 @@ class Anime extends Work
     public static function getCurrentAnimeURI() : ?Anime
     {
         return self::$currentAnimeURI[Session::getSession()->getId()]['current_anime_uri'];
+    }
+
+    public static function getCurrentArrayWithAnimeURI()
+    {
+        return self::$currentAnimeURI;
     }
 
     public static function convertAnimeDBtoObjectEntity(array $entity) : ?Anime

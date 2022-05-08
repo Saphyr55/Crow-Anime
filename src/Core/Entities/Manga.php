@@ -87,8 +87,7 @@ class Manga extends Work
 
     public static function setMangaURI()
     {
-        $uri = explode('?', $_SERVER['REQUEST_URI'])[0];
-        $work = explode('/',$uri);
+        $work = Work::checkAjax();
         if (!strcmp($work[1], 'manga')) {
             $theoreticId = $work[2];
             $manga = Database::getDatabase()->execute("SELECT * FROM manga WHERE id_manga=:id_manga", [':id_manga' => $theoreticId])[0];

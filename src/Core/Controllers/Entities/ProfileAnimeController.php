@@ -5,12 +5,14 @@ namespace CrowAnime\Core\Controllers\Entities;
 use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\Anime;
 use CrowAnime\Core\Database\Database;
+use CrowAnime\Core\Entities\Character;
+use CrowAnime\Core\Sessions\Session;
 use CrowAnime\Router\Router;
 use CrowAnime\Core\Language\Language;
 
 class ProfileAnimeController extends Controller{
 
-    private $anime;
+    private ?Anime $anime;
 
     public function action (): void{
 
@@ -25,15 +27,13 @@ class ProfileAnimeController extends Controller{
 
         $this->submitForm();
 
-
-
         $this->with([
             "current_anime" => $this->anime,
             "members" => $members,
             "currentUserExist" =>$_SESSION['user']!=null,
             "isInList" => $this->isInList(),
             "score" => $this->getScore()===null ? 5 : $this->getScore(),
-            "numberCharac" => $this->getNumberCharac(),
+            "characters" => $this->getCharacters(),
         ]);
 
     }
@@ -114,18 +114,20 @@ class ProfileAnimeController extends Controller{
         }
     }
 
-    public function getNumberCharac(): int|string|null {
-        if($_SESSION['user']!=null){
-            $data = Database::getDatabase()->execute(
-            "SELECT COUNT(*) FROM participer_anime 
-            WHERE id_anime=:id_anime",
+    public function getCharacters(): array {
+        $characters = [];
+        $data = Database::getDatabase()->execute(
+            "SELECT * FROM _character
+            INNER JOIN participer_anime p on _character.id_character = p.id_character
+            WHERE id_anime=:id_anime LIMIT 10",
             [
                 ":id_anime"=>$this->anime->getIdWork(),
             ]
             );
-            return $data[0]['COUNT(*)'];
-        }
-        return null;
+            foreach ($data as $chara)
+                $characters[] = Character::convert($chara);
+
+        return $characters;
     }
 
     public function submitForm(): void{
@@ -146,11 +148,6 @@ class ProfileAnimeController extends Controller{
             }
             Router::redirect("anime/".Anime::getCurrentAnimeURI()->getIdWork());
         }
-    }
-
-    public static function ajaxRequest()
-    {
-        echo "Salut";
     }
 
 }

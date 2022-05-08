@@ -3,6 +3,7 @@
 namespace CrowAnime\Core\Controllers\Entities;
 
 use CrowAnime\Core\Controllers\Controller;
+use CrowAnime\Core\Entities\Character;
 use CrowAnime\Core\Entities\Manga;
 use CrowAnime\Core\Database\Database;
 use CrowAnime\Router\Router;
@@ -10,7 +11,7 @@ use CrowAnime\Core\Language\Language;
 
 class ProfileMangaController extends Controller{
 
-    private $manga;
+    private ?Manga $manga;
 
     public function action (): void{
 
@@ -31,7 +32,7 @@ class ProfileMangaController extends Controller{
             "currentUserExist" =>$_SESSION['user']!=null,
             "isInList" => $this->isInList(),
             "score" => $this->getScore()===null? 5 : $this->getScore(),
-            "numberCharac" => $this->getNumberCharac(),
+            "characters" => $this->getCharacters(),
         ]);
     }
 
@@ -111,19 +112,22 @@ class ProfileMangaController extends Controller{
         }
     }
 
-    public function getNumberCharac(): int|string|null {
-        if($_SESSION['user']!=null){
-            $data = Database::getDatabase()->execute(
-            "SELECT COUNT(*) FROM participer_manga
-            WHERE id_manga=:id_manga",
+    public function getCharacters(): array {
+        $characters = [];
+        $data = Database::getDatabase()->execute(
+            "SELECT * FROM _character
+            INNER JOIN participer_manga p on _character.id_character = p.id_character
+            WHERE id_manga=:id_manga LIMIT 10",
             [
                 ":id_manga"=>$this->manga->getIdWork(),
             ]
-            );
-            return $data[0]['COUNT(*)'];
-        }
-        return null;
+        );
+        foreach ($data as $chara)
+            $characters[] = Character::convert($chara);
+
+        return $characters;
     }
+
 
     public function submitForm(): void{
         if(isset($_POST['button_add'])){

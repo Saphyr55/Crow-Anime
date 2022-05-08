@@ -16,6 +16,19 @@ class Character extends Entity
         $this->description = $description;
     }
 
+    public static function convert(bool|array $data): ?Character
+    {
+        $character = new Character(
+            $data[1],
+            $data[2]
+        );
+
+        $character->setCharacterId($data[0]);
+        $character->setPathImage('/assets/img/characters/'.$data[0].'.jpg');
+
+        return $character;
+    }
+
     /**
      * @inheritDoc
      */
@@ -28,6 +41,51 @@ class Character extends Entity
                             ":name_character" => $this->name,
                             ":description_character" => $this->description
                         ]);
+    }
+
+
+    public function addInManga(Manga $manga)
+    {
+        Database::getDatabase()->execute(
+            'INSERT INTO participer_manga (id_manga, id_character) 
+                     VALUES (:id_anime, :id_character)',
+            [
+                ":id_anime" => $manga->getIdWork(),
+                ":id_character" => $this->getCharacterId(),
+            ]);
+    }
+
+    public function addInAnime(Anime $anime)
+    {
+        Database::getDatabase()->execute(
+            'INSERT INTO participer_anime (id_anime, id_character) 
+                     VALUES (:id_anime, :id_character)',
+            [
+                ":id_anime" => $anime->getIdWork(),
+                ":id_character" => $this->getCharacterId(),
+            ]);
+    }
+
+    public function deleteInManga(?Manga $manga)
+    {
+        Database::getDatabase()->execute(
+            'DELETE FROM participer_manga
+                     WHERE id_manga=:id_manga AND id_character=:id_character',
+            [
+                ":id_manga" => $manga->getIdWork(),
+                ":id_character" => $this->getCharacterId(),
+            ]);
+    }
+
+    public function deleteInAnime(?Anime $anime)
+    {
+        Database::getDatabase()->execute(
+            'DELETE FROM participer_anime
+                     WHERE id_anime=:id_anime AND id_character=:id_character',
+            [
+                ":id_anime" => $anime->getIdWork(),
+                ":id_character" => $this->getCharacterId(),
+            ]);
     }
 
     /**
@@ -93,6 +151,7 @@ class Character extends Entity
     {
         $this->description = $description;
     }
+
 
 
 

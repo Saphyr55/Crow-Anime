@@ -4,7 +4,7 @@ namespace CrowAnime\Modules\Ajax;
 
 use CrowAnime\Components\Body;
 use CrowAnime\Components\Head;
-use CrowAnime\Core\Controllers\Ajax\AjaxController;
+use CrowAnime\Core\Controllers\Ajax\AjaxProfileWorkController;
 use CrowAnime\Core\Rule\Rules;
 use CrowAnime\Module;
 
@@ -19,7 +19,7 @@ class AjaxModule extends \CrowAnime\Module
             null,
             null,
             new Rules([Rules::ADMIN_ONLY]),
-            new AjaxController()
+            new AjaxProfileWorkController()
         );
     }
 

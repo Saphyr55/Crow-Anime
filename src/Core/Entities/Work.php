@@ -23,12 +23,24 @@ abstract class Work extends Entity
         null|string|DateTime $date
     )
     {
-        //$this->score = 0;
         $this->title_en = $title_en;
         $this->title_ja = $title_ja;
         $this->is_finish = $is_finish;
         $this->synopsis = $synopsis;
         $this->date = $date;
+    }
+
+    public static function checkAjax(): array
+    {
+        $uri = explode('?', $_SERVER['REQUEST_URI'])[0];
+        $work = explode('/',$uri);
+
+        if (!strcmp($work[1], 'ajax')){
+            $uri =  explode('?', $_SERVER['HTTP_REFERER'])[0];
+            $work = explode('/', $uri);
+            $work = array_merge( (array) $work[1], (array) $work[3], (array) $work[4] );
+        }
+        return $work;
     }
 
     /**
