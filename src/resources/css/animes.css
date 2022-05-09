@@ -27,7 +27,8 @@
 }
 
 .list-top-name-p:hover {
-    border-color: white;
+    border-color: #5271FF;
+    color: #5271FF
 }
 
 .list-container {

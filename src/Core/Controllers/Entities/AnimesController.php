@@ -29,10 +29,10 @@ class AnimesController extends Controller
         switch ($_GET['type'])
         {
             case 'popular':
-                $this->stylePopular = "style='border-color: white;'";
+                $this->stylePopular = "style='border-color: #5271FF;'";
                 break;
             case 'seasonal' :
-                $this->styleSeasonal = "style='border-color: white;'";
+                $this->styleSeasonal = "style='border-color: #5271FF;'";
                 break;
             default:
                 $this->styleTop = "style='border-color: white;'";
