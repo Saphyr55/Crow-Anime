@@ -35,7 +35,7 @@ class AnimesController extends Controller
                 $this->styleSeasonal = "style='border-color: #5271FF;'";
                 break;
             default:
-                $this->styleTop = "style='border-color: white;'";
+                $this->styleTop = "style='border-color:  #5271FF;'";
                 break;
         }
     }
