@@ -12,15 +12,13 @@ use CrowAnime\Core\Rule\Rules;
 
 class AdminModule extends \CrowAnime\Module
 {
-    const TITLE = "Crow Anime - Admin";
-
     private static ?AdminModule $_admin = null;
 
     public function __construct()
     {
         parent::__construct(
             "admin/" . User::getCurrentUserURI()->getUsername(),
-            new Head(self::TITLE, []),
+            new Head("Admin - ".User::getCurrentUserURI()->getUsername(), ["admin"]),
             new Body(
                 "admin",
                 Header::getHeader(),

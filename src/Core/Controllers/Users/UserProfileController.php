@@ -5,17 +5,21 @@ namespace CrowAnime\Core\Controllers\Users;
 use CrowAnime\Core\Controllers\Controller;
 use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Forms\Form;
+use CrowAnime\Core\Language\Language;
 
 class UserProfileController extends Controller
 {
 
     public function action(): void
     {
+        
+        $this->language(Language::getLanguage()->for('user_profile'));
+
         $this->change_picture();
         $user = User::getCurrentUserURI();
         $this->with([
             'path_profile_picture' => '/assets/img/users/' . $user->getIdUser() . '.jpg',
-            'profile_username' => $user->getUsername() . '\'s',
+            'profile_username' => $user->getUsername(),
             'mangas' => $user->mangasRecentAdd(),
             'animes' => $user->animesRecentAdd(),
             'mean_animes' => $user->meanAnimes() === null ? '---' : round($user->meanAnimes(), 2),

@@ -117,8 +117,12 @@
     border-bottom: 3px solid transparent;
 }
 
-.p-anime a:hover {
-    border-color: white;
+#p-anime-1 a:hover {
+    color: #5271FF;
+}
+
+#p-anime-2 a:hover {
+    color: #FF66C4;
 }
 
 .p-top-anime {

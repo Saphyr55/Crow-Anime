@@ -1,0 +1,116 @@
+main{
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.admin-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-button-add {
+    text-align: center;
+    width: 300px;
+    height: 20px;
+    margin-top: 50px;
+    padding: 10px;
+}
+
+.admin-button-add > a > p {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #404040;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    font-size: 30px;
+    border-left: 3px solid #5271FF;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.admin-button-add > a > p:hover {
+    color: #5271FF;
+    transition: all .3s;
+}
+
+.all-users {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.all-users > input {
+    background: #353535;
+    border-radius: 7px;
+    border-bottom: solid 2px #404040;
+    border-left: 2px solid #5271FF;
+    margin-left: 10px;
+    outline: none;
+    padding: 2%;
+    width: 400px;
+    margin-bottom: 10px;
+    font-size: 17px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.all-users > input::placeholder {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+#all-users {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 500px;
+}
+
+#all-users > div {
+    display: flex;
+    flex-direction: row;
+}
+
+#all-users button {
+    cursor: pointer;
+    margin-left: 50px;
+    height: 30px;
+    margin-top: 5px;
+    background: #404040;
+    color: #f1f1f1;
+    font-family: 'Roboto', sans-serif;
+    border: none;
+    border-left: solid 3px #FF66C4;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+#all-users button:hover {
+    color: #FF66C4;
+}
+
+#all-users a {
+    color: #f1f1f1;
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+}
+
+@media only screen and (max-width:1100px){
+    main {
+        margin-left: 50%;
+        margin-right: 50%;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        }
+        
+        .admin-buttons { grid-area: 1 / 1 / 2 / 2; }
+        .all-users { grid-area: 2 / 1 / 3 / 2; }
+}

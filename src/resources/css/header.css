@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=New+Rocker&family=Roboto:wght@500&family=Rock+Salt&display=swap");
 
+::selection{
+    background: #FF66C4
+}
+
 body {
     margin: 0 auto;
     height: 100vh;
@@ -223,8 +227,47 @@ ul {
     border-radius: 20px;
 }
 
-@media screen and (max-width: 720px) {
-    .profile-div {
-        display: none;
+@media only screen and (max-width: 1200px) {
+    .all-search-bar{
+        width: 400px;
+        margin-left: 20px;
+    }
+    .bottom-header > nav > a {
+        font-size: 22px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .f-a-nav-bottom-header {
+        margin-left: 20px;
+    }
+}
+
+@media only screen and (max-width:900px){
+    .bottom-header {
+        padding-bottom: 10px;
+        display: grid;
+        grid-template-columns: 1fr 0.5fr;
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        }
+        
+        .bottom-header > nav { grid-area: 1 / 1 / 2 / 2; }
+        .dropdown { grid-area: 1 / 2 / 2 / 2; }
+        .all-search-bar { grid-area: 2 / 1 / 3 / 3; }
+    
+    .all-search-bar{
+        margin-right: auto;
+        margin-left: auto;
+        width: 400px;
+        margin-bottom: 10px;
+    }
+    .bottom-header > nav > a {
+        font-size: 18px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .f-a-nav-bottom-header {
+        margin-left: 10px;
     }
 }

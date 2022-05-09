@@ -54,7 +54,7 @@
     </div>
     <div class="list">
         <div class="list-top-name">
-            <a href="<?= "http://$_SERVER[HTTP_HOST]/mangas" ?>">
+            <a>
                 <p>Profile</p>
             </a>
         </div>

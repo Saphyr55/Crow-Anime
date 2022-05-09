@@ -25,10 +25,10 @@ class MangasController extends Controller
     {
         switch ($_GET['type']) {
             case 'popular':
-                $this->stylePopular = "style='border-color: white;'";
+                $this->stylePopular = "style='border-color: #FF66C4;'";
                 break;
             default:
-                $this->styleTop = "style='border-color: white;'";
+                $this->styleTop = "style='border-color: #FF66C4;'";
                 break;
         }
     }

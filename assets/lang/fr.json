@@ -4,6 +4,13 @@
     "name_anime" : "Nom Manga",
     "news": "Les News"
   },
+  "admin" : {
+    "new_anime" : "Nouvel Anime",
+    "new_manga" : "Nouveau Manga",
+    "new_charac" : "Nouveau Personnage",
+    "delete" : "Supprimer",
+    "search_user" : "Chercher des Utilisateurs ..."
+  },
   "add_manga" : {
     "name_english" : "Nom du manga en anglais",
     "name_japanese" : "Nom de manga japonais",
@@ -23,8 +30,8 @@
     "choose_picture" : "Choisissez une image d'anime : ",
     "is_finish" : "Est-il fini?",
     "_studio" : "Studio",
-    "register" : "Register Anime",
-    "preview" : "Preview Anime"
+    "register" : "Aperçu Manga",
+    "preview" : "Enregistrer Manga"
   },
   "animes" : {
     "all" : "Tout",
@@ -57,6 +64,22 @@
     "dont_have_account" : "Je n'ai pas de compte. Je m'en <span>créer</span> un.",
     "login" : "Se connecter"
   },
+  "user_profile" : {
+    "stats_anime" : "Anime Statistiques",
+    "stats_manga" : "Manga Statistiques",
+    "total_watch" : "Vus totals : ",
+    "total_read" : "Lus totals : ",
+    "mean_score" : "Note Moyen : ",
+    "last_uptade" : "Dernière Mise à Jour",
+    "scored" : "Noté : ",
+    "anime_list" : "Liste Anime",
+    "manga_list" : "Liste Manga",
+    "joined" : "Rejoint : ",
+    "change_picture" : "Changer Image",
+    "save" : "Sauvegarder",
+    "profile_user" : " Profile"
+
+  },
   "user_list_animes" : {
     "animes_watch" : "Animes vus",
     "any_anime_watch" : "Vous n'avez enregistré aucun Anime"
@@ -75,7 +98,7 @@
   },
   "profile_anime" : {
     "add_list" : "+ Ajouter à ma liste",
-    "delete_list" : "- Retirer de ma list",
+    "delete_list" : "- Retirer de ma liste",
     "rate" : "Notez",
     "send_note" : "Envoyez",
     "anime_info_title_en" : "Titre anglais : ",
@@ -91,7 +114,7 @@
   },
   "profile_manga" : {
     "add_list" : "+ Ajouter à ma liste",
-    "delete_list" : "- Retirer de ma list",
+    "delete_list" : "- Retirer de ma liste",
     "rate" : "Notez",
     "send_note" : "Envoyez",
     "manga_info_title_en" : "Titre anglais : ",

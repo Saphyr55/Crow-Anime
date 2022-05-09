@@ -4,6 +4,13 @@
       "name_anime" : "Name Manga",
       "news": "The News"
     },
+    "admin" : {
+      "new_anime" : "New Anime",
+      "new_manga" : "New Manga",
+      "new_charac" : "New Character",
+      "delete" : "Delete",
+      "search_user" : "Search Users ..."
+    },
     "add_manga" : {
       "name_english" : "English manga name",
       "name_japanese" : "Japanese manga name",
@@ -56,6 +63,21 @@
       "password" : "Password",
       "dont_have_account" : "I don't have any account. I <span>create</span> one.",
       "login" : "Login"
+    },
+    "user_profile" : {
+      "stats_anime" : "Stats Anime",
+      "stats_manga" : "Stats Manga",
+      "total_watch" : "Total watch : ",
+      "total_read" : "Total Read : ",
+      "mean_score" : "Mean Score : ",
+      "last_uptade" : "Last Update",
+      "scored" : "Scored : ",
+      "anime_list" : "Anime List ",
+      "manga_list" : "Manga List ",
+      "joined" : "Joined : ",
+      "change_picture" : "Change Picture",
+      "save" : "Save",
+      "profile_user" : "'s Profile"
     },
     "user_list_animes" : {
       "animes_watch" : "Anime watch",

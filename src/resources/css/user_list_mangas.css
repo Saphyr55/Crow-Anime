@@ -1,3 +1,14 @@
 .list-top-name {
-    width: max-content;
+    width: 400px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border: solid 2px #FF66C4;
+    border-left: none;
+}
+
+.list-top-name-p {
+    text-shadow: 1px 1px 2px black;
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    transition: all 0.1s;
 }

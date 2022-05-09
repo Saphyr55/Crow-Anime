@@ -6,6 +6,7 @@ use CrowAnime\Core\Database\Database;
 use CrowAnime\Core\Entities\Anime;
 use CrowAnime\Core\Entities\Character;
 use CrowAnime\Core\Entities\Manga;
+use CrowAnime\Core\Entities\User;
 
 class AjaxProfileWorkController extends \CrowAnime\Core\Controllers\Controller
 {
@@ -14,6 +15,41 @@ class AjaxProfileWorkController extends \CrowAnime\Core\Controllers\Controller
     {
         $this->profileManga();
         $this->profileAnime();
+        $this->admin();
+    }
+
+    private function admin()
+    {
+        if (isset($_GET['user']) && !!strcmp(' ',$_GET['user']) && !!strcmp('',$_GET['user'])) {
+            $users = Database::getDatabase()->execute(
+                "SELECT * FROM _user WHERE username LIKE :username AND id_user<>:id_user_current LIMIT 5", [
+                    ':username' => "%$_GET[user]%",
+                    ':id_user_current' => User::getCurrentUser()->getIdUser()
+                ]
+            );
+            foreach ($users as $user) {
+                if (!!strcmp('8',$user['id_user'])) {
+                    if (!strcmp('0',$user['is_admin'])) $manage = "Set Admin";
+                    else $manage = "Unset Admin";
+                    echo "
+                    <div>
+                        <a href='/profile/$user[username]'>$user[username]</a>
+                        <button id=\"button-suppr-user_$user[id_user]\" onclick=\"request_access(this)\">$manage</button>
+                    </div>
+                    ";
+                }
+            }
+        }
+        if (isset($_GET['user_id'])) {
+            $user_id = explode('_', htmlspecialchars($_GET['user_id']))[1];
+            $user = Database::getDatabase()->execute('SELECT * FROM _user WHERE id_user=:id_use',
+                [':id_user' => $user_id])[0];
+            Database::getDatabase()->execute(
+                "UPDATE _user SET is_admin = :is_admin WHERE id_user=:id_user",[
+                ':id_user'=> $user_id,
+                ':is_admin' => !strcmp('0', $user['is_admin']) ? 1 : 0
+            ]);
+        }
     }
 
     private function profileAnime()
