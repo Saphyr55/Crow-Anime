@@ -4,6 +4,7 @@ namespace CrowAnime\Core\Forms\Auths;
 
 use CrowAnime\Core\Database\Database;
 use CrowAnime\Core\Forms\Form;
+use CrowAnime\Router\Router;
 
 class SignupForm extends Form
 {
@@ -52,11 +53,10 @@ class SignupForm extends Form
                                     ":email" => $email
                                 ]
                             );
-                            header("Location: http://$_SERVER[HTTP_HOST]/profile/".$username);
+                            Router::redirect('login');
                         } else $this->errorMsg = "Username ou email déjà utiliser";
                     } else $this->errorMsg = "Mot de passe non conrespondant";
                 } catch (\PDOException $e) {
-                    error_log("PDO : $e");
                     $this->errorMsg = "Username ou email déjà utiliser";
                 }
             } else $this->errorMsg = "Veuillez remplir les champs";
