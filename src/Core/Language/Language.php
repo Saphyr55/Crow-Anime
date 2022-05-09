@@ -16,8 +16,8 @@ class Language
     const DEFAULT_LANG = self::LANG['en'];
 
     private static ?Language $languageInstance = null;
-    private string $currentLanguage;
-    private string $langBrowser;
+    private ?string $currentLanguage;
+    private ?string $langBrowser;
 
     public function __construct()
     {   
@@ -31,9 +31,9 @@ class Language
     /**
      * Recuperation de langue du navigateur
      *
-     * @return string
+     * @return ?string
      */
-    private function getBrowserLanguage(): string
+    private function getBrowserLanguage(): ?string
     {
         return substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
     }
@@ -89,9 +89,9 @@ class Language
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function getCurrentLanguage(): string
+    public function getCurrentLanguage(): ?string
     {
         return $this->currentLanguage;
     }
