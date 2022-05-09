@@ -154,9 +154,8 @@ create table lister_manga
 create index id_manga
     on lister_manga (id_manga);
 
-INSERT INTO `crow-anime`.lister_manga (id_user, id_manga, add_date, score, user_finish_manga, user_number_volume_finish) VALUES (2, 1, '2022-05-07', 10, null, null);
-INSERT INTO `crow-anime`.lister_manga (id_user, id_manga, add_date, score, user_finish_manga, user_number_volume_finish) VALUES (2, 3, '2022-05-06', 10, null, null);
-INSERT INTO `crow-anime`.lister_manga (id_user, id_manga, add_date, score, user_finish_manga, user_number_volume_finish) VALUES (3, 1, '2022-04-17', 10, 0, 49);
+INSERT INTO `crow-anime`.lister_manga (id_user, id_manga, add_date, score, user_finish_manga, user_number_volume_finish) VALUES (2, 3, '2022-05-09', 10, null, null);
+INSERT INTO `crow-anime`.lister_manga (id_user, id_manga, add_date, score, user_finish_manga, user_number_volume_finish) VALUES (8, 1, null, null, null, null);
 INSERT INTO `crow-anime`.lister_manga (id_user, id_manga, add_date, score, user_finish_manga, user_number_volume_finish) VALUES (8, 3, null, null, null, null);
 
 create table news
@@ -197,15 +196,12 @@ INSERT INTO `crow-anime`.participer_anime (id_anime, id_character) VALUES (48, 1
 
 create table participer_manga
 (
-    id_character int not null,
     id_manga     int not null,
+    id_character int not null,
     primary key (id_character, id_manga),
-    constraint participer_manga_ibfk_1
-        foreign key (id_character) references _character (id_character),
-    constraint participer_manga_ibfk_2
-        foreign key (id_manga) references manga (id_manga)
+    constraint participer_manga_ibfk_2 foreign key (id_manga) references manga (id_manga),
+    constraint participer_manga_ibfk_1 foreign key (id_character) references _character (id_character)
 );
 
 create index id_manga
     on participer_manga (id_manga);
-

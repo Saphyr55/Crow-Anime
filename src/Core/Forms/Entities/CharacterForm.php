@@ -4,7 +4,9 @@ namespace CrowAnime\Core\Forms\Entities;
 
 use CrowAnime\Core\Database\Database;
 use CrowAnime\Core\Entities\Character;
+use CrowAnime\Core\Entities\User;
 use CrowAnime\Core\Forms\Form;
+use CrowAnime\Router\Router;
 
 class CharacterForm extends \CrowAnime\Core\Forms\Form
 {
@@ -31,6 +33,7 @@ class CharacterForm extends \CrowAnime\Core\Forms\Form
             $character = $self->createCharacter();
             $upload_file = $upload_dir . basename($_FILES[$name_file]['name']);
             $self->issetSubmit($character, $name_file, $allowed, $upload_file);
+            Router::redirect("admin/".User::getCurrentUser()->getUsername());
             return $character;
         }
         else
