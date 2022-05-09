@@ -29,7 +29,7 @@
     </div>
     <div class="profile-part">
         <div class="profile-part-first">
-            <h1><?= $profile_username ?><?= $profile ?></h1>
+            <h1><?= $profile_username ?><?= $profile_user ?></h1>
         </div>
         <img src="<?= $path_profile_picture ?>" alt="">
         <div class="profile-part-last">
