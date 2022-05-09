@@ -65,7 +65,7 @@ class App
         User::setUserURI();
         Anime::setAnimeURI();
         Manga::setMangaURI();
-        Character::setAnimeURI();
+        Character::setCharacterURI();
 
         if (strcmp($_SERVER['REQUEST_URI'], '/logout'))
             Router::saveURI($_SERVER['REQUEST_URI']);
