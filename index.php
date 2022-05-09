@@ -32,6 +32,8 @@ $app = new App(
         CrowAnime\Modules\ProfileAnimeModule::getModule(),
         CrowAnime\Modules\ProfileMangaModule::getModule(),
         CrowAnime\Modules\Ajax\AjaxModule::getModule(),
+        CrowAnime\Modules\CharacterModule::getModule(),
+
 );
 $app->run();
 

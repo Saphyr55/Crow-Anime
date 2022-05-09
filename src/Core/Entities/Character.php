@@ -17,16 +17,17 @@ class Character extends Entity
         $this->description = $description;
     }
 
-    public static function setAnimeURI()
+    public static function setCharacterURI()
     {
-        $uri = explode('/',$_SERVER['REQUEST_URI']);
+        $uri = explode('?',$_SERVER['REQUEST_URI']);
+        $uri = explode('/', $uri[0] );
         if (!strcmp($uri[1], 'character')) {
             $theoreticId = $uri[2];
             $character = Database::getDatabase()->execute(
                 "SELECT * FROM _character WHERE id_character=:id_character", [':id_character' => $theoreticId]
             )[0];
-            if (!strcmp($theoreticId, $character['id_character'])) {
-                if(isset($theoreticId) && isset($character['id_anime'])){
+            if (!strcmp($theoreticId, intval($character['id_character'])) ) {
+                if(isset($theoreticId) && isset($character['id_character'])){
                     self::setCurrentCharacterURI(self::convert($character));
                 }
             }

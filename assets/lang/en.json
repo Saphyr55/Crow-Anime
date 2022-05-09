@@ -127,5 +127,9 @@
       "crow_data_member" : "MEMBER : ",
       "manga_add_charac" : "+ Add character",
       "modal_title" : "Add character"
+    },
+    "profile_character" : {
+      "profile_character_information" : "Informations",
+      "profile_character_name" : "Name"
     }
 }
