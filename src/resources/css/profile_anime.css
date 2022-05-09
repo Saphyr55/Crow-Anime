@@ -310,6 +310,7 @@ main{
 .anime_characs{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    padding-bottom: 5px;
 }
 
 .anime_charac{
@@ -327,6 +328,13 @@ main{
     text-align: center;
 }
 
+@media only screen and (max-width: 655px) {
+    #note{
+        margin-left: 50px;
+        width: 200px;
+    }
+}
+
 @media only screen and (max-width: 1250px) {
     .profile_anime_grid{
         display: flex;
@@ -338,5 +346,10 @@ main{
     }
     .profile_anime_grid>div{
         width: auto;
+    }
+    .anime_characs{
+        font-size: 12px;
+        text-align: center;
+        padding-bottom: 20px;
     }
 }

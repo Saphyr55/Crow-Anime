@@ -315,6 +315,13 @@ main{
     text-align: center;
 }
 
+@media only screen and (max-width: 655px) {
+    #note{
+        margin-left: 50px;
+        width: 200px;
+    }
+}
+
 @media only screen and (max-width: 1250px) {
     .profile_manga_grid{
         display: flex;
@@ -326,5 +333,10 @@ main{
     }
     .profile_manga_grid>div{
         width: auto;
+    }
+    .manga_characs{
+        font-size: 12px;
+        text-align: center;
+        padding-bottom: 20px;
     }
 }
